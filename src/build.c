@@ -87,6 +87,8 @@ const tt_dataset *tt_build_dataset(tt_builder *b, tt_config_node node, const cha
     return data;
 }
 tt_interpolation tt_build_interpolator(tt_builder *b, tt_config_node node, int *fold) {
+    static const char *const required[] = {"type", NULL}, *const optional[] = {"fold in", NULL};
+    tt_build_keys(b, node, required, optional);
     const char *type = tt_build_string(b, node, "type", "conserving");
     *fold = tt_build_boolean(b, node, "fold in", 0);
     static const char *const names[] = {"linear", "conserving", "fractional source",
@@ -100,6 +102,35 @@ tt_interpolation tt_build_interpolator(tt_builder *b, tt_config_node node, int *
     tt_build_fail(b, node, TT_INVALID, "Unknown interpolator '%s'", type);
     return TT_CONSERVING;
 }
+static int listed(const char *key, const char *const *list) {
+    for (; list && *list; ++list)
+        if (!strcmp(key, *list))
+            return 1;
+    return 0;
+}
+void tt_build_keys(tt_builder *b, tt_config_node node, const char *const *required,
+                   const char *const *optional) {
+    tt_config_kind kind = tt_config_type(node);
+    if (b->status != TT_OK || kind == TT_CONFIG_MISSING)
+        return;
+    if (kind != TT_CONFIG_MAPPING) {
+        tt_build_fail(b, node, TT_INVALID, "Expected a configuration mapping");
+        return;
+    }
+    for (size_t i = 0; i < tt_config_size(node); ++i) {
+        const char *key = tt_config_key(node, i);
+        if (strncmp(key, "__", 2) && !listed(key, required) && !listed(key, optional)) {
+            tt_build_fail(b, tt_config_at(node, i), TT_INVALID, "Unknown configuration key '%s'",
+                          key);
+            return;
+        }
+    }
+    for (; required && *required; ++required)
+        if (!tt_build_has(node, *required)) {
+            tt_build_fail(b, node, TT_INVALID, "Missing configuration key '%s'", *required);
+            return;
+        }
+}
 int tt_build_equal(double a, double b) {
     return a == b || 2.0 * fabs(a - b) / (fabs(a) + fabs(b)) < 1.e-10 || fabs(a - b) <= 1.e-30;
 }
@@ -110,6 +141,17 @@ tt_status tt_grid_from_config(tt_config_node config, const tt_data_source *sourc
     tt_builder b = {source ? *source : (tt_data_source){0}, error, TT_OK};
     const char *type = tt_build_string(&b, config, "type", NULL);
     tt_status status = TT_INVALID;
+    /* Keys TUV-x accepts (src/grids/). */
+    static const char *const equal[] = {"type",       "units", "begins at", "ends at",
+                                        "cell delta", "name",  NULL};
+    static const char *const values[] = {"type", "units", "values", "name", NULL};
+    static const char *const file[] = {"type", "units", "file path", "name", NULL};
+    const char *const *keys = !strcmp(type, "equal interval")     ? equal
+                              : !strcmp(type, "from config file") ? values
+                              : !strcmp(type, "from csv file")    ? file
+                                                                  : NULL;
+    if (keys)
+        tt_build_keys(&b, config, keys, NULL);
     if (!out)
         tt_build_fail(&b, config, TT_INVALID, "Missing grid output");
     if (!strcmp(type, "equal interval")) {

@@ -26,6 +26,11 @@ containing `#PHOTO_RATES` or `#DOSE_RATES` still need those markers expanded int
 configuration text, as in the original regression harness; the test generator
 does that automatically.
 
+Configurations are checked as TUV-x checks them: each section must contain
+its required keys and no keys other than those it accepts, apart from
+comments whose names begin with `__`. Numbers always use `.` as the decimal
+point, whatever locale the host process selects.
+
 ## Output
 
 JSON uses the `TurboTUV-1` schema. Root fields contain altitude edges in km,

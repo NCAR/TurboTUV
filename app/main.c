@@ -6,6 +6,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
 static void usage(FILE *f) {
@@ -98,6 +99,20 @@ int main(int argc, char **argv) {
                      strerror(errno));
             goto done;
         }
+        /* mkstemp creates mode 0600; publish with the replaced file's mode,
+         * or the mode a new file would have. */
+        struct stat existing;
+        mode_t mask = umask(0);
+        umask(mask);
+        mode_t mode = stat(output_path, &existing) == 0 && S_ISREG(existing.st_mode)
+                          ? existing.st_mode & 07777
+                          : 0666 & ~mask;
+        if (fchmod(fd, mode)) {
+            close(fd);
+            snprintf(error.message, sizeof error.message, "Cannot set output mode: %s",
+                     strerror(errno));
+            goto done;
+        }
         if (netcdf) {
             close(fd);
             file = NULL;
@@ -135,10 +150,8 @@ int main(int argc, char **argv) {
         snprintf(error.message, sizeof error.message, "Cannot publish output: %s", strerror(errno));
     }
 done:
-    if (writer) {
-        tt_error ignored;
-        tt_output_close(writer, &ignored);
-    }
+    if (writer) /* leave the JSON unterminated so it cannot pass as complete */
+        tt_output_abandon(writer);
     if (file && file != stdout)
         fclose(file);
     if (temporary) {

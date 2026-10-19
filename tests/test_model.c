@@ -192,6 +192,98 @@ int main(void) {
                 "invalid model rejected without changing output");
         tt_config_destroy(config);
     }
+    origin = "configuration defaults";
+    {
+        /* TUV-x's default 550 nm depth of 0 normalizes the aerosol column to zero. */
+        static const char *const aerosol =
+            "{grids: [{name: height, type: equal interval, units: km, begins at: 0, ends at: 3,"
+            " cell delta: 1}, {name: wavelength, type: from config file, units: nm, values: [300,"
+            " 400, 500]}], profiles: [{name: temperature, type: from config file, units: K,"
+            " grid: {name: height, units: km}, values: [290, 280, 270, 260]}, {name: air, type:"
+            " from config file, units: molecule cm-3, grid: {name: height, units: km}, values:"
+            " [2.5e19, 2.2e19, 2.0e19, 1.8e19]}, {name: surface albedo, type: from config file,"
+            " units: none, grid: {name: wavelength, units: nm}, uniform value: 0.1}],"
+            " radiative transfer: {solver: {type: delta eddington}, cross sections: [],"
+            " radiators: [{name: aerosols, type: aerosol, optical depths: [0.2, 0.1, 0.05, 0.02],"
+            " single scattering albedo: 0.9, asymmetry factor: 0.6%s}]}, O2 absorption: {%s}}";
+        const char *variants[][2] = {{"", ""},
+                                     {", 550 nm optical depth: 0.235", ""},
+                                     {"", "O2 estimate: {scale factor: 0}"}};
+        char text[2048];
+        for (int v = 0; v < 3; ++v) {
+            snprintf(text, sizeof text, aerosol, variants[v][0], variants[v][1]);
+            tt_config *config = NULL;
+            tt_model *model = NULL;
+            tt_error error;
+            require(tt_config_parse(text, strlen(text), &config, &error) == TT_OK, error.message);
+            if (v == 2) {
+                /* No O2 bands on this grid: the estimate is unused but still checked
+                 * where bands exist; use the combined grid to reach the check. */
+                tt_config_destroy(config);
+                const char *bands = strstr(text, "{name: wavelength");
+                char modified[2048];
+                snprintf(modified, sizeof modified,
+                         "%.*s{name: wavelength, type: from csv file,"
+                         " units: nm, file path: data/grids/wavelength/combined.grid}%s",
+                         (int)(bands - text), text, strstr(bands, "}]") + 1);
+                require(tt_config_parse(modified, strlen(modified), &config, &error) == TT_OK,
+                        error.message);
+                require(tt_model_create(tt_config_root(config), &source, &model, &error) ==
+                                TT_RANGE &&
+                            !model,
+                        "zero O2 scale factor rejected");
+                tt_config_destroy(config);
+                continue;
+            }
+            require(tt_model_create(tt_config_root(config), &source, &model, &error) == TT_OK,
+                    error.message);
+            const tt_radiator *r = tt_model_radiator(model, "aerosols");
+            tt_model_dimensions shape = tt_model_shape(model);
+            double total = 0;
+            for (size_t i = 0; i < (shape.levels - 1) * shape.wavelengths; ++i)
+                total += r->optical_depth[i];
+            require(v == 0 ? total == 0 : total > 0, "aerosol 550 nm default");
+            tt_model_destroy(model);
+            tt_config_destroy(config);
+        }
+    }
+    origin = "configuration keys";
+    {
+        /* As TUV-x's config%validate: unknown keys fail, "__" keys are comments. */
+        const char *example = model_cases[0].config; /* examples/tuv_5_4.json */
+        static const char *const edits[][2] = {
+            {"\"quantum yield\"", "\"scaling factr\":2.5,\"quantum yield\""},
+            {"\"treat as air\"", "\"treat as aire\""},
+            {"\"type\":\"O3\",", "\"type\":\"O3\",\"scale heigth\":4.5,"},
+            {"\"550 nm optical depth\"", "\"550nm optical depth\""},
+            {"\"cell delta\"", "\"cell size\""},
+            {"\"photolysis\"", "\"__photolysis\""}};
+        require(!strcmp(model_cases[0].origin, "examples/tuv_5_4.json"), "example case");
+        for (size_t i = 0; i < sizeof edits / sizeof *edits; ++i) {
+            const char *at = strstr(example, edits[i][0]);
+            require(at != NULL, "key to edit");
+            size_t before = (size_t)(at - example), old = strlen(edits[i][0]);
+            size_t length = strlen(example) - old + strlen(edits[i][1]);
+            char *text = malloc(length + 1);
+            require(text != NULL, "allocation");
+            memcpy(text, example, before);
+            strcpy(text + before, edits[i][1]);
+            strcat(text, at + old);
+            tt_config *config = NULL;
+            tt_model *model = NULL;
+            tt_error error;
+            require(tt_config_parse(text, length, &config, &error) == TT_OK, error.message);
+            tt_status status = tt_model_create(tt_config_root(config), &source, &model, &error);
+            /* Renaming the photolysis section to a comment removes the rates. */
+            require(i + 1 < sizeof edits / sizeof *edits
+                        ? status == TT_INVALID && !model && strstr(error.message, "Unknown")
+                        : status == TT_OK && tt_model_shape(model).photolysis == 0,
+                    "configuration key validation");
+            tt_model_destroy(model);
+            tt_config_destroy(config);
+            free(text);
+        }
+    }
     printf("Whole model: %zu configurations, %zu runs, %zu comparisons, worst %.3g eps\n", cases,
            runs, compared, worst);
     return 0;

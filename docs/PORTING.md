@@ -235,11 +235,55 @@ exclude that entry. C validates grids and prevents out-of-bounds access. The
 reference conserving interpolator assumes padded source grids, so randomized
 reference comparisons use interior target bins.
 
+## Review corrections — 2026-10-19
+
+An independent review compared every translated routine with the Fortran again,
+fuzzed the parsers and solvers, injected allocation failures and exercised
+inputs the reference suites do not reach. It found no memory errors. The
+following defects are corrected, each with a regression test:
+
+* A missing aerosol "550 nm optical depth" now defaults to 0, as in TUV-x,
+  which normalizes the aerosol column to zero. C used -1, which skipped the
+  normalization and changed rates by up to 2% (verified against the original
+  executable).
+* O3 sample profiles append 1-km points by accumulating the coordinate until
+  one lies above the grid top, as TUV-x does. C counted floor(top - last) + 1,
+  one too few when the difference rounds just below an integer, which zeroed
+  the top edge. Shipped data were unaffected; the new case matches the
+  original constructor's values.
+* Configuration mappings are validated as TUV-x's `config%validate` does:
+  required keys must be present and other keys must be accepted by that
+  constructor, except comments beginning with "__". Misspelled keys were
+  previously ignored. Validation covers exactly the constructors TUV-x
+  validates, so the original configurations are accepted unchanged. As in
+  TUV-x, merged files and point data are accepted only by base cross sections,
+  where C had merged temperature tables under the last file's temperatures.
+* Numbers in configurations and data tables are read independently of the
+  process locale; a host using a ',' decimal point could not build a model.
+  The conversion rewrites a decimal number as digits and an exponent, which
+  denotes the same value, and is verified bit for bit against the "C" locale
+  for all 186,533 numeric tokens in the embedded data.
+* Spectra validate the temperatures and air densities their formulas use;
+  temperature-independent kinds no longer reject a 0 K level, matching TUV-x.
+* Malformed resolver datasets, NaN or unordered table temperatures, a zero
+  Burkholder B and a nonpositive O2 scale factor are rejected at construction
+  instead of overreading memory or failing every run.
+* The runner publishes files with the replaced file's mode (or the umask
+  default) rather than mkstemp's 0600, and a failed run leaves its JSON
+  unterminated instead of a valid document. Exhausting memory while checking
+  for a second configuration document reports TT_MEMORY, and duplicate keys
+  in large mappings are found in O(n log n).
+
+Constructors that TUV-x leaves unvalidated (for example the specialized
+quantum yields) accept any keys, as there. The C port still rejects inputs
+where the reference would continue with NaN, such as nonpositive temperatures
+in temperature-dependent spectra.
+
 ## Final validation — 2026-10-18
 
 | Check | GCC/GFortran 16.2.0 | Clang/Flang 23.1.3 |
 | --- | --- | --- |
-| Complete TurboTUV C/reference/CLI suite | 37/37 pass | 37/37 pass |
+| Complete TurboTUV C/reference/CLI suite | 38/38 pass | 38/38 pass |
 | Existing TUV-x suite with documented harness portability fixes | 88/88 pass | 88/88 pass |
 | Reference, analytic and output numerical comparisons | 71,501,781 pass | 71,501,781 pass |
 | Complete-model comparisons, largest relative epsilon error | 0 | 0.999 |
@@ -249,7 +293,7 @@ reference comparisons use interior target bins.
 | Concurrent versus serial output | 4,410,208 values, exact | 4,410,208 values, exact |
 | Installed CMake consumer | Static library, pass | Shared library, pass |
 
-All 18 C/kernel/model/concurrency tests pass with Clang AddressSanitizer,
+All 19 C/kernel/model/concurrency/locale tests pass with Clang AddressSanitizer,
 UndefinedBehaviorSanitizer and leak detection enabled. The optional NetCDF CLI
 also passes address/undefined-behavior checks with the leak-checking exception
 documented above; the JSON-only CLI passes with leak detection enabled.

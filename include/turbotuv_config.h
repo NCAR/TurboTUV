@@ -26,6 +26,7 @@ typedef struct {
 } tt_error;
 
 /* Parse one JSON or YAML document. The document owns all nodes/strings;
+ * numbers are read with '.' decimal points whatever the process locale.
  * borrowed node handles remain valid until destroy. Output is unchanged on
  * failure. Cycles, duplicate/non-scalar mapping keys and depth >128 are
  * rejected; non-cyclic YAML aliases retain shared immutable nodes. */

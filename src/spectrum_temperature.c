@@ -3,6 +3,7 @@
 #include "spectrum_internal.h"
 #include <float.h>
 #include <math.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -17,13 +18,36 @@ static const tt_data_variable *parameters(tt_builder *b, tt_config_node node, co
     const tt_dataset *data = tt_build_dataset(b, node, path);
     const tt_data_variable *p = tt_dataset_variable(data, name);
     *wave = tt_dataset_variable(data, "wavelength");
-    if (!p || p->rank != 2 || !p->shape[0] || !p->shape[1] || !*wave ||
-        (*wave)->count != p->shape[1]) {
+    if (!p || p->rank != 2 || !p->shape[0] || !p->shape[1] || !p->values ||
+        p->shape[1] > SIZE_MAX / p->shape[0] || p->count != p->shape[0] * p->shape[1] || !*wave ||
+        !(*wave)->values || (*wave)->count != p->shape[1]) {
         tt_build_fail(b, node, TT_INVALID, "Invalid parameterization dataset: %s", path);
         return NULL;
     }
     return p;
 }
+/* Keys TUV-x accepts for each parameterization (src/cross_sections/util/). */
+static const char *const exponential_required[] = {
+    "AA", "BB", "lp", "base temperature", "base wavelength", "logarithm", NULL};
+static const char *const exponential_optional[] = {"minimum wavelength", "maximum wavelength",
+                                                   "temperature ranges",
+                                                   "invert temperature offset", NULL};
+static const char *const taylor_required[] = {"netcdf file", "base temperature", NULL};
+static const char *const taylor_optional[] = {"minimum wavelength", "maximum wavelength",
+                                              "temperature ranges", "type", NULL};
+static const char *const burkholder_required[] = {"netcdf file", "A", "B", NULL};
+static const char *const burkholder_optional[] = {"type", "temperature ranges",
+                                                  "minimum wavelength", "maximum wavelength", NULL};
+static const char *const harwood_required[] = {
+    "aa", "bb", "base temperature", "base wavelength", "logarithm", NULL};
+static const char *const harwood_optional[] = {"type",
+                                               "minimum wavelength",
+                                               "maximum wavelength",
+                                               "temperature ranges",
+                                               "invert temperature offset",
+                                               NULL};
+static const char *const range_keys[] = {"minimum", "maximum", "fixed value", NULL};
+
 static void ranges(tt_builder *b, tt_config_node config, tt_temperature_model *p) {
     tt_config_node list = tt_config_get(config, "temperature ranges");
     size_t n = tt_config_size(list);
@@ -37,6 +61,7 @@ static void ranges(tt_builder *b, tt_config_node config, tt_temperature_model *p
         r[0].maximum = tt_build_has(config, "temperature ranges") ? 0 : DBL_MAX;
     for (size_t i = 0; i < n; ++i) {
         tt_config_node node = tt_config_at(list, i);
+        tt_build_keys(b, node, NULL, range_keys);
         r[i].minimum = tt_build_number(b, node, "minimum", 0);
         r[i].maximum = tt_build_number(b, node, "maximum", DBL_MAX);
         r[i].fixed_value = tt_build_number(b, node, "fixed value", 0);
@@ -59,6 +84,20 @@ void tt_spectrum_temperature_build(tt_builder *b, tt_config_node config, tt_spec
         p->kind = TT_TEMPERATURE_HARWOOD;
     else
         tt_build_fail(b, node, TT_INVALID, "Unknown temperature parameterization '%s'", type);
+    switch (p->kind) {
+    case TT_TEMPERATURE_EXPONENTIAL:
+        tt_build_keys(b, node, exponential_required, exponential_optional);
+        break;
+    case TT_TEMPERATURE_TAYLOR:
+        tt_build_keys(b, node, taylor_required, taylor_optional);
+        break;
+    case TT_TEMPERATURE_BURKHOLDER:
+        tt_build_keys(b, node, burkholder_required, burkholder_optional);
+        break;
+    case TT_TEMPERATURE_HARWOOD:
+        tt_build_keys(b, node, harwood_required, harwood_optional);
+        break;
+    }
     tt_grid custom = {0};
     const tt_grid *grid = &s->wavelength;
     if (tt_build_has(config, "parameterization wavelength grid")) {
@@ -122,6 +161,8 @@ void tt_spectrum_temperature_build(tt_builder *b, tt_config_node config, tt_spec
         p->b = copy(b, n, v->values + n);
         p->burkholder_a = tt_build_number(b, node, "A", NAN);
         p->burkholder_b = tt_build_number(b, node, "B", NAN);
+        if (p->burkholder_b == 0)
+            tt_build_fail(b, node, TT_INVALID, "Burkholder B must be nonzero");
     } else {
         size_t na = 0, nb = 0, np = 0;
         int exp = p->kind == TT_TEMPERATURE_EXPONENTIAL;
@@ -173,8 +214,8 @@ void tt_spectrum_temperature_build(tt_builder *b, tt_config_node config, tt_spec
             s->raw_data[j] = file_data->values[i];
         }
         for (size_t i = 0; i < s->raw_count; ++i)
-            if (s->raw_wavelength[i] <= 0 ||
-                (i && s->raw_wavelength[i] <= s->raw_wavelength[i - 1]))
+            if (!(s->raw_wavelength[i] > 0) || !isfinite(s->raw_wavelength[i]) ||
+                (i && !(s->raw_wavelength[i] > s->raw_wavelength[i - 1])))
                 tt_build_fail(b, config, TT_RANGE, "Merged wavelength grid is not increasing");
     }
     tt_grid_destroy(&custom);

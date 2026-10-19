@@ -242,6 +242,18 @@ int tt_output_step(tt_output *o, double time, double zenith, double scale, const
     ++o->step;
     return 1;
 }
+void tt_output_abandon(tt_output *o) {
+    if (!o)
+        return;
+    if (o->json)
+        fflush(o->json);
+#ifdef TT_NETCDF_OUTPUT
+    else
+        nc_close(o->file);
+    free(o->rates);
+#endif
+    free(o);
+}
 int tt_output_close(tt_output *o, tt_error *error) {
     if (!o)
         return 1;

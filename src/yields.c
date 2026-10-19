@@ -118,8 +118,9 @@ tt_status tt_quantum_yield_validate(tt_quantum_yield_kind kind, size_t nw, size_
             if (!p[i].temperatures || p[i].temperature_count < 2 ||
                 p[i].columns < p[i].temperature_count)
                 return TT_INVALID;
-            for (size_t j = 1; j < p[i].temperature_count; ++j)
-                if (p[i].temperatures[j] <= p[i].temperatures[j - 1])
+            for (size_t j = 0; j < p[i].temperature_count; ++j)
+                if (!isfinite(p[i].temperatures[j]) ||
+                    (j && !(p[i].temperatures[j] > p[i].temperatures[j - 1])))
                     return TT_INVALID;
         }
     }
@@ -153,6 +154,18 @@ tt_status tt_quantum_yield(tt_quantum_yield_kind kind, const tt_spectral_grid *g
     tt_status status = tt_quantum_yield_validate(kind, nw, count, p, o, &needs_data);
     if (status != TT_OK)
         return status;
+    /* Validate the profiles a kind uses; as in TUV-x, the others are ignored. */
+    int thermal = kind == TT_QY_TINT || kind == TT_QY_NO2 || kind == TT_QY_O3_O1D ||
+                  kind == TT_QY_O3_O3P || kind == TT_QY_NO3_AQ || kind == TT_QY_CH2O ||
+                  kind == TT_QY_ACETONE || kind == TT_QY_H2SO4;
+    int density = kind == TT_QY_CH2O || kind == TT_QY_CH3CHO || kind == TT_QY_C2H5CHO ||
+                  kind == TT_QY_CH2CHCHO || kind == TT_QY_MVK || kind == TT_QY_ACETONE ||
+                  kind == TT_QY_MEK || kind == TT_QY_CH3COCHO || kind == TT_QY_H2SO4;
+    for (size_t z = 0; z < nz; ++z) {
+        double temp = grid->temperature[z], m = grid->air_density[z];
+        if ((thermal && (!isfinite(temp) || temp <= 0)) || (density && (!isfinite(m) || m < 0)))
+            return TT_INVALID;
+    }
     for (size_t w = 0; w < nw; ++w) {
         double lambda = grid->midpoints[w];
         if (!isfinite(lambda) || lambda <= 0)
@@ -160,8 +173,6 @@ tt_status tt_quantum_yield(tt_quantum_yield_kind kind, const tt_spectral_grid *g
         for (size_t z = 0; z < nz; ++z) {
             double temp = grid->temperature[z], m = grid->air_density[z], value = 0,
                    base = needs_data ? parameter(p, w, 0) : 0;
-            if (!isfinite(temp) || temp <= 0 || !isfinite(m) || m < 0)
-                return TT_INVALID;
             switch (kind) {
             case TT_QY_BASE:
                 value = base;

@@ -19,6 +19,30 @@ static char *string_copy(tt_builder *b, const char *value) {
 static char *name_copy(tt_builder *b, tt_config_node node, const char *key) {
     return string_copy(b, tt_build_string(b, node, key, NULL));
 }
+/* Keys TUV-x accepts: src/core.F90, src/radiative_transfer/,
+ * src/photolysis_rates.F90, src/heating_rates.F90 and src/dose_rates.F90. */
+static const char *const root_required[] = {"radiative transfer", "grids", "profiles",
+                                            "O2 absorption", NULL};
+static const char *const root_optional[] = {"photolysis", "dose rates", "enable diagnostics", NULL};
+static const char *const transfer_required[] = {"cross sections", "radiators", NULL};
+static const char *const solver_key[] = {"solver", NULL};
+static const char *const type_key[] = {"type", NULL};
+static const char *const streams_keys[] = {"type", "number of streams", NULL};
+static const char *const radiator_required[] = {
+    "name", "type", "cross section", "vertical profile", "vertical profile units", NULL};
+static const char *const radiator_optional[] = {"enable diagnostics", "treat as air", NULL};
+static const char *const aerosol_required[] = {
+    "type", "optical depths", "single scattering albedo", "asymmetry factor", "name", NULL};
+static const char *const aerosol_optional[] = {"550 nm optical depth", "enable diagnostics", NULL};
+static const char *const netcdf_radiator[] = {"type", "name", "file path", NULL};
+static const char *const reactions_key[] = {"reactions", NULL};
+static const char *const rates_key[] = {"rates", NULL};
+static const char *const diagnostics_key[] = {"enable diagnostics", NULL};
+static const char *const reaction_required[] = {"name", "cross section", "quantum yield", NULL};
+static const char *const reaction_optional[] = {"scaling factor", "heating", NULL};
+static const char *const energy_key[] = {"energy term", NULL};
+static const char *const dose_required[] = {"name", "weights", NULL};
+
 static size_t combined_count(tt_builder *b, size_t configured, size_t supplied) {
     if (supplied > SIZE_MAX - configured) {
         tt_build_fail(b, (tt_config_node){0}, TT_RANGE, "Too many host inputs");
@@ -155,8 +179,13 @@ static tt_spectrum *spectrum(tt_builder *b, tt_config_node node, tt_spectrum_rol
 static void build_transfer(tt_builder *b, tt_config_node config, const tt_model_inputs *inputs,
                            tt_model *m) {
     tt_config_node node = tt_config_get(config, "radiative transfer");
+    tt_build_keys(b, node, transfer_required, solver_key);
     tt_config_node solver = tt_config_get(node, "solver");
     const char *type = tt_build_string(b, solver, "type", NULL);
+    if (!strcmp(type, "delta eddington") || !strcmp(type, "from host"))
+        tt_build_keys(b, solver, type_key, NULL);
+    else if (!strcmp(type, "discrete ordinate"))
+        tt_build_keys(b, solver, streams_keys, NULL);
     if (!strcmp(type, "delta eddington"))
         m->streams = 1;
     else if (!strcmp(type, "discrete ordinate")) {
@@ -205,6 +234,7 @@ static void build_transfer(tt_builder *b, tt_config_node config, const tt_model_
             if (status)
                 tt_build_fail(b, rad, status, "Invalid host radiator");
         } else if (!strcmp(type, "base")) {
+            tt_build_keys(b, rad, radiator_required, radiator_optional);
             r->gas = 1;
             const char *pn = tt_build_string(b, rad, "vertical profile", NULL),
                        *pu = tt_build_string(b, rad, "vertical profile units", NULL);
@@ -220,11 +250,13 @@ static void build_transfer(tt_builder *b, tt_config_node config, const tt_model_
                 tt_build_fail(b, rad, TT_NOT_FOUND, "Missing radiator cross section '%s'", cs);
             r->view.is_air = tt_build_boolean(b, rad, "treat as air", 0);
         } else if (!strcmp(type, "aerosol")) {
+            tt_build_keys(b, rad, aerosol_required, aerosol_optional);
             size_t samples = 0;
             double *depths = tt_build_array(b, rad, "optical depths", &samples);
             double albedo = tt_build_number(b, rad, "single scattering albedo", NAN);
             double asymmetry = tt_build_number(b, rad, "asymmetry factor", NAN);
-            double tau550 = tt_build_number(b, rad, "550 nm optical depth", -1);
+            /* TUV-x defaults to 0, which normalizes the aerosol column to zero. */
+            double tau550 = tt_build_number(b, rad, "550 nm optical depth", 0);
             double alpha = tt_build_number(b, rad, "Alpha", 1);
             tt_status status =
                 b->status == TT_OK
@@ -235,6 +267,7 @@ static void build_transfer(tt_builder *b, tt_config_node config, const tt_model_
                 tt_build_fail(b, rad, status, "Cannot construct aerosol '%s'", r->name);
             free(depths);
         } else if (!strcmp(type, "from netcdf file")) {
+            tt_build_keys(b, rad, netcdf_radiator, NULL);
             const char *path = tt_build_string(b, rad, "file path", NULL);
             const tt_dataset *data = tt_build_dataset(b, rad, path);
             tt_radiator view;
@@ -258,11 +291,15 @@ static void build_transfer(tt_builder *b, tt_config_node config, const tt_model_
     }
 }
 static void build_rates(tt_builder *b, tt_config_node config, tt_model *m) {
+    tt_build_keys(b, tt_config_get(config, "photolysis"), reactions_key, diagnostics_key);
+    tt_build_keys(b, tt_config_get(config, "dose rates"), rates_key, diagnostics_key);
     tt_config_node list = tt_config_get(tt_config_get(config, "photolysis"), "reactions");
     m->shape.photolysis = tt_config_size(list);
     m->reactions = tt_build_alloc(b, m->shape.photolysis, sizeof *m->reactions);
     for (size_t i = 0; i < m->shape.photolysis && b->status == TT_OK; ++i) {
         tt_config_node node = tt_config_at(list, i), cs = tt_config_get(node, "cross section");
+        tt_build_keys(b, node, reaction_required, reaction_optional);
+        tt_build_keys(b, tt_config_get(node, "heating"), energy_key, NULL);
         tt_model_reaction *r = m->reactions + i;
         r->name = name_copy(b, node, "name");
         r->cross_section = spectrum(b, cs, TT_SPECTRUM_CROSS_SECTION, m);
@@ -283,6 +320,7 @@ static void build_rates(tt_builder *b, tt_config_node config, tt_model *m) {
     m->doses = tt_build_alloc(b, m->shape.dose, sizeof *m->doses);
     for (size_t i = 0; i < m->shape.dose && b->status == TT_OK; ++i) {
         tt_config_node node = tt_config_at(list, i);
+        tt_build_keys(b, node, dose_required, NULL);
         m->doses[i].name = name_copy(b, node, "name");
         tt_spectrum *weights = spectrum(b, tt_config_get(node, "weights"), TT_SPECTRUM_WEIGHT, m);
         m->doses[i].weights = tt_build_alloc(b, m->shape.wavelengths, sizeof(double));
@@ -311,8 +349,8 @@ static void build_oxygen(tt_builder *b, tt_config_node config, tt_model *m) {
     if (m->scaled_oxygen) {
         m->oxygen_scale =
             tt_build_number(b, tt_config_get(node, "O2 estimate"), "scale factor", NAN);
-        if (m->oxygen_scale < 0)
-            tt_build_fail(b, node, TT_RANGE, "Negative O2 scale factor");
+        if (!(m->oxygen_scale > 0))
+            tt_build_fail(b, node, TT_RANGE, "O2 scale factor must be positive");
     } else
         m->oxygen = require_profile(b, node, m, "O2", "molecule cm-3", m->shape.levels - 1);
     /* The coefficient values are compiled. Validate a configured path so a
@@ -384,6 +422,9 @@ tt_status tt_model_create_with_inputs(tt_config_node config, const tt_data_sourc
         tt_build_fail(&b, config, TT_INVALID, "Expected model configuration mapping and output");
         return b.status;
     }
+    tt_build_keys(&b, config, root_required, root_optional);
+    if (b.status != TT_OK)
+        return b.status;
     tt_model *m = tt_build_alloc(&b, 1, sizeof *m);
     if (!m)
         return b.status;

@@ -15,9 +15,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def generate(source):
     cases = []
-    combined = {'type': 'from csv file', 'file path': 'data/grids/wavelength/combined.grid'}
-    simple = {'type': 'from csv file', 'file path': 'test/data/grid.photo.simple.csv'}
-    la = {'type': 'from csv file', 'file path': 'test/data/grid.photo.la_sr.csv'}
+    # Grid configurations carry the name and units TUV-x requires.
+    def grid(path): return {'name': 'wavelength', 'type': 'from csv file', 'units': 'nm', 'file path': path}
+    combined = grid('data/grids/wavelength/combined.grid')
+    simple = grid('test/data/grid.photo.simple.csv')
+    la = grid('test/data/grid.photo.la_sr.csv')
     types = {'hcfc': 'HCFC+hv->Products', 'clono2': 'ClONO2', 'ch2o': 'CH2O',
              'o3_tint': 'O3', 'rayliegh': 'air', 'n2o-n2_o1d': 'N2O+hv->N2+O(1D)',
              'ch3ono2_ch3o_no2': 'CH3ONO2+hv->CH3O+NO2',
@@ -62,7 +64,8 @@ def generate(source):
         provenance.append({'path': origin, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
     # Additional reference cases exercise constructor interactions absent from
     # the upstream scenarios, while using the same compiled scientific tables.
-    narrow = {'type': 'equal interval', 'begins at': 100, 'ends at': 400, 'cell delta': 1.25}
+    narrow = {'name': 'wavelength', 'type': 'equal interval', 'units': 'nm', 'begins at': 100,
+              'ends at': 400, 'cell delta': 1.25}
     for method in ('conserving', 'fractional source', 'fractional target', 'linear'):
         for fold in (False, True) if 'fractional' in method else (False,):
             file = {'file path': 'test/data/cross_sections/cross_section.base.nc',

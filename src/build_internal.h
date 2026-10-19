@@ -20,4 +20,9 @@ double *tt_build_array(tt_builder *b, tt_config_node node, const char *key, size
 const tt_dataset *tt_build_dataset(tt_builder *b, tt_config_node node, const char *path);
 tt_interpolation tt_build_interpolator(tt_builder *b, tt_config_node node, int *fold);
 int tt_build_equal(double a, double b);
+/* Check a mapping as TUV-x's config%validate does: every required key is
+ * present, and every other key is optional or begins with "__". Lists are
+ * NULL-terminated. A missing node is accepted; its readers report it. */
+void tt_build_keys(tt_builder *b, tt_config_node node, const char *const *required,
+                   const char *const *optional);
 #endif

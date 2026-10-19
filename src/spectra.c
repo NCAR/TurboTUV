@@ -64,8 +64,8 @@ tt_status tt_regrid_column(const tt_dataset *data, const char *name, size_t colu
                            tt_extrapolation upper, double hi, double *out) {
     const tt_data_variable *w = tt_dataset_variable(data, "wavelength");
     const tt_data_variable *v = tt_dataset_variable(data, name);
-    if (!w || !v || !edges || !out || !nw || w->rank != 1 || w->count < 2 ||
-        column >= v->count / w->count || v->count % w->count ||
+    if (!w || !v || !w->values || !v->values || !edges || !out || !nw || w->rank != 1 ||
+        w->count < 2 || column >= v->count / w->count || v->count % w->count ||
         (unsigned)lower > TT_EXTRAPOLATE_CONSTANT || (unsigned)upper > TT_EXTRAPOLATE_CONSTANT)
         return TT_INVALID;
     size_t n = w->count;
@@ -138,20 +138,22 @@ tt_status tt_cross_section_validate(tt_cross_section_kind kind, size_t nw, size_
         columns = 2;
     if (required && p[0].columns < columns)
         return TT_INVALID;
-    if (kind == TT_CS_HCFC && p[0].temperature_count < 2)
+    if (kind == TT_CS_HCFC && (p[0].temperature_count < 2 || !isfinite(p[0].temperatures[0]) ||
+                               !isfinite(p[0].temperatures[1])))
         return TT_INVALID;
     if (kind == TT_CS_OCLO) {
         for (size_t i = 0; i < count; ++i)
-            if (p[i].temperature_count < 1 ||
-                (i && p[i].temperatures[0] <= p[i - 1].temperatures[0]))
+            if (p[i].temperature_count < 1 || !isfinite(p[i].temperatures[0]) ||
+                (i && !(p[i].temperatures[0] > p[i - 1].temperatures[0])))
                 return TT_INVALID;
     }
     if (kind == TT_CS_TINT || kind == TT_CS_NO2 || kind == TT_CS_O3)
         for (size_t i = kind == TT_CS_O3 ? 1 : 0; i < count; ++i) {
             if (p[i].temperature_count < 2 || p[i].columns < p[i].temperature_count)
                 return TT_INVALID;
-            for (size_t k = 1; k < p[i].temperature_count; ++k)
-                if (p[i].temperatures[k] <= p[i].temperatures[k - 1])
+            for (size_t k = 0; k < p[i].temperature_count; ++k)
+                if (!isfinite(p[i].temperatures[k]) ||
+                    (k && !(p[i].temperatures[k] > p[i].temperatures[k - 1])))
                     return TT_INVALID;
         }
     if (required_out)
@@ -170,6 +172,14 @@ tt_status tt_cross_section(tt_cross_section_kind kind, const tt_spectral_grid *g
     tt_status status = tt_cross_section_validate(kind, nw, count, p, &required);
     if (status != TT_OK)
         return status;
+    /* Temperatures must be positive where a kernel uses them; as in TUV-x,
+     * temperature-independent kinds ignore them. */
+    int thermal = kind != TT_CS_BASE && kind != TT_CS_HOBR && kind != TT_CS_NITROXY_ACETONE &&
+                  kind != TT_CS_NITROXY_ETHANOL && kind != TT_CS_RAYLEIGH &&
+                  kind != TT_CS_T_BUTYL_NITRATE;
+    for (size_t z = 0; z < nz && thermal; ++z)
+        if (!isfinite(grid->temperature[z]) || grid->temperature[z] <= 0)
+            return TT_INVALID;
     double v185 = 185 * tt_air_refractive_index(185, 2.45e19);
     double v195 = 195 * tt_air_refractive_index(195, 2.45e19);
     double v345 = 345 * tt_air_refractive_index(345, 2.45e19);
@@ -179,8 +189,6 @@ tt_status tt_cross_section(tt_cross_section_kind kind, const tt_spectral_grid *g
             return TT_INVALID;
         for (size_t z = 0; z < nz; ++z) {
             double temp = grid->temperature[z], value = 0, t, coeff;
-            if (!isfinite(temp) || temp <= 0)
-                return TT_INVALID;
             double base = required && kind != TT_CS_HCFC ? parameter(p, w, 0) : 0;
             switch (kind) {
             case TT_CS_BASE:

@@ -59,6 +59,8 @@ typedef enum { TT_RATE_PHOTOLYSIS, TT_RATE_HEATING, TT_RATE_DOSE } tt_rate_kind;
 typedef struct {
     size_t levels, wavelengths, photolysis, heating, dose;
 } tt_model_dimensions;
+/* Actinic flux and spectral irradiance need an "extraterrestrial flux"
+ * profile; without one (and so without rates) both are zero. */
 typedef struct {
     tt_radiation radiation;
     const double *actinic_flux, *spectral_irradiance; /* [wavelength][level] */

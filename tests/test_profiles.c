@@ -283,6 +283,29 @@ int main(void) {
         }
     host_checks();
     solar_boundaries(solar);
+    {
+        /* 29.4 - 13.4 rounds below 16: TUV-x appends 17 one-km points, not 16,
+         * so the top edge is interpolated rather than zero. Values from the
+         * original profile_o3_t constructor. */
+        ++scenario;
+        const double edges[] = {0, 10, 20, 29.4}, z[] = {0, 13.4}, v[] = {1.e12, 5.e11};
+        const double plain[] = {1.e12, 626865671641.79102, 116041053960.47238, 14282750392.275186};
+        const double rescaled[] = {6435590952944.716, 4034251045129.523, 746792757038.1855,
+                                   91917939207.69377};
+        tt_grid grid = {0};
+        ok(tt_grid_from_edges(4, edges, &grid));
+        for (int pass = 0; pass < 2; ++pass) {
+            tt_profile p = {0};
+            tt_profile_options options = tt_profile_options_default(TT_PROFILE_O3);
+            if (!pass)
+                options.reference_column = 1;
+            ok(tt_profile_from_samples(&grid, 2, z, v, &options, &p));
+            for (size_t i = 0; i < 4; ++i)
+                same("O3 extension edge", i, p.edges[i], (pass ? rescaled : plain)[i], 0);
+            tt_profile_destroy(&p);
+        }
+        tt_grid_destroy(&grid);
+    }
     tt_grid bad = {0};
     if (tt_grid_equal(0, 1, 0, &bad) != TT_INVALID ||
         tt_grid_from_edges(0, NULL, &bad) != TT_INVALID)

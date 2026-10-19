@@ -22,11 +22,120 @@ static const char *const weight_names[] = {"base",
                                            "Plant damage,Flint&Caldwell,2003,orig.",
                                            "Plant damage,Flint&Caldwell,2003,ext390"};
 
+/* Configuration keys TUV-x accepts: src/cross_section.F90, src/cross_sections/,
+ * src/quantum_yield.F90, src/quantum_yields/, src/spectral_weight.F90 and
+ * src/spectral_weights/. Kinds TUV-x does not validate are not validated. */
+static const char *const type_key[] = {"type", NULL}, *const name_key[] = {"name", NULL};
+static const char *const type_files[] = {"type", "netcdf files", NULL};
+static const char *const extrapolated[] = {"lower extrapolation", "upper extrapolation", "name",
+                                           NULL};
+static const char *const base_cross_section[] = {
+    "netcdf files", "name", "merge data", "override bands", "apply O2 bands", "data", NULL};
+static const char *const jpl_files[] = {"type", "base netcdf file", "low-temperature netcdf file",
+                                        "high-temperature netcdf file", NULL};
+static const char *const parameterized_required[] = {"type", "parameterization", NULL};
+static const char *const parameterized_optional[] = {"name", "parameterization wavelength grid",
+                                                     "netcdf file", NULL};
+static const char *const base_yield[] = {"netcdf files",
+                                         "lower extrapolation",
+                                         "upper extrapolation",
+                                         "name",
+                                         "constant value",
+                                         "override bands",
+                                         NULL};
+static const char *const acetone_yield[] = {"name",
+                                            "low wavelength value",
+                                            "high wavelength value",
+                                            "minimum temperature",
+                                            "maximum temperature",
+                                            "branch",
+                                            NULL};
+static const char *const h2so4_required[] = {"type",
+                                             "parameterized wavelengths",
+                                             "collision interval s",
+                                             "molecular diameter m",
+                                             "molecular weight kg mol-1",
+                                             NULL};
+static const char *const taylor_required[] = {"coefficients", NULL};
+static const char *const taylor_optional[] = {
+    "type",           "netcdf files",   "lower extrapolation", "upper extrapolation", "name",
+    "constant value", "override bands", "minimum wavelength",  "maximum wavelength",  NULL};
+static const char *const base_weight[] = {"netcdf files", "lower extrapolation",
+                                          "upper extrapolation", "name", NULL};
+static const char *const notch_required[] = {"type", "notch filter begin", "notch filter end",
+                                             NULL};
+static const char *const gaussian_required[] = {"type", "centroid", NULL};
+static const char *const file_required[] = {"file path", NULL};
+static const char *const file_optional[] = {
+    "interpolator", "lower extrapolation", "upper extrapolation", "zero below", "zero above", NULL};
+static const char *const value_key[] = {"value", NULL};
+static const char *const point_data[] = {"default value", "point values", NULL};
+static const char *const band_required[] = {"band", "value", NULL};
+static const char *const band_range[] = {"minimum wavelength", "maximum wavelength", NULL};
+
+static void spectrum_keys(tt_builder *b, tt_config_node config, const tt_spectrum *s) {
+    const char *const *required = NULL, *const *optional = NULL;
+    if (s->parameterized) {
+        required = parameterized_required;
+        optional = parameterized_optional;
+    } else if (s->role == TT_SPECTRUM_CROSS_SECTION) {
+        required = type_files;
+        optional = extrapolated;
+        switch (s->kind) {
+        case TT_CS_BASE:
+            required = type_key;
+            optional = base_cross_section;
+            break;
+        case TT_CS_RAYLEIGH:
+        case TT_CS_CL2:
+        case TT_CS_HOBR:
+        case TT_CS_N2O:
+        case TT_CS_NITROXY_ACETONE:
+        case TT_CS_NITROXY_ETHANOL:
+        case TT_CS_T_BUTYL_NITRATE:
+            required = type_key;
+            optional = name_key;
+            break;
+        case TT_CS_HCFC:
+            optional = name_key;
+            break;
+        case TT_CS_O3_JPL06:
+            required = jpl_files;
+            optional = name_key;
+            break;
+        default:
+            break;
+        }
+    } else if (s->role == TT_SPECTRUM_QUANTUM_YIELD) {
+        if (s->kind == TT_QY_BASE) {
+            required = type_key;
+            optional = base_yield;
+        } else if (s->kind == TT_QY_ACETONE) {
+            required = type_key;
+            optional = acetone_yield;
+        } else if (s->kind == TT_QY_H2SO4) {
+            required = h2so4_required;
+            optional = base_yield;
+        } else if (s->kind == TT_QY_TAYLOR) {
+            required = taylor_required;
+            optional = taylor_optional;
+        }
+    } else if (s->kind != TT_WEIGHT_EPPLEY) {
+        required = s->kind == TT_WEIGHT_NOTCH      ? notch_required
+                   : s->kind == TT_WEIGHT_GAUSSIAN ? gaussian_required
+                                                   : type_key;
+        optional = s->kind == TT_WEIGHT_BASE ? base_weight : name_key;
+    }
+    if (required)
+        tt_build_keys(b, config, required, optional);
+}
+
 static double extrapolation(tt_builder *b, tt_config_node config, const char *key,
                             double boundary) {
     tt_config_node node = tt_config_get(config, key);
     if (tt_config_type(node) == TT_CONFIG_MISSING)
         return 0;
+    tt_build_keys(b, node, type_key, value_key);
     const char *type = tt_build_string(b, node, "type", NULL);
     if (!strcmp(type, "boundary"))
         return boundary;
@@ -46,6 +155,10 @@ static void prepare_table(tt_builder *b, tt_spectrum *s, tt_config_node config, 
                          s->kind == TT_CS_NO2 || s->kind == TT_CS_O3);
     int sort = cs ? (s->kind == TT_CS_TINT || s->kind == TT_CS_NO2 || s->kind == TT_CS_O3)
                   : qy && (s->kind == TT_QY_TINT || s->kind == TT_QY_NO2);
+    /* TUV-x validates the file entries of the cross sections it builds with
+     * its base constructor; the special kinds read their files themselves. */
+    if (cs && !special && s->kind != TT_CS_O3_JPL06)
+        tt_build_keys(b, file, file_required, file_optional);
     const char *path = cs ? tt_build_string(b, file, "file path", NULL) : tt_config_string(file);
     if (!path) {
         tt_build_fail(b, file, TT_INVALID, "Expected dataset path");
@@ -79,9 +192,10 @@ static void prepare_table(tt_builder *b, tt_spectrum *s, tt_config_node config, 
     }
     if (sort && nc > 1) {
         reverse = temp->values[1] < temp->values[0];
-        for (size_t j = 1; j < nc; ++j)
-            if (reverse ? temp->values[j] >= temp->values[j - 1]
-                        : temp->values[j] <= temp->values[j - 1])
+        for (size_t j = 0; j < nc; ++j)
+            if (!isfinite(temp->values[j]) ||
+                (j && !(reverse ? temp->values[j] < temp->values[j - 1]
+                                : temp->values[j] > temp->values[j - 1])))
                 tt_build_fail(b, file, TT_INVALID, "Nonmonotone temperature table: %s", path);
     }
     if (table->values && (table->rows != rows || table->columns != nc)) {
@@ -188,6 +302,13 @@ static void prepare_tables(tt_builder *b, tt_config_node config, tt_spectrum *s)
     size_t count = tt_config_size(files);
     int jpl = cs && s->kind == TT_CS_O3_JPL06;
     int merge = cs && tt_build_boolean(b, config, "merge data", 0);
+    /* TUV-x accepts merged files and point data only for base cross sections;
+     * merging temperature tables would mislabel their columns. */
+    if ((merge || (cs && tt_build_has(config, "data"))) && s->kind != TT_CS_BASE) {
+        tt_build_fail(b, config, TT_INVALID,
+                      "Merged files and point data require a base cross section");
+        return;
+    }
     if (jpl)
         count = 3;
     if (count) {
@@ -213,6 +334,7 @@ static void prepare_tables(tt_builder *b, tt_config_node config, tt_spectrum *s)
     }
     if (cs && tt_build_has(config, "data")) {
         tt_config_node data = tt_config_get(config, "data");
+        tt_build_keys(b, data, NULL, point_data);
         if (!s->table_count)
             constant_table(b, s, tt_build_number(b, data, "default value", 0));
         if (s->table_count != 1 || !s->tables || s->tables[0].rows != s->wavelength.cells) {
@@ -241,6 +363,9 @@ static void prepare_overrides(tt_builder *b, tt_config_node config, tt_spectrum 
     s->overrides = tt_build_alloc(b, s->override_count, sizeof *s->overrides);
     for (size_t i = 0; i < s->override_count && b->status == TT_OK; ++i) {
         tt_config_node node = tt_config_at(bands, i);
+        /* Cross-section bands take no wavelength range in TUV-x. */
+        tt_build_keys(b, node, band_required,
+                      s->role == TT_SPECTRUM_QUANTUM_YIELD ? band_range : NULL);
         const char *name = tt_build_string(b, node, "band", NULL);
         tt_spectral_override *o = s->overrides + i;
         o->value = tt_build_number(b, node, "value", NAN);
@@ -376,6 +501,7 @@ tt_status tt_spectrum_create(tt_spectrum_role role, tt_config_node config,
                 s->kind = k;
     if (s->kind < 0 && !s->parameterized)
         tt_build_fail(&b, config, TT_INVALID, "Unknown spectrum type '%s'", type);
+    spectrum_keys(&b, config, s);
     if (b.status == TT_OK && s->parameterized)
         tt_spectrum_temperature_build(&b, config, s);
     else if (b.status == TT_OK) {

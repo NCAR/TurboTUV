@@ -1,6 +1,7 @@
 /* Copyright (C) 2026 University Corporation for Atmospheric Research
  * SPDX-License-Identifier: Apache-2.0 */
 #include "turbotuv_config.h"
+#include "decimal_internal.h"
 #include "namespace.h"
 #include "yaml.h"
 #include <ctype.h>
@@ -81,6 +82,68 @@ static const yaml_node_t *node_at(tt_config_node node) {
     return node.index <= count ? doc->nodes.start + node.index - 1 : NULL;
 }
 
+typedef struct {
+    const char *key;
+    size_t index;
+} key_entry;
+static int compare_keys(const void *a, const void *b) {
+    const key_entry *x = a, *y = b;
+    int c = strcmp(x->key, y->key);
+    return c ? c : (x->index > y->index) - (x->index < y->index);
+}
+/* Index of the first key, in source order, that repeats an earlier key of
+ * this mapping (SIZE_MAX if none). Only the keys before the first invalid
+ * key are considered, because validation stops there. Large mappings are
+ * sorted rather than compared pairwise. Returns nonzero if out of memory. */
+static int first_duplicate(const tt_config *doc, const yaml_node_t *node, size_t *out) {
+    size_t n = 0, total = (size_t)(node->data.mapping.pairs.top - node->data.mapping.pairs.start);
+    const char **keys = NULL;
+    key_entry *entries = NULL;
+    for (; n < total; ++n) {
+        const yaml_node_t *key =
+            node_at((tt_config_node){doc, (size_t)node->data.mapping.pairs.start[n].key});
+        if (!key || key->type != YAML_SCALAR_NODE ||
+            memchr(key->data.scalar.value, 0, key->data.scalar.length))
+            break;
+    }
+    *out = SIZE_MAX;
+    if (n < 2)
+        return 0;
+    keys = malloc(n * sizeof *keys);
+    if (!keys)
+        return 1;
+    for (size_t i = 0; i < n; ++i)
+        keys[i] = (const char *)node_at(
+                      (tt_config_node){doc, (size_t)node->data.mapping.pairs.start[i].key})
+                      ->data.scalar.value;
+    if (n <= 16) {
+        for (size_t i = 1; i < n && *out == SIZE_MAX; ++i)
+            for (size_t j = 0; j < i; ++j)
+                if (!strcmp(keys[i], keys[j])) {
+                    *out = i;
+                    break;
+                }
+    } else {
+        entries = malloc(n * sizeof *entries);
+        if (!entries) {
+            free(keys);
+            return 1;
+        }
+        for (size_t i = 0; i < n; ++i)
+            entries[i] = (key_entry){keys[i], i};
+        qsort(entries, n, sizeof *entries, compare_keys);
+        /* In each run of equal keys, the second entry is the first repeat. */
+        for (size_t i = 1; i < n; ++i)
+            if (!strcmp(entries[i].key, entries[i - 1].key) &&
+                (i < 2 || strcmp(entries[i - 1].key, entries[i - 2].key)) &&
+                entries[i].index < *out)
+                *out = entries[i].index;
+    }
+    free(entries);
+    free(keys);
+    return 0;
+}
+
 static tt_status validate_node(tt_config *doc, size_t index, size_t depth, unsigned char *visited,
                                tt_error *error) {
     const yaml_node_t *node = node_at((tt_config_node){doc, index});
@@ -98,6 +161,9 @@ static tt_status validate_node(tt_config *doc, size_t index, size_t depth, unsig
     visited[index] = 1;
     unsigned char height = 0;
     if (node->type == YAML_MAPPING_NODE) {
+        size_t duplicate = SIZE_MAX;
+        if (first_duplicate(doc, node, &duplicate))
+            return fail(error, TT_MEMORY, 0, 0, "Cannot allocate configuration validation");
         for (const yaml_node_pair_t *pair = node->data.mapping.pairs.start;
              pair < node->data.mapping.pairs.top; ++pair) {
             const yaml_node_t *key = node_at((tt_config_node){doc, (size_t)pair->key});
@@ -108,14 +174,9 @@ static tt_status validate_node(tt_config *doc, size_t index, size_t depth, unsig
             if (memchr(key->data.scalar.value, 0, key->data.scalar.length))
                 return fail(error, TT_INVALID, key->start_mark.line + 1, key->start_mark.column + 1,
                             "NUL characters are not supported in configuration keys");
-            for (const yaml_node_pair_t *prev = node->data.mapping.pairs.start; prev < pair;
-                 ++prev) {
-                const yaml_node_t *other = node_at((tt_config_node){doc, (size_t)prev->key});
-                if (!strcmp((const char *)key->data.scalar.value,
-                            (const char *)other->data.scalar.value))
-                    return fail(error, TT_INVALID, key->start_mark.line + 1,
-                                key->start_mark.column + 1, "Duplicate configuration key");
-            }
+            if ((size_t)(pair - node->data.mapping.pairs.start) == duplicate)
+                return fail(error, TT_INVALID, key->start_mark.line + 1, key->start_mark.column + 1,
+                            "Duplicate configuration key");
             tt_status status = validate_node(doc, (size_t)pair->value, depth + 1, visited, error);
             if (status)
                 return status;
@@ -173,8 +234,8 @@ tt_status tt_config_parse(const char *text, size_t length, tt_config **out, tt_e
     } else {
         yaml_document_t extra;
         if (!yaml_parser_load(&parser, &extra))
-            status = fail(error, TT_INVALID, parser.problem_mark.line + 1,
-                          parser.problem_mark.column + 1,
+            status = fail(error, parser.error == YAML_MEMORY_ERROR ? TT_MEMORY : TT_INVALID,
+                          parser.problem_mark.line + 1, parser.problem_mark.column + 1,
                           parser.problem ? parser.problem : "Trailing configuration content");
         else {
             if (yaml_document_get_root_node(&extra))
@@ -320,11 +381,11 @@ tt_status tt_config_number(tt_config_node node, double *out) {
     const char *text = tt_config_string(node);
     if (!text || !*text || !out)
         return TT_INVALID;
-    char *end;
-    double value = strtod(text, &end);
+    const char *end;
+    double value = tt_decimal(text, &end);
     if (end == text)
         return TT_INVALID;
-    while (isspace((unsigned char)*end))
+    while (tt_decimal_space(*end))
         ++end;
     if (end == text || *end || !isfinite(value))
         return TT_INVALID;
@@ -341,7 +402,7 @@ tt_status tt_config_integer(tt_config_node node, int *out) {
     long value = strtol(text, &end, 0);
     if (end == text)
         return TT_INVALID;
-    while (isspace((unsigned char)*end))
+    while (tt_decimal_space(*end))
         ++end;
     if (errno == ERANGE || end == text || *end || value < INT_MIN || value > INT_MAX)
         return TT_INVALID;

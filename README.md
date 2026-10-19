@@ -57,12 +57,15 @@ and text byte against the original scientific files. Only these development
 tools need Python/netCDF4 and the original input files. Source hashes and
 upstream revision are recorded in [data/manifest.json](data/manifest.json).
 
+Configurations are validated as TUV-x validates them: misspelled or
+unsupported keys are errors. Numbers are read the same way in every locale.
+
 See [docs/USAGE.md](docs/USAGE.md) for the runner, output format, installation,
 and host-model API, and [docs/PORTING.md](docs/PORTING.md) for validation details.
 The upstream Apache-2.0 license and UCAR attribution apply to translated code
 and scientific data.
 
-Validated with Homebrew GCC/GFortran 16.2.0 and Clang/Flang 23.1.3: all 37 C
+Validated with Homebrew GCC/GFortran 16.2.0 and Clang/Flang 23.1.3: all 38 C
 tests and 88 original reference tests pass on each toolchain. The 71.5 million
 numerical comparisons per toolchain stay within double-precision roundoff;
 the complete-model comparisons are bit-identical with GCC and within one

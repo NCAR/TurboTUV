@@ -96,9 +96,7 @@ static void run(int role, const char *grid_json, const char *json, const char *o
 }
 static void invalid_inputs(void) {
     static const char *const configs[] = {
-        "{}",
-        "{type: unknown}",
-        "{type: base}",
+        "{}", "{type: unknown}", "{type: base}",
         "{type: base, netcdf files: [{file path: missing.nc}]}",
         "{type: base, netcdf files: [{file path: data/cross_sections/O2_1.nc, lower extrapolation: "
         "{type: unknown}}]}",
@@ -108,15 +106,25 @@ static void invalid_inputs(void) {
         "1}]}",
         "{type: temperature based, parameterization: {type: unknown}}",
         "{type: temperature based, parameterization: {AA: [1], BB: [2,3], lp: [0], base "
-        "temperature: 298, base wavelength: 0, logarithm: natural}}"};
+        "temperature: 298, base wavelength: 0, logarithm: natural}}",
+        /* TUV-x accepts merged files and point data only for base cross sections. */
+        "{type: tint, merge data: true, netcdf files: [{file path: "
+        "test/data/cross_sections/cross_section.tint.nc}, {file path: "
+        "test/data/cross_sections/cross_section.tint.nc}]}",
+        "{type: CH3ONO2+hv->CH3O+NO2, netcdf files: [{file path: "
+        "data/cross_sections/CH3ONO2_1.nc}], data: {point values: []}}",
+        /* A zero Burkholder slope fails every evaluation, so it fails here. */
+        "{type: temperature based, parameterization: {type: BURKHOLDER, netcdf file: {file path: "
+        "data/cross_sections/HO2NO2_temp_JPL06.nc}, A: 1, B: 0}}"};
     tt_grid grid = {0};
+    tt_data_source source = {resolve, NULL};
     require(tt_grid_equal(200, 400, 10, &grid) == TT_OK, "invalid test grid");
     for (size_t i = 0; i < sizeof configs / sizeof *configs; ++i) {
         tt_config *config = parse(configs[i]);
         tt_spectrum *out = NULL;
         tt_error error;
         tt_status status = tt_spectrum_create(TT_SPECTRUM_CROSS_SECTION, tt_config_root(config),
-                                              &grid, NULL, &out, &error);
+                                              &grid, &source, &out, &error);
         require(status != TT_OK && status == error.status && error.message[0] && error.line,
                 "structured error");
         require(out == NULL, "failed constructor preserves output");
@@ -141,12 +149,71 @@ static void invalid_inputs(void) {
     tt_spectrum_destroy(NULL);
     tt_grid_destroy(&grid);
 }
+/* Datasets supplied by a resolver are validated like compiled ones. */
+static const double malformed_wavelength[] = {120, 140, 160, 180};
+static const double malformed_values[] = {1.e-20, 2.e-20, 3.e-20, 4.e-20, 5.e-20, 6.e-20,
+                                          7.e-20, 8.e-20, 9.e-20, 1.e-19, 2.e-19, 3.e-19};
+static const double nan_temperature[] = {200, NAN, 300}, nan_first[] = {NAN};
+static const tt_data_variable short_variables[] = {
+    {"wavelength", 1, {4}, 4, malformed_wavelength, NULL},
+    /* shape {3, 4} needs 12 values; the variable claims 4 */
+    {"temperature_parameters", 2, {3, 4}, 4, malformed_values, NULL}};
+static const tt_data_variable nan_variables[] = {
+    {"wavelength", 1, {4}, 4, malformed_wavelength, NULL},
+    {"cross_section_parameters", 2, {3, 4}, 12, malformed_values, NULL},
+    {"quantum_yield_parameters", 2, {3, 4}, 12, malformed_values, NULL},
+    {"temperature", 1, {3}, 3, nan_temperature, NULL}};
+/* OClO reads one temperature per file. */
+static const tt_data_variable nan_first_variables[] = {
+    {"wavelength", 1, {4}, 4, malformed_wavelength, NULL},
+    {"cross_section_parameters", 2, {1, 4}, 4, malformed_values, NULL},
+    {"temperature", 1, {1}, 1, nan_first, NULL}};
+static const tt_dataset malformed_sets[] = {
+    {"short.nc", NULL, 2, short_variables, NULL, 0},
+    {"nan.nc", NULL, 4, nan_variables, NULL, 0},
+    {"nan_first.nc", NULL, 3, nan_first_variables, NULL, 0}};
+static const tt_dataset *malformed(void *context, const char *path) {
+    (void)context;
+    for (size_t i = 0; i < sizeof malformed_sets / sizeof *malformed_sets; ++i)
+        if (!strcmp(path, malformed_sets[i].path))
+            return malformed_sets + i;
+    return NULL;
+}
+static void malformed_inputs(void) {
+    static const struct {
+        int role;
+        const char *config;
+    } cases[] = {{TT_SPECTRUM_CROSS_SECTION,
+                  "{type: temperature based, parameterization: {type: "
+                  "TAYLOR_SERIES, netcdf file: {file path: short.nc}, base "
+                  "temperature: 298}}"},
+                 {TT_SPECTRUM_CROSS_SECTION, "{type: tint, netcdf files: [{file path: nan.nc}]}"},
+                 {TT_SPECTRUM_CROSS_SECTION, "{type: OClO+hv->Products, netcdf files: [{file path: "
+                                             "nan_first.nc}]}"},
+                 {TT_SPECTRUM_QUANTUM_YIELD, "{type: tint, netcdf files: [nan.nc]}"}};
+    tt_data_source source = {malformed, NULL};
+    tt_grid grid = {0};
+    require(tt_grid_equal(130, 170, 10, &grid) == TT_OK, "malformed test grid");
+    for (size_t i = 0; i < sizeof cases / sizeof *cases; ++i) {
+        tt_config *config = parse(cases[i].config);
+        tt_spectrum *out = NULL;
+        tt_error error;
+        tt_status status =
+            tt_spectrum_create(cases[i].role, tt_config_root(config), &grid, &source, &out, &error);
+        if (getenv("TT_VERBOSE"))
+            fprintf(stderr, "malformed %zu: %s %s\n", i, tt_status_string(status), error.message);
+        require(status == TT_INVALID && !out, "malformed dataset rejected");
+        tt_config_destroy(config);
+    }
+    tt_grid_destroy(&grid);
+}
 int main(void) {
     for (size_t i = 0; i < sizeof spectrum_cases / sizeof *spectrum_cases; ++i) {
         const struct spectrum_case *c = spectrum_cases + i;
         run(c->role, c->grid, c->config, c->origin);
     }
     invalid_inputs();
+    malformed_inputs();
     printf("Prepared spectra: %zu cases, %zu comparisons, worst %.3g relative eps\n", cases,
            comparisons, worst);
     return 0;

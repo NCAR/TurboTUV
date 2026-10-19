@@ -132,10 +132,20 @@ tt_status tt_profile_from_samples(const tt_grid *grid, size_t count, const doubl
         return TT_INVALID;
     size_t extra = 0;
     if (options->kind == TT_PROFILE_O3) {
-        double length = floor(fmax(0, grid->edges[grid->cells] - coordinates[count - 1])) + 1;
-        if (!isfinite(length) || length > (double)(SIZE_MAX / sizeof(double) / 2 - count))
+        /* TUV-x appends 1-km points, accumulating the coordinate, until one
+         * lies above the grid top. floor(top - last) + 1 can be one short when
+         * the difference rounds below an integer, so count the same way. */
+        double top = grid->edges[grid->cells], last = coordinates[count - 1];
+        double estimate = floor(fmax(0, top - last)) + 2;
+        if (!isfinite(estimate) || estimate > (double)(SIZE_MAX / sizeof(double) / 2 - count))
             return TT_RANGE;
-        extra = (size_t)length;
+        size_t limit = (size_t)estimate;
+        do {
+            last = last + 1;
+            ++extra;
+        } while (!(last > top) && extra < limit);
+        if (!(last > top)) /* coordinates beyond double resolution */
+            return TT_RANGE;
     }
     if (count > SIZE_MAX / sizeof(double) / 2 - extra ||
         grid->cells >= SIZE_MAX / sizeof(double) - 1)

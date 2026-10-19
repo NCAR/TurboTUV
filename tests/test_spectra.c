@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifdef TT_HAVE_REFERENCE
 void ref_cross(int, int, int, const double *, const double *, const double *, int,
@@ -91,6 +92,30 @@ int main(void) {
         for (size_t i = 0; i < nw * NZ; ++i)
             check(tt_cross_section_name((tt_cross_section_kind)kind), i, out[i], expected[i]);
 #endif
+    }
+    /* Temperatures are validated only by kernels that use them, as in TUV-x. */
+    {
+        double cold[NZ];
+        memcpy(cold, temp, sizeof cold);
+        cold[3] = 0;
+        tt_spectral_grid frozen = {nw, NZ, edges, mids, cold, NULL};
+        for (size_t p = 0; p < NP; ++p)
+            tables[p] = (tt_spectral_table){nw, 4, 4, data[p], temperatures[p]};
+        for (int kind = 0; kind < TT_CS_COUNT; ++kind) {
+            int independent = kind == TT_CS_BASE || kind == TT_CS_HOBR ||
+                              kind == TT_CS_NITROXY_ACETONE || kind == TT_CS_NITROXY_ETHANOL ||
+                              kind == TT_CS_RAYLEIGH || kind == TT_CS_T_BUTYL_NITRATE;
+            if (kind == TT_CS_HCFC)
+                continue;
+            tt_status status =
+                tt_cross_section((tt_cross_section_kind)kind, &frozen, NP, tables, out);
+            if (independent ? status != TT_OK : status != TT_INVALID) {
+                fprintf(stderr, "%s with 0 K: %s\n",
+                        tt_cross_section_name((tt_cross_section_kind)kind),
+                        tt_status_string(status));
+                return 1;
+            }
+        }
     }
     /* Regrid a real embedded spectrum: its integral must be conserved when
      * target bins are the original knots (with zero extension outside). */

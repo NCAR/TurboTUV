@@ -100,6 +100,26 @@ def main():
             assert all(row[-1]==1 for row in zenith['steps'][0]['direct_flux'])
             dark=json.loads(run(a.examples/(example+'.json'),'--zenith','180').stdout)
             assert all(value==0 for row in dark['steps'][0]['photolysis'] for value in row)
+        # Published files keep the replaced file's mode, or get the umask default.
+        import os,stat
+        mask=os.umask(0); os.umask(mask)
+        fresh=work/'fresh.json'
+        run(a.examples/'tuv_5_4.json','--zenith','30','--output',fresh)
+        assert stat.S_IMODE(fresh.stat().st_mode)==0o666&~mask,oct(fresh.stat().st_mode)
+        shared=work/'shared.json'
+        shared.write_text('{}'); shared.chmod(0o640)
+        run(a.examples/'tuv_5_4.json','--zenith','30','--output',shared)
+        assert stat.S_IMODE(shared.stat().st_mode)==0o640,oct(shared.stat().st_mode)
+        # A failed run must not leave a complete JSON document on stdout.
+        hostile=work/'albedo.json'
+        config=json.loads((a.examples/'tuv_5_4.json').read_text())
+        for profile in config['profiles']:
+            if profile['name']=='surface albedo': profile['uniform value']=2
+        hostile.write_text(json.dumps(config))
+        failed=run(hostile,'--zenith','30',ok=False)
+        try:
+            json.loads(failed.stdout); raise AssertionError('failed run printed complete JSON')
+        except json.JSONDecodeError: pass
         sentinel=work/'preserved.json'
         sentinel.write_text('preserve existing file')
         bad=work/'bad.json'

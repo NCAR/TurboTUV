@@ -65,6 +65,37 @@ tt_status tt_profile_from_config(tt_config_node config, size_t count, const tt_n
         return b.status;
     }
     const char *type = tt_build_string(&b, config, "type", NULL);
+    /* Keys TUV-x accepts for each profile type (src/profiles/). */
+    static const char *const air[] = {"type", "units", "file path", "name", NULL};
+    static const char *const scaled[] = {"interpolator", "scale height", NULL};
+    static const char *const ozone[] = {"interpolator", "scale height", "reference column", NULL};
+    static const char *const solar_angle[] = {"type",      "units",    "year", "month", "day",
+                                              "longitude", "latitude", "name", NULL};
+    static const char *const distance_keys[] = {"type", "units", "year", "month",
+                                                "day",  "name",  NULL};
+    static const char *const zone[] = {"time zone", NULL};
+    static const char *const flux_keys[] = {"type",         "units", "file path",
+                                            "interpolator", "name",  NULL};
+    static const char *const diagnostics[] = {"enable diagnostics", NULL};
+    static const char *const values_required[] = {"type", "units", "grid", "name", NULL};
+    static const char *const values_optional[] = {"values", "uniform value", "scale height", NULL};
+    static const char *const file_required[] = {"type", "units", "file path", "grid", "name", NULL};
+    if (!strcmp(type, "air"))
+        tt_build_keys(&b, config, air, NULL);
+    else if (!strcmp(type, "O2"))
+        tt_build_keys(&b, config, air, scaled);
+    else if (!strcmp(type, "O3"))
+        tt_build_keys(&b, config, air, ozone);
+    else if (!strcmp(type, "solar zenith angle"))
+        tt_build_keys(&b, config, solar_angle, zone);
+    else if (!strcmp(type, "Earth-Sun distance"))
+        tt_build_keys(&b, config, distance_keys, zone);
+    else if (!strcmp(type, "extraterrestrial flux"))
+        tt_build_keys(&b, config, flux_keys, diagnostics);
+    else if (!strcmp(type, "from config file"))
+        tt_build_keys(&b, config, values_required, values_optional);
+    else if (!strcmp(type, "from csv file"))
+        tt_build_keys(&b, config, file_required, scaled);
     tt_profile_kind kind = TT_PROFILE_LINEAR;
     int file = !strcmp(type, "from csv file"), values = !strcmp(type, "from config file");
     int zenith = !strcmp(type, "solar zenith angle"),
