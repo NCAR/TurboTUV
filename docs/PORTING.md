@@ -97,6 +97,16 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   reused across wavelengths. The band solver also covers bandwidths larger
   than matrix order, as needed for single-layer boundary systems.
 
+* Shared owned grid/profile structures, equal-interval and supplied grids,
+  compiled text-table parsing, air/O2 logarithmic profiles, O3 extension and
+  column rescaling, solar position/distance profiles, solar-spectrum merging,
+  and host updates. All 697 cases and 541,850 comparisons pass on both compiler
+  sets within 5.85 epsilon-scaled units (32-unit ceiling), including zero-cell
+  profiles, 240-layer profiles, upper columns, host midpoint overrides, and
+  adjacent floating-point values at all solar splice boundaries. Sanitizers
+  pass. The original solar conversion's default-REAL literal and opposite
+  time-zone signs for zenith/distance are preserved explicitly.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -124,8 +134,8 @@ reference comparisons use interior target bins.
 ## Remaining implementation tasks
 
 * Complete construction of cross-section tables from the model configuration.
-* Grid/profile/configuration model and embedded table preparation.
-* Full radiator/profile construction.
+* Configuration model and embedded spectral-table preparation.
+* Full radiator construction.
 * Connect O2 corrections and rate calculations to the complete model.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.

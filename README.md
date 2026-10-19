@@ -6,7 +6,9 @@ interpolation, tridiagonal systems, spherical geometry, solar position,
 radiator mixing, both Delta-Eddington and discrete-ordinate radiation solvers, and 26 direct
 cross-section calculators, 21 quantum-yield calculators, and 13 spectral
 weighting functions, all four temperature parameterizations, and photolysis,
-heating, and dose integration, including the O2 band corrections.
+heating, and dose integration, including the O2 band corrections. Grid and
+profile constructors use embedded atmospheric and solar spectra; host updates
+share the same structures.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

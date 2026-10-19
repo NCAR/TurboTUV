@@ -78,6 +78,69 @@ const tt_dataset *tt_dataset_at(size_t index);
 const tt_dataset *tt_dataset_find(const char *path);
 const tt_data_variable *tt_dataset_variable(const tt_dataset *data, const char *name);
 
+/* Grid/profile constructors own their arrays. Initialize outputs to {0},
+ * destroy before reuse, and do not free individual fields. A failed
+ * constructor leaves the output unchanged. One edge (zero cells) is valid. */
+typedef struct {
+    size_t cells;
+    double *edges, *midpoints, *widths;
+} tt_grid;
+tt_status tt_grid_from_edges(size_t count, const double *edges, tt_grid *out);
+tt_status tt_grid_equal(double first, double last, double interval, tt_grid *out);
+/* Embedded grid text has a header record followed by one coordinate per line. */
+tt_status tt_grid_from_dataset(const tt_dataset *data, tt_grid *out);
+/* Update existing storage; NULL midpoints computes the edge averages. */
+tt_status tt_grid_update(tt_grid *grid, const double *edges, const double *midpoints);
+void tt_grid_destroy(tt_grid *grid);
+
+typedef struct {
+    size_t cells;
+    double *edges, *midpoints, *differences;
+    double *columns, *extended_columns, *burden;
+} tt_profile;
+typedef enum { TT_PROFILE_LINEAR, TT_PROFILE_AIR, TT_PROFILE_O2, TT_PROFILE_O3 } tt_profile_kind;
+typedef struct {
+    tt_profile_kind kind;
+    double scale_height, reference_column, length_conversion;
+} tt_profile_options;
+/* Default scale heights: air/O2 8.01 km, O3 4.5 km, linear 0. O3's default
+ * reference column is 300 DU; 1 disables rescaling (the TUV-x convention).
+ * length_conversion defaults to 1 for linear and 1e5 for the gas profiles;
+ * set 1e5 explicitly for linear profiles on height grids in km. */
+tt_profile_options tt_profile_options_default(tt_profile_kind kind);
+/* Edges and extended_columns have cells+1 entries, other fields have cells.
+ * columns includes the extra top column in its last cell; extended_columns
+ * keeps that extra column separate. burden is the top-down column sum. */
+tt_status tt_profile_from_edges(const tt_grid *grid, const double *values,
+                                const tt_profile_options *options, tt_profile *out);
+/* Air/O2 samples contain air densities: interpolate log(density), extend the
+ * final coordinate by .001 km, then multiply O2 by .2095. O3 extends upward
+ * in 1-km steps using scale_height before interpolating and rescaling. */
+tt_status tt_profile_from_samples(const tt_grid *grid, size_t count, const double *coordinates,
+                                  const double *values, const tt_profile_options *options,
+                                  tt_profile *out);
+tt_status tt_profile_from_dataset(const tt_grid *grid, const tt_dataset *data,
+                                  const tt_profile_options *options, tt_profile *out);
+void tt_profile_destroy(tt_profile *profile);
+/* Create zero-filled host storage. update requires edges; other arguments
+ * are optional. NULL columns preserves previous columns/burdens. A supplied
+ * scale_height requires columns and excludes top_column; it uses km to cm.
+ * Explicit top_column is added to the final column and stored separately. */
+tt_status tt_profile_create(size_t cells, tt_profile *out);
+tt_status tt_profile_update(tt_profile *profile, const double *edges, const double *midpoints,
+                            const double *columns, const double *scale_height,
+                            const double *top_column);
+/* Both outputs are allocated. Preserve TUV-x's time-zone conventions:
+ * zenith uses time+time_zone; Earth-Sun distance uses time-time_zone. */
+tt_status tt_solar_profiles(const tt_grid *time, int year, int month, int day, double time_zone,
+                            double latitude, double longitude, tt_profile *zenith,
+                            tt_profile *distance);
+/* Merge up to four embedded solar spectra on the historical boundaries
+ * 150.01, 200.07, 1000.99 nm. All inputs are compiled text tables. The result
+ * has grid->cells entries in photons cm^-2 s^-1, integrated over each bin. */
+tt_status tt_extraterrestrial_flux(const tt_grid *grid, size_t count, const tt_dataset *const *data,
+                                   const tt_interpolation *methods, double *out);
+
 /* Geometry uses increasing height edges. nid has n entries. dsdh is an n by
  * (n-1) row-major array, with rows ordered from top to bottom of atmosphere.
  * This is the ray-path convention used by both TUV-x transfer solvers. */

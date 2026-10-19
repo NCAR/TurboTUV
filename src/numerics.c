@@ -21,7 +21,9 @@ static int increasing(size_t n, const double *x) {
 
 tt_status tt_interpolate(tt_interpolation method, int fold, size_t nx, const double *x,
                          const double *y, size_t nt, const double *target, double *out) {
-    if (!y || !out || !increasing(nx, x) || !increasing(nt, target) || method < TT_LINEAR ||
+    int valid_target =
+        method == TT_LINEAR && nt == 1 ? target && isfinite(target[0]) : increasing(nt, target);
+    if (!y || !out || !increasing(nx, x) || !valid_target || method < TT_LINEAR ||
         method > TT_FRACTIONAL_TARGET || (fold && method < TT_FRACTIONAL_SOURCE))
         return TT_INVALID;
     if (method == TT_CONSERVING && (x[0] > target[0] || x[nx - 1] < target[nt - 1]))
