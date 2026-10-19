@@ -35,6 +35,25 @@ tt_status tt_interpolate(tt_interpolation method, int fold, size_t nx, const dou
 tt_status tt_tridiagonal(size_t n, const double *lower, const double *diagonal, const double *upper,
                          const double *rhs, double *solution, double *work);
 
+typedef enum { TT_MATRIX_DENSE, TT_MATRIX_BAND } tt_matrix_layout;
+/* Column-major matrices. Dense A(i,j) is values[j*leading_dimension+i].
+ * Band A(i,j) is values[j*leading_dimension+lower+upper+i-j], requiring
+ * leading_dimension >= 2*lower+upper+1, including fill space. Lower/upper
+ * are ignored for dense matrices. All indices and pivots are zero-based. */
+typedef struct {
+    tt_matrix_layout layout;
+    size_t order, leading_dimension, lower, upper;
+    double *values;
+} tt_matrix;
+/* Factor in place. If reciprocal_condition is non-NULL, work must have order
+ * entries; the estimate follows LINPACK's original scaling and pivoting.
+ * A singular matrix returns TT_SINGULAR, retaining factors and the estimate. */
+tt_status tt_lu_factor(tt_matrix *matrix, size_t *pivots, double *reciprocal_condition,
+                       double *work);
+/* Solve using factors, replacing rhs with the solution. transpose != 0 solves
+ * A^T x = rhs. Repeated solves do not change the factors or pivots. */
+tt_status tt_lu_solve(const tt_matrix *factors, const size_t *pivots, int transpose, double *rhs);
+
 /* The catalogue contains immutable, compiled-in copies of all upstream data.
  * Shape and storage follow NetCDF C order (last dimension contiguous).
  * Text entries are NUL terminated. Lookup accepts upstream relative paths. */

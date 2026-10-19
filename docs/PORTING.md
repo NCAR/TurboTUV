@@ -71,6 +71,13 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   pass. The C code defines the all-thin-column limit using the reference's
   tabulated values; the original indexes outside its array in that case.
 
+* Dense and packed-band LU factorization, reciprocal-condition estimation,
+  and normal/transposed solves share one matrix representation and elimination
+  path. All 727,816 factor/pivot/condition/solution comparisons are bit-for-bit
+  identical on both compilers. Tests cover varied bandwidths and pivoting,
+  sizes 1 through 81, extreme scales, independent normwise backward-error
+  checks, and singular/invalid inputs. Sanitizers pass.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
