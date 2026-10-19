@@ -128,6 +128,27 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   nesting. Both sanitizers pass. Upstream source hashes and MIT licensing are
   recorded under `third_party/libyaml`; no runtime dependency is introduced.
 
+* Complete spectral constructors are connected to the C configuration API.
+  The prepared objects own their fixed wavelength grid, parameter tables and
+  options and never open scientific files. An optional resolver selects other
+  compiled datasets, including the separate test catalogue. Shared validators
+  keep direct-kernel and prepared-model requirements consistent.
+  All 970 cases and 7,189,693 comparisons pass with GCC/GFortran (bit-identical)
+  and Clang/Flang (worst 0.981 relative epsilon-scaled units, 32-unit ceiling).
+  Address and undefined-behavior sanitizers pass. Cases include every spectral
+  constructor from both complete examples, all modern spectral unit-test
+  inputs, the production reaction/weight catalogues, midpoint evaluation,
+  merged files, all interpolators, cutoffs, overrides, point data, extrapolation,
+  and all four temperature parameterizations. The case generator records
+  original source hashes and normalizes only the stale type labels that the
+  original unit tests bypass by directly calling a specific constructor.
+  The ozone constructor's replacement of the warm Hartley/Huggins column and
+  quantum-yield upper-boundary padding convention are preserved explicitly.
+  The CL2 reference allocates an extra undefined row at midpoints; comparisons
+  include its defined rows. HNO3 and H2O2 ignore the reference midpoint flag;
+  their edge evaluations are compared. C evaluates precisely the caller's
+  supplied temperature array without that ambiguity.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -154,8 +175,7 @@ reference comparisons use interior target bins.
 
 ## Remaining implementation tasks
 
-* Complete construction of cross-section tables from the model configuration.
-* Assemble the model and prepare embedded spectral tables from configuration.
+* Assemble grids, profiles, radiators, solvers and prepared spectra into the model.
 * Connect O2 corrections and rate calculations to the complete model.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.

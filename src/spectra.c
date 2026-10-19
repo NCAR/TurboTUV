@@ -1,4 +1,4 @@
-#include "turbotuv.h"
+#include "spectral_validation.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -108,13 +108,10 @@ static double interpolate_temperature(const tt_spectral_table *p, size_t w, doub
     return parameter(p, w, k) + f * (parameter(p, w, k + 1) - parameter(p, w, k));
 }
 
-tt_status tt_cross_section(tt_cross_section_kind kind, const tt_spectral_grid *grid, size_t count,
-                           const tt_spectral_table *p, double *out) {
-    if ((unsigned)kind >= TT_CS_COUNT || !grid || !out || !grid->edges || !grid->midpoints ||
-        !grid->temperature || !grid->wavelengths || !grid->levels ||
-        grid->levels > SIZE_MAX / grid->wavelengths || (count && !p))
+tt_status tt_cross_section_validate(tt_cross_section_kind kind, size_t nw, size_t count,
+                                    const tt_spectral_table *p, size_t *required_out) {
+    if ((unsigned)kind >= TT_CS_COUNT || !nw || (count && !p))
         return TT_INVALID;
-    size_t nw = grid->wavelengths, nz = grid->levels;
     int analytic = kind == TT_CS_CL2 || kind == TT_CS_HOBR || kind == TT_CS_N2O ||
                    kind == TT_CS_NITROXY_ACETONE || kind == TT_CS_NITROXY_ETHANOL ||
                    kind == TT_CS_RAYLEIGH || kind == TT_CS_T_BUTYL_NITRATE;
@@ -157,6 +154,22 @@ tt_status tt_cross_section(tt_cross_section_kind kind, const tt_spectral_grid *g
                 if (p[i].temperatures[k] <= p[i].temperatures[k - 1])
                     return TT_INVALID;
         }
+    if (required_out)
+        *required_out = required;
+    return TT_OK;
+}
+
+tt_status tt_cross_section(tt_cross_section_kind kind, const tt_spectral_grid *grid, size_t count,
+                           const tt_spectral_table *p, double *out) {
+    if ((unsigned)kind >= TT_CS_COUNT || !grid || !out || !grid->edges || !grid->midpoints ||
+        !grid->temperature || !grid->wavelengths || !grid->levels ||
+        grid->levels > SIZE_MAX / grid->wavelengths || (count && !p))
+        return TT_INVALID;
+    size_t nw = grid->wavelengths, nz = grid->levels;
+    size_t required = 0;
+    tt_status status = tt_cross_section_validate(kind, nw, count, p, &required);
+    if (status != TT_OK)
+        return status;
     double v185 = 185 * tt_air_refractive_index(185, 2.45e19);
     double v195 = 195 * tt_air_refractive_index(195, 2.45e19);
     double v345 = 345 * tt_air_refractive_index(345, 2.45e19);

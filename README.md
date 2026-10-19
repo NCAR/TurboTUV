@@ -11,6 +11,10 @@ profile constructors use embedded atmospheric and solar spectra; host updates
 share the same structures. JSON and YAML parsing use an immutable C interface
 in [include/turbotuv_config.h](include/turbotuv_config.h), backed by bundled
 [LibYAML](https://github.com/yaml/libyaml) sources with private symbol prefixes.
+Prepared spectral models in [include/turbotuv_model.h](include/turbotuv_model.h)
+construct cross sections, quantum yields, and weights from the original
+configuration formats and compiled datasets. They own their tables and support
+repeated evaluation with different atmospheric profiles.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

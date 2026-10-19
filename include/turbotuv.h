@@ -215,7 +215,7 @@ typedef struct {
     const double *edges;       /* wavelengths + 1 */
     const double *midpoints;   /* wavelengths */
     const double *temperature; /* levels */
-    const double *air_density; /* levels, required only by pressure-dependent yields */
+    const double *air_density; /* levels, required by quantum-yield calculations */
 } tt_spectral_grid;
 typedef enum {
     TT_CS_BASE,

@@ -1,4 +1,4 @@
-#include "turbotuv.h"
+#include "spectral_validation.h"
 #include <float.h>
 #include <math.h>
 #include <stdint.h>
@@ -101,16 +101,11 @@ static double acetone(double w, double temp, double density, const tt_yield_opti
     return qy;
 }
 
-tt_status tt_quantum_yield(tt_quantum_yield_kind kind, const tt_spectral_grid *grid, size_t count,
-                           const tt_spectral_table *p, const tt_yield_options *options,
-                           double *out) {
-    if ((unsigned)kind >= TT_QY_COUNT || !grid || !out || !grid->wavelengths || !grid->levels ||
-        !grid->midpoints || !grid->temperature || !grid->air_density ||
-        grid->levels > SIZE_MAX / grid->wavelengths || (count && !p))
+tt_status tt_quantum_yield_validate(tt_quantum_yield_kind kind, size_t nw, size_t count,
+                                    const tt_spectral_table *p, const tt_yield_options *o,
+                                    int *needs_data_out) {
+    if ((unsigned)kind >= TT_QY_COUNT || !nw || !o || (count && !p))
         return TT_INVALID;
-    tt_yield_options defaults = tt_yield_options_default();
-    const tt_yield_options *o = options ? options : &defaults;
-    size_t nw = grid->wavelengths, nz = grid->levels;
     int needs_data = kind == TT_QY_BASE || kind == TT_QY_CH2O || kind == TT_QY_CH3CHO ||
                      kind == TT_QY_C2H5CHO || kind == TT_QY_TINT || kind == TT_QY_NO2 ||
                      kind == TT_QY_H2SO4 || kind == TT_QY_TAYLOR;
@@ -139,6 +134,25 @@ tt_status tt_quantum_yield(tt_quantum_yield_kind kind, const tt_spectral_grid *g
     if (kind == TT_QY_H2SO4 &&
         (!o->collision_rates || o->molecular_weight <= 0 || o->molecular_diameter <= 0))
         return TT_INVALID;
+    if (needs_data_out)
+        *needs_data_out = needs_data;
+    return TT_OK;
+}
+
+tt_status tt_quantum_yield(tt_quantum_yield_kind kind, const tt_spectral_grid *grid, size_t count,
+                           const tt_spectral_table *p, const tt_yield_options *options,
+                           double *out) {
+    if ((unsigned)kind >= TT_QY_COUNT || !grid || !out || !grid->wavelengths || !grid->levels ||
+        !grid->midpoints || !grid->temperature || !grid->air_density ||
+        grid->levels > SIZE_MAX / grid->wavelengths || (count && !p))
+        return TT_INVALID;
+    tt_yield_options defaults = tt_yield_options_default();
+    const tt_yield_options *o = options ? options : &defaults;
+    size_t nw = grid->wavelengths, nz = grid->levels;
+    int needs_data = 0;
+    tt_status status = tt_quantum_yield_validate(kind, nw, count, p, o, &needs_data);
+    if (status != TT_OK)
+        return status;
     for (size_t w = 0; w < nw; ++w) {
         double lambda = grid->midpoints[w];
         if (!isfinite(lambda) || lambda <= 0)
