@@ -12,14 +12,7 @@ extern "C" {
 /* All physical quantities use the TUV-x units: nm, km, K, molecules/cm^3.
  * Arrays are contiguous, owned by the caller unless explicitly documented.
  * No routine terminates the process or holds mutable global state. */
-typedef enum {
-    TT_OK = 0,
-    TT_INVALID,
-    TT_RANGE,
-    TT_MEMORY,
-    TT_SINGULAR,
-    TT_NOT_FOUND
-} tt_status;
+typedef enum { TT_OK = 0, TT_INVALID, TT_RANGE, TT_MEMORY, TT_SINGULAR, TT_NOT_FOUND } tt_status;
 const char *tt_status_string(tt_status status);
 
 typedef enum {
@@ -34,15 +27,13 @@ typedef enum {
  * Linear interpolation returns zero outside [x[0], x[nx-1]), including the
  * last source point, matching TUV-x. Conserving requires full source coverage.
  * fold applies the reference's historical overhang convention unchanged. */
-tt_status tt_interpolate(tt_interpolation method, int fold,
-                         size_t nx, const double *x, const double *y,
-                         size_t nt, const double *target, double *out);
+tt_status tt_interpolate(tt_interpolation method, int fold, size_t nx, const double *x,
+                         const double *y, size_t nt, const double *target, double *out);
 
 /* Lower/upper diagonals have n entries; lower[0], upper[n-1] are unused.
  * work has n entries. Inputs and output/work must not overlap. */
-tt_status tt_tridiagonal(size_t n, const double *lower, const double *diagonal,
-                         const double *upper, const double *rhs,
-                         double *solution, double *work);
+tt_status tt_tridiagonal(size_t n, const double *lower, const double *diagonal, const double *upper,
+                         const double *rhs, double *solution, double *work);
 
 /* The catalogue contains immutable, compiled-in copies of all upstream data.
  * Shape and storage follow NetCDF C order (last dimension contiguous).
@@ -71,17 +62,16 @@ const tt_data_variable *tt_dataset_variable(const tt_dataset *data, const char *
 /* Geometry uses increasing height edges. nid has n entries. dsdh is an n by
  * (n-1) row-major array, with rows ordered from top to bottom of atmosphere.
  * This is the ray-path convention used by both TUV-x transfer solvers. */
-tt_status tt_spherical_geometry(size_t n, const double *height, double zenith,
-                                int *nid, double *dsdh);
-tt_status tt_air_mass(size_t n, const double *air_column, const int *nid,
-                      const double *dsdh, double *vertical, double *slant);
+tt_status tt_spherical_geometry(size_t n, const double *height, double zenith, int *nid,
+                                double *dsdh);
+tt_status tt_air_mass(size_t n, const double *air_column, const int *nid, const double *dsdh,
+                      double *vertical, double *slant);
 
 /* Calendar follows the reference's supported range, 1950 through 2050.
  * Solar position returns elevation in degrees; zenith = 90 - elevation. */
 int tt_day_of_year(int year, int month, int day);
 double tt_earth_sun_distance(int year, int day, double utc_hour);
-double tt_solar_elevation(int year, int day, double utc_hour,
-                          double latitude, double longitude);
+double tt_solar_elevation(int year, int day, double utc_hour, double latitude, double longitude);
 
 /* Spectral fields use [wavelength][layer/level] order, with height increasing.
  * Moments use [moment][wavelength][layer]; moment 0 is the first Legendre
@@ -104,11 +94,69 @@ typedef struct {
     double *direct_irradiance, *down_irradiance, *up_irradiance;
 } tt_radiation;
 
-tt_status tt_mix_radiators(size_t count, const tt_radiator *radiators,
-                           size_t layers, size_t wavelengths, size_t moments,
-                           double *optical_depth, double *albedo, double *legendre);
+tt_status tt_mix_radiators(size_t count, const tt_radiator *radiators, size_t layers,
+                           size_t wavelengths, size_t moments, double *optical_depth,
+                           double *albedo, double *legendre);
 tt_status tt_delta_eddington(const tt_atmosphere *atmosphere, double zenith,
                              const double *surface_albedo, tt_radiation *out);
+
+typedef struct {
+    size_t rows, columns, temperature_count;
+    const double *values; /* [column][row] */
+    const double *temperatures;
+} tt_spectral_table;
+typedef struct {
+    size_t wavelengths, levels;
+    const double *edges;       /* wavelengths + 1 */
+    const double *midpoints;   /* wavelengths */
+    const double *temperature; /* levels */
+    const double *air_density; /* levels, required only by pressure-dependent yields */
+} tt_spectral_grid;
+typedef enum {
+    TT_CS_BASE,
+    TT_CS_ACETONE,
+    TT_CS_CCL4,
+    TT_CS_CFC11,
+    TT_CS_CH2O,
+    TT_CS_CH3ONO2,
+    TT_CS_CHBR3,
+    TT_CS_CHCL3,
+    TT_CS_CL2,
+    TT_CS_CLONO2,
+    TT_CS_H2O2,
+    TT_CS_HCFC,
+    TT_CS_HNO3,
+    TT_CS_HOBR,
+    TT_CS_N2O,
+    TT_CS_N2O5,
+    TT_CS_NITROXY_ACETONE,
+    TT_CS_NITROXY_ETHANOL,
+    TT_CS_NO2,
+    TT_CS_O3_JPL06,
+    TT_CS_O3,
+    TT_CS_OCLO,
+    TT_CS_RAYLEIGH,
+    TT_CS_RONO2,
+    TT_CS_T_BUTYL_NITRATE,
+    TT_CS_TINT,
+    TT_CS_COUNT
+} tt_cross_section_kind;
+const char *tt_cross_section_name(tt_cross_section_kind kind);
+tt_status tt_cross_section(tt_cross_section_kind kind, const tt_spectral_grid *grid, size_t count,
+                           const tt_spectral_table *tables, double *out);
+double tt_air_refractive_index(double wavelength, double air_density);
+
+typedef enum {
+    TT_EXTRAPOLATE_ZERO,
+    TT_EXTRAPOLATE_BOUNDARY,
+    TT_EXTRAPOLATE_CONSTANT
+} tt_extrapolation;
+/* Prepare one parameter column using the reference's four padding points.
+ * out has wavelengths entries; scientific data come from the embedded catalogue. */
+tt_status tt_regrid_column(const tt_dataset *data, const char *variable, size_t column,
+                           size_t wavelengths, const double *edges, tt_extrapolation lower,
+                           double lower_value, tt_extrapolation upper, double upper_value,
+                           double *out);
 
 #ifdef __cplusplus
 }

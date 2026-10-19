@@ -33,6 +33,14 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   beam boundary checks pass. The C-only invariants also pass Clang address and
   undefined-behavior sanitizers.
 
+* All 26 direct cross-section kernels use a common grid and parameter-table
+  representation. Tests exercise 25 temperatures and 1,464 wavelengths,
+  including neighboring representable values at wavelength cutoffs. The
+  951,643 comparisons per compiler set have a largest relative error of
+  0.624 epsilon-scaled units (32-unit ceiling). Embedded column regridding
+  also checks conservation against an independently calculated trapezoid
+  integral. C-only spectral tests pass both sanitizers.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -57,7 +65,8 @@ reference comparisons use interior target bins.
 
 ## Remaining implementation tasks
 
-* Cross sections, temperature parameterizations, quantum yields and action spectra.
+* Temperature parameterizations, quantum yields and action spectra; complete
+  construction of cross-section tables from the model configuration.
 * Grid/profile/configuration model and embedded table preparation.
 * Discrete-ordinate solver and full radiator/profile construction.
 * O2 Lyman-alpha/Schumann-Runge parameterization, photolysis, dose and heating rates.
