@@ -78,6 +78,15 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   sizes 1 through 81, extreme scales, independent normwise backward-error
   checks, and singular/invalid inputs. Sanitizers pass.
 
+* Discrete-ordinate real eigenproblem, Gauss quadrature, and Legendre helpers.
+  All 100,460 comparisons are bit-for-bit identical on both compilers, with
+  independent eigen-equation residuals and polynomial quadrature integrals.
+  Eigen tests include symmetric, similarity-scaled asymmetric, triangular,
+  and isolated-block matrices through order 32; quadrature runs through order
+  256. Private Fortran helpers are extracted verbatim into a test-only module
+  with source provenance, leaving the original library unchanged. Sanitizers
+  pass; a zero 2x2 matrix receives defined identity eigenvectors in C.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
