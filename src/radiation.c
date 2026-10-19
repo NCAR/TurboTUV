@@ -20,7 +20,7 @@ static double integer_power(double x, size_t n) {
 
 tt_status tt_mix_radiators(size_t nr, const tt_radiator *r, size_t nl, size_t nw, size_t nm,
                            double *tau, double *ssa, double *g) {
-    if (!nr || !r || !nl || !nw || !nm || !tau || !ssa || !g || nw > SIZE_MAX / nl ||
+    if ((nr && !r) || !nl || !nw || !nm || !tau || !ssa || !g || nw > SIZE_MAX / nl ||
         nm > SIZE_MAX / (nl * nw))
         return TT_INVALID;
     size_t count = nl * nw;

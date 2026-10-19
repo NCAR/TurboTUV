@@ -51,6 +51,36 @@ tt_status tt_spectrum_calculate(const tt_spectrum *spectrum, size_t levels,
  * wavelength interpolation. Parameterized cross sections have no tables. */
 size_t tt_spectrum_table_count(const tt_spectrum *spectrum);
 const tt_spectral_table *tt_spectrum_table(const tt_spectrum *spectrum, size_t index);
+/* A complete model owns its configuration-derived state and reusable working
+ * arrays. Separate models may run concurrently; one model has one active run.
+ * Views below remain valid until destroy and must not be modified by callers. */
+typedef struct tt_model tt_model;
+typedef enum { TT_RATE_PHOTOLYSIS, TT_RATE_HEATING, TT_RATE_DOSE } tt_rate_kind;
+typedef struct {
+    size_t levels, wavelengths, photolysis, heating, dose;
+} tt_model_dimensions;
+typedef struct {
+    tt_radiation radiation;
+    const double *actinic_flux, *spectral_irradiance; /* [wavelength][level] */
+    const double *photolysis, *heating, *dose;        /* [rate][level] */
+} tt_model_result;
+tt_status tt_model_create(tt_config_node config, const tt_data_source *source, tt_model **out,
+                          tt_error *error);
+void tt_model_destroy(tt_model *model);
+tt_model_dimensions tt_model_shape(const tt_model *model);
+const tt_grid *tt_model_grid(const tt_model *model, const char *name, const char *units);
+const tt_profile *tt_model_profile(const tt_model *model, const char *name, const char *units);
+const tt_radiator *tt_model_radiator(const tt_model *model, const char *name);
+const char *tt_model_rate_name(const tt_model *model, tt_rate_kind kind, size_t index);
+/* The reference scales all six fields by this argument directly. Preserve
+ * that convention: pass the configured Earth-Sun distance, or 1 for unit
+ * scaling. Result storage is replaced by the next run on the same model. */
+tt_status tt_model_run(tt_model *model, double zenith, double radiation_scale,
+                       const tt_model_result **out, tt_error *error);
+/* Host solver input: three flux fields are mandatory. Missing irradiance
+ * fields become zero. Shape is model wavelengths * levels. Inputs are copied. */
+tt_status tt_model_set_radiation(tt_model *model, const tt_radiation *radiation);
+
 #ifdef __cplusplus
 }
 #endif

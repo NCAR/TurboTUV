@@ -16,6 +16,9 @@ construct cross sections, quantum yields, and weights from the original
 configuration formats and compiled datasets. They own their tables and support
 repeated evaluation with different atmospheric profiles. The same header
 provides grid and profile constructors for the original configuration formats.
+The complete model API assembles those components, applies the O2 corrections,
+and returns all six radiation fields plus photolysis, heating, and dose rates.
+Host-supplied radiation uses the same rate pipeline.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

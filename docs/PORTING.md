@@ -159,6 +159,24 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   Reference factory tests run in isolated build directories with links to
   the original data, so error/diagnostic files cannot alter the source tree.
 
+* Complete model construction and repeated execution own their grids, profiles,
+  spectra, optical properties and scratch arrays. O2 corrections, both solvers,
+  host radiation and all three rate collections use the same pipeline. The
+  whole-model suite covers 27 configurations and 380 runs, including both
+  examples, all radiator regression configurations, the production photolysis
+  and dose catalogues, heating, nonuniform columns, bright surfaces, vacuum,
+  negative host radiation, omitted irradiance, and 17 malformed configurations.
+  All 30,117,173 comparisons pass: bit-identical with GCC/GFortran and within
+  0.999 relative epsilon-scaled units with Clang/Flang (64-unit ceiling).
+  Radiation comparisons use incident-flux normalization; rates use their own
+  magnitudes. Both sanitizers pass. Rate labels/order are also compared.
+  A nonphysical NetCDF reader fixture is tested for rejection at the solve.
+  The reference mixer dereferences its first radiator for an empty collection;
+  empty C atmospheres are compared with one zero-depth Fortran absorber, which
+  has exactly the same optical-floor arithmetic. Source hashes and this test
+  adjustment are recorded by the generator. The reference's direct scaling by
+  the Earth-Sun distance argument is preserved, without reinterpretation.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -185,7 +203,6 @@ reference comparisons use interior target bins.
 
 ## Remaining implementation tasks
 
-* Assemble grids, profiles, radiators, solvers and prepared spectra into the model.
-* Connect O2 corrections and rate calculations to the complete model.
+* Host model updates for column grids, profiles and radiators.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.
