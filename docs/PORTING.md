@@ -235,6 +235,40 @@ exclude that entry. C validates grids and prevents out-of-bounds access. The
 reference conserving interpolator assumes padded source grids, so randomized
 reference comparisons use interior target bins.
 
-## Remaining implementation tasks
+## Final validation — 2026-10-18
 
-* Extended reference tests, complete compiler matrix, sanitizer checks and final audit.
+| Check | GCC/GFortran 16.2.0 | Clang/Flang 23.1.3 |
+| --- | --- | --- |
+| Complete TurboTUV C/reference/CLI suite | 37/37 pass | 37/37 pass |
+| Existing TUV-x suite with documented harness portability fixes | 88/88 pass | 88/88 pass |
+| Reference, analytic and output numerical comparisons | 71,501,781 pass | 71,501,781 pass |
+| Complete-model comparisons, largest relative epsilon error | 0 | 0.999 |
+| Original executable's example outputs | Bit-identical | Bit-identical |
+| Production data audit | 190 datasets, exact | 190 datasets, exact |
+| Test fixture data audit | 110 datasets, exact | 110 datasets, exact |
+| Concurrent versus serial output | 4,410,208 values, exact | 4,410,208 values, exact |
+| Installed CMake consumer | Static library, pass | Shared library, pass |
+
+All 18 C/kernel/model/concurrency tests pass with Clang AddressSanitizer,
+UndefinedBehaviorSanitizer and leak detection enabled. The optional NetCDF CLI
+also passes address/undefined-behavior checks with the leak-checking exception
+documented above; the JSON-only CLI passes with leak detection enabled.
+The separate ThreadSanitizer build passes the concurrency test. Generated data,
+factory cases and extracted reference helpers regenerate without changes.
+The four shipped examples match their upstream bytes. The sibling TUV-x
+checkout is unchanged.
+
+The numerical limits are specified per test: relative scales for spectra/rates,
+incident-flux normalization for transfer fields, and an angle scale near solar
+cancellation. The largest transfer error is 46 epsilon-scaled units, within
+the 64-unit limit; this remains double-precision roundoff. Undefined upstream
+array entries and invalid dormant inputs are handled as described above.
+
+For a C/reference run, first build the corresponding reference with
+`tools/reference.py gcc` or `tools/reference.py llvm`. Configure TurboTUV with
+the matching C/Fortran compilers and `TURBOTUV_REFERENCE_BUILD`,
+`TURBOTUV_REFERENCE_PREFIX`, and `TURBOTUV_NETCDF_PREFIX`. Select a Python with
+NumPy/netCDF4 using `Python3_EXECUTABLE` for the CLI reference-output tests.
+Then build and run `ctest --output-on-failure`. The ordinary C-only build does
+not need Fortran or scientific input files. See [USAGE.md](USAGE.md) for the
+build, installation, output and host-interface commands.

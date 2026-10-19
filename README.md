@@ -61,3 +61,10 @@ See [docs/USAGE.md](docs/USAGE.md) for the runner, output format, installation,
 and host-model API, and [docs/PORTING.md](docs/PORTING.md) for validation details.
 The upstream Apache-2.0 license and UCAR attribution apply to translated code
 and scientific data.
+
+Validated with Homebrew GCC/GFortran 16.2.0 and Clang/Flang 23.1.3: all 37 C
+tests and 88 original reference tests pass on each toolchain. The 71.5 million
+numerical comparisons per toolchain stay within double-precision roundoff;
+the complete-model comparisons are bit-identical with GCC and within one
+relative machine epsilon with Clang. Sanitizer and concurrent-model checks
+are recorded in the validation document.

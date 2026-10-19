@@ -71,6 +71,7 @@ endif()
 install(TARGETS turbotuv EXPORT TurboTUVTargets)
 install(FILES include/turbotuv.h include/turbotuv_config.h include/turbotuv_model.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(FILES third_party/libyaml/License DESTINATION ${CMAKE_INSTALL_DATADIR}/TurboTUV/licenses RENAME LibYAML.txt)
+install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_DATADIR}/TurboTUV/licenses RENAME TurboTUV.txt)
 install(EXPORT TurboTUVTargets NAMESPACE TurboTUV:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/TurboTUV)
 include(CMakePackageConfigHelpers)
 configure_package_config_file(cmake/TurboTUVConfig.cmake.in
