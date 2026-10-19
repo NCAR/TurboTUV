@@ -32,7 +32,8 @@ int main(void) {
     for (size_t ni = 0; ni < 7; ++ni)
         for (int layout = 0; layout < 2; ++layout)
             for (size_t trial = 0; trial < 24; ++trial) {
-                size_t n = orders[ni], ml = trial % n, mu = (trial * 3) % n;
+                size_t n = orders[ni], ml = trial == 23 ? n + 1 : trial % n,
+                       mu = trial == 23 ? n + 2 : (trial * 3) % n;
                 size_t ld = layout ? 2 * ml + mu + 1 : n + 3;
                 double *work = calloc(3 * n * ld + n * n + 6 * n, sizeof(double));
                 size_t *pivots = calloc(2 * n, sizeof(size_t));

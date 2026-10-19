@@ -27,8 +27,7 @@ static int valid(const tt_matrix *a) {
         return 0;
     if (a->layout == TT_MATRIX_DENSE)
         return a->leading_dimension >= a->order;
-    return a->lower < a->order && a->upper < a->order &&
-           a->lower <= (SIZE_MAX - a->upper - 1) / 2 &&
+    return a->upper < SIZE_MAX && a->lower <= (SIZE_MAX - a->upper - 1) / 2 &&
            a->leading_dimension >= 2 * a->lower + a->upper + 1;
 }
 static void swap(double *a, double *b) {
@@ -196,13 +195,23 @@ tt_status tt_lu_factor(tt_matrix *a, size_t *pivots, double *reciprocal_conditio
     if (!valid(a) || !pivots || (reciprocal_condition && !work))
         return TT_INVALID;
     double norm = 0;
-    if (reciprocal_condition)
+    if (reciprocal_condition) {
+        size_t length = a->lower + 1, first = a->lower + a->upper;
         for (size_t j = 0; j < a->order; ++j) {
-            size_t first = a->layout == TT_MATRIX_DENSE ? 0 : (j > a->upper ? j - a->upper : 0);
-            size_t last =
-                a->layout == TT_MATRIX_DENSE ? a->order - 1 : smaller(a->order - 1, j + a->lower);
-            norm = fmax(norm, absolute_sum(last - first + 1, entry(a, first, j)));
+            if (a->layout == TT_MATRIX_DENSE)
+                norm = fmax(norm, absolute_sum(a->order, entry(a, 0, j)));
+            else {
+                norm =
+                    fmax(norm, absolute_sum(length, a->values + j * a->leading_dimension + first));
+                if (first > a->lower)
+                    --first;
+                if (j < a->upper)
+                    ++length;
+                if (j + a->lower + 1 >= a->order)
+                    --length;
+            }
         }
+    }
     tt_status status = factor(a, pivots);
     if (reciprocal_condition)
         *reciprocal_condition = condition(a, pivots, norm, work);

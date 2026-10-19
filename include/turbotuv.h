@@ -118,6 +118,9 @@ tt_status tt_mix_radiators(size_t count, const tt_radiator *radiators, size_t la
                            double *albedo, double *legendre);
 tt_status tt_delta_eddington(const tt_atmosphere *atmosphere, double zenith,
                              const double *surface_albedo, tt_radiation *out);
+/* Even stream counts 2 through 32, with at least that many Legendre moments. */
+tt_status tt_discrete_ordinates(const tt_atmosphere *atmosphere, size_t streams, double zenith,
+                                const double *surface_albedo, tt_radiation *out);
 
 typedef struct {
     size_t rows, columns, temperature_count;

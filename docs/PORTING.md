@@ -73,7 +73,7 @@ Both use `-ffp-contract=off`; fast math is not enabled.
 
 * Dense and packed-band LU factorization, reciprocal-condition estimation,
   and normal/transposed solves share one matrix representation and elimination
-  path. All 727,816 factor/pivot/condition/solution comparisons are bit-for-bit
+  path. All 753,290 factor/pivot/condition/solution comparisons are bit-for-bit
   identical on both compilers. Tests cover varied bandwidths and pivoting,
   sizes 1 through 81, extreme scales, independent normwise backward-error
   checks, and singular/invalid inputs. Sanitizers pass.
@@ -86,6 +86,16 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   256. Private Fortran helpers are extracted verbatim into a test-only module
   with source provenance, leaving the original library unchanged. Sanitizers
   pass; a zero 2x2 matrix receives defined identity eigenvectors in C.
+
+* Complete pseudo-spherical discrete-ordinate solver, specialized to TUV-x's
+  fixed flux-only, delta-M, Lambertian-surface configuration. All 16 even
+  stream counts from 2 through 32 pass 4,400 atmosphere cases and 16,368,400
+  comparisons per compiler, within 46 epsilon-scaled units (64-unit ceiling).
+  Cases cover 1/2/5/16/81 layers, 11 solar angles, thin/thick/vacuum optics,
+  nearly conservative scattering, Rayleigh mixing, surface reflection and
+  absorption-depth truncation. Both sanitizers pass. Layer scratch storage is
+  reused across wavelengths. The band solver also covers bandwidths larger
+  than matrix order, as needed for single-layer boundary systems.
 
 ## Reference portability
 
@@ -115,7 +125,7 @@ reference comparisons use interior target bins.
 
 * Complete construction of cross-section tables from the model configuration.
 * Grid/profile/configuration model and embedded table preparation.
-* Discrete-ordinate solver and full radiator/profile construction.
+* Full radiator/profile construction.
 * Connect O2 corrections and rate calculations to the complete model.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.
