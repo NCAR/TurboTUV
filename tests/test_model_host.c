@@ -92,7 +92,8 @@ int main(void) {
         tt_model_dimensions s = tt_model_shape(model);
         size_t rates = NZ * (s.photolysis + s.heating + s.dose);
         double *ref = calloc(6 * n + rates + 1, sizeof(double));
-        require(ref != NULL, "reference allocation");
+        double *generic = calloc(8 * n + rates + 1, sizeof(double));
+        require(ref != NULL && generic != NULL, "reference allocation");
 #ifdef TT_HAVE_REFERENCE
         ref_model_host_create((int)strlen(host_model_cases[c]), host_model_cases[c], NZ, (int)nw, z,
                               wave.edges, air, t, col, top);
@@ -151,8 +152,25 @@ int main(void) {
             for (size_t a = 0; a < sizeof angles / sizeof *angles; ++a) {
                 ++scenario;
                 const tt_model_result *result = NULL;
+                /* The generic sequence must give the prepared results exactly. */
+                require(tt_model_set_execution(model, TT_EXECUTION_GENERIC) == TT_OK, "generic");
                 require(tt_model_run(model, angles[a], 1.003, &result, &error) == TT_OK,
                         error.message);
+                size_t outputs = 8 * n + rates;
+                memcpy(generic, result->radiation.direct_flux, 6 * n * sizeof(double));
+                memcpy(generic + 6 * n, result->actinic_flux, n * sizeof(double));
+                memcpy(generic + 7 * n, result->spectral_irradiance, n * sizeof(double));
+                memcpy(generic + 8 * n, result->photolysis, rates * sizeof(double));
+                require(tt_model_set_execution(model, TT_EXECUTION_PREPARED) == TT_OK, "prepared");
+                require(tt_model_run(model, angles[a], 1.003, &result, &error) == TT_OK,
+                        error.message);
+                require(
+                    !memcmp(generic, result->radiation.direct_flux, 6 * n * sizeof(double)) &&
+                        !memcmp(generic + 6 * n, result->actinic_flux, n * sizeof(double)) &&
+                        !memcmp(generic + 7 * n, result->spectral_irradiance, n * sizeof(double)) &&
+                        !memcmp(generic + 8 * n, result->photolysis, rates * sizeof(double)),
+                    "prepared and generic runs differ");
+                (void)outputs;
                 double *rp = ref + 6 * n, *rh = rp + NZ * s.photolysis, *rd = rh + NZ * s.heating;
 #ifdef TT_HAVE_REFERENCE
                 ref_model_run(NZ, (int)nw, (int)s.photolysis, (int)s.heating, (int)s.dose,
@@ -203,6 +221,7 @@ int main(void) {
 #endif
         free(rad);
         free(ref);
+        free(generic);
     }
     printf("Host model: %zu runs, %zu comparisons, worst %.3g eps\n", scenario, compared, worst);
     return 0;

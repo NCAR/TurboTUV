@@ -69,7 +69,8 @@ static tt_status scale_profile(tt_model *m, profile_state *s, double factor) {
     return tt_model_update_profile(m, s->name, s->units, n, s->edges, NULL, s->columns, NULL, &top);
 }
 static int usage(void) {
-    fputs("Usage: turbotuv_bench CONFIG [--columns N] [--repeat R] [--seed S] [--output FILE]\n",
+    fputs("Usage: turbotuv_bench CONFIG [--columns N] [--repeat R] [--seed S] [--output FILE]\n"
+          "                      [--generic]\n",
           stderr);
     return 2;
 }
@@ -77,6 +78,7 @@ int main(int argc, char **argv) {
     const char *path = NULL, *output = NULL;
     long columns = 1000, repeat = 1;
     unsigned long long seed = 2026;
+    int generic = 0;
     for (int i = 1; i < argc; ++i) {
         if (!strcmp(argv[i], "--columns") && i + 1 < argc)
             columns = strtol(argv[++i], NULL, 10);
@@ -86,6 +88,8 @@ int main(int argc, char **argv) {
             seed = strtoull(argv[++i], NULL, 10);
         else if (!strcmp(argv[i], "--output") && i + 1 < argc)
             output = argv[++i];
+        else if (!strcmp(argv[i], "--generic"))
+            generic = 1;
         else if (argv[i][0] == '-' || path)
             return usage();
         else
@@ -102,6 +106,8 @@ int main(int argc, char **argv) {
         return 1;
     }
     tt_config_destroy(config);
+    tt_status execution =
+        tt_model_set_execution(model, generic ? TT_EXECUTION_GENERIC : TT_EXECUTION_PREPARED);
     tt_model_dimensions shape = tt_model_shape(model);
     size_t nz = shape.levels, nl = nz - 1, n = nz * shape.wavelengths;
     profile_state air, o2, o3;
@@ -186,8 +192,12 @@ int main(int argc, char **argv) {
         return 1;
     }
     long total = columns * repeat;
-    printf("config=%s columns=%ld levels=%zu wavelengths=%zu photolysis=%zu heating=%zu dose=%zu\n",
-           path, total, nz, shape.wavelengths, shape.photolysis, shape.heating, shape.dose);
+    printf("config=%s columns=%ld levels=%zu wavelengths=%zu photolysis=%zu heating=%zu dose=%zu "
+           "execution=%s\n",
+           path, total, nz, shape.wavelengths, shape.photolysis, shape.heating, shape.dose,
+           generic     ? "generic"
+           : execution ? "generic (not prepared)"
+                       : "prepared");
     printf("elapsed_ms=%.3f per_column_us=%.2f hash=%016llx\n", 1e3 * elapsed,
            1e6 * elapsed / (double)total, (unsigned long long)digest);
     tt_profile_destroy(&air.original);

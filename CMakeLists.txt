@@ -17,7 +17,8 @@ add_library(turbotuv src/numerics.c src/geometry.c src/data.c src/radiation.c sr
     src/discrete_eigen.c src/discrete_quadrature.c src/discrete.c
     src/grid.c src/profiles.c src/tables.c src/solar_flux.c src/optics.c
     src/config.c src/profile_config.c src/build.c src/spectrum.c src/spectrum_temperature.c
-    src/model_build.c src/model_run.c src/model_host.c src/decimal.c)
+    src/model_build.c src/model_run.c src/model_host.c src/decimal.c
+    src/spectrum_plan.c src/model_plan.c src/radiation_block.c)
 add_library(TurboTUV::turbotuv ALIAS turbotuv)
 target_compile_features(turbotuv PUBLIC c_std_11)
 set_target_properties(turbotuv PROPERTIES C_EXTENSIONS OFF POSITION_INDEPENDENT_CODE ON)

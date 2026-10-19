@@ -43,7 +43,10 @@ angle and the radiation scale of each through the host-update API. It times
 the updates and runs, after one untimed column, and prints the time per column
 and an FNV-1a hash of every radiation field and rate of every column. Equal
 hashes from two builds mean bit-identical results. `--repeat` repeats the
-column set, `--seed` selects another, and `--output` writes all values.
+column set, `--seed` selects another, `--output` writes all values, and
+`--generic` uses generic execution. `tools/bench_compare.py` times several
+builds in rotating rounds and checks that their hashes agree; see
+[PERFORMANCE.md](PERFORMANCE.md).
 
 ## Output
 
@@ -126,6 +129,15 @@ not resample profiles or static aerosol/radiator data: the host explicitly
 updates those quantities. Construct a new model to change wavelength grids,
 because spectra and weights are prepared on that grid. Host setters copy data
 and reject incorrect dimensions and nonfinite input before changing state.
+
+Runs use prepared execution by default. Column-independent spectral work is
+done when the model is built, and each run evaluates only what can change.
+`tt_model_set_execution(model, TT_EXECUTION_GENERIC)` selects the direct
+translation instead. Both give bit-identical results and the same error status
+for every input: a prepared run hands any input outside its assumptions to the
+generic sequence. A prepared model holds its plans and the rows of its varying
+spectra: 4.6 MB more peak memory for tuv_5_4 (17.1 MB in all) and 3.1 MB more
+for ts1_tsmlt, and building it takes 2–4 ms longer.
 
 For additional scientific datasets, regenerate the catalogue with
 `tools/embed_data.py`, or provide immutable compiled arrays through

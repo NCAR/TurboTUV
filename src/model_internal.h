@@ -53,6 +53,8 @@ struct tt_model {
     double *path, *vertical, *slant_air, *slant_oxygen, *oxygen_vertical;
     double *work, *cross_section, *yield, *radiation_storage, *host_radiation;
     double *optical_storage, *rate_storage;
+    struct tt_model_plan *plan; /* prepared runs; NULL if unavailable */
+    int generic;                /* TT_EXECUTION_GENERIC selected */
 };
 size_t tt_model_grid_index(const tt_model *model, const char *name, const char *units);
 size_t tt_model_profile_index(const tt_model *model, const char *name, const char *units);

@@ -279,11 +279,15 @@ quantum yields) accept any keys, as there. The C port still rejects inputs
 where the reference would continue with NaN, such as nonpositive temperatures
 in temperature-dependent spectra.
 
+Prepared execution, the default since 2026-10-19, reproduces the generic
+results bit for bit; the reference suites above exercise it, and
+[PERFORMANCE.md](PERFORMANCE.md) records its design and validation.
+
 ## Final validation — 2026-10-18
 
 | Check | GCC/GFortran 16.2.0 | Clang/Flang 23.1.3 |
 | --- | --- | --- |
-| Complete TurboTUV C/reference/CLI suite | 38/38 pass | 38/38 pass |
+| Complete TurboTUV C/reference/CLI suite | 39/39 pass | 39/39 pass |
 | Existing TUV-x suite with documented harness portability fixes | 88/88 pass | 88/88 pass |
 | Reference, analytic and output numerical comparisons | 71,501,781 pass | 71,501,781 pass |
 | Complete-model comparisons, largest relative epsilon error | 0 | 0.999 |
@@ -293,7 +297,7 @@ in temperature-dependent spectra.
 | Concurrent versus serial output | 4,410,208 values, exact | 4,410,208 values, exact |
 | Installed CMake consumer | Static library, pass | Shared library, pass |
 
-All 19 C/kernel/model/concurrency/locale tests pass with Clang AddressSanitizer,
+All 20 C/kernel/model/concurrency/locale/prepared-execution tests pass with Clang AddressSanitizer,
 UndefinedBehaviorSanitizer and leak detection enabled. The optional NetCDF CLI
 also passes address/undefined-behavior checks with the leak-checking exception
 documented above; the JSON-only CLI passes with leak detection enabled.

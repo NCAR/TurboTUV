@@ -1,6 +1,7 @@
 /* Copyright (C) 2026 University Corporation for Atmospheric Research
  * SPDX-License-Identifier: Apache-2.0 */
 #include "model_internal.h"
+#include "model_plan.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -445,12 +446,16 @@ tt_status tt_model_create_with_inputs(tt_config_node config, const tt_data_sourc
         tt_model_destroy(m);
         return b.status;
     }
+    /* Prepared runs are an optimization: without a plan, runs are generic. */
+    if (tt_model_plan_create(m, &m->plan))
+        m->plan = NULL;
     *out = m;
     return TT_OK;
 }
 void tt_model_destroy(tt_model *m) {
     if (!m)
         return;
+    tt_model_plan_destroy(m->plan);
     for (size_t i = 0; m->grids && i < m->grid_count; ++i) {
         free(m->grids[i].name);
         free(m->grids[i].units);

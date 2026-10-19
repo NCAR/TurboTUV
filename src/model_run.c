@@ -1,6 +1,7 @@
 /* Copyright (C) 2026 University Corporation for Atmospheric Research
  * SPDX-License-Identifier: Apache-2.0 */
 #include "model_internal.h"
+#include "model_plan.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -32,12 +33,24 @@ tt_status tt_model_set_radiation(tt_model *m, const tt_radiation *r) {
     }
     return TT_OK;
 }
+tt_status tt_model_set_execution(tt_model *m, tt_execution execution) {
+    if (!m || (execution != TT_EXECUTION_PREPARED && execution != TT_EXECUTION_GENERIC))
+        return TT_INVALID;
+    m->generic = execution == TT_EXECUTION_GENERIC;
+    return m->generic || m->plan ? TT_OK : TT_NOT_FOUND;
+}
 tt_status tt_model_run(tt_model *m, double zenith, double scale, const tt_model_result **out,
                        tt_error *error) {
     if (error)
         memset(error, 0, sizeof *error);
     if (!m || !out || !isfinite(scale))
         return failure(error, TT_INVALID, "Invalid model run arguments");
+    /* A prepared run gives the generic results; for inputs it does not
+     * cover it declines, and the generic sequence decides. */
+    if (m->plan && !m->generic && tt_model_plan_run(m->plan, m, zenith, scale)) {
+        *out = &m->result;
+        return TT_OK;
+    }
     const tt_grid *height = &m->grids[m->height].value,
                   *wavelength = &m->grids[m->wavelength].value;
     const tt_profile *temperature = &m->profiles[m->temperature].value,

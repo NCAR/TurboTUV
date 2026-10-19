@@ -97,6 +97,17 @@ const tt_grid *tt_model_grid(const tt_model *model, const char *name, const char
 const tt_profile *tt_model_profile(const tt_model *model, const char *name, const char *units);
 const tt_radiator *tt_model_radiator(const tt_model *model, const char *name);
 const char *tt_model_rate_name(const tt_model *model, tt_rate_kind kind, size_t index);
+/* How runs are evaluated. PREPARED, the default, uses work done once at
+ * construction: spectral values that cannot change between columns, spectra
+ * shared by equal configurations, rates summed over precomputed products, and
+ * Delta-Eddington transfer for blocks of wavelengths in lock step. GENERIC
+ * calls the public kernels in sequence, as a direct translation of TUV-x. The
+ * results are bit-identical; a prepared run falls back to the generic
+ * sequence for inputs it does not cover, such as invalid values, so errors
+ * are the same too. Returns TT_NOT_FOUND if PREPARED is selected but could
+ * not be prepared (runs are then generic). */
+typedef enum { TT_EXECUTION_PREPARED, TT_EXECUTION_GENERIC } tt_execution;
+tt_status tt_model_set_execution(tt_model *model, tt_execution execution);
 /* The reference scales all six fields by this argument directly. Preserve
  * that convention: pass the configured Earth-Sun distance, or 1 for unit
  * scaling. Result storage is replaced by the next run on the same model. */
