@@ -1,5 +1,12 @@
 # TurboTUV
 
+TurboTUV is an LLM experiment by the NCAR Agentic Coding Task Force, sponsored
+by the [Community Software Facility](https://ncarprojects.ucar.edu/csf) and the
+[NCAR Office of Strategic Projects AI Initiative](https://ncarprojects.ucar.edu/ai).
+In it, LLM coding agents translate NCAR's TUV-x photolysis model to C, validate
+the translation against the original Fortran, and make it fast. The scientific
+software engineer (SSE) supervising the project is David Fillmore.
+
 C11 translation of NCAR TUV-x, with compiled-in scientific data and a direct
 Fortran comparison suite. The library covers
 interpolation, tridiagonal systems, spherical geometry, solar position,
