@@ -59,6 +59,9 @@ upstream revision are recorded in [data/manifest.json](data/manifest.json).
 
 Configurations are validated as TUV-x validates them: misspelled or
 unsupported keys are errors. Numbers are read the same way in every locale.
+`turbotuv_bench` (built by default, not installed) times a model evaluating
+many columns whose temperature, density, ozone and solar zenith angle change
+through the host API, and prints a hash of every output value.
 
 See [docs/USAGE.md](docs/USAGE.md) for the runner, output format, installation,
 and host-model API, and [docs/PORTING.md](docs/PORTING.md) for validation details.

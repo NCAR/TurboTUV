@@ -31,6 +31,20 @@ its required keys and no keys other than those it accepts, apart from
 comments whose names begin with `__`. Numbers always use `.` as the decimal
 point, whatever locale the host process selects.
 
+## Benchmark
+
+```sh
+build/release/turbotuv_bench examples/tuv_5_4.json --columns 1000
+```
+
+The benchmark builds one model and evaluates `--columns` columns (default
+1000), changing the temperature, air, O2 and O3 profiles, the solar zenith
+angle and the radiation scale of each through the host-update API. It times
+the updates and runs, after one untimed column, and prints the time per column
+and an FNV-1a hash of every radiation field and rate of every column. Equal
+hashes from two builds mean bit-identical results. `--repeat` repeats the
+column set, `--seed` selects another, and `--output` writes all values.
+
 ## Output
 
 JSON uses the `TurboTUV-1` schema. Root fields contain altitude edges in km,
