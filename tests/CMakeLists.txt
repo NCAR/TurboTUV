@@ -1,0 +1,32 @@
+add_executable(test_numerics test_numerics.c)
+target_link_libraries(test_numerics PRIVATE turbotuv)
+add_test(NAME numerics COMMAND test_numerics)
+add_executable(dump_data dump_data.c)
+target_link_libraries(dump_data PRIVATE turbotuv)
+if(TURBOTUV_REFERENCE_BUILD)
+    enable_language(Fortran)
+    add_library(reference_bridge STATIC reference_bridge.F90)
+    target_include_directories(reference_bridge PRIVATE ${TURBOTUV_REFERENCE_BUILD}/include)
+    target_link_libraries(reference_bridge PUBLIC
+        ${TURBOTUV_REFERENCE_BUILD}/lib/libtuvx.a
+        ${TURBOTUV_REFERENCE_BUILD}/_deps/yaml-cpp-build/libyaml-cpp.a
+        ${TURBOTUV_REFERENCE_PREFIX}/lib/libnetcdff.a
+        ${TURBOTUV_NETCDF_PREFIX}/lib/libnetcdf.dylib)
+    if(APPLE)
+        target_link_libraries(reference_bridge PUBLIC c++)
+        if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
+            # The GNU reference's yaml-cpp uses libstdc++; allow both ABIs.
+            execute_process(COMMAND ${CMAKE_Fortran_COMPILER} -print-file-name=libstdc++.dylib
+                OUTPUT_VARIABLE gnu_cxx_runtime OUTPUT_STRIP_TRAILING_WHITESPACE)
+            target_link_libraries(reference_bridge PUBLIC ${gnu_cxx_runtime})
+        endif()
+    else()
+        target_link_libraries(reference_bridge PUBLIC stdc++)
+    endif()
+    target_compile_options(reference_bridge PRIVATE -ffp-contract=off)
+    add_executable(test_reference test_reference.c)
+    target_link_libraries(test_reference PRIVATE turbotuv reference_bridge)
+    set_target_properties(test_reference PROPERTIES LINKER_LANGUAGE Fortran)
+    target_compile_options(test_reference PRIVATE -ffp-contract=off)
+    add_test(NAME reference_numerics COMMAND test_reference)
+endif()
