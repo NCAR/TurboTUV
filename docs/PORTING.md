@@ -177,6 +177,17 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   adjustment are recorded by the generator. The reference's direct scaling by
   the Earth-Sun distance argument is preserved, without reinterpretation.
 
+* Host model construction accepts copied named grids, profiles and radiators;
+  matching names cannot appear twice. Repeated updates preserve dimensions and
+  view addresses, support optional midpoint/column/exosphere values, and replace
+  radiator optics explicitly. The wavelength grid is fixed after construction
+  because spectral tables are prepared on it. Four configurations, 48 changing
+  columns and 528 daylight/twilight/night runs pass 8,769,552 comparisons against
+  the original core and host updater interfaces: bit-identical with GCC/GFortran,
+  within 0.866 relative epsilon-scaled units with Clang/Flang. Both sanitizers pass.
+  Tests release all input storage after construction, retain borrowed views,
+  exercise omitted fields and reject duplicate names, wrong shapes and NaNs.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -203,6 +214,5 @@ reference comparisons use interior target bins.
 
 ## Remaining implementation tasks
 
-* Host model updates for column grids, profiles and radiators.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.

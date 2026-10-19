@@ -6,21 +6,34 @@
 #include <stdlib.h>
 #include <string.h>
 
-static char *name_copy(tt_builder *b, tt_config_node node, const char *key) {
-    const char *value = tt_build_string(b, node, key, NULL);
+static char *string_copy(tt_builder *b, const char *value) {
+    if (!value) {
+        tt_build_fail(b, (tt_config_node){0}, TT_INVALID, "Missing host input name or units");
+        return NULL;
+    }
     char *out = tt_build_alloc(b, strlen(value) + 1, 1);
     if (out)
         strcpy(out, value);
     return out;
 }
-static size_t grid_index(const tt_model *m, const char *name, const char *units) {
+static char *name_copy(tt_builder *b, tt_config_node node, const char *key) {
+    return string_copy(b, tt_build_string(b, node, key, NULL));
+}
+static size_t combined_count(tt_builder *b, size_t configured, size_t supplied) {
+    if (supplied > SIZE_MAX - configured) {
+        tt_build_fail(b, (tt_config_node){0}, TT_RANGE, "Too many host inputs");
+        return 0;
+    }
+    return configured + supplied;
+}
+size_t tt_model_grid_index(const tt_model *m, const char *name, const char *units) {
     for (size_t i = 0; i < m->grid_count; ++i)
         if (m->grids[i].name && m->grids[i].units && !strcmp(name, m->grids[i].name) &&
             !strcmp(units, m->grids[i].units))
             return i;
     return SIZE_MAX;
 }
-static size_t profile_index(const tt_model *m, const char *name, const char *units) {
+size_t tt_model_profile_index(const tt_model *m, const char *name, const char *units) {
     for (size_t i = 0; i < m->profile_count; ++i)
         if (m->profiles[i].name && m->profiles[i].units && !strcmp(name, m->profiles[i].name) &&
             !strcmp(units, m->profiles[i].units))
@@ -29,30 +42,48 @@ static size_t profile_index(const tt_model *m, const char *name, const char *uni
 }
 static size_t require_profile(tt_builder *b, tt_config_node node, const tt_model *m,
                               const char *name, const char *units, size_t cells) {
-    size_t i = profile_index(m, name, units);
+    size_t i = tt_model_profile_index(m, name, units);
     if (i == SIZE_MAX)
         tt_build_fail(b, node, TT_NOT_FOUND, "Missing profile '%s' with units '%s'", name, units);
     else if (m->profiles[i].value.cells != cells)
         tt_build_fail(b, node, TT_INVALID, "Profile '%s' has the wrong grid size", name);
     return i;
 }
-static void build_grids(tt_builder *b, tt_config_node config, tt_model *m) {
+static void build_grids(tt_builder *b, tt_config_node config, const tt_model_inputs *inputs,
+                        tt_model *m) {
     tt_config_node list = tt_config_get(config, "grids");
-    m->grid_count = tt_config_size(list);
+    size_t configured = tt_config_size(list);
+    m->grid_count = combined_count(b, configured, inputs->grid_count);
     m->grids = tt_build_alloc(b, m->grid_count, sizeof *m->grids);
     for (size_t i = 0; i < m->grid_count && b->status == TT_OK; ++i) {
         tt_config_node node = tt_config_at(list, i);
         tt_error error;
-        m->grids[i].name = name_copy(b, node, "name");
-        m->grids[i].units = name_copy(b, node, "units");
-        tt_status status = tt_grid_from_config(node, &b->source, &m->grids[i].value, &error);
-        if (status)
-            tt_build_fail(b, node, status, "%s", error.message);
+        if (i < configured) {
+            m->grids[i].name = name_copy(b, node, "name");
+            m->grids[i].units = name_copy(b, node, "units");
+            tt_status status = tt_grid_from_config(node, &b->source, &m->grids[i].value, &error);
+            if (status)
+                tt_build_fail(b, node, status, "%s", error.message);
+        } else {
+            const tt_named_grid *g = inputs->grids + i - configured;
+            m->grids[i].name = string_copy(b, g->name);
+            m->grids[i].units = string_copy(b, g->units);
+            tt_status status =
+                g->grid && g->grid->cells < SIZE_MAX
+                    ? tt_grid_from_edges(g->grid->cells + 1, g->grid->edges, &m->grids[i].value)
+                    : TT_INVALID;
+            if (!status)
+                status = tt_grid_update(&m->grids[i].value, g->grid->edges, g->grid->midpoints);
+            if (status)
+                tt_build_fail(b, node, status, "Invalid host grid");
+        }
+        if (b->status == TT_OK && tt_model_grid_index(m, m->grids[i].name, m->grids[i].units) != i)
+            tt_build_fail(b, node, TT_INVALID, "Duplicate grid '%s'", m->grids[i].name);
     }
     if (b->status != TT_OK)
         return;
-    m->height = grid_index(m, "height", "km");
-    m->wavelength = grid_index(m, "wavelength", "nm");
+    m->height = tt_model_grid_index(m, "height", "km");
+    m->wavelength = tt_model_grid_index(m, "wavelength", "nm");
     if (m->height == SIZE_MAX || m->wavelength == SIZE_MAX) {
         tt_build_fail(b, config, TT_NOT_FOUND,
                       "Model requires height (km) and wavelength (nm) grids");
@@ -67,9 +98,11 @@ static void build_grids(tt_builder *b, tt_config_node config, tt_model *m) {
     m->shape.levels = nl + 1;
     m->shape.wavelengths = nw;
 }
-static void build_profiles(tt_builder *b, tt_config_node config, tt_model *m) {
+static void build_profiles(tt_builder *b, tt_config_node config, const tt_model_inputs *inputs,
+                           tt_model *m) {
     tt_config_node list = tt_config_get(config, "profiles");
-    m->profile_count = tt_config_size(list);
+    size_t configured = tt_config_size(list);
+    m->profile_count = combined_count(b, configured, inputs->profile_count);
     m->profiles = tt_build_alloc(b, m->profile_count, sizeof *m->profiles);
     tt_named_grid *grids = tt_build_alloc(b, m->grid_count, sizeof *grids);
     if (!grids)
@@ -79,19 +112,31 @@ static void build_profiles(tt_builder *b, tt_config_node config, tt_model *m) {
     for (size_t i = 0; i < m->profile_count && b->status == TT_OK; ++i) {
         tt_config_node node = tt_config_at(list, i);
         tt_error error;
-        m->profiles[i].name = name_copy(b, node, "name");
-        m->profiles[i].units = name_copy(b, node, "units");
-        tt_status status = tt_profile_from_config(node, m->grid_count, grids, &b->source,
-                                                  &m->profiles[i].value, &error);
-        if (status)
-            tt_build_fail(b, node, status, "%s", error.message);
+        if (i < configured) {
+            m->profiles[i].name = name_copy(b, node, "name");
+            m->profiles[i].units = name_copy(b, node, "units");
+            tt_status status = tt_profile_from_config(node, m->grid_count, grids, &b->source,
+                                                      &m->profiles[i].value, &error);
+            if (status)
+                tt_build_fail(b, node, status, "%s", error.message);
+        } else {
+            const tt_named_profile *p = inputs->profiles + i - configured;
+            m->profiles[i].name = string_copy(b, p->name);
+            m->profiles[i].units = string_copy(b, p->units);
+            tt_status status = tt_model_copy_profile(p->profile, &m->profiles[i].value);
+            if (status)
+                tt_build_fail(b, node, status, "Invalid host profile");
+        }
+        if (b->status == TT_OK &&
+            tt_model_profile_index(m, m->profiles[i].name, m->profiles[i].units) != i)
+            tt_build_fail(b, node, TT_INVALID, "Duplicate profile '%s'", m->profiles[i].name);
     }
     free(grids);
     if (b->status != TT_OK)
         return;
     m->temperature = require_profile(b, config, m, "temperature", "K", m->shape.levels - 1);
     m->air = require_profile(b, config, m, "air", "molecule cm-3", m->shape.levels - 1);
-    m->solar = profile_index(m, "extraterrestrial flux", "photon cm-2 s-1");
+    m->solar = tt_model_profile_index(m, "extraterrestrial flux", "photon cm-2 s-1");
     if (m->solar != SIZE_MAX && m->profiles[m->solar].value.cells != m->shape.wavelengths)
         tt_build_fail(b, config, TT_INVALID, "Extraterrestrial flux has the wrong grid size");
 }
@@ -107,7 +152,8 @@ static tt_spectrum *spectrum(tt_builder *b, tt_config_node node, tt_spectrum_rol
         tt_build_fail(b, node, status, "%s", error.message);
     return out;
 }
-static void build_transfer(tt_builder *b, tt_config_node config, tt_model *m) {
+static void build_transfer(tt_builder *b, tt_config_node config, const tt_model_inputs *inputs,
+                           tt_model *m) {
     tt_config_node node = tt_config_get(config, "radiative transfer");
     tt_config_node solver = tt_config_get(node, "solver");
     const char *type = tt_build_string(b, solver, "type", NULL);
@@ -136,7 +182,8 @@ static void build_transfer(tt_builder *b, tt_config_node config, tt_model *m) {
         m->spectra[i].spectrum = spectrum(b, cs, TT_SPECTRUM_CROSS_SECTION, m);
     }
     list = tt_config_get(node, "radiators");
-    m->radiator_count = tt_config_size(list);
+    size_t configured = tt_config_size(list);
+    m->radiator_count = combined_count(b, configured, inputs->radiator_count);
     m->radiators = tt_build_alloc(b, m->radiator_count, sizeof *m->radiators);
     m->radiator_views = tt_build_alloc(b, m->radiator_count, sizeof *m->radiator_views);
     const tt_grid *height = &m->grids[m->height].value,
@@ -145,13 +192,19 @@ static void build_transfer(tt_builder *b, tt_config_node config, tt_model *m) {
     for (size_t i = 0; i < m->radiator_count && b->status == TT_OK; ++i) {
         tt_config_node rad = tt_config_at(list, i);
         tt_model_radiator_entry *r = m->radiators + i;
-        r->name = name_copy(b, rad, "name");
-        type = tt_build_string(b, rad, "type", NULL);
+        r->name = i < configured ? name_copy(b, rad, "name")
+                                 : string_copy(b, inputs->radiators[i - configured].name);
+        type = i < configured ? tt_build_string(b, rad, "type", NULL) : "from host";
         r->data = tt_build_alloc(b, n, 3 * sizeof(double));
         if (!r->data)
             break;
         r->view = (tt_radiator){r->data, r->data + n, r->data + 2 * n, 0};
-        if (!strcmp(type, "base")) {
+        if (i >= configured) {
+            tt_status status =
+                tt_model_copy_radiator(inputs->radiators + i - configured, r, nl, nw);
+            if (status)
+                tt_build_fail(b, rad, status, "Invalid host radiator");
+        } else if (!strcmp(type, "base")) {
             r->gas = 1;
             const char *pn = tt_build_string(b, rad, "vertical profile", NULL),
                        *pu = tt_build_string(b, rad, "vertical profile units", NULL);
@@ -199,6 +252,9 @@ static void build_transfer(tt_builder *b, tt_config_node config, tt_model *m) {
         m->radiator_views[i] = r->view;
         if (r->name && !strcmp(r->name, "O2"))
             m->oxygen_radiator = i;
+        for (size_t j = 0; j < i && b->status == TT_OK; ++j)
+            if (!strcmp(r->name, m->radiators[j].name))
+                tt_build_fail(b, rad, TT_INVALID, "Duplicate radiator '%s'", r->name);
     }
 }
 static void build_rates(tt_builder *b, tt_config_node config, tt_model *m) {
@@ -308,9 +364,22 @@ static void workspace(tt_builder *b, tt_model *m) {
 }
 tt_status tt_model_create(tt_config_node config, const tt_data_source *source, tt_model **out,
                           tt_error *error) {
+    return tt_model_create_with_inputs(config, source, NULL, out, error);
+}
+tt_status tt_model_create_with_inputs(tt_config_node config, const tt_data_source *source,
+                                      const tt_model_inputs *inputs, tt_model **out,
+                                      tt_error *error) {
     if (error)
         memset(error, 0, sizeof *error);
     tt_builder b = {source ? *source : (tt_data_source){0}, error, TT_OK};
+    const tt_model_inputs empty = {0};
+    if (!inputs)
+        inputs = &empty;
+    if ((inputs->grid_count && !inputs->grids) || (inputs->profile_count && !inputs->profiles) ||
+        (inputs->radiator_count && !inputs->radiators)) {
+        tt_build_fail(&b, config, TT_INVALID, "Missing host input array");
+        return b.status;
+    }
     if (!out || tt_config_type(config) != TT_CONFIG_MAPPING) {
         tt_build_fail(&b, config, TT_INVALID, "Expected model configuration mapping and output");
         return b.status;
@@ -320,11 +389,11 @@ tt_status tt_model_create(tt_config_node config, const tt_data_source *source, t
         return b.status;
     m->height = m->wavelength = m->temperature = m->air = m->oxygen = m->surface = m->solar =
         m->oxygen_radiator = SIZE_MAX;
-    build_grids(&b, config, m);
+    build_grids(&b, config, inputs, m);
     if (b.status == TT_OK)
-        build_profiles(&b, config, m);
+        build_profiles(&b, config, inputs, m);
     if (b.status == TT_OK)
-        build_transfer(&b, config, m);
+        build_transfer(&b, config, inputs, m);
     if (b.status == TT_OK)
         build_rates(&b, config, m);
     if (b.status == TT_OK)
@@ -391,13 +460,13 @@ tt_model_dimensions tt_model_shape(const tt_model *m) {
 const tt_grid *tt_model_grid(const tt_model *m, const char *name, const char *units) {
     if (!m || !name || !units)
         return NULL;
-    size_t i = grid_index(m, name, units);
+    size_t i = tt_model_grid_index(m, name, units);
     return i == SIZE_MAX ? NULL : &m->grids[i].value;
 }
 const tt_profile *tt_model_profile(const tt_model *m, const char *name, const char *units) {
     if (!m || !name || !units)
         return NULL;
-    size_t i = profile_index(m, name, units);
+    size_t i = tt_model_profile_index(m, name, units);
     return i == SIZE_MAX ? NULL : &m->profiles[i].value;
 }
 const tt_radiator *tt_model_radiator(const tt_model *m, const char *name) {

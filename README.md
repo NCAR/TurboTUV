@@ -19,6 +19,8 @@ provides grid and profile constructors for the original configuration formats.
 The complete model API assembles those components, applies the O2 corrections,
 and returns all six radiation fields plus photolysis, heating, and dose rates.
 Host-supplied radiation uses the same rate pipeline.
+Host applications can also supply and update column grids, profiles, and optical
+properties. Each model owns its mutable state; create one model per worker.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

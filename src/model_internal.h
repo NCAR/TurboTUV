@@ -54,4 +54,9 @@ struct tt_model {
     double *work, *cross_section, *yield, *radiation_storage, *host_radiation;
     double *optical_storage, *rate_storage;
 };
+size_t tt_model_grid_index(const tt_model *model, const char *name, const char *units);
+size_t tt_model_profile_index(const tt_model *model, const char *name, const char *units);
+tt_status tt_model_copy_profile(const tt_profile *source, tt_profile *out);
+tt_status tt_model_copy_radiator(const tt_named_radiator *source, tt_model_radiator_entry *out,
+                                 size_t layers, size_t wavelengths);
 #endif

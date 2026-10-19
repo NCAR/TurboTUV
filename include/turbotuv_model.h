@@ -64,8 +64,31 @@ typedef struct {
     const double *actinic_flux, *spectral_irradiance; /* [wavelength][level] */
     const double *photolysis, *heating, *dose;        /* [rate][level] */
 } tt_model_result;
+typedef struct {
+    const char *name, *units;
+    const tt_profile *profile;
+} tt_named_profile;
+typedef struct {
+    const char *name;
+    size_t layers, wavelengths;
+    tt_radiator radiator;
+} tt_named_radiator;
+typedef struct {
+    size_t grid_count;
+    const tt_named_grid *grids;
+    size_t profile_count;
+    const tt_named_profile *profiles;
+    size_t radiator_count;
+    const tt_named_radiator *radiators;
+} tt_model_inputs;
 tt_status tt_model_create(tt_config_node config, const tt_data_source *source, tt_model **out,
                           tt_error *error);
+/* Add host-owned inputs before resolving dependent components. Names must
+ * be absent from the corresponding configuration collection. All data are
+ * copied; input arrays may be freed after construction. */
+tt_status tt_model_create_with_inputs(tt_config_node config, const tt_data_source *source,
+                                      const tt_model_inputs *inputs, tt_model **out,
+                                      tt_error *error);
 void tt_model_destroy(tt_model *model);
 tt_model_dimensions tt_model_shape(const tt_model *model);
 const tt_grid *tt_model_grid(const tt_model *model, const char *name, const char *units);
@@ -80,6 +103,20 @@ tt_status tt_model_run(tt_model *model, double zenith, double radiation_scale,
 /* Host solver input: three flux fields are mandatory. Missing irradiance
  * fields become zero. Shape is model wavelengths * levels. Inputs are copied. */
 tt_status tt_model_set_radiation(tt_model *model, const tt_radiation *radiation);
+/* Updates preserve dimensions and borrowed view addresses. Height updates
+ * do not recompute profiles or static radiators: update those explicitly.
+ * Wavelength grids are fixed after construction because spectra are cached.
+ * Other grids accept cells+1 edges and optional cells midpoint values. */
+tt_status tt_model_update_grid(tt_model *model, const char *name, const char *units, size_t cells,
+                               const double *edges, const double *midpoints);
+/* Same optional-field semantics as tt_profile_update. */
+tt_status tt_model_update_profile(tt_model *model, const char *name, const char *units,
+                                  size_t cells, const double *edges, const double *midpoints,
+                                  const double *columns, const double *scale_height,
+                                  const double *top_column);
+/* A supplied radiator replaces its calculated optics for subsequent runs.
+ * Optical depth is required; NULL SSA/asymmetry arrays become zero. */
+tt_status tt_model_set_radiator(tt_model *model, const tt_named_radiator *radiator);
 
 #ifdef __cplusplus
 }
