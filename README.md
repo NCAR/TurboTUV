@@ -6,7 +6,7 @@ interpolation, tridiagonal systems, spherical geometry, solar position,
 radiator mixing, the Delta-Eddington radiation solver, and 26 direct
 cross-section calculators, 21 quantum-yield calculators, and 13 spectral
 weighting functions, all four temperature parameterizations, and photolysis,
-heating, and dose integration.
+heating, and dose integration, including the O2 band corrections.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

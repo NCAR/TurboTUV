@@ -275,6 +275,24 @@ tt_status tt_heating_rate(size_t wavelengths, size_t levels, const double *actin
 tt_status tt_dose_rate(size_t wavelengths, size_t levels, const double *irradiance,
                        const double *weights, double *out);
 
+/* O2 corrections operate only on the prescribed Lyman-alpha and 17
+ * Schumann-Runge bins. Absent bands use the index (size_t)-1. The detector
+ * rejects incompatible edges when a grid spans either complete band. */
+typedef struct {
+    size_t lyman_alpha, schumann_runge;
+} tt_oxygen_bands;
+tt_status tt_oxygen_band_grid(size_t wavelengths, const double *edges, tt_oxygen_bands *bands);
+/* Column arrays are in molecules/cm^2, ordered with increasing height.
+ * vertical_air_column has levels-1 entries; slant columns have levels.
+ * Pass scaled air columns or columns integrated from an explicit O2 profile.
+ * Outputs are updated only in the selected bands: optical_depth has shape
+ * [wavelength][levels-1], cross_section has [wavelength][levels]. Either
+ * output may be NULL. Coefficients are compiled into the library. */
+tt_status tt_oxygen_optics(const tt_oxygen_bands *bands, size_t wavelengths, size_t levels,
+                           const double *temperature, const double *vertical_air_column,
+                           const double *slant_air_column, const double *slant_oxygen_column,
+                           double *optical_depth, double *cross_section);
+
 #ifdef __cplusplus
 }
 #endif

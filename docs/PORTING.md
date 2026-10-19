@@ -63,6 +63,14 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   Integrations traverse contiguous spectra and preserve each level's original
   summation order. Independent single-band and sanitizer checks pass.
 
+* O2 Lyman-alpha and Schumann-Runge cross sections and optical depths, using
+  compiled Chebyshev coefficients. All 318,240 comparisons are bit-for-bit
+  identical on both compilers, including the 680 coefficients parsed by the
+  original constructor, column cutoffs, nearly equal columns, extreme slant
+  columns, temperature variation, and untouched neighboring bands. Sanitizers
+  pass. The C code defines the all-thin-column limit using the reference's
+  tabulated values; the original indexes outside its array in that case.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -92,6 +100,6 @@ reference comparisons use interior target bins.
 * Complete construction of cross-section tables from the model configuration.
 * Grid/profile/configuration model and embedded table preparation.
 * Discrete-ordinate solver and full radiator/profile construction.
-* O2 Lyman-alpha/Schumann-Runge parameterization and its coupling to rates.
+* Connect O2 corrections and rate calculations to the complete model.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.
