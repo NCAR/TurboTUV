@@ -185,7 +185,8 @@ the fallback and test reference. Here they become:
   sum that starts at `+0` cannot change it, provided the flux is finite, which
   every run checks. Equal spectra are evaluated once and shared, for example
   the O3 cross section used by two reactions. Sums are tiled over levels so
-  that partial sums stay in registers.
+  that partial sums stay in registers; that helps GCC slightly and slows
+  Clang, as measured below.
 * **Lanes of wavelengths.** `radiation_block.c` solves Delta-Eddington transfer
   for blocks of 16 wavelengths in lock step. This is the analog of TurboMICM's
   blocks of cells, with each wavelength an independent problem sharing the ray
@@ -207,6 +208,100 @@ transformation above preserves each floating-point operation and its order. No
 fused multiply-add is introduced, and no vectorized math library is used. The
 exponentials and powers are the platform's scalar libm calls, as in the
 generic path.
+
+## Speedup by optimization
+
+Scratch builds of the library, not part of the repository, measured what each
+optimization contributes. They time every stage of a column in both execution
+modes, and can switch off one optimization at a time:
+
+| Switch | What the prepared run does instead |
+| --- | --- |
+| no classification | evaluates every wavelength of every spectrum with the generic kernel, so every rate term reads both factors |
+| no sharing | evaluates equal spectra separately |
+| all bins | recomputes every bin of a parameterized cross section |
+| zero terms kept | keeps rate terms whose product is zero |
+| no tiling | sums each rate over all 121 levels in one pass |
+| generic Delta-Eddington | mixes the radiators, calls `tt_delta_eddington` and scales, as the generic run does |
+| one lane | runs the blocked solver one wavelength at a time |
+
+Every variant printed the same output hash as the release build, so each
+switch changes only speed. The stage timers change a column's time by about
+1% or less, within the run-to-run variation. The programs ran the benchmark's
+varied columns in five rotating rounds of 300 columns; times are medians.
+Whole-column differences below about 3% are within the variation; the stage
+times are steadier. The generic times come from the current library rather
+than the baseline build, so they differ slightly from the results above.
+
+Each optimization's saving is the time it removes from its stage between the
+generic and the prepared run. Where several optimizations act on one stage,
+the switches divide that stage's saving among them. Time saved per column,
+with each optimization's share of the total saving:
+
+| Optimization | tuv_5_4 Clang | tuv_5_4 GCC | ts1_tsmlt Clang | ts1_tsmlt GCC |
+| --- | ---: | ---: | ---: | ---: |
+| Spectrum plans: constant values once per model, varying values with hoisted subexpressions | 3,540 µs (83%) | 5,983 µs (86%) | 2,342 µs (76%) | 3,226 µs (79%) |
+| Parameterized cross sections: only the affected bins | 1 µs (0%) | 6 µs (0%) | 219 µs (7%) | 204 µs (5%) |
+| Equal spectra evaluated once | 32 µs (1%) | 35 µs (1%) | 69 µs (2%) | 71 µs (2%) |
+| Rate terms, net | 299 µs (7%) | 410 µs (6%) | 126 µs (4%) | 168 µs (4%) |
+| · zero products omitted | 325 µs | 170 µs | 114 µs | 54 µs |
+| · constant products precomputed | 524 µs | 617 µs | 194 µs | 255 µs |
+| · term loop in place of the generic sweep | −421 µs | −388 µs | −134 µs | −146 µs |
+| · 16-level tiles | −129 µs | 11 µs | −48 µs | 5 µs |
+| Blocked Delta-Eddington, net | 426 µs (10%) | 567 µs (8%) | 280 µs (9%) | 374 µs (9%) |
+| · mixing and scale fused, one `exp` per level, rows built in the elimination | 166 µs | 162 µs | 124 µs | 129 µs |
+| · 16 wavelengths in lock step | 260 µs | 405 µs | 156 µs | 245 µs |
+| O2 band cross sections once per run | 0 µs (0%) | 1 µs (0%) | 34 µs (1%) | 53 µs (1%) |
+| Flux finiteness check, which makes zero omission exact | −9 µs (−0.2%) | −14 µs (−0.2%) | −6 µs (−0.2%) | −10 µs (−0.2%) |
+| **Generic → prepared** | 5,321 → 1,031 µs | 8,044 → 1,054 µs | 3,985 → 923 µs | 5,174 → 1,096 µs |
+
+Applied one after another in this order, the optimizations multiply to the
+full speedup:
+
+| Step | tuv_5_4 Clang | tuv_5_4 GCC | ts1_tsmlt Clang | ts1_tsmlt GCC |
+| --- | ---: | ---: | ---: | ---: |
+| Generic | 5,321 µs | 8,044 µs | 3,985 µs | 5,174 µs |
+| Spectrum plans, with parameterized bins | ×2.99 | ×3.92 | ×2.80 | ×2.96 |
+| Equal spectra shared | ×1.02 | ×1.02 | ×1.05 | ×1.04 |
+| Rate terms | ×1.21 | ×1.26 | ×1.10 | ×1.11 |
+| Blocked Delta-Eddington | ×1.42 | ×1.54 | ×1.29 | ×1.33 |
+| O2 cross sections once, flux check | ×0.99 | ×0.99 | ×1.03 | ×1.04 |
+| **Prepared** | 1,031 µs: **5.16x** | 1,054 µs: **7.63x** | 923 µs: **4.32x** | 1,096 µs: **4.72x** |
+
+Prepared time per column with one optimization switched off:
+
+| Switched off | tuv_5_4 Clang | tuv_5_4 GCC | ts1_tsmlt Clang | ts1_tsmlt GCC |
+| --- | ---: | ---: | ---: | ---: |
+| nothing (prepared) | 1,031 µs | 1,054 µs | 923 µs | 1,096 µs |
+| constant classification | 4,404 µs (×4.27) | 6,010 µs (×5.70) | 3,321 µs (×3.60) | 4,132 µs (×3.77) |
+| sharing | 1,063 µs (×1.03) | 1,105 µs (×1.05) | 992 µs (×1.07) | 1,167 µs (×1.07) |
+| parameterized bins | 1,036 µs (×1.00) | 1,083 µs (×1.03) | 1,195 µs (×1.29) | 1,332 µs (×1.22) |
+| zero-term omission | 1,356 µs (×1.31) | 1,237 µs (×1.17) | 1,044 µs (×1.13) | 1,148 µs (×1.05) |
+| 16-level tiles | 911 µs (×0.88) | 1,070 µs (×1.02) | 879 µs (×0.95) | 1,095 µs (×1.00) |
+| blocked Delta-Eddington | 1,460 µs (×1.42) | 1,679 µs (×1.59) | 1,203 µs (×1.30) | 1,467 µs (×1.34) |
+| 16 lanes | 1,292 µs (×1.25) | 1,465 µs (×1.39) | 1,080 µs (×1.17) | 1,334 µs (×1.22) |
+
+* Spectrum plans are 76–86% of the saving. Alone, they make a column 2.8–3.9
+  times faster. GCC gains most because its generic spectral kernels are the
+  slowest.
+* Sharing interacts with the plans. Applied to the generic evaluation,
+  evaluating equal spectra once would save 1.1 ms (Clang) or 1.9 ms (GCC) per
+  tuv_5_4 column, because many reactions share constant quantum yields. Once
+  constant values are precomputed, sharing saves only 30–70 µs. The tables
+  count it after the plans.
+* Rate terms save 4–7% net. Omitting zero products and precomputing constant
+  products together save 0.3–0.85 ms. The term loop gives some of that back,
+  because per term it is slower than the generic sweep over contiguous arrays.
+  With Clang, the 16-level tiles double the rate stage (261 µs against 132 µs
+  for tuv_5_4); with GCC they save 5–11 µs.
+* The blocked Delta-Eddington solver saves 8–10% of the total. Fusing the
+  mixing and scale, evaluating each `exp` once and building rows in the
+  elimination account for 30–45% of that; running 16 wavelengths in lock step
+  for the rest.
+* Recomputing only the affected bins of parameterized cross sections matters
+  only for ts1_tsmlt, with its 20 such spectra: 5–7%. Computing the O2 band
+  cross sections once saves one call for ts1_tsmlt's second O2 reaction. The
+  flux finiteness check that makes zero omission exact costs 6–14 µs.
 
 ## Validation
 
@@ -242,6 +337,10 @@ calls, and by work that is inherently O(levels²): the slant optical depths of
 the spherical geometry. Remaining measured opportunities, none needed for the
 present speedups:
 
+* summing each rate over all levels in one pass instead of 16-level tiles.
+  With Clang, columns take 5–12% less time (911 instead of 1,031 µs for
+  tuv_5_4); with GCC they change by at most 2% (see
+  [Speedup by optimization](#speedup-by-optimization));
 * register blocking of the rate integrals across reactions;
 * computing the Schumann-Runge cross sections once for both the O2 radiator
   and the O2 photolysis reaction (77 µs per column today);
