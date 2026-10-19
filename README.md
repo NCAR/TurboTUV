@@ -1,7 +1,7 @@
 # TurboTUV
 
 C11 translation of NCAR TUV-x, with compiled-in scientific data and a direct
-Fortran comparison suite. The port is in progress; the current library covers
+Fortran comparison suite. The library covers
 interpolation, tridiagonal systems, spherical geometry, solar position,
 radiator mixing, both Delta-Eddington and discrete-ordinate radiation solvers, and 26 direct
 cross-section calculators, 21 quantum-yield calculators, and 13 spectral
@@ -26,9 +26,13 @@ properties. Each model owns its mutable state; create one model per worker.
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release
 cmake --build build/release -j
 ctest --test-dir build/release --output-on-failure
+build/release/turbotuv examples/tuv_5_4.json --output results.json
 ```
 
 The production library requires only a C compiler and the system math library.
+The standalone runner accepts the original JSON/YAML examples and writes all
+radiation fields and rates. Optional `TURBOTUV_NETCDF_OUTPUT=ON` adds NetCDF
+output to the runner; the library remains independent of NetCDF.
 All 190 TUV-x data files are embedded in the library. NetCDF values are stored
 as exact hexadecimal doubles; text tables retain their original bytes. The
 public API is in [include/turbotuv.h](include/turbotuv.h). Units, dimensions,
@@ -53,6 +57,7 @@ and text byte against the original scientific files. Only these development
 tools need Python/netCDF4 and the original input files. Source hashes and
 upstream revision are recorded in [data/manifest.json](data/manifest.json).
 
-See [docs/PORTING.md](docs/PORTING.md) for scope and validation progress.
+See [docs/USAGE.md](docs/USAGE.md) for the runner, output format, installation,
+and host-model API, and [docs/PORTING.md](docs/PORTING.md) for validation details.
 The upstream Apache-2.0 license and UCAR attribution apply to translated code
 and scientific data.

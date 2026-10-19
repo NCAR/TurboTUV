@@ -56,6 +56,23 @@ add_test(NAME model_invariants COMMAND test_model_invariants)
 add_executable(test_model_host_invariants test_model_host.c)
 target_link_libraries(test_model_host_invariants PRIVATE turbotuv)
 add_test(NAME model_host_invariants COMMAND test_model_host_invariants)
+if(TURBOTUV_BUILD_CLI)
+    find_package(Python3 QUIET COMPONENTS Interpreter)
+    if(Python3_Interpreter_FOUND)
+        set(cli_test_options --program $<TARGET_FILE:turbotuv_cli>
+            --examples ${PROJECT_SOURCE_DIR}/examples)
+        if(TURBOTUV_NETCDF_OUTPUT)
+            list(APPEND cli_test_options --netcdf)
+        endif()
+        add_test(NAME cli COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cli.py
+            ${cli_test_options})
+        if(TURBOTUV_REFERENCE_BUILD)
+            add_test(NAME reference_cli COMMAND ${Python3_EXECUTABLE}
+                ${CMAKE_CURRENT_SOURCE_DIR}/test_cli.py ${cli_test_options}
+                --reference ${TURBOTUV_REFERENCE_BUILD})
+        endif()
+    endif()
+endif()
 if(TURBOTUV_REFERENCE_BUILD)
     enable_language(Fortran)
     # Reference failures may write error.json; keep all such output in build/.

@@ -188,6 +188,22 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   Tests release all input storage after construction, retain borrowed views,
   exercise omitted fields and reject duplicate names, wrong shapes and NaNs.
 
+* The standalone runner accepts the unchanged JSON/YAML examples and writes
+  round-trippable JSON, or optional NetCDF-4 output through the NetCDF C library.
+  Its core dependency remains C11/libm. The CLI tests run in fresh temporary
+  directories without scientific data files and compare both formats, angle
+  overrides, darkness, malformed arguments and atomic output replacement.
+  The 980,172 numerical output comparisons per compiler include the original
+  executable's example NetCDF files and are all bit-identical. JSON and YAML
+  results are identical. Address/undefined-behavior checks cover both writers.
+  CMake installation exports a usable package target and includes the four
+  original examples plus a minimal C consumer.
+  On this macOS installation, enabling LeakSanitizer for the optional
+  NetCDF/HDF5 process stalls after the output file has been closed and renamed.
+  That CLI check uses `ASAN_OPTIONS=detect_leaks=0`; address and undefined-behavior
+  instrumentation remain enabled. Core and JSON-only checks pass with leak
+  detection enabled.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -214,5 +230,4 @@ reference comparisons use interior target bins.
 
 ## Remaining implementation tasks
 
-* Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.
