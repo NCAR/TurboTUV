@@ -8,7 +8,7 @@ set(TURBOTUV_REFERENCE_BUILD "" CACHE PATH "Configured and built TUV-x reference
 set(TURBOTUV_REFERENCE_PREFIX "" CACHE PATH "Compiler-matched NetCDF Fortran installation")
 set(TURBOTUV_NETCDF_PREFIX "" CACHE PATH "NetCDF C installation (reference tests only)")
 
-add_library(turbotuv src/numerics.c src/geometry.c src/data.c)
+add_library(turbotuv src/numerics.c src/geometry.c src/data.c src/radiation.c)
 add_library(TurboTUV::turbotuv ALIAS turbotuv)
 target_compile_features(turbotuv PUBLIC c_std_11)
 set_target_properties(turbotuv PROPERTIES C_EXTENSIONS OFF POSITION_INDEPENDENT_CODE ON)

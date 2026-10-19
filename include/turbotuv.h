@@ -83,6 +83,33 @@ double tt_earth_sun_distance(int year, int day, double utc_hour);
 double tt_solar_elevation(int year, int day, double utc_hour,
                           double latitude, double longitude);
 
+/* Spectral fields use [wavelength][layer/level] order, with height increasing.
+ * Moments use [moment][wavelength][layer]; moment 0 is the first Legendre
+ * coefficient. All input/output arrays are caller-owned. */
+typedef struct {
+    const double *optical_depth;
+    const double *single_scattering_albedo;
+    const double *asymmetry;
+    int is_air;
+} tt_radiator;
+typedef struct {
+    size_t layers, wavelengths, moments;
+    const double *height;
+    const double *optical_depth;
+    const double *single_scattering_albedo;
+    const double *legendre;
+} tt_atmosphere;
+typedef struct {
+    double *direct_flux, *down_flux, *up_flux;
+    double *direct_irradiance, *down_irradiance, *up_irradiance;
+} tt_radiation;
+
+tt_status tt_mix_radiators(size_t count, const tt_radiator *radiators,
+                           size_t layers, size_t wavelengths, size_t moments,
+                           double *optical_depth, double *albedo, double *legendre);
+tt_status tt_delta_eddington(const tt_atmosphere *atmosphere, double zenith,
+                             const double *surface_albedo, tt_radiation *out);
+
 #ifdef __cplusplus
 }
 #endif

@@ -2,7 +2,8 @@
 
 C11 translation of NCAR TUV-x, with compiled-in scientific data and a direct
 Fortran comparison suite. The port is in progress; the current library covers
-interpolation, tridiagonal systems, spherical geometry, and solar position.
+interpolation, tridiagonal systems, spherical geometry, solar position,
+radiator mixing, and the Delta-Eddington radiation solver.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

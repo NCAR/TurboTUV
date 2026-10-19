@@ -24,6 +24,15 @@ tolerances alone does not establish acceptance.
 Compiler versions tested: Homebrew GCC/gfortran 16.2.0 and Clang/Flang 23.1.3.
 Both use `-ffp-contract=off`; fast math is not enabled.
 
+* Delta-Eddington solver and optical-property mixing: 275 atmospheres and
+  377,125 comparisons per compiler set, including 1/2/5/16/81 layers, 11 solar
+  angles from overhead to night, vacuum, thin/thick layers, pure scattering,
+  Rayleigh contributions, and surface albedos from zero to one. All six fields
+  match the original Fortran within 11.1 epsilon-scaled units (64-unit ceiling,
+  normalized incident-beam scale). Independent surface-reflection and direct
+  beam boundary checks pass. The C-only invariants also pass Clang address and
+  undefined-behavior sanitizers.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -36,6 +45,9 @@ were the BSD sed incompatibility and missing SciPy. Flang initially failed to
 build legacy tests because real-kind promotion was omitted. After correcting
 those issues, the new numerical comparisons pass on both compilers. Further
 legacy Flang test issues are under investigation and are not counted as passes.
+The corrected GNU baseline passes all 88 upstream tests. The Flang baseline
+passes all 75 unit/example tests; twelve legacy regressions encounter an input
+failure in old TUV, and the existing C++ placeholder comparison segfaults.
 
 Undefined reference behavior is not copied: the C air-column routine defines
 the top vertical-column entry, which Fortran leaves unwritten; comparisons
@@ -47,7 +59,7 @@ reference comparisons use interior target bins.
 
 * Cross sections, temperature parameterizations, quantum yields and action spectra.
 * Grid/profile/configuration model and embedded table preparation.
-* Delta-Eddington and discrete-ordinate solvers, radiator accumulation.
+* Discrete-ordinate solver and full radiator/profile construction.
 * O2 Lyman-alpha/Schumann-Runge parameterization, photolysis, dose and heating rates.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.
