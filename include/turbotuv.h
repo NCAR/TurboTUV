@@ -176,6 +176,26 @@ typedef struct {
     double *direct_irradiance, *down_irradiance, *up_irradiance;
 } tt_radiation;
 
+/* Gas cross sections are evaluated at layer midpoints, [wavelength][layer].
+ * All three outputs have layers*wavelengths entries. Air scatters; other
+ * gases absorb, and both have zero asymmetry before moment mixing. */
+tt_status tt_gas_optics(size_t layers, size_t wavelengths, const double *columns,
+                        const double *cross_section, int is_air, double *optical_depth,
+                        double *albedo, double *asymmetry);
+/* Aerosol depth samples use the original 1-km grid beginning at zero.
+ * Interpolation folds material above the model top into the last layer.
+ * tau550 < -1e-35 disables column normalization; alpha defaults to 1 in TUV-x.
+ * A single depth sample defines a uniform layer depth in C (undefined in the
+ * reference constructor). Output ordering is [wavelength][layer]. */
+tt_status tt_aerosol_optics(const tt_grid *height, const tt_grid *wavelength, size_t count,
+                            const double *depth_samples, double albedo, double asymmetry,
+                            double tau550, double alpha, double *optical_depth,
+                            double *single_scattering_albedo, double *asymmetry_factor);
+/* Return an immutable view of embedded optical_depth, single_scattering_albedo,
+ * and asymmetry_factor variables; the dataset must outlive the returned view. */
+tt_status tt_radiator_from_dataset(const tt_dataset *data, size_t layers, size_t wavelengths,
+                                   tt_radiator *out);
+
 tt_status tt_mix_radiators(size_t count, const tt_radiator *radiators, size_t layers,
                            size_t wavelengths, size_t moments, double *optical_depth,
                            double *albedo, double *legendre);

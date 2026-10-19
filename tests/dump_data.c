@@ -1,5 +1,10 @@
 #include "turbotuv.h"
 #include <stdio.h>
+#ifdef TT_TEST_FIXTURES
+#include "fixtures.h"
+#define tt_dataset_count tt_test_dataset_count
+#define tt_dataset_at tt_test_dataset_at
+#endif
 
 /* Binary output for the independent extraction audit in verify_data.py. */
 int main(void) {

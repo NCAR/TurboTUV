@@ -12,8 +12,9 @@ import numpy as np
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument("executable", type=Path)
 p.add_argument("--source", type=Path, default=Path(__file__).resolve().parents[2] / "TUV-x")
+p.add_argument("--manifest", type=Path, default=Path(__file__).resolve().parents[1] / "data/manifest.json")
 a = p.parse_args()
-manifest = json.loads((Path(__file__).resolve().parents[1] / "data/manifest.json").read_text())
+manifest = json.loads(a.manifest.read_text())
 compiled = subprocess.check_output([str(a.executable.resolve())])
 offset = 0
 for entry in manifest["files"]:

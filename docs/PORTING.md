@@ -107,6 +107,19 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   pass. The original solar conversion's default-REAL literal and opposite
   time-zone signs for zenith/distance are preserved explicitly.
 
+* Gas and aerosol optical-property construction, plus immutable embedded
+  radiator tables. All 432 cases and 2,316,702 comparisons pass on both compiler
+  sets within 0.556 relative epsilon-scaled units (32-unit ceiling); sanitizers
+  pass. Cases cover 1–120 layers, aerosol source grids of 2–121 points, column
+  normalization, folded upper material, empty layers and air/absorber behavior.
+  All 36 original NetCDF-radiator assertions are reproduced in C. The original
+  single-sample aerosol constructor uses unallocated arrays; C defines it as
+  uniform layer depth.
+* The 110 modern upstream test input datasets are also compiled, in a separate
+  test-only library. Both compiled-data audits compare 1,884,240 bytes exactly.
+  Legacy TUV data and the generic NetCDF I/O fixture are excluded from this
+  test catalogue; the original Fortran suites still run those tests normally.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -135,7 +148,6 @@ reference comparisons use interior target bins.
 
 * Complete construction of cross-section tables from the model configuration.
 * Configuration model and embedded spectral-table preparation.
-* Full radiator construction.
 * Connect O2 corrections and rate calculations to the complete model.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.
