@@ -155,9 +155,10 @@ static void prepare_table(tt_builder *b, tt_spectrum *s, tt_config_node config, 
                          s->kind == TT_CS_NO2 || s->kind == TT_CS_O3);
     int sort = cs ? (s->kind == TT_CS_TINT || s->kind == TT_CS_NO2 || s->kind == TT_CS_O3)
                   : qy && (s->kind == TT_QY_TINT || s->kind == TT_QY_NO2);
-    /* TUV-x validates the file entries of the cross sections it builds with
-     * its base constructor; the special kinds read their files themselves. */
-    if (cs && !special && s->kind != TT_CS_O3_JPL06)
+    /* TUV-x validates the file entries it reads with the base process_file:
+     * the base-constructor kinds and O3 JPL06. The other special kinds read
+     * their files themselves. */
+    if (cs && !special)
         tt_build_keys(b, file, file_required, file_optional);
     const char *path = cs ? tt_build_string(b, file, "file path", NULL) : tt_config_string(file);
     if (!path) {
