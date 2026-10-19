@@ -204,6 +204,13 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   instrumentation remain enabled. Core and JSON-only checks pass with leak
   detection enabled.
 
+* Four concurrent models share immutable configuration and compiled data while
+  owning their calculations. Both production configurations reproduce 4,410,208
+  serial values bit-for-bit with both compilers and under sanitizers. Clang's
+  static analyzer reports no findings in model construction, host updates,
+  execution, or either output writer. Separate installed-package consumers run
+  with GCC/static and Clang/shared builds; the shared core links only libSystem.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
