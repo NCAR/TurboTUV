@@ -5,7 +5,7 @@ Fortran comparison suite. The port is in progress; the current library covers
 interpolation, tridiagonal systems, spherical geometry, solar position,
 radiator mixing, the Delta-Eddington radiation solver, and 26 direct
 cross-section calculators, 21 quantum-yield calculators, and 13 spectral
-weighting functions.
+weighting functions, and all four temperature parameterizations.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

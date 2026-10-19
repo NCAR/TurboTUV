@@ -159,6 +159,40 @@ tt_status tt_regrid_column(const tt_dataset *data, const char *variable, size_t 
                            double *out);
 
 typedef enum {
+    TT_TEMPERATURE_EXPONENTIAL,
+    TT_TEMPERATURE_TAYLOR,
+    TT_TEMPERATURE_BURKHOLDER,
+    TT_TEMPERATURE_HARWOOD
+} tt_temperature_kind;
+typedef struct {
+    double minimum, maximum, fixed_value;
+    int is_fixed;
+} tt_temperature_range;
+/* The parameterized slice is [first, first + count) in the raw wavelength
+ * grid. EXPONENTIAL uses terms entries of a,b,powers; the other kinds use
+ * count entries of a,b (TAYLOR uses a[term][wavelength] and sigma[wavelength]).
+ * Ranges have inclusive endpoints. Overlapping exponential ranges add;
+ * the other kinds replace with the last matching range. No matching range
+ * leaves the supplied cross section unchanged. A zero range_count uses T. */
+typedef struct {
+    tt_temperature_kind kind;
+    size_t first, count, terms;
+    const double *a, *b, *powers, *sigma;
+    double base_temperature, base_wavelength;
+    int base_10, invert_temperature;
+    double burkholder_a, burkholder_b;
+    size_t range_count;
+    const tt_temperature_range *ranges;
+} tt_temperature_model;
+tt_status tt_temperature_apply(const tt_temperature_model *model, double temperature, size_t count,
+                               const double *wavelengths, double *cross_section);
+/* Apply at each level, pad the raw spectrum with zeroes, then conserve its
+ * integral on the target grid. Output is [wavelength][level]. */
+tt_status tt_temperature_cross_section(const tt_temperature_model *model, size_t count,
+                                       const double *wavelengths, const double *cross_section,
+                                       const tt_spectral_grid *grid, double *out);
+
+typedef enum {
     TT_QY_BASE,
     TT_QY_TINT,
     TT_QY_NO2,

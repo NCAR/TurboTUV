@@ -48,6 +48,13 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   13.5 epsilon-scaled units (32-unit ceiling). Independent complementary-branch
   and normalization tests pass, including under both sanitizers.
 
+* All four temperature parameterizations (exponential polynomial, Taylor,
+  Burkholder, Harwood), with a shared range/slice representation and the full
+  temperature-dependent cross-section regridding path. All 417,727 comparisons
+  are bit-for-bit identical on both compiler sets. Tests include overlapping
+  inclusive ranges, fixed temperatures, both logarithm bases, inverted
+  offsets, interior slices, and zero padding. Sanitizer checks pass.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -74,8 +81,7 @@ reference comparisons use interior target bins.
 
 ## Remaining implementation tasks
 
-* Temperature parameterizations; complete
-  construction of cross-section tables from the model configuration.
+* Complete construction of cross-section tables from the model configuration.
 * Grid/profile/configuration model and embedded table preparation.
 * Discrete-ordinate solver and full radiator/profile construction.
 * O2 Lyman-alpha/Schumann-Runge parameterization, photolysis, dose and heating rates.
