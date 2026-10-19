@@ -41,6 +41,13 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   also checks conservation against an independently calculated trapezoid
   integral. C-only spectral tests pass both sanitizers.
 
+* All 21 quantum-yield calculators and 13 spectral weighting functions, with
+  temperature and density sweeps, adjacent floating-point values at cutoffs,
+  all acetone branches, and the original Taylor-series constructor. The
+  1,295,363 comparisons per compiler set have a largest relative error of
+  13.5 epsilon-scaled units (32-unit ceiling). Independent complementary-branch
+  and normalization tests pass, including under both sanitizers.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -51,7 +58,7 @@ original checkout and numerical equations are unchanged.
 The first unmodified GNU run built and passed 76/88 tests; remaining failures
 were the BSD sed incompatibility and missing SciPy. Flang initially failed to
 build legacy tests because real-kind promotion was omitted. After correcting
-those issues, the new numerical comparisons pass on both compilers. Further
+those issues, the new numerical comparisons pass on both compilers.
 Both corrected reference builds now pass all 88 upstream tests. Two additional
 test-harness corrections are needed: explicitly rewind the reopened legacy
 CH2O input, and route the C++ placeholder test's large structs through pointer
@@ -67,7 +74,7 @@ reference comparisons use interior target bins.
 
 ## Remaining implementation tasks
 
-* Temperature parameterizations, quantum yields and action spectra; complete
+* Temperature parameterizations; complete
   construction of cross-section tables from the model configuration.
 * Grid/profile/configuration model and embedded table preparation.
 * Discrete-ordinate solver and full radiator/profile construction.

@@ -158,6 +158,68 @@ tt_status tt_regrid_column(const tt_dataset *data, const char *variable, size_t 
                            double lower_value, tt_extrapolation upper, double upper_value,
                            double *out);
 
+typedef enum {
+    TT_QY_BASE,
+    TT_QY_TINT,
+    TT_QY_NO2,
+    TT_QY_O3_O1D,
+    TT_QY_O3_O3P,
+    TT_QY_HO2,
+    TT_QY_NO3_AQ,
+    TT_QY_CH2O,
+    TT_QY_CH3CHO,
+    TT_QY_C2H5CHO,
+    TT_QY_CH2CHCHO,
+    TT_QY_MVK,
+    TT_QY_ACETONE,
+    TT_QY_MEK,
+    TT_QY_CH3COCHO,
+    TT_QY_CLO_O1D,
+    TT_QY_CLO_O3P,
+    TT_QY_CLONO2_CL,
+    TT_QY_CLONO2_CLO,
+    TT_QY_H2SO4,
+    TT_QY_TAYLOR,
+    TT_QY_COUNT
+} tt_quantum_yield_kind;
+typedef struct {
+    double low_wavelength_value, high_wavelength_value;
+    double minimum_temperature, maximum_temperature;
+    unsigned acetone_branches; /* 1 = CO, 2 = CH3CO, 3 = both */
+    double minimum_wavelength, maximum_wavelength;
+    size_t coefficient_count;
+    const double *coefficients;                  /* Taylor coefficients, ascending powers */
+    double molecular_diameter, molecular_weight; /* m, kg/mol */
+    const double *collision_rates; /* wavelengths entries, s^-1; negative = use base table */
+} tt_yield_options;
+tt_yield_options tt_yield_options_default(void);
+const char *tt_quantum_yield_name(tt_quantum_yield_kind kind);
+tt_status tt_quantum_yield(tt_quantum_yield_kind kind, const tt_spectral_grid *grid, size_t count,
+                           const tt_spectral_table *tables, const tt_yield_options *options,
+                           double *out);
+
+typedef enum {
+    TT_WEIGHT_BASE,
+    TT_WEIGHT_NOTCH,
+    TT_WEIGHT_GAUSSIAN,
+    TT_WEIGHT_EPPLEY,
+    TT_WEIGHT_PAR,
+    TT_WEIGHT_EXPONENTIAL,
+    TT_WEIGHT_SCUP,
+    TT_WEIGHT_ERYTHEMA,
+    TT_WEIGHT_UV_INDEX,
+    TT_WEIGHT_PHYTOPLANKTON,
+    TT_WEIGHT_PLANT,
+    TT_WEIGHT_PLANT_FLINT,
+    TT_WEIGHT_PLANT_FLINT_EXT,
+    TT_WEIGHT_COUNT
+} tt_weight_kind;
+/* a,b are notch boundaries; a is the Gaussian centroid. base is required
+ * only for BASE/EPPLEY. Output has wavelengths entries. */
+tt_status tt_spectral_weight(tt_weight_kind kind, size_t wavelengths, const double *edges,
+                             const double *midpoints, const double *base, double a, double b,
+                             double *out);
+
 #ifdef __cplusplus
 }
 #endif
