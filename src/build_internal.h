@@ -12,6 +12,7 @@ void tt_build_fail(tt_builder *b, tt_config_node node, tt_status status, const c
 const char *tt_build_string(tt_builder *b, tt_config_node node, const char *key,
                             const char *fallback);
 double tt_build_number(tt_builder *b, tt_config_node node, const char *key, double fallback);
+int tt_build_integer(tt_builder *b, tt_config_node node, const char *key);
 int tt_build_boolean(tt_builder *b, tt_config_node node, const char *key, int fallback);
 int tt_build_has(tt_config_node node, const char *key);
 void *tt_build_alloc(tt_builder *b, size_t count, size_t size);

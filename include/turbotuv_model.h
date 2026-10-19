@@ -17,6 +17,18 @@ typedef struct {
 tt_status tt_grid_from_config(tt_config_node config, const tt_data_source *source, tt_grid *out,
                               tt_error *error);
 
+/* Named grid views let profiles choose their configured axis without a
+ * mutable global warehouse. Names and units are matched exactly.
+ * Extraterrestrial-flux profiles populate midpoints; their other fields are
+ * defined as zero. All other profile constructors use the usual edge fields. */
+typedef struct {
+    const char *name, *units;
+    const tt_grid *grid;
+} tt_named_grid;
+tt_status tt_profile_from_config(tt_config_node config, size_t grid_count,
+                                 const tt_named_grid *grids, const tt_data_source *source,
+                                 tt_profile *out, tt_error *error);
+
 typedef enum {
     TT_SPECTRUM_CROSS_SECTION,
     TT_SPECTRUM_QUANTUM_YIELD,

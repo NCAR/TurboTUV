@@ -14,7 +14,8 @@ in [include/turbotuv_config.h](include/turbotuv_config.h), backed by bundled
 Prepared spectral models in [include/turbotuv_model.h](include/turbotuv_model.h)
 construct cross sections, quantum yields, and weights from the original
 configuration formats and compiled datasets. They own their tables and support
-repeated evaluation with different atmospheric profiles.
+repeated evaluation with different atmospheric profiles. The same header
+provides grid and profile constructors for the original configuration formats.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release

@@ -149,6 +149,16 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   their edge evaluations are compared. C evaluates precisely the caller's
   supplied temperature array without that ambiguity.
 
+* Configuration-driven profile construction now resolves named grids and
+  builds every profile kind from compiled inputs. The catalogue test covers
+  237 entries: 226 valid cases and 11 invalid dormant upstream definitions,
+  plus nine explicit malformed-input checks. All 87,105 comparisons of
+  defined Fortran fields are bit-identical on both compiler sets. Additional
+  cases vary model tops, O2/O3 scale heights, dates and time zones. Sanitizers
+  pass. The solar-flux profile defines its otherwise-unused fields as zero.
+  Reference factory tests run in isolated build directories with links to
+  the original data, so error/diagnostic files cannot alter the source tree.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies

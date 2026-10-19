@@ -43,6 +43,12 @@ double tt_build_number(tt_builder *b, tt_config_node node, const char *key, doub
         tt_build_fail(b, node, TT_INVALID, "Expected finite number '%s'", key);
     return number;
 }
+int tt_build_integer(tt_builder *b, tt_config_node node, const char *key) {
+    int value = 0;
+    if (tt_config_integer(tt_config_get(node, key), &value) != TT_OK)
+        tt_build_fail(b, node, TT_INVALID, "Expected integer '%s'", key);
+    return value;
+}
 int tt_build_boolean(tt_builder *b, tt_config_node node, const char *key, int fallback) {
     tt_config_node value = tt_config_get(node, key);
     if (tt_config_type(value) == TT_CONFIG_MISSING)
