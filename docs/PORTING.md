@@ -120,6 +120,14 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   Legacy TUV data and the generic NetCDF I/O fixture are excluded from this
   test catalogue; the original Fortran suites still run those tests normally.
 
+* JSON/YAML configuration parsing uses a bundled, namespaced C LibYAML parser
+  behind an immutable node API. All 281 documents and 26,385 checks pass on
+  both compilers, including exact numeric/array/string/boolean comparisons
+  through the original Fortran configuration interface, Unicode, aliases,
+  null/string distinctions, file input, malformed/truncated input and bounded
+  nesting. Both sanitizers pass. Upstream source hashes and MIT licensing are
+  recorded under `third_party/libyaml`; no runtime dependency is introduced.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -147,7 +155,7 @@ reference comparisons use interior target bins.
 ## Remaining implementation tasks
 
 * Complete construction of cross-section tables from the model configuration.
-* Configuration model and embedded spectral-table preparation.
+* Assemble the model and prepare embedded spectral tables from configuration.
 * Connect O2 corrections and rate calculations to the complete model.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.

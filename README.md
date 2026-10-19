@@ -8,7 +8,9 @@ cross-section calculators, 21 quantum-yield calculators, and 13 spectral
 weighting functions, all four temperature parameterizations, and photolysis,
 heating, and dose integration, including the O2 band corrections. Grid and
 profile constructors use embedded atmospheric and solar spectra; host updates
-share the same structures.
+share the same structures. JSON and YAML parsing use an immutable C interface
+in [include/turbotuv_config.h](include/turbotuv_config.h), backed by bundled
+[LibYAML](https://github.com/yaml/libyaml) sources with private symbol prefixes.
 
 ```sh
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release
