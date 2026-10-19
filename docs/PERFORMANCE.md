@@ -54,6 +54,75 @@ python3 tools/bench_compare.py baseline-llvm=../TurboTUV-baseline/build/turbotuv
 
 `turbotuv_bench --generic` runs the generic path of the current build.
 
+## Against the original TUV-x
+
+The redundant per-column work is part of TUV-x's own design, which evaluates
+every calculator on demand. The C generic path reproduces those evaluations
+on purpose, because bit-for-bit parity with TUV-x is what the port was
+validated against. In TUV-x 0.17.0 (`../TUV-x`):
+
+* `photolysis_rates.F90` (`get`) calls `calculate` for every reaction's cross
+  section and quantum yield on every run, each producing a full height ×
+  wavelength array. It then forms `transpose(cross_section * quantum_yield)`
+  and takes one dot product per level.
+* The base cross section (`cross_section.F90`, `calculate`) and quantum yield
+  (`quantum_yield.F90`, `run`) copy their one column-independent wavelength
+  table into every height level. They apply overrides level by level and
+  transpose into a second new array.
+* `grid_warehouse%get_grid` and `profile_warehouse%get_profile` return newly
+  allocated copies (`allocate(grid, source = ...)`), which every `calculate`
+  call makes.
+* Temperature-parameterized cross sections (`temperature_based.F90`) recompute
+  `(λ - λ0)**lp` for every term at every height level. They grow the spectrum
+  through four `add_point` reallocations and re-interpolate all wavelength
+  bins, including those temperature cannot affect.
+* Delta-Eddington transfer calls the O(layers) `slant_optical_depth` for every
+  layer of every wavelength and evaluates `exp(-τ_slant)` at both ends of each
+  layer and again for the outputs.
+
+`bench/tuvx_bench.F90` runs the original TUV-x through the column sweep of
+`turbotuv_bench --sweep`. One model runs 300 columns at solar zenith angles
+89 c / N degrees with unit radiation scale; only the runs are timed. Both
+programs hash the six radiation fields and the photolysis, heating and dose
+rates in the same order and memory layout. With a reference build configured
+(see PORTING.md), the comparison below ran in five rotating rounds from the
+reference runtime directory, where TUV-x's relative data paths resolve:
+
+```sh
+cd build/c-gcc/tests/reference-runtime
+python3 ../../../../tools/bench_compare.py \
+    tuvx-gnu=../tuvx_bench generic-gnu=../../turbotuv_bench:--sweep,--generic \
+    prepared-gnu=../../turbotuv_bench:--sweep \
+    tuvx-llvm=../../../c-llvm/tests/tuvx_bench \
+    generic-llvm=../../../c-llvm/turbotuv_bench:--sweep,--generic \
+    prepared-llvm=../../../c-llvm/turbotuv_bench:--sweep \
+    --config ../../../../examples/tuv_5_4.json \
+    --config ../../../../examples/ts1_tsmlt.json \
+    --columns 300 --rounds 5 --allow-differences tuvx-llvm
+```
+
+Median time per column (range), with speedups over TUV-x built by the same
+compiler family:
+
+| Configuration | Program | GNU (GFortran / GCC 16.2.0) | LLVM (Flang / Clang 23.1.3) |
+| --- | --- | ---: | ---: |
+| tuv_5_4 | TUV-x | 6389 µs (6372–6793) | 5580 µs (5552–5598) |
+| | C generic | 8076 µs, 0.79x | 5311 µs, 1.05x |
+| | C prepared | 1038 µs, **6.15x** | 1028 µs, **5.43x** |
+| ts1_tsmlt | TUV-x | 6551 µs (6526–6933) | 6242 µs (6172–6549) |
+| | C generic | 5112 µs, 1.28x | 3967 µs, 1.57x |
+| | C prepared | 1080 µs, **6.07x** | 923 µs, **6.76x** |
+
+With the GNU compilers, all three programs printed the same hash for each
+configuration: the prepared C results equal the original TUV-x's bit for bit
+for every radiation field and rate of all 300 columns. Flang's results differ
+from Clang's at roundoff, within the one relative epsilon recorded in
+PORTING.md; the two C paths agree with each other exactly.
+
+The C generic path is not uniformly faster than the Fortran: it avoids the
+copies, transposes and reallocations but performs the same evaluations, and
+GCC compiles the generic tuv_5_4 kernels less well than GFortran does.
+
 ## Where the time went
 
 Sampled profiles of the baseline showed that radiative transfer was not the

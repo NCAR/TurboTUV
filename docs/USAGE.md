@@ -44,7 +44,11 @@ the updates and runs, after one untimed column, and prints the time per column
 and an FNV-1a hash of every radiation field and rate of every column. Equal
 hashes from two builds mean bit-identical results. `--repeat` repeats the
 column set, `--seed` selects another, `--output` writes all values, and
-`--generic` uses generic execution. `tools/bench_compare.py` times several
+`--generic` uses generic execution. `--sweep` holds the profiles fixed, runs
+column c at a solar zenith angle of 89 c / N degrees, and hashes the radiation
+fields and rates only. In a reference build, `tests/tuvx_bench` runs the same
+sweep through the original TUV-x, so the two can be timed and hashed against
+each other. `tools/bench_compare.py` times several
 builds in rotating rounds and checks that their hashes agree; see
 [PERFORMANCE.md](PERFORMANCE.md).
 

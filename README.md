@@ -63,7 +63,9 @@ spectra are shared, rates are summed over precomputed products, and
 Delta-Eddington transfer solves blocks of wavelengths in lock step. Every result
 is bit-identical to the direct translation, which remains available as generic
 execution and as the `baseline` branch. A column runs 4.3–7.6 times faster than
-the baseline; see [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
+the baseline and 5.4–6.8 times faster than the original Fortran TUV-x, whose
+results it reproduces bit for bit with the GNU compilers; see
+[docs/PERFORMANCE.md](docs/PERFORMANCE.md).
 
 Configurations are validated as TUV-x validates them: misspelled or
 unsupported keys are errors. Numbers are read the same way in every locale.

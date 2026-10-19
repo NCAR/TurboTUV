@@ -8,7 +8,12 @@
  * prints the elapsed time and an FNV-1a hash of every output value of every
  * column; equal hashes from two builds mean bit-identical results. Build it
  * without floating-point contraction (-ffp-contract=off, as CMake does), so
- * that the generated column inputs are the same with every compiler. */
+ * that the generated column inputs are the same with every compiler.
+ *
+ * --sweep instead holds the profiles fixed and runs column c at solar zenith
+ * angle 89 c / N degrees with unit scale, timing only the runs, and hashes the
+ * outputs the original TUV-x core also returns: the six radiation fields and
+ * the rates. bench/tuvx_bench.F90 runs the same sweep through TUV-x itself. */
 #define _POSIX_C_SOURCE 200809L
 #include "turbotuv_model.h"
 #include <math.h>
@@ -70,7 +75,7 @@ static tt_status scale_profile(tt_model *m, profile_state *s, double factor) {
 }
 static int usage(void) {
     fputs("Usage: turbotuv_bench CONFIG [--columns N] [--repeat R] [--seed S] [--output FILE]\n"
-          "                      [--generic]\n",
+          "                      [--generic] [--sweep]\n",
           stderr);
     return 2;
 }
@@ -78,7 +83,7 @@ int main(int argc, char **argv) {
     const char *path = NULL, *output = NULL;
     long columns = 1000, repeat = 1;
     unsigned long long seed = 2026;
-    int generic = 0;
+    int generic = 0, sweep = 0;
     for (int i = 1; i < argc; ++i) {
         if (!strcmp(argv[i], "--columns") && i + 1 < argc)
             columns = strtol(argv[++i], NULL, 10);
@@ -90,6 +95,8 @@ int main(int argc, char **argv) {
             output = argv[++i];
         else if (!strcmp(argv[i], "--generic"))
             generic = 1;
+        else if (!strcmp(argv[i], "--sweep"))
+            sweep = 1;
         else if (argv[i][0] == '-' || path)
             return usage();
         else
@@ -137,6 +144,10 @@ int main(int argc, char **argv) {
                                            {0.7, 1.3}};
         for (size_t k = 0; k < 7; ++k)
             column[c][k] = uniform(&state, range[k][0], range[k][1]);
+        if (sweep) {
+            column[c][0] = 89.0 * (double)c / (double)columns;
+            column[c][1] = 1;
+        }
     }
     uint64_t digest = 14695981039346656037u;
     double elapsed = 0;
@@ -145,17 +156,20 @@ int main(int argc, char **argv) {
         for (long c = -(r == 0); c < columns; ++c) {
             const double *v = column[c < 0 ? 0 : c];
             double start = seconds();
-            for (size_t i = 0; i < nz; ++i)
-                t[i] = t0[i] + v[2] + v[3] * sin(v[4] + 0.1 * (double)i);
             const tt_model_result *result = NULL;
-            tt_status status =
-                tt_model_update_profile(model, "temperature", "K", nl, t, NULL, NULL, NULL, NULL);
-            if (!status && air.edges)
-                status = scale_profile(model, &air, v[5]);
-            if (!status && o2.edges)
-                status = scale_profile(model, &o2, v[5]);
-            if (!status && o3.edges)
-                status = scale_profile(model, &o3, v[6]);
+            tt_status status = TT_OK;
+            if (!sweep) {
+                for (size_t i = 0; i < nz; ++i)
+                    t[i] = t0[i] + v[2] + v[3] * sin(v[4] + 0.1 * (double)i);
+                status = tt_model_update_profile(model, "temperature", "K", nl, t, NULL, NULL, NULL,
+                                                 NULL);
+                if (!status && air.edges)
+                    status = scale_profile(model, &air, v[5]);
+                if (!status && o2.edges)
+                    status = scale_profile(model, &o2, v[5]);
+                if (!status && o3.edges)
+                    status = scale_profile(model, &o3, v[6]);
+            }
             if (!status)
                 status = tt_model_run(model, v[0], v[1], &result, &error);
             if (status) {
@@ -177,8 +191,18 @@ int main(int argc, char **argv) {
                                       result->photolysis,
                                       result->heating,
                                       result->dose};
-            size_t counts[] = {
-                n, n, n, n, n, n, n, n, nz * shape.photolysis, nz * shape.heating, nz * shape.dose};
+            /* TUV-x returns no actinic flux or irradiance to compare in a sweep. */
+            size_t counts[] = {n,
+                               n,
+                               n,
+                               n,
+                               n,
+                               n,
+                               sweep ? 0 : n,
+                               sweep ? 0 : n,
+                               nz * shape.photolysis,
+                               nz * shape.heating,
+                               nz * shape.dose};
             for (size_t k = 0; k < 11; ++k) {
                 digest = hash(digest, counts[k], fields[k]);
                 if (file && fwrite(fields[k], sizeof(double), counts[k], file) != counts[k]) {

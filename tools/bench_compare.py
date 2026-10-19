@@ -6,7 +6,10 @@ configuration, starting from a different program each round, and the report
 gives the median time per column. Programs whose names share a suffix after
 the last '-' (for example baseline-llvm and prepared-llvm) were built with the
 same compiler and must print the same hash: identical results bit for bit.
-Speedups are relative to the first program with the same suffix.
+Speedups are relative to the first program with the same suffix. Programs
+named with --allow-differences (for example a Fortran build whose results
+differ at roundoff) are compared with the others and reported, not required
+to match.
 """
 import argparse
 import csv
@@ -30,6 +33,8 @@ def main():
     p.add_argument('--columns', type=int, default=300)
     p.add_argument('--rounds', type=int, default=5)
     p.add_argument('--csv', type=Path, help='write every timing to this file')
+    p.add_argument('--allow-differences', nargs='+', default=[], metavar='NAME',
+                   help='programs whose hashes may differ from their group')
     a = p.parse_args()
     programs = []
     for item in a.programs:
@@ -51,19 +56,27 @@ def main():
     print(f'{a.rounds} rounds, {a.columns} columns per run; median per column (range)')
     for config in a.config:
         print(f'\n{config.stem}')
-        reference = {}
+        reference, checked = {}, {}
         for name, _, _ in programs:
             key = (name, config.stem)
             values = times[key]
             suffix = name.rsplit('-', 1)[-1]
-            reference.setdefault(suffix, (name, statistics.median(values)))
-            base_name, base = reference[suffix]
-            digests = hashes[key] | hashes[(base_name, config.stem)]
+            reference.setdefault(suffix, statistics.median(values))
             assert len(hashes[key]) == 1, f'{name} printed different hashes'
-            assert len(digests) == 1, f'{name} and {base_name} differ: {sorted(digests)}'
+            digest = next(iter(hashes[key]))
+            note = ''
+            if name in a.allow_differences:
+                others = [n for n, _, _ in programs if n.rsplit('-', 1)[-1] == suffix
+                          and n not in a.allow_differences]
+                if others and hashes[(others[0], config.stem)] != hashes[key]:
+                    note = '  (differs)'
+            else:
+                checked.setdefault(suffix, name)
+                expected = next(iter(hashes[(checked[suffix], config.stem)]))
+                assert digest == expected, f'{name} and {checked[suffix]} differ'
             median = statistics.median(values)
             print(f'  {name:18s} {median:9.1f} us ({min(values):.1f}-{max(values):.1f})'
-                  f'  {base / median:5.2f}x  hash {next(iter(hashes[key]))}')
+                  f'  {reference[suffix] / median:5.2f}x  hash {digest}{note}')
 
 
 if __name__ == '__main__':
