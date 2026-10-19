@@ -47,6 +47,31 @@ def main():
                     line += f' > {target}.tmp && mv {target}.tmp {target}'
                 lines.append(line)
             script.write_text("\n".join(lines) + "\n")
+    # Reopening an already connected input file has processor-dependent
+    # positioning. Make the legacy reader's intended restart explicit.
+    legacy = source / "test/oldtuv/rxn.f"
+    old = "      OPEN(UNIT=kin,FILE='odat/DATAJ1/CH2O/CH2O_jpl11.abs'\n     $     ,STATUS='old')\n      do i = 1, 4"
+    new = old.replace("\n      do i", "\n      REWIND(kin)\n      do i")
+    legacy.write_text(legacy.read_text().replace(old, new))
+    # Darwin/arm64 Flang does not use the C ABI for these large structs passed
+    # and returned by value. A test-only pointer shim preserves their contents.
+    bridge = source / "test/regression/solvers/delta_eddington.F90"
+    text = (a.source / "test/regression/solvers/delta_eddington.F90").read_text()
+    text = text.replace("function run_delta_eddington_solver_c( input ) bind(c, name='RunDeltaEddingtonSolver')",
+                        "subroutine run_delta_eddington_solver_c( input, output ) bind(c, name='RunDeltaEddingtonSolverPointer')")
+    text = text.replace("type(solver_input_t_c), value :: input", "type(solver_input_t_c), intent(in) :: input")
+    text = text.replace("type(solver_output_t_c) run_delta_eddington_solver_c", "type(solver_output_t_c), intent(out) :: output")
+    text = text.replace("end function run_delta_eddington_solver_c", "end subroutine run_delta_eddington_solver_c")
+    text = text.replace("bind(c, name='FreeOutput')", "bind(c, name='FreeOutputPointer')")
+    text = text.replace("type(solver_output_t_c), value :: output", "type(solver_output_t_c), intent(in) :: output")
+    text = text.replace("output = run_delta_eddington_solver_c( input )", "call run_delta_eddington_solver_c( input, output )")
+    bridge.write_text(text)
+    cpp = source / "test/regression/solvers/delta_eddington.cpp"
+    text = (a.source / "test/regression/solvers/delta_eddington.cpp").read_text()
+    text += '\nextern "C" void RunDeltaEddingtonSolverPointer(const SolverInput* input, SolverOutput* output) {\n'
+    text += '  *output = RunDeltaEddingtonSolver(*input);\n}\n'
+    text += 'extern "C" void FreeOutputPointer(const SolverOutput* output) { FreeOutput(*output); }\n'
+    cpp.write_text(text)
     env = dict(os.environ)
     env["PKG_CONFIG_PATH"] = os.pathsep.join(map(str, [prefix / "lib/pkgconfig", netcdf / "lib/pkgconfig"]))
     env["PATH"] = str(netcdf / "bin") + os.pathsep + env["PATH"]

@@ -52,10 +52,12 @@ The first unmodified GNU run built and passed 76/88 tests; remaining failures
 were the BSD sed incompatibility and missing SciPy. Flang initially failed to
 build legacy tests because real-kind promotion was omitted. After correcting
 those issues, the new numerical comparisons pass on both compilers. Further
-legacy Flang test issues are under investigation and are not counted as passes.
-The corrected GNU baseline passes all 88 upstream tests. The Flang baseline
-passes all 75 unit/example tests; twelve legacy regressions encounter an input
-failure in old TUV, and the existing C++ placeholder comparison segfaults.
+Both corrected reference builds now pass all 88 upstream tests. Two additional
+test-harness corrections are needed: explicitly rewind the reopened legacy
+CH2O input, and route the C++ placeholder test's large structs through pointer
+arguments. Instrumentation isolated the Flang crash to the by-value C call on
+Darwin/arm64. The pointer shim preserves all original inputs, outputs, and
+assertions. No numerical equations or tolerances are changed.
 
 Undefined reference behavior is not copied: the C air-column routine defines
 the top vertical-column entry, which Fortran leaves unwritten; comparisons
