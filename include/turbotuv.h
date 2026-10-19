@@ -254,6 +254,27 @@ tt_status tt_spectral_weight(tt_weight_kind kind, size_t wavelengths, const doub
                              const double *midpoints, const double *base, double a, double b,
                              double *out);
 
+/* Convert normalized radiation to photon cm^-2 s^-1 or W m^-2 per band.
+ * solar_flux is already integrated over each band, as in TUV-x. Negative
+ * totals are clamped to zero. Fields and spectral outputs are [wavelength][level]. */
+tt_status tt_actinic_flux(size_t wavelengths, size_t levels, const tt_radiation *radiation,
+                          const double *solar_flux, double *out);
+tt_status tt_spectral_irradiance(size_t wavelengths, size_t levels, const tt_radiation *radiation,
+                                 const double *solar_flux, const double *midpoints, double *out);
+/* Integrate one reaction/action spectrum. Rate outputs have levels entries.
+ * Cross sections and yields are [wavelength][level]. Photolysis: s^-1;
+ * heating: J s^-1 per molecule; dose: weighted W m^-2. The energy threshold
+ * for heating is specified as its equivalent wavelength in nm. */
+tt_status tt_photolysis_rate(size_t wavelengths, size_t levels, const double *actinic_flux,
+                             const double *cross_section, const double *quantum_yield, double scale,
+                             double *out);
+tt_status tt_heating_rate(size_t wavelengths, size_t levels, const double *actinic_flux,
+                          const double *cross_section, const double *quantum_yield,
+                          const double *midpoints, double energy_wavelength, double scale,
+                          double *out);
+tt_status tt_dose_rate(size_t wavelengths, size_t levels, const double *irradiance,
+                       const double *weights, double *out);
+
 #ifdef __cplusplus
 }
 #endif

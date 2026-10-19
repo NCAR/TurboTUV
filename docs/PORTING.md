@@ -55,6 +55,14 @@ Both use `-ffp-contract=off`; fast math is not enabled.
   inclusive ranges, fixed temperatures, both logarithm bases, inverted
   offsets, interior slices, and zero padding. Sanitizer checks pass.
 
+* Actinic-flux and irradiance conversion, photolysis, heating, and dose
+  integration. The 53,821 comparisons against original rate constructors and
+  calculators are bit-for-bit identical on both compilers. They cover up to
+  1,023 bands and 81 levels, three wavelength/temperature-dependent reaction
+  spectra, variable thresholds/scaling, negative-total clipping, and darkness.
+  Integrations traverse contiguous spectra and preserve each level's original
+  summation order. Independent single-band and sanitizer checks pass.
+
 ## Reference portability
 
 `tools/reference.py` creates an isolated source copy under `build/` and applies
@@ -84,6 +92,6 @@ reference comparisons use interior target bins.
 * Complete construction of cross-section tables from the model configuration.
 * Grid/profile/configuration model and embedded table preparation.
 * Discrete-ordinate solver and full radiator/profile construction.
-* O2 Lyman-alpha/Schumann-Runge parameterization, photolysis, dose and heating rates.
+* O2 Lyman-alpha/Schumann-Runge parameterization and its coupling to rates.
 * Standalone model execution and reproduction of all existing model scenarios.
 * Extended reference tests, complete compiler matrix, sanitizer checks and final audit.

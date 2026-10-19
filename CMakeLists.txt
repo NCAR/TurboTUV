@@ -9,7 +9,7 @@ set(TURBOTUV_REFERENCE_PREFIX "" CACHE PATH "Compiler-matched NetCDF Fortran ins
 set(TURBOTUV_NETCDF_PREFIX "" CACHE PATH "NetCDF C installation (reference tests only)")
 
 add_library(turbotuv src/numerics.c src/geometry.c src/data.c src/radiation.c src/spectra.c
-    src/yields.c src/weights.c src/temperature.c)
+    src/yields.c src/weights.c src/temperature.c src/rates.c)
 add_library(TurboTUV::turbotuv ALIAS turbotuv)
 target_compile_features(turbotuv PUBLIC c_std_11)
 set_target_properties(turbotuv PROPERTIES C_EXTENSIONS OFF POSITION_INDEPENDENT_CODE ON)
