@@ -1,5 +1,7 @@
 # TurboTUV
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585039.svg)](https://doi.org/10.5281/zenodo.23585039)
+
 TurboTUV is an LLM experiment by the NCAR Agentic Coding Task Force, sponsored
 by the [Community Software Facility](https://ncarprojects.ucar.edu/csf) and the
 [NCAR Office of Strategic Projects AI Initiative](https://ncarprojects.ucar.edu/ai).
@@ -91,3 +93,6 @@ numerical comparisons per toolchain stay within double-precision roundoff;
 the complete-model comparisons are bit-identical with GCC and within one
 relative machine epsilon with Clang. Sanitizer and concurrent-model checks
 are recorded in the validation document.
+
+To cite TurboTUV, use DOI:
+[10.5281/zenodo.23585039](https://doi.org/10.5281/zenodo.23585039).
