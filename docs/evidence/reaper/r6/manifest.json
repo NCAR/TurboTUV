@@ -1,0 +1,258 @@
+{
+  "README.md": {
+    "bytes": 1575,
+    "sha256": "32cba47c35ea1b5b48e17fc8829dcb0deac89ba57e6ab1d5011f7c406ce1e0f3"
+  },
+  "build-minimal-clang.log": {
+    "bytes": 3546,
+    "sha256": "b4104611d86ff9f43e24dba71bf056c6f0901896b04e821deb74dc34a41da5b1"
+  },
+  "build-minimal-gcc.log": {
+    "bytes": 2992,
+    "sha256": "fe48e87cb33127dc863338bc534d642979d8e2474a32287fe97240c26c2c516d"
+  },
+  "commands.sh": {
+    "bytes": 894,
+    "sha256": "fd1891019c6be58e51e4a630cbff0f333fcc4e31b66f7f611eb97a2c032e7511"
+  },
+  "configure-minimal-clang.log": {
+    "bytes": 541,
+    "sha256": "9073e2e59af12834c894008ce848ab767130458a788e8df85c2afa4c1f1e130a"
+  },
+  "configure-minimal-gcc.log": {
+    "bytes": 765,
+    "sha256": "a15de8e19e611a90463dd9294a05978784ac278b673948657816adf3d0a892a5"
+  },
+  "consumer-build-minimal-clang.log": {
+    "bytes": 156,
+    "sha256": "3b7ffc1e23e0f7a6f8b4f0df81bdf8c32d4d063821f766bf5e7b546663776c0b"
+  },
+  "consumer-build-minimal-gcc.log": {
+    "bytes": 156,
+    "sha256": "3b7ffc1e23e0f7a6f8b4f0df81bdf8c32d4d063821f766bf5e7b546663776c0b"
+  },
+  "consumer-build-selected-clang.log": {
+    "bytes": 156,
+    "sha256": "3b7ffc1e23e0f7a6f8b4f0df81bdf8c32d4d063821f766bf5e7b546663776c0b"
+  },
+  "consumer-build-selected-gcc.log": {
+    "bytes": 156,
+    "sha256": "3b7ffc1e23e0f7a6f8b4f0df81bdf8c32d4d063821f766bf5e7b546663776c0b"
+  },
+  "consumer-configure-minimal-clang.log": {
+    "bytes": 432,
+    "sha256": "6c9360b81f04fa9a7cba122f48142c7bcdc8743b43f6ce95ca9b1297fc298f03"
+  },
+  "consumer-configure-minimal-gcc.log": {
+    "bytes": 656,
+    "sha256": "3bfb4d1841300e3580c8eb7c080a785fcfb362462edf44181a69cc845c80aa10"
+  },
+  "consumer-configure-selected-clang.log": {
+    "bytes": 433,
+    "sha256": "8dbcd2ce87d0f749e8c8723905521a603cc7928afd71cfc508f3df6e4189cef8"
+  },
+  "consumer-configure-selected-gcc.log": {
+    "bytes": 657,
+    "sha256": "2d4633856bd6dbeb99e97ed032fdf3109533ff0ea4720ad46d3152cdc72d61d7"
+  },
+  "consumer-minimal-clang-ts1_tsmlt.log": {
+    "bytes": 113,
+    "sha256": "d5efadaa0f981752db1c859e25fefbabb9504496d5ac7e286e708fb8ffceb40a"
+  },
+  "consumer-minimal-clang-tuv_5_4.log": {
+    "bytes": 113,
+    "sha256": "eb26b274567fe78205cafcb0b979bfb73bc10a0bacb53059e4f99daa8fb0bf74"
+  },
+  "consumer-minimal-gcc-ts1_tsmlt.log": {
+    "bytes": 113,
+    "sha256": "0accd6b9a70bc407a0adae3efce54c8683242cde47b6d12521987651d514ea37"
+  },
+  "consumer-minimal-gcc-tuv_5_4.log": {
+    "bytes": 113,
+    "sha256": "851b551f0b188014970f9144296ffb0a6882a8f3e25a000d1fbc2be404933820"
+  },
+  "consumer-selected-clang-ts1_tsmlt.log": {
+    "bytes": 109,
+    "sha256": "4c233bef882e9094784651ece79758d31e85088702cfeb509a63513c83e3162f"
+  },
+  "consumer-selected-clang-tuv_5_4.log": {
+    "bytes": 110,
+    "sha256": "c9e20262aa817dd86bf6e2b9d8ac74801d6a95aefd79c94a9e34e8b7197e1d40"
+  },
+  "consumer-selected-gcc-ts1_tsmlt.log": {
+    "bytes": 109,
+    "sha256": "718e19f1577bd99fc0c6e5c2391141a87655d991a8b8d599ef229f7d02a7a29d"
+  },
+  "consumer-selected-gcc-tuv_5_4.log": {
+    "bytes": 110,
+    "sha256": "57879a23cfb3f29160b828a461b2ae16c9895bb9cb1974f8cca53ae2008c0191"
+  },
+  "data-audit.log": {
+    "bytes": 67,
+    "sha256": "88f6c065071b3187202984de5f3ad77852255ad736bbe3f826d2f3d2521d0d56"
+  },
+  "dependencies-minimal-clang.log": {
+    "bytes": 140,
+    "sha256": "4d8940d1bb3068eeb61233eae4e99dba78ae4af926f6e0deec4fd07dfeed428f"
+  },
+  "dependencies-minimal-gcc.log": {
+    "bytes": 138,
+    "sha256": "a31168b5cf0348cf4079da707e6efcef170c3dff3370f12f0b34a84a0bfc7209"
+  },
+  "dependencies-selected-clang.log": {
+    "bytes": 141,
+    "sha256": "6fe184ea309d8b6b5cd631e9b6d92fe3e99563c0f49ffb06c121281c5e2070ff"
+  },
+  "dependencies-selected-gcc.log": {
+    "bytes": 139,
+    "sha256": "6ed6f28fdae1deb1c8511c60fff0a36eb048dff1f53f77e06845e5b5bc1a46cb"
+  },
+  "deploy-all.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "docker-start.log": {
+    "bytes": 96,
+    "sha256": "b26e7c77aee095d13e86d427e948370b5e70297ef0e3576e77458b7c722a5c80"
+  },
+  "docker-stop-force.log": {
+    "bytes": 36,
+    "sha256": "908bbeedd4c4f67f1a70a423aa0e6ba48115305118e3f22bd3b79638dfd51aac"
+  },
+  "docker-stop.log": {
+    "bytes": 310,
+    "sha256": "27c3a199e23e789a52cd3be8e4f0fca1a1d92110503d18fd58e88c8c3b42897b"
+  },
+  "fixture-audit.log": {
+    "bytes": 60,
+    "sha256": "209506c761331270caff393f558cc3c3660e11d458c6dd6bb55d4893ef2dc9c1"
+  },
+  "generated-model-audit.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "generated-profile-audit.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "generated-spectrum-audit.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "heldout/gate-clang-discrete.json": {
+    "bytes": 13497,
+    "sha256": "c78960748aafc6371bd637e3500a51420a0a46bfd0a2199da5433c4984bb38cb"
+  },
+  "heldout/gate-clang-host-ts1_tsmlt.json": {
+    "bytes": 17414,
+    "sha256": "2362690d6374b84f4fc9282499113efada365ab1be5235fd72b663ababbfa271"
+  },
+  "heldout/gate-clang-host-tuv_5_4.json": {
+    "bytes": 22118,
+    "sha256": "0633c995e761b7b9d16364f24a95f79d8766ed63470d351258a4aa69da92d0a5"
+  },
+  "heldout/gate-clang-odd-layer.json": {
+    "bytes": 14945,
+    "sha256": "4558ee6cc1e77c9a49ee14826f35146cf873ffba684b0365ecb48d3e5b1a614b"
+  },
+  "heldout/gate-clang-odd-level.json": {
+    "bytes": 16294,
+    "sha256": "657cc805e7a0893fad9b59ad414b3bf66dc3ac71ebf6c6cf4ecec0ec36df23bb"
+  },
+  "heldout/gate-clang-one-layer.json": {
+    "bytes": 16297,
+    "sha256": "714ff0d9be5e86c20b5f554c8c402a9df4a5dd9ba54c650380b4a7bf2660af40"
+  },
+  "heldout/gate-clang-reordered.json": {
+    "bytes": 21604,
+    "sha256": "fe7bdbcd0375c420066aac01bfdf1cea2159fb779727f2d608a246441bd782f9"
+  },
+  "heldout/gate-clang-two-layer.json": {
+    "bytes": 13977,
+    "sha256": "4513e0b136856ad033057450263082a402db1243bbcec77a86df875704af5cb2"
+  },
+  "heldout/gate-gcc-discrete.json": {
+    "bytes": 13479,
+    "sha256": "c1c97c61910aa177cb9c589d344d3cb90580ea6884195b66c5225dba5b6bcce9"
+  },
+  "heldout/gate-gcc-host-ts1_tsmlt.json": {
+    "bytes": 17411,
+    "sha256": "dc34602a26588e4762c0b04243d0316b4a7d0db7f8aac54dafe3ec8a4b006149"
+  },
+  "heldout/gate-gcc-host-tuv_5_4.json": {
+    "bytes": 22112,
+    "sha256": "ad90c7dfe5995af37490d27eeda4c8bd03e05f68a8e5c411908c46ffad3ca241"
+  },
+  "heldout/gate-gcc-odd-layer.json": {
+    "bytes": 14927,
+    "sha256": "7369e9e379c946b96703cf81919b52b02c08c666b6afffdd67d64802f04607dd"
+  },
+  "heldout/gate-gcc-odd-level.json": {
+    "bytes": 16276,
+    "sha256": "6b0a3c19c1e911240eccd701ae99518a5aa4e25316f00b315bcf536f8522bc7c"
+  },
+  "heldout/gate-gcc-one-layer.json": {
+    "bytes": 16279,
+    "sha256": "cadb06d4e27f9ce9d81fbf04305c7ab4bbca6c2060737f88f2763bc1ba4a7bd5"
+  },
+  "heldout/gate-gcc-reordered.json": {
+    "bytes": 21588,
+    "sha256": "75124b2bed742fc7d99f4bf5457346ca7f8a9e21646d8098b6c4c435dbfd181c"
+  },
+  "heldout/gate-gcc-two-layer.json": {
+    "bytes": 13961,
+    "sha256": "e6d91a774fe4f6fc10fe8eccfbda9001b92f2e67cf9946d707d1e2d434d95c50"
+  },
+  "heldout/host-build.json": {
+    "bytes": 1625,
+    "sha256": "10ebd1dec2c3ea7828d75e92c32533441f1bd194369307ffc7613cd9d8ddd781"
+  },
+  "heldout/host-build.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "heldout/host-initial.json": {
+    "bytes": 22075,
+    "sha256": "57edeb8a77180ea058a6de5178bd029fcd20f59c3a739afb8eec7fbbfb844792"
+  },
+  "heldout/results.json": {
+    "bytes": 136642,
+    "sha256": "a7f739d1111f4e92193aff2c6a13017087daca31cc935dd0fc04d4ad70e2fd29"
+  },
+  "heldout/run.log": {
+    "bytes": 1563,
+    "sha256": "6c86a33bf90710b99bc14c88b12b2620ce39067eb4a71e471fb25b6aa34d7032"
+  },
+  "install-minimal-clang.log": {
+    "bytes": 2204,
+    "sha256": "908d8fea4418712ff7b1b0424871b214aeea24ef108fef83addf9724016b5d7d"
+  },
+  "install-minimal-gcc.log": {
+    "bytes": 2168,
+    "sha256": "1dc7e15411c6c0be7fcb074d526439af4a0659593284875fa96e5c484b1589b3"
+  },
+  "install-selected-clang.log": {
+    "bytes": 2323,
+    "sha256": "35e842e5de52235bc63bf682b30278c8e78cadf02aac4c87734ae22647c794a1"
+  },
+  "install-selected-gcc.log": {
+    "bytes": 2285,
+    "sha256": "f5e8102ceadf5f18b4efd4de5c23d04b8bdb314a9407ae974aabc1f12367bb5d"
+  },
+  "provenance.json": {
+    "bytes": 6701,
+    "sha256": "f7782d1cbee2dadb6e89cb3c47c0a83c34eeb92570972ce63f99487387ebd8bb"
+  },
+  "reference-regeneration.json": {
+    "bytes": 868,
+    "sha256": "ebd706c93697488edb84b9b4fdcc69940754a55441716058ffef43926c4c99db"
+  },
+  "secondary-source.tar.gz": {
+    "bytes": 62306,
+    "sha256": "f7e9f4c915bfcc66c1e8f096844648c962738e87abe661a12cc06ba9bf80db75"
+  },
+  "summary.json": {
+    "bytes": 209,
+    "sha256": "0108ceb632dc30e6e350d7144faf4cbf0b1d09eece71063573434729e86913a5"
+  }
+}

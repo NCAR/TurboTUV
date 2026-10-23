@@ -159,3 +159,11 @@ endpoints, dense residuals, and seeded random samples. See
 [`docs/REAPER_MATH.md`](../../docs/REAPER_MATH.md) for the uniform error argument.
 The ordinary test suite checks exceptional arrays and rounding-mode fallback
 without requiring MPFR. The numerical library still depends only on C11/libm.
+
+The [R6 checkpoint](../../docs/evidence/reaper/r6/) repeats installed minimal
+and generated consumer checks, audits data and generated references, and
+screens eight untuned workloads per compiler against frozen main. Its archived
+host-radiation harness times formation/upload of six changing arrays on both
+sides. These secondary three-round screens identify regressions; they do not
+replace the four primary ten-round comparisons. ARM/macOS is verified;
+x86-64 Linux execution remains unverified.

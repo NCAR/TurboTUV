@@ -1,8 +1,9 @@
 # REAPER implementation plan for TurboTUV
 
-Status: R0 through R4 and a transfer/spectral follow-up implemented and validated;
-R5 grouping evaluated and rejected on measured throughput; R6 remains open. Fresh controls and
-measurement evidence are recorded in `docs/REAPER_RESULTS.md`.
+Status: R0 through R6 evaluated, with the selected transfer/spectral follow-up
+validated and R5 grouping rejected on measured throughput. The four-case 2x
+objective remains unmet; feasibility is unresolved. Cross-architecture execution
+is not demonstrated. Evidence is recorded in `docs/REAPER_RESULTS.md`.
 Prepared 2026-10-22 on branch `reaper`, based on `main` at
 `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`.
 
@@ -518,15 +519,15 @@ review itself has established neither a new speedup nor such a bound.
   identity checks, cache, lifecycle tests, and deployment documentation.
 - [x] R5: grouping assessment when the remaining profile justifies it, with
   throughput claims kept distinct from the primary objective.
-- [ ] R6: full validation of the selected implementation; portable build and
+- [x] R6: full validation of the selected implementation; portable build and
   installation checks; all primary timings and resource costs.
 - [ ] `docs/REAPER_RESULTS.md`: either a robust >=2x result (including larger
   gains), or a quantitative scope-limited infeasibility conclusion; explicitly
   mark unresolved feasibility if neither is established.
-- [ ] `docs/evidence/reaper/`: machine-readable timing/error summaries,
+- [x] `docs/evidence/reaper/`: machine-readable timing/error summaries,
   provenance, commands, and experiment ledger sufficient to reproduce the
   conclusion. Large disposable binaries remain build artifacts.
-- [ ] Update README, `docs/USAGE.md`, `docs/PERFORMANCE.md`, and API comments
+- [x] Update README, `docs/USAGE.md`, `docs/PERFORMANCE.md`, and API comments
   for the actual numerical contract, execution selection, preparation costs,
   portability, and measured performance. Preserve historical results as such.
 

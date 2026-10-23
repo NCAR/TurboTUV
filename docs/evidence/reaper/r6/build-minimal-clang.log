@@ -1,0 +1,50 @@
+[  2%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/api.c.o
+[  4%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/loader.c.o
+[  7%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/parser.c.o
+[  9%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/reader.c.o
+[ 11%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/scanner.c.o
+[ 11%] Built target turbotuv_yaml
+[ 19%] Building C object CMakeFiles/turbotuv.dir/src/data.c.o
+[ 19%] Building C object CMakeFiles/turbotuv.dir/src/numerics.c.o
+[ 19%] Building C object CMakeFiles/turbotuv.dir/src/geometry.c.o
+[ 21%] Building C object CMakeFiles/turbotuv.dir/src/radiation.c.o
+[ 23%] Building C object CMakeFiles/turbotuv.dir/src/spectra.c.o
+[ 26%] Building C object CMakeFiles/turbotuv.dir/src/yields.c.o
+[ 28%] Building C object CMakeFiles/turbotuv.dir/src/weights.c.o
+[ 30%] Building C object CMakeFiles/turbotuv.dir/src/temperature.c.o
+[ 33%] Building C object CMakeFiles/turbotuv.dir/src/rates.c.o
+[ 35%] Building C object CMakeFiles/turbotuv.dir/src/oxygen.c.o
+[ 38%] Building C object CMakeFiles/turbotuv.dir/src/linalg.c.o
+[ 40%] Building C object CMakeFiles/turbotuv.dir/src/discrete_eigen.c.o
+[ 42%] Building C object CMakeFiles/turbotuv.dir/src/discrete_quadrature.c.o
+[ 45%] Building C object CMakeFiles/turbotuv.dir/src/discrete.c.o
+[ 47%] Building C object CMakeFiles/turbotuv.dir/src/grid.c.o
+[ 50%] Building C object CMakeFiles/turbotuv.dir/src/profiles.c.o
+[ 52%] Building C object CMakeFiles/turbotuv.dir/src/tables.c.o
+[ 54%] Building C object CMakeFiles/turbotuv.dir/src/solar_flux.c.o
+[ 57%] Building C object CMakeFiles/turbotuv.dir/src/optics.c.o
+[ 59%] Building C object CMakeFiles/turbotuv.dir/src/config.c.o
+[ 61%] Building C object CMakeFiles/turbotuv.dir/src/profile_config.c.o
+[ 64%] Building C object CMakeFiles/turbotuv.dir/src/build.c.o
+[ 69%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_temperature.c.o
+[ 69%] Building C object CMakeFiles/turbotuv.dir/src/spectrum.c.o
+[ 71%] Building C object CMakeFiles/turbotuv.dir/src/model_build.c.o
+[ 73%] Building C object CMakeFiles/turbotuv.dir/src/model_run.c.o
+[ 76%] Building C object CMakeFiles/turbotuv.dir/src/model_host.c.o
+[ 78%] Building C object CMakeFiles/turbotuv.dir/src/decimal.c.o
+[ 80%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_plan.c.o
+[ 83%] Building C object CMakeFiles/turbotuv.dir/src/model_plan.c.o
+[ 85%] Building C object CMakeFiles/turbotuv.dir/src/radiation_block.c.o
+/Users/fillmore/NSF-NCAR/TurboTUV/src/model_plan.c:548:32: warning: use of bitwise '&' with boolean operands [-Wbitwise-instead-of-logical]
+  548 |                     flux_ok &= (isfinite(actinic[i]) != 0) & (isfinite(irradiance[i]) != 0);
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            &&
+/Users/fillmore/NSF-NCAR/TurboTUV/src/model_plan.c:548:32: note: cast one or both operands to int to silence this warning
+1 warning generated.
+[ 88%] Building C object CMakeFiles/turbotuv.dir/src/diagnostics.c.o
+[ 90%] Building C object CMakeFiles/turbotuv.dir/src/reaper_writer.c.o
+[ 92%] Building C object CMakeFiles/turbotuv.dir/src/reaper_descriptor.c.o
+[ 95%] Building C object CMakeFiles/turbotuv.dir/src/radiation_reaper.c.o
+[ 97%] Building C object CMakeFiles/turbotuv.dir/src/reaper_dispatch.c.o
+[100%] Linking C static library libturbotuv.a
+[100%] Built target turbotuv

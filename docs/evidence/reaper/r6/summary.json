@@ -1,0 +1,9 @@
+{
+  "cases": 16,
+  "samples": 96,
+  "compared": 278223000,
+  "maximum_epsilon": 11.27063836181855,
+  "all_gates_passed": true,
+  "minimum_sample_ms": 1310.371,
+  "minimum_paired_speedup": 1.0073937153419594
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "script": "generate_reference_spectra.py",
+    "stdout": "tests/generated/reference_spectra.F90\n"
+  },
+  {
+    "script": "generate_reference_yields.py",
+    "stdout": "tests/generated/reference_yields.F90\n"
+  },
+  {
+    "script": "generate_reference_discrete.py",
+    "stdout": "tests/generated/reference_discrete_helpers.F90\n"
+  },
+  {
+    "generated": "tests/generated/reference_discrete_helpers.F90",
+    "sha256": "6e5637c49c5e606ff88244a9f3d3a74e18678458f8ade8123e89ac667a1522ad",
+    "identical": true
+  },
+  {
+    "generated": "tests/generated/reference_spectra.F90",
+    "sha256": "76c5a6b39225a37212d6d55b8a582c096a1a7ed48f381fb7bdba280fab4b354d",
+    "identical": true
+  },
+  {
+    "generated": "tests/generated/reference_yields.F90",
+    "sha256": "891856258474acbb5a2e2e411239f94fbb673078875178594619dd6b8b69c34b",
+    "identical": true
+  }
+]

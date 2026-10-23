@@ -480,3 +480,63 @@ chunks, build commands/hashes, all numerical gates, concurrency/sanitizer tests,
 all 144 timing samples and resource logs. The selected single-column library
 and its 1.530–1.979x results remain unchanged. Additional transfer/spectral
 screens are recorded separately in the [further ledger](evidence/reaper/further/LEDGER.md).
+
+## R6: combined validation checkpoint
+
+The selected implementation remains `0872e28`; this phase changes no numerical
+source. Its two complete 50-test C/Fortran suites, 29 sanitizer tests, plain-C
+hint-disabled builds, independent math bounds/oracles, lifecycle/concurrency
+checks and primary ten-round timings are recorded in the follow-up evidence
+above. R6 adds installation, regeneration and untuned-workload verification
+of those same selected binaries. All primary timings, setup/RSS, workspace,
+artifact size and break-even results retain their stated measurement scope.
+
+Minimal and generated installed CMake consumers pass with GCC and Clang on
+both primary configurations, including destruction of the original
+configuration, cached selection, explicit detach and counter checks. All
+eight executions run with `PATH=/nonexistent`; the minimal build disables
+Python discovery, generation, tests, CLI and benchmark. Dynamic dependencies
+remain libSystem only. Scientific-data and fixture audits pass against pinned
+TUV-x `ebe5006`, as do all three case-catalogue regeneration checks. The three
+Fortran reference adapters regenerate byte for byte in an isolated directory.
+
+Six untuned shapes/rate lists and two changing host-radiation cases pass
+300-column gates per compiler with fresh seed 413117: 278,223,000 values,
+maximum difference 11.271 epsilon. Secondary performance screens use three
+alternating paired rounds, with adaptive repeats keeping all 96 samples above
+one second (observed 1.31–3.06 seconds). These screens investigate regressions;
+they do not replace the ten-round primary acceptance protocol.
+
+| Untuned case | GCC paired speedup | Clang paired speedup |
+| --- | ---: | ---: |
+| one layer | 1.136x | 1.007x |
+| two layers | 1.217x | 1.133x |
+| odd level count | 1.722x | 1.473x |
+| odd layer count | 1.815x | 1.560x |
+| discrete ordinate | 1.088x | 1.052x |
+| reordered rate list | 1.438x | 1.476x |
+| changing host radiation, TUV | 1.509x | 1.693x |
+| changing host radiation, TS1 | 2.136x | 2.018x |
+
+None exceeds the 5% regression threshold. The six altered descriptions use
+the REAPER interpreter and report `no-match` for the primary generated
+artifacts; the host cases attach matching rate artifacts and execute two
+generated families per column. Every timed column uses REAPER with zero
+generic fallbacks. Hashes are stable within each binary. The host harness
+adds formation and upload of all six changing radiation arrays to the timed
+interval on both sides; it is archived separately from the primary benchmark.
+Its greater-than-2x TS1 results do not establish the primary transfer workload's
+2x target.
+
+The available Docker Desktop Linux environment did not start within its
+45-second timeout. A force-stop restored its initial stopped state. No x86-64
+Linux execution or performance result is therefore demonstrated. Portable
+source and two ARM/macOS compiler builds are the verified portability scope.
+The [R6 evidence](evidence/reaper/r6/) includes commands, source/configuration
+archive, installed-consumer logs, regeneration records, all secondary samples,
+numerical gates, provenance and file hashes.
+
+The combined primary result remains 1.530/1.624x for TUV and 1.979/1.854x
+for TS1 (GCC/Clang), with lower confidence bounds below 2 in every case.
+**Not achieved; feasibility unresolved.** No bound rules out the remaining
+portable spectral and transfer transformations; optimization work continues.

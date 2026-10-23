@@ -363,6 +363,9 @@ The subsequent transfer-fusion and spectral-loop checkpoint reaches paired
 median gains of 1.530–1.979x across the four cases, with 95% lower bounds of
 1.526–1.975x. The additional 2x target remains unmet;
 failed candidates alone do not prove that the objective is impossible.
+R6 installed-package, regeneration and untuned-workload checks pass for the
+selected implementation. No regression above 5% appears in its secondary
+screens; x86-64 Linux execution remains unverified.
 
 The timing driver now requires numerical-gate evidence when hashes may differ.
 For historical Fortran hash-only timing commands above, `--ungated` explicitly

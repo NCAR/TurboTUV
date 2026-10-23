@@ -1,0 +1,2 @@
+✗ Failed to stop Docker Desktop
+stopping Docker Desktop: processes still running: /Applications/Docker.app/Contents/MacOS/com.docker.backend (1431) /Applications/Docker.app/Contents/MacOS/com.docker.backend (1432) /Applications/Docker.app/Contents/MacOS/com.docker.backend (1433): context deadline exceeded
