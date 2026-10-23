@@ -112,16 +112,16 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "docker-start.log": {
-    "bytes": 96,
-    "sha256": "b26e7c77aee095d13e86d427e948370b5e70297ef0e3576e77458b7c722a5c80"
+    "bytes": 95,
+    "sha256": "308c36b4bf472d562faf92473239bf167792c274c74df15daa5c2c70c7ee20bf"
   },
   "docker-stop-force.log": {
-    "bytes": 36,
-    "sha256": "908bbeedd4c4f67f1a70a423aa0e6ba48115305118e3f22bd3b79638dfd51aac"
+    "bytes": 35,
+    "sha256": "c31e0aaa2a273a83764a1cbdafab59d59204e9f50805534d87c1f585af469e6d"
   },
   "docker-stop.log": {
-    "bytes": 310,
-    "sha256": "27c3a199e23e789a52cd3be8e4f0fca1a1d92110503d18fd58e88c8c3b42897b"
+    "bytes": 309,
+    "sha256": "93baa3bef5ad633592bddf427f2acf265cb1f11fd25d3930bd0a5a6f8fb48e01"
   },
   "fixture-audit.log": {
     "bytes": 60,
