@@ -1,0 +1,174 @@
+{
+  "variants": [
+    {
+      "name": "small-cs",
+      "command": [
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "-std=c11",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-Isrc",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/tiny-variants/small-cs/spectrum_plan.c",
+        "-o",
+        "build/reaper/tiny-variants/small-cs/spectrum_plan.c.o"
+      ],
+      "source_sha256": "aa57f3cc9f8a4e3786c60004edd4638fe75172f9510ba4c863bc60fede0be293",
+      "math_sha256": "885671bea2399497cf17474ffbf8e9ce47a421123705dd9021c7ea55111fed7e",
+      "binary_sha256": "4f7073f7af6606f7287226c6d4c417e8b6b4d262118017541c52d46b10ed9942",
+      "gates": [
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-cs/turbotuv_bench:--reaper",
+            "--config",
+            "build/reaper/r3e-heldout-clang/one-layer.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-one-layer.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-one-layer.json"
+        },
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-cs/turbotuv_bench:--reaper",
+            "--config",
+            "build/reaper/r3e-heldout-clang/two-layer.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-two-layer.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-two-layer.json"
+        },
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-cs/turbotuv_bench:--reaper",
+            "--config",
+            "examples/tuv_5_4.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-tuv_5_4.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-tuv_5_4.json"
+        },
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-cs/turbotuv_bench:--reaper",
+            "--config",
+            "examples/ts1_tsmlt.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-ts1_tsmlt.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-cs-ts1_tsmlt.json"
+        }
+      ]
+    },
+    {
+      "name": "small-oclo",
+      "command": [
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "-std=c11",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-Isrc",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/tiny-variants/small-oclo/spectrum_plan.c",
+        "-o",
+        "build/reaper/tiny-variants/small-oclo/spectrum_plan.c.o"
+      ],
+      "source_sha256": "8c2ff86295f39e2d444eafc91420f61458a343dc95973a5e4c70a1afdfbb0832",
+      "math_sha256": "885671bea2399497cf17474ffbf8e9ce47a421123705dd9021c7ea55111fed7e",
+      "binary_sha256": "a14fd9ba6a5bcc1b807ed7b407a49886766c13f552d5d00bf0063eb21d694620",
+      "gates": [
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-oclo/turbotuv_bench:--reaper",
+            "--config",
+            "build/reaper/r3e-heldout-clang/one-layer.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-one-layer.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-one-layer.json"
+        },
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-oclo/turbotuv_bench:--reaper",
+            "--config",
+            "build/reaper/r3e-heldout-clang/two-layer.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-two-layer.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-two-layer.json"
+        },
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-oclo/turbotuv_bench:--reaper",
+            "--config",
+            "examples/tuv_5_4.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-tuv_5_4.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-tuv_5_4.json"
+        },
+        {
+          "command": [
+            "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+            "tools/reaper/compare.py",
+            "build/reaper/main-clang/turbotuv_bench",
+            "build/reaper/tiny-variants/small-oclo/turbotuv_bench:--reaper",
+            "--config",
+            "examples/ts1_tsmlt.json",
+            "--columns",
+            "48",
+            "--json",
+            "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-ts1_tsmlt.json"
+          ],
+          "file": "docs/evidence/reaper/spectral-next/tiny-variants/small-oclo-ts1_tsmlt.json"
+        }
+      ]
+    }
+  ],
+  "base": "r3e-selected-clang",
+  "scope": "Private shape-based prototypes for tiny-Clang regression; no production selection."
+}

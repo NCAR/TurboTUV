@@ -1,0 +1,314 @@
+[  1%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/api.c.o
+[  1%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/parser.c.o
+[  2%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/loader.c.o
+[  3%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/generated/reference_discrete_helpers.F90.o
+[  4%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/generated/reference_spectra.F90.o
+[  5%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/reader.c.o
+[  5%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/scanner.c.o
+[  5%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_bridge.F90.o
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/generated/reference_spectra.F90:55:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/generated/reference_spectra.F90:56:17: portability: Reference to generic function 'profile_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      profiles => profile_warehouse_t()
+                  ^^^^^^^^^^^^^^^^^^^^^
+[  5%] Built target turbotuv_yaml
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_bridge.F90:63:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_bridge.F90:110:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_bridge.F90:111:17: portability: Reference to generic function 'profile_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      profiles => profile_warehouse_t()
+                  ^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_bridge.F90:112:18: portability: Reference to generic function 'radiator_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      radiators => radiator_warehouse_t()
+                   ^^^^^^^^^^^^^^^^^^^^^^
+[  6%] Building C object CMakeFiles/turbotuv.dir/src/numerics.c.o
+[  6%] Building C object CMakeFiles/turbotuv.dir/src/geometry.c.o
+[  6%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_config.F90.o
+[  7%] Building C object CMakeFiles/turbotuv.dir/src/data.c.o
+[  7%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_discrete.F90.o
+[  7%] Building C object CMakeFiles/turbotuv.dir/src/radiation.c.o
+[  8%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_linalg.F90.o
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_discrete.F90:37:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_discrete.F90:38:17: portability: Reference to generic function 'profile_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      profiles => profile_warehouse_t()
+                  ^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_discrete.F90:39:18: portability: Reference to generic function 'radiator_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      radiators => radiator_warehouse_t()
+                   ^^^^^^^^^^^^^^^^^^^^^^
+[  9%] Building C object CMakeFiles/turbotuv.dir/src/spectra.c.o
+[ 10%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_model.F90.o
+[ 10%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_optics.F90.o
+[ 11%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_profiles.F90.o
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_optics.F90:19:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_optics.F90:20:17: portability: Reference to generic function 'profile_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      profiles => profile_warehouse_t()
+                  ^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_profiles.F90:60:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_profiles.F90:213:13: portability: Reference to generic function 'profile_updater_t' (resolving to specific 'updater_constructor') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      updater=profile_updater_t(p)
+              ^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_profiles.F90:238:13: portability: Reference to generic function 'grid_updater_t' (resolving to specific 'updater_constructor') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      updater=grid_updater_t(grid)
+              ^^^^^^^^^^^^^^^^^^^^
+[ 11%] Building C object CMakeFiles/turbotuv.dir/src/yields.c.o
+[ 12%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_spectrum.F90.o
+[ 13%] Building C object CMakeFiles/turbotuv.dir/src/weights.c.o
+[ 14%] Building C object CMakeFiles/turbotuv.dir/src/temperature.c.o
+[ 14%] Building C object CMakeFiles/turbotuv.dir/src/rates.c.o
+[ 15%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/generated/reference_yields.F90.o
+[ 16%] Building C object CMakeFiles/turbotuv.dir/src/oxygen.c.o
+[ 16%] Building C object CMakeFiles/turbotuv.dir/src/linalg.c.o
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_spectrum.F90:41:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_spectrum.F90:42:17: portability: Reference to generic function 'profile_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      profiles => profile_warehouse_t()
+                  ^^^^^^^^^^^^^^^^^^^^^
+[ 17%] Building C object CMakeFiles/turbotuv.dir/src/discrete_eigen.c.o
+[ 18%] Building C object CMakeFiles/turbotuv.dir/src/discrete_quadrature.c.o
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/generated/reference_yields.F90:30:14: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids => grid_warehouse_t()
+               ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/generated/reference_yields.F90:31:17: portability: Reference to generic function 'profile_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      profiles => profile_warehouse_t()
+                  ^^^^^^^^^^^^^^^^^^^^^
+[ 18%] Building C object CMakeFiles/turbotuv.dir/src/discrete.c.o
+[ 19%] Building C object CMakeFiles/turbotuv.dir/src/grid.c.o
+[ 19%] Building C object CMakeFiles/turbotuv.dir/src/profiles.c.o
+[ 20%] Building C object CMakeFiles/turbotuv.dir/src/tables.c.o
+[ 20%] Building C object CMakeFiles/turbotuv.dir/src/solar_flux.c.o
+[ 21%] Building C object CMakeFiles/turbotuv.dir/src/optics.c.o
+[ 22%] Building C object CMakeFiles/turbotuv.dir/src/config.c.o
+[ 22%] Building C object CMakeFiles/turbotuv.dir/src/profile_config.c.o
+[ 23%] Building C object CMakeFiles/turbotuv.dir/src/build.c.o
+[ 23%] Building C object CMakeFiles/turbotuv.dir/src/spectrum.c.o
+[ 23%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_model_host.F90.o
+[ 24%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_profile_config.F90.o
+[ 25%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_temperature.c.o
+[ 25%] Building C object CMakeFiles/turbotuv.dir/src/model_build.c.o
+[ 26%] Building C object CMakeFiles/turbotuv.dir/src/model_run.c.o
+[ 27%] Building C object CMakeFiles/turbotuv.dir/src/model_host.c.o
+[ 27%] Building C object CMakeFiles/turbotuv.dir/src/decimal.c.o
+[ 27%] Building C object CMakeFiles/turbotuv.dir/src/model_plan.c.o
+[ 28%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_plan.c.o
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_model_host.F90:39:19: portability: Reference to generic function 'grid_updater_t' (resolving to specific 'updater_constructor') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      height_update=grid_updater_t(height)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_model_host.F90:42:17: portability: Reference to generic function 'grid_updater_t' (resolving to specific 'updater_constructor') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      wave_update=grid_updater_t(wavelength)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_model_host.F90:44:12: portability: Reference to generic function 'grid_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      grids=>grid_warehouse_t()
+             ^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_model_host.F90:48:16: portability: Reference to generic function 'profile_updater_t' (resolving to specific 'updater_constructor') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      air_update=profile_updater_t(air_profile)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_model_host.F90:51:24: portability: Reference to generic function 'profile_updater_t' (resolving to specific 'updater_constructor') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      temperature_update=profile_updater_t(temperature_profile)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_model_host.F90:53:15: portability: Reference to generic function 'profile_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      profiles=>profile_warehouse_t()
+                ^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/reference_model_host.F90:57:16: portability: Reference to generic function 'radiator_warehouse_t' (resolving to specific 'constructor_empty') is ambiguous with a structure constructor of the same name [-Wambiguous-structure-constructor]
+      radiators=>radiator_warehouse_t()
+                 ^^^^^^^^^^^^^^^^^^^^^^
+/Users/fillmore/NSF-NCAR/TurboTUV/src/model_plan.c:548:32: warning: use of bitwise '&' with boolean operands [-Wbitwise-instead-of-logical]
+  548 |                     flux_ok &= (isfinite(actinic[i]) != 0) & (isfinite(irradiance[i]) != 0);
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            &&
+/Users/fillmore/NSF-NCAR/TurboTUV/src/model_plan.c:548:32: note: cast one or both operands to int to silence this warning
+[ 29%] Building C object CMakeFiles/turbotuv.dir/src/radiation_block.c.o
+1 warning generated.
+[ 30%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_rates.F90.o
+[ 30%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_temperature.F90.o
+[ 30%] Building C object CMakeFiles/turbotuv.dir/src/diagnostics.c.o
+[ 31%] Building C object CMakeFiles/turbotuv.dir/src/reaper_writer.c.o
+[ 32%] Building C object CMakeFiles/turbotuv.dir/src/reaper_descriptor.c.o
+[ 32%] Building C object CMakeFiles/turbotuv.dir/src/radiation_reaper.c.o
+[ 33%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-clang/kernel-0.c.o
+[ 33%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_oxygen.F90.o
+[ 33%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-clang/kernel-1.c.o
+[ 34%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-clang/registry.c.o
+[ 35%] Linking Fortran static library libreference_bridge.a
+[ 35%] Built target reference_bridge
+[ 36%] Building Fortran object tests/CMakeFiles/tuvx_bench.dir/__/bench/tuvx_bench.F90.o
+[ 37%] Linking Fortran executable tuvx_bench
+[ 37%] Built target tuvx_bench
+[ 37%] Linking C static library libturbotuv.a
+[ 37%] Built target turbotuv
+[ 37%] Building C object tests/CMakeFiles/test_numerics.dir/test_numerics.c.o
+[ 38%] Building C object CMakeFiles/turbotuv_reaper_export.dir/tools/reaper/export.c.o
+[ 39%] Building C object CMakeFiles/turbotuv_bench.dir/bench/turbotuv_bench.c.o
+[ 39%] Building C object CMakeFiles/turbotuv_cli.dir/app/main.c.o
+[ 39%] Linking C executable turbotuv_reaper_export
+[ 40%] Linking C executable test_numerics
+[ 41%] Building C object CMakeFiles/turbotuv_cli.dir/app/output.c.o
+[ 42%] Linking C executable turbotuv_bench
+[ 42%] Linking C executable turbotuv
+[ 42%] Built target turbotuv_reaper_export
+[ 42%] Built target test_numerics
+[ 42%] Building C object tests/CMakeFiles/dump_data.dir/dump_data.c.o
+[ 42%] Building C object tests/CMakeFiles/test_radiation_invariants.dir/test_radiation.c.o
+[ 42%] Built target turbotuv_bench
+[ 43%] Building C object tests/CMakeFiles/test_spectral_invariants.dir/test_spectra.c.o
+[ 44%] Linking C executable dump_data
+[ 44%] Built target turbotuv_cli
+[ 44%] Building C object tests/CMakeFiles/test_yield_invariants.dir/test_yields.c.o
+[ 45%] Linking C executable test_radiation_invariants
+[ 45%] Linking C executable test_spectral_invariants
+[ 45%] Built target dump_data
+[ 45%] Building C object tests/CMakeFiles/test_temperature_invariants.dir/test_temperature.c.o
+[ 46%] Linking C executable test_yield_invariants
+[ 46%] Built target test_radiation_invariants
+[ 46%] Building C object tests/CMakeFiles/test_rate_invariants.dir/test_rates.c.o
+[ 46%] Built target test_spectral_invariants
+[ 47%] Linking C executable test_temperature_invariants
+[ 48%] Building C object tests/CMakeFiles/test_oxygen_invariants.dir/test_oxygen.c.o
+[ 48%] Built target test_yield_invariants
+[ 48%] Building C object tests/CMakeFiles/test_linalg_invariants.dir/test_linalg.c.o
+[ 49%] Linking C executable test_rate_invariants
+[ 50%] Linking C executable test_oxygen_invariants
+[ 50%] Built target test_temperature_invariants
+[ 51%] Linking C executable test_linalg_invariants
+[ 52%] Building C object tests/CMakeFiles/test_discrete_helper_invariants.dir/test_discrete_helpers.c.o
+[ 52%] Built target test_rate_invariants
+[ 52%] Linking C executable test_discrete_helper_invariants
+[ 52%] Built target test_oxygen_invariants
+[ 53%] Building C object tests/CMakeFiles/test_discrete_invariants.dir/test_discrete.c.o
+[ 53%] Built target test_linalg_invariants
+[ 54%] Building C object tests/CMakeFiles/test_profile_invariants.dir/test_profiles.c.o
+[ 55%] Building C object tests/CMakeFiles/test_locale.dir/test_locale.c.o
+[ 55%] Linking C executable test_locale
+[ 55%] Built target test_discrete_helper_invariants
+[ 55%] Linking C executable test_profile_invariants
+[ 56%] Linking C executable test_discrete_invariants
+[ 56%] Building C object tests/CMakeFiles/test_fixtures.dir/fixtures.c.o
+[ 56%] Built target test_locale
+[ 56%] Built target test_profile_invariants
+[ 56%] Built target test_discrete_invariants
+[ 56%] Building C object tests/CMakeFiles/test_reaper_math.dir/test_reaper_math.c.o
+[ 56%] Building C object tests/CMakeFiles/test_reaper_interpolation.dir/test_reaper_interpolation.c.o
+[ 57%] Building C object tests/CMakeFiles/test_reaper_artifact.dir/test_reaper_artifact.c.o
+[ 58%] Linking C static library libtest_fixtures.a
+[ 59%] Linking C executable test_reaper_math
+[ 59%] Linking C executable test_reaper_artifact
+[ 59%] Built target test_fixtures
+[ 60%] Building C object tests/CMakeFiles/test_reaper_preparation.dir/test_reaper_preparation.c.o
+[ 60%] Built target test_reaper_math
+[ 60%] Built target test_reaper_artifact
+[ 60%] Building C object tests/CMakeFiles/test_model_invariants.dir/test_model.c.o
+[ 60%] Building C object tests/CMakeFiles/test_diagnostics.dir/test_diagnostics.c.o
+[ 61%] Linking C executable test_diagnostics
+[ 61%] Linking C executable test_reaper_preparation
+[ 62%] Linking C executable test_model_invariants
+[ 62%] Built target test_diagnostics
+[ 62%] Building C object tests/CMakeFiles/test_model_host_invariants.dir/test_model_host.c.o
+[ 62%] Built target test_reaper_preparation
+[ 62%] Built target test_model_invariants
+[ 63%] Building C object tests/CMakeFiles/test_reaper_host.dir/test_model_host.c.o
+[ 63%] Building C object tests/CMakeFiles/test_reaper_updates.dir/test_reaper_updates.c.o
+[ 64%] Linking C executable test_model_host_invariants
+[ 65%] Linking C executable test_reaper_updates
+[ 66%] Linking C executable test_reaper_host
+[ 67%] Linking C executable test_reaper_interpolation
+[ 67%] Built target test_model_host_invariants
+[ 67%] Built target test_reaper_updates
+[ 67%] Building C object tests/CMakeFiles/test_parallel.dir/test_parallel.c.o
+[ 67%] Building C object tests/CMakeFiles/test_reaper_parallel.dir/test_parallel.c.o
+[ 67%] Built target test_reaper_host
+[ 67%] Building C object tests/CMakeFiles/test_reference.dir/test_reference.c.o
+[ 67%] Built target test_reaper_interpolation
+[ 68%] Linking C executable test_parallel
+[ 69%] Building C object tests/CMakeFiles/test_radiation.dir/test_radiation.c.o
+[ 70%] Linking C executable test_reaper_parallel
+[ 71%] Linking Fortran executable test_reference
+[ 71%] Built target test_parallel
+[ 71%] Built target test_reaper_parallel
+[ 72%] Linking Fortran executable test_radiation
+[ 72%] Building C object tests/CMakeFiles/test_spectra.dir/test_spectra.c.o
+[ 72%] Building C object tests/CMakeFiles/test_yields.dir/test_yields.c.o
+[ 73%] Linking Fortran executable test_spectra
+[ 73%] Built target test_reference
+[ 74%] Building C object tests/CMakeFiles/test_temperature.dir/test_temperature.c.o
+[ 75%] Linking Fortran executable test_yields
+[ 75%] Built target test_radiation
+[ 75%] Building C object tests/CMakeFiles/test_rates.dir/test_rates.c.o
+[ 76%] Linking Fortran executable test_temperature
+[ 76%] Built target test_spectra
+[ 77%] Linking Fortran executable test_rates
+[ 78%] Building C object tests/CMakeFiles/test_oxygen.dir/test_oxygen.c.o
+[ 78%] Built target test_yields
+[ 78%] Building C object tests/CMakeFiles/test_linalg.dir/test_linalg.c.o
+[ 78%] Linking Fortran executable test_oxygen
+[ 78%] Built target test_temperature
+[ 79%] Building C object tests/CMakeFiles/test_discrete_helpers.dir/test_discrete_helpers.c.o
+[ 80%] Linking Fortran executable test_linalg
+[ 80%] Built target test_rates
+[ 81%] Building C object tests/CMakeFiles/test_discrete.dir/test_discrete.c.o
+[ 81%] Linking Fortran executable test_discrete_helpers
+[ 81%] Built target test_oxygen
+[ 82%] Building C object tests/CMakeFiles/test_profiles.dir/test_profiles.c.o
+[ 82%] Built target test_linalg
+[ 83%] Building C object tests/CMakeFiles/test_optics.dir/test_optics.c.o
+[ 83%] Linking Fortran executable test_discrete
+[ 83%] Built target test_discrete_helpers
+[ 83%] Building C object tests/CMakeFiles/test_config.dir/test_config.c.o
+[ 83%] Linking Fortran executable test_optics
+[ 83%] Linking Fortran executable test_profiles
+[ 84%] Linking Fortran executable test_config
+[ 84%] Built target test_discrete
+[ 85%] Building C object tests/CMakeFiles/test_spectrum.dir/test_spectrum.c.o
+[ 85%] Built target test_optics
+[ 85%] Built target test_profiles
+[ 85%] Linking Fortran executable test_spectrum
+[ 86%] Building C object tests/CMakeFiles/test_model.dir/test_model.c.o
+[ 86%] Building C object tests/CMakeFiles/test_profile_config.dir/test_profile_config.c.o
+[ 86%] Built target test_config
+[ 87%] Building C object tests/CMakeFiles/test_model_host.dir/test_model_host.c.o
+[ 88%] Linking Fortran executable test_profile_config
+[ 88%] Linking Fortran executable test_model
+[ 88%] Built target test_spectrum
+[ 89%] Linking Fortran executable test_model_host
+[ 90%] Building C object tests/CMakeFiles/test_reaper_reference_model.dir/test_model.c.o
+[ 90%] Built target test_profile_config
+[ 90%] Built target test_model
+[ 91%] Building C object tests/CMakeFiles/test_reaper_reference_model_host.dir/test_model_host.c.o
+[ 91%] Linking Fortran executable test_reaper_reference_model
+[ 92%] Building C object tests/CMakeFiles/test_reaper_reference_spectrum.dir/test_spectrum.c.o
+[ 92%] Built target test_model_host
+[ 92%] Building C object tests/CMakeFiles/dump_fixtures.dir/dump_data.c.o
+[ 93%] Linking Fortran executable test_reaper_reference_spectrum
+[ 93%] Linking Fortran executable test_reaper_reference_model_host
+[ 94%] Linking C executable dump_fixtures
+[ 94%] Built target test_reaper_reference_model
+[ 95%] Building C object tests/CMakeFiles/test_optics_invariants.dir/test_optics.c.o
+[ 95%] Built target dump_fixtures
+[ 95%] Linking C executable test_optics_invariants
+[ 95%] Built target test_reaper_reference_spectrum
+[ 95%] Building C object tests/CMakeFiles/test_config_invariants.dir/test_config.c.o
+[ 96%] Building C object tests/CMakeFiles/test_spectrum_invariants.dir/test_spectrum.c.o
+[ 96%] Built target test_reaper_reference_model_host
+[ 97%] Building C object tests/CMakeFiles/test_profile_config_invariants.dir/test_profile_config.c.o
+[ 98%] Linking C executable test_config_invariants
+[ 98%] Built target test_optics_invariants
+[ 98%] Linking C executable test_spectrum_invariants
+[ 98%] Linking C executable test_profile_config_invariants
+[ 98%] Building C object tests/CMakeFiles/test_prepared.dir/test_prepared.c.o
+[ 98%] Built target test_config_invariants
+[ 99%] Building C object tests/CMakeFiles/test_reaper.dir/test_reaper.c.o
+[ 99%] Built target test_spectrum_invariants
+[ 99%] Built target test_profile_config_invariants
+[100%] Linking C executable test_prepared
+[100%] Linking C executable test_reaper
+[100%] Built target test_prepared
+[100%] Built target test_reaper

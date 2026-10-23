@@ -151,11 +151,17 @@ to demonstrate that execution does not locate Python or a compiler. A separate
 test compiles a private model-plan allocation shim; no fault-injection state is
 present in the shipped library.
 
-`check_math_bounds.py` independently checks the spectral exponential's table
-constants and conservative error budget using Decimal arithmetic.
-`check_math.c` uses MPFR/GMP as development-only correctly rounded oracles;
-it checks every reduction boundary and neighboring binary64 inputs, domain
-endpoints, dense residuals, and seeded random samples. See
+`check_math_bounds.py` independently derives the spectral exponential's
+reduction and arithmetic error bounds using 120-digit Decimal arithmetic.
+It verifies the table, polynomial constants, exact-product bit budget and
+Sterbenz conditions. `check_math_table.c` uses MPFR exp2 with a 53-bit
+destination to verify each table entry without double rounding; pass its
+compiled executable to the Python checker's `--table-oracle` option.
+`check_math.c` compares against 200-bit MPFR/GMP computations at every integer
+and half-integer reduction boundary and neighboring binary64 inputs, domain
+endpoints, dense residuals, and seeded random samples. The boundary inventory
+follows the table size: the selected 2048-entry table requires about 121 million
+inputs for each of exp and pow10. These are development-only dependencies. See
 [`docs/REAPER_MATH.md`](../../docs/REAPER_MATH.md) for the uniform error argument.
 The ordinary test suite checks exceptional arrays and rounding-mode fallback
 without requiring MPFR. The numerical library still depends only on C11/libm.
@@ -180,6 +186,12 @@ timings; its archive retains all rejected prototypes and reproduction drivers.
 Subsequent [rate-layout screens](../../docs/evidence/reaper/rate-layout/)
 retain smaller and wavelength-aligned generated-kernel candidates; no new
 artifact recipe is selected. [Larger spectral-table screens](../../docs/evidence/reaper/math-table-followup/)
-remain unselected pending independent math validation. Their expanded stress
-tests exposed a mixed-bin conditioning omission, corrected and fully checked
-in the [mixed-bin checkpoint](../../docs/evidence/reaper/mixed-bin/).
+were initially withheld pending independent math validation. Their expanded
+stress tests exposed a mixed-bin conditioning omission, corrected and fully
+checked in the [mixed-bin checkpoint](../../docs/evidence/reaper/mixed-bin/).
+The [following spectral checkpoint](../../docs/evidence/reaper/spectral-next/)
+selects the 2048-entry cubic helper after completing its independent bound,
+expanded MPFR boundary inventory and full combined validation. It also reuses
+consecutive OCLO temperature brackets with unchanged interpolation arithmetic.
+Direct formulas below four active levels retain scalar evaluation after the
+combined tiny-column timing exposed batching overhead.

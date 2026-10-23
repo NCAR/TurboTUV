@@ -359,14 +359,17 @@ policy, full-value gates, paired timings and rejected experiments are in
 layout, fixed interpolation, shared O2 and memory-pass improvements. R2 adds
 optional statically generated rate kernels. R3 adds spectral reuse, bounded
 spectral exponentials, ordered O2 lanes, and transfer layout/role improvements.
-Transfer fusion, spectral-loop improvements and interpolation conditioning
-checks reach paired median gains of 1.546–1.992x across the four cases, with
-95% lower bounds of 1.543–1.987x. The four-case additional 2x target remains unmet;
-failed candidates alone do not prove that the objective is impossible.
-The latest checkpoint corrects mixed-bin interpolation and expands the stress
-test to 10,000 spectra. Full compiler, sanitizer, installed-package and untuned
-checks pass. No regression above 5% appears in its secondary screens;
-x86-64 Linux execution remains unverified.
+Transfer fusion, spectral reuse, bounded spectral math and interpolation
+conditioning checks reach paired median gains of 1.583–2.030x across the four cases,
+with 95% lower bounds of 1.580–2.025x. TS1/GCC clears the 2x lower-confidence
+requirement and completes the clarified one-case session goal. The other three
+cases are reserved for follow-on sessions.
+Failed candidates alone do not prove that the objective is impossible.
+The latest checkpoint selects OCLO bracket reuse and a 2048-entry cubic
+spectral helper after independent math validation. Scalar direct formulas
+below four active levels remove the tiny-Clang regression found during
+combination testing. Full compiler, sanitizer, installed-package and untuned
+checks pass; x86-64 Linux execution remains unverified.
 
 The timing driver now requires numerical-gate evidence when hashes may differ.
 For historical Fortran hash-only timing commands above, `--ungated` explicitly

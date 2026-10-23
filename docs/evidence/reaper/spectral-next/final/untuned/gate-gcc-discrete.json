@@ -1,0 +1,624 @@
+{
+  "schema": 1,
+  "policy": "reaper-roundoff-v1",
+  "epsilon_limit": 64,
+  "config": "build/reaper/r3f-heldout-gcc/discrete.json",
+  "config_sha256": "2b20f0cb8b43226e7a9aba49b3300a626fc366b14db17cf9d8aa1b5e018e50ba",
+  "columns": 300,
+  "seed": 413117,
+  "byteorder": "little",
+  "metadata": {
+    "format": "TurboTUV-1",
+    "altitude_km": [
+      0,
+      17.142857142857142,
+      34.285714285714285,
+      51.42857142857143,
+      68.57142857142857,
+      85.71428571428571,
+      102.85714285714286,
+      120
+    ],
+    "wavelength_nm": [
+      120.7,
+      121.65,
+      148.65,
+      176.2,
+      177.8,
+      179.39999999999998,
+      181,
+      182.65,
+      184.35,
+      186.05,
+      187.8,
+      189.6,
+      191.4,
+      193.25,
+      195.14999999999998,
+      197.05,
+      199,
+      201,
+      203.05,
+      205.14999999999998,
+      233.1909090909091,
+      287.17272727272723,
+      341.1545454545454,
+      395.1363636363636,
+      449.1181818181818,
+      503.09999999999997,
+      557.0818181818181,
+      611.0636363636363,
+      665.0454545454545,
+      719.0272727272727,
+      773.0090909090909
+    ],
+    "wavelength_edges_nm": [
+      120,
+      121.4,
+      121.9,
+      175.4,
+      177,
+      178.6,
+      180.2,
+      181.8,
+      183.5,
+      185.2,
+      186.9,
+      188.7,
+      190.5,
+      192.3,
+      194.2,
+      196.1,
+      198,
+      200,
+      202,
+      204.1,
+      206.2,
+      260.1818181818182,
+      314.16363636363633,
+      368.1454545454545,
+      422.1272727272727,
+      476.1090909090909,
+      530.090909090909,
+      584.0727272727272,
+      638.0545454545454,
+      692.0363636363636,
+      746.0181818181818,
+      800
+    ],
+    "photolysis_labels": [
+      "jno_i",
+      "jso",
+      "jsf6",
+      "jco2",
+      "jh2o_c",
+      "jhyac",
+      "jho2no2_b",
+      "jhocl",
+      "jhcfc22",
+      "jh2402",
+      "jclono2_b",
+      "jcl2o2",
+      "jch3cl",
+      "jch2br2",
+      "jcfc114",
+      "jcf3br",
+      "jbrono2_b",
+      "jbrcl",
+      "jacet",
+      "jch3cho",
+      "jch2o_a",
+      "jno3_a",
+      "jn2o5_a",
+      "jo3_b",
+      "jo2_a"
+    ],
+    "heating_labels": [
+      "jo3_b",
+      "jo2_a"
+    ],
+    "dose_labels": []
+  },
+  "sweep": false,
+  "reference": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-gcc/turbotuv_bench",
+      "build/reaper/r3f-heldout-gcc/discrete.json",
+      "--columns",
+      "300",
+      "--seed",
+      "413117"
+    ],
+    "binary_sha256": "7402c6d8435df75af901a1bd70b9d1fd54d36682089b27d7d4d5ed54a016c986",
+    "fields": {
+      "config": "build/reaper/r3f-heldout-gcc/discrete.json",
+      "columns": "300",
+      "levels": "8",
+      "wavelengths": "31",
+      "photolysis": "25",
+      "heating": "2",
+      "dose": "0",
+      "execution": "prepared",
+      "elapsed_ms": "42.762",
+      "per_column_us": "142.54",
+      "hash": "a6f579d9b0884e42"
+    },
+    "stdout": "config=build/reaper/r3f-heldout-gcc/discrete.json columns=300 levels=8 wavelengths=31 photolysis=25 heating=2 dose=0 execution=prepared\nelapsed_ms=42.762 per_column_us=142.54 hash=a6f579d9b0884e42\n",
+    "output_sha256": "3a58b570b3ae39de5602de1443695f5d90a729adbc5a8b35115fc7070b460d2e"
+  },
+  "candidate": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3f-selected-gcc/turbotuv_bench",
+      "build/reaper/r3f-heldout-gcc/discrete.json",
+      "--reaper",
+      "--columns",
+      "300",
+      "--seed",
+      "413117"
+    ],
+    "binary_sha256": "0ae38bdcbe5f0516bef5a8affa3993abaf625d16f902ed6a67f1602b2050b6bd",
+    "fields": {
+      "config": "build/reaper/r3f-heldout-gcc/discrete.json",
+      "columns": "300",
+      "levels": "8",
+      "wavelengths": "31",
+      "photolysis": "25",
+      "heating": "2",
+      "dose": "0",
+      "execution": "reaper",
+      "elapsed_ms": "39.108",
+      "per_column_us": "130.36",
+      "hash": "56c326816c662d85",
+      "reaper_selection": "no-match",
+      "reaper_capabilities": "0",
+      "reaper_optimizations": "1",
+      "reaper_preparation_failures": "0",
+      "reaper_workspace_bytes": "0",
+      "prepared_calls": "0",
+      "generic_calls": "0",
+      "prepared_declines": "0",
+      "reaper_calls": "300",
+      "reaper_declines": "0",
+      "generated_calls": "0",
+      "generated_declines": "0",
+      "profiling": "0",
+      "setup_ms": "15.244",
+      "preparation_ms": "1.155"
+    },
+    "stdout": "config=build/reaper/r3f-heldout-gcc/discrete.json columns=300 levels=8 wavelengths=31 photolysis=25 heating=2 dose=0 execution=reaper\nelapsed_ms=39.108 per_column_us=130.36 hash=56c326816c662d85\nreaper_selection=no-match reaper_capabilities=0 reaper_optimizations=1 reaper_preparation_failures=0 reaper_workspace_bytes=0\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=300 reaper_declines=0 generated_calls=0 generated_declines=0 profiling=0 setup_ms=15.244 preparation_ms=1.155\n",
+    "output_sha256": "0b78da5268ab4a8d616813437ae2dd8834cabe926103a4fea19c887369bf1c3c"
+  },
+  "fields": [
+    {
+      "field": "direct_flux",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_flux",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_flux",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "direct_irradiance",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_irradiance",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_irradiance",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "actinic_flux",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "spectral_irradiance",
+      "shape": [
+        300,
+        31,
+        8
+      ],
+      "compared": 74400,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "photolysis",
+      "shape": [
+        300,
+        25,
+        8
+      ],
+      "compared": 60000,
+      "failures": 0,
+      "absolute": {
+        "maximum": 1.3010426069826053e-18,
+        "column": 95,
+        "row": 13,
+        "level": 4,
+        "reference": 0.0020721123392029306,
+        "candidate": 0.002072112339202932
+      },
+      "relative": {
+        "maximum": 8.484655382176621e-16,
+        "column": 145,
+        "row": 13,
+        "level": 0,
+        "reference": 4.539795330834439e-19,
+        "candidate": 4.539795330834435e-19
+      },
+      "epsilon": {
+        "maximum": 3.8211490817537705,
+        "column": 145,
+        "row": 13,
+        "level": 0,
+        "reference": 4.539795330834439e-19,
+        "candidate": 4.539795330834435e-19
+      },
+      "ulp": {
+        "maximum": 6,
+        "column": 240,
+        "row": 13,
+        "level": 0,
+        "reference": 6.138316845349468e-21,
+        "candidate": 6.138316845349464e-21
+      }
+    },
+    {
+      "field": "heating",
+      "shape": [
+        300,
+        2,
+        8
+      ],
+      "compared": 4800,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 1.8609862322650505e-22,
+        "candidate": 1.8609862322650505e-22
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 1.8609862322650505e-22,
+        "candidate": 1.8609862322650505e-22
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 1.8609862322650505e-22,
+        "candidate": 1.8609862322650505e-22
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 1.8609862322650505e-22,
+        "candidate": 1.8609862322650505e-22
+      }
+    },
+    {
+      "field": "dose",
+      "shape": [
+        300,
+        0,
+        8
+      ],
+      "compared": 0,
+      "failures": 0
+    }
+  ],
+  "passed": true
+}

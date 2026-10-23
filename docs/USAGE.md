@@ -199,12 +199,16 @@ Parameterized conserving interpolation uses positive endpoint weights only
 within guarded domains. Sensitive partial bins replay libm and the ordered
 interpolator; this preserves the standalone roundoff contract when endpoint
 cancellation amplifies a small spectral error. Cached direct spectra copy
-contiguous temperature runs, and HCFC formulas traverse independent levels.
+contiguous temperature runs, HCFC formulas traverse independent levels, and
+OCLO reuses consecutive temperature brackets with the original interpolation
+order. Run metadata uses existing scratch and falls back to the scalar loop
+when integer endpoints cannot be represented safely. Direct formulas with
+fewer than four active levels use scalar evaluation to avoid batching overhead.
 
 `TURBOTUV_REAPER_SPECTRUM_EXP=OFF` disables the bounded spectral exp/pow10
-implementation. Its default-on implementation has an independent binary64
-error bound in [REAPER_MATH.md](REAPER_MATH.md), domain/rounding-mode guards,
-and ordinary libm fallback. Transfer exponentials always use libm.
+implementation. Its default-on 2048-entry cubic implementation has a uniform
+binary64 error bound below 3.16 epsilon in [REAPER_MATH.md](REAPER_MATH.md),
+domain/rounding-mode guards, and ordinary libm fallback. Transfer exponentials always use libm.
 `TURBOTUV_REAPER_MATH_HINTS=OFF` disables the optional compiler hints for
 independent spectral lanes; their arithmetic and numerical policy are unchanged.
 `TURBOTUV_REAPER_FIXED_CACHE`, `TURBOTUV_REAPER_DIRECT_CACHE` (0/off,

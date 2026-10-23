@@ -8,6 +8,7 @@ static mpfr_t mx, my, ln2, boundary;
 static double maximum, maximum_libm, worst;
 static size_t checked;
 static int base10;
+
 static uint64_t rng = UINT64_C(0x1a166c5103f71a1);
 static uint64_t random_bits(void) {
     rng ^= rng << 13;
@@ -59,9 +60,17 @@ int main(int argc, char **argv) {
         mpfr_log(mx, mx, MPFR_RNDN);
         mpfr_div(ln2, ln2, mx, MPFR_RNDN);
     }
-    mpfr_div_ui(ln2, ln2, 64, MPFR_RNDN);
+    mpfr_div_ui(ln2, ln2, TT_REAPER_EXP_TABLE_SIZE, MPFR_RNDN);
+    mpfr_set_d(mx, limit, MPFR_RNDN);
+    mpfr_div(mx, mx, ln2, MPFR_RNDN);
+    int maximum_k = (int)mpfr_get_si(mx, MPFR_RNDU) + 2;
     /* Every range-reduction switch and every integer multiple of ln(2). */
-    for (int k = -55400; k <= 55400; ++k) {
+    for (int k = -maximum_k; k <= maximum_k; ++k) {
+        if ((k + maximum_k) % 65536 == 0) {
+            fprintf(stderr, "boundary=%d/%d checked=%zu max_eps=%.9g\n", k + maximum_k,
+                    2 * maximum_k + 1, checked, maximum);
+            fflush(stderr);
+        }
         for (int half = 0; half < 2; ++half) {
             mpfr_mul_d(boundary, ln2, k + 0.5 * half, MPFR_RNDN);
             double x = mpfr_get_d(boundary, MPFR_RNDN);
@@ -79,13 +88,15 @@ int main(int argc, char **argv) {
         check(64, a);
     }
     /* Dense reduction residuals, independent of the two model inputs. */
+    double residual_limit = .5 * mpfr_get_d(ln2, MPFR_RNDU) + 1.e-12;
     for (size_t i = 0; i < 65536; i += 64) {
         for (size_t j = 0; j < 64; ++j)
-            a[j] = -0.00542 + 0.01084 * (double)(i + j) / 65535;
+            a[j] = -residual_limit + 2 * residual_limit * (double)(i + j) / 65535;
         check(64, a);
     }
-    printf("{\"checked\":%zu,\"max_eps_mpfr\":%.17g,\"max_eps_libm\":%.17g,\"worst\":\"%a\"}\n",
-           checked, maximum, maximum_libm, worst);
+    printf("{\"table\":%u,\"checked\":%zu,\"max_eps_mpfr\":%.17g,\"max_eps_libm\":%.17g,\"worst\":"
+           "\"%a\"}\n",
+           (unsigned)TT_REAPER_EXP_TABLE_SIZE, checked, maximum, maximum_libm, worst);
     mpfr_clears(mx, my, ln2, boundary, (mpfr_ptr)0);
     return 0;
 }

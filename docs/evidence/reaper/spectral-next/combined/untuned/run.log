@@ -1,0 +1,32 @@
+gated clang one-layer
+gated clang two-layer
+gated clang odd-level
+gated clang odd-layer
+gated clang discrete
+gated clang reordered
+gated clang host-tuv_5_4
+gated clang host-ts1_tsmlt
+gated gcc one-layer
+gated gcc two-layer
+gated gcc odd-level
+gated gcc odd-layer
+gated gcc discrete
+gated gcc reordered
+gated gcc host-tuv_5_4
+gated gcc host-ts1_tsmlt
+clang one-layer {'reference': 5.31, 'candidate': 5.92} 0.9076923076923077
+clang two-layer {'reference': 9.71, 'candidate': 8.71} 1.1148105625717566
+clang odd-level {'reference': 44.39, 'candidate': 29.59} 1.497803311929706
+clang odd-layer {'reference': 62.86, 'candidate': 40.98} 1.53466796875
+clang discrete {'reference': 141.81, 'candidate': 134.2} 1.0538002980625931
+clang reordered {'reference': 1076.3, 'candidate': 701.29} 1.5325147599897322
+clang host-tuv_5_4 {'reference': 723.68, 'candidate': 394.37} 1.8354934435792731
+clang host-ts1_tsmlt {'reference': 712.51, 'candidate': 347.11} 2.0526922301287773
+gcc one-layer {'reference': 5.9, 'candidate': 4.86} 1.215291750503018
+gcc two-layer {'reference': 11.52, 'candidate': 9.48} 1.2183544303797469
+gcc odd-level {'reference': 51.04, 'candidate': 29.4} 1.7418367346938777
+gcc odd-layer {'reference': 75.67, 'candidate': 41.54} 1.8225806451612903
+gcc discrete {'reference': 141.71, 'candidate': 129.47} 1.0945392755078398
+gcc reordered {'reference': 1078.44, 'candidate': 726.58} 1.48414644224677
+gcc host-tuv_5_4 {'reference': 712.62, 'candidate': 450.09} 1.5835296209057377
+gcc host-ts1_tsmlt {'reference': 851.22, 'candidate': 383.99} 2.2173765617256582

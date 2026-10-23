@@ -1,17 +1,20 @@
 # REAPER implementation plan for TurboTUV
 
-Status: R0 through R6 evaluated, with transfer/spectral improvements and a
-subsequent interpolation-conditioning fix validated. R5 grouping was rejected
-on measured throughput. Fresh primary gains are 1.546–1.992x. The four-case 2x
-objective remains unmet; feasibility is unresolved. Cross-architecture execution
-is not demonstrated. Evidence is recorded in `docs/REAPER_RESULTS.md`.
+Status: current session goal achieved. The user clarified on 2026-10-23 that
+one primary case above 2x completes this session. TS1/GCC reaches
+2.030x, with a 95% lower bound of 2.025x. R0 through R6 and the
+spectral follow-up are validated. Work on TUV/GCC, TUV/Clang and TS1/Clang
+is deferred to follow-on sessions. Cross-architecture execution is not yet
+demonstrated. See `docs/REAPER_RESULTS.md` and `docs/REAPER_HANDOFF.md`.
 Prepared 2026-10-22 on branch `reaper`, based on `main` at
 `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`.
 
 ## Objective and acceptance contract
 
 Achieve **at least another 2x speedup over the current prepared execution on
-`main`**, with no upper limit on the improvement. Agreement within
+`main` in at least one primary case**, with no upper limit on the improvement.
+The user clarified this session completion boundary on 2026-10-23; extending
+the result to the other three cases is follow-on work. Agreement within
 **double-precision roundoff is acceptable**; bit identity is useful for
 diagnosis but is not the new optimization target. Implement the numerical
 library and any emitted kernels in **portable C11 using standard libm**.
@@ -29,12 +32,12 @@ Use these initial operating points, matching the current performance study:
 | Execution | One thread, existing single-column host API, all currently returned fields and rates |
 | Toolchains | GCC and Clang, each compared with its own frozen-main build on the same machine |
 | Numerical result | Per-field roundoff gates below, all existing scientific and error-handling requirements |
-| Performance result | At least 2.0x for each of the four configuration/compiler combinations; report the minimum and every individual result |
+| Performance result | At least one of the four configuration/compiler combinations has a 95% lower speedup bound of at least 2.0x for this session; report all four, and retain the others as follow-on targets |
 | Portability | Standard C11 source and libm; no required assembly, ISA intrinsics, GPU, vendor math package, or embedded compiler |
 
-A gain on one configuration or compiler is valuable but is a scoped result,
-not completion of the four-case target. Batched columns and multiple threads
-are separate throughput experiments; they must not silently replace the
+A robust 2x gain on one configuration/compiler completes the clarified session
+goal. It remains a scoped result; the other three cases are follow-on targets.
+Batched columns and multiple threads are separate throughput experiments; they must not silently replace the
 single-column comparison. Hardware-specific compiler flags, if evaluated,
 must be applied to both sides of an additional comparison and must not become
 a requirement for building the library.
@@ -442,7 +445,8 @@ Record every sample, medians, ranges, paired speedup ratios, and a 95% lower
 confidence bound from independent timing rounds. Increase rounds if the
 decision is sensitive to noise; do not treat repeated columns inside one run
 as independent timing experiments. Require the lower bound to reach 2.0x
-for each primary case before declaring a robust 2x win.
+for each case claimed as a robust 2x win. One passing case completes the
+clarified session goal; a four-case claim still requires all four to pass.
 
 An initial timing invocation, after the new binary has passed the full-value
 roundoff comparison, can use the existing driver:
@@ -522,9 +526,9 @@ review itself has established neither a new speedup nor such a bound.
   throughput claims kept distinct from the primary objective.
 - [x] R6: full validation of the selected implementation; portable build and
   installation checks; all primary timings and resource costs.
-- [ ] `docs/REAPER_RESULTS.md`: either a robust >=2x result (including larger
-  gains), or a quantitative scope-limited infeasibility conclusion; explicitly
-  mark unresolved feasibility if neither is established.
+- [x] `docs/REAPER_RESULTS.md`: a robust >=2x result for TS1/GCC, satisfying
+  the clarified one-case session goal. The remaining three cases are recorded
+  for follow-on sessions; no infeasibility claim is made.
 - [x] `docs/evidence/reaper/`: machine-readable timing/error summaries,
   provenance, commands, and experiment ledger sufficient to reproduce the
   conclusion. Large disposable binaries remain build artifacts.
@@ -536,8 +540,10 @@ Suggested new implementation files are `src/reaper_plan.c`,
 `src/reaper_dispatch.c`, `src/reaper_internal.h`, `include/turbotuv_reaper.h`,
 `tools/reaper/`, and `tests/test_reaper.c`; add a separate optional loader
 adapter only after R2–R3 justify it. These are planned files, not existing
-deliverables. Keep the implementation on `reaper`; this planning change does
-not modify `main`, TurboMICM, or either wiki.
+deliverables. Keep the implementation on `reaper`; do not modify `main` or
+TurboMICM.
+The user explicitly authorized the TurboTUV wiki update during session closeout
+on 2026-10-23.
 
 ## Source map
 

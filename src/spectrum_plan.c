@@ -227,6 +227,9 @@ static int cs_prepare(tt_spectrum_plan *p, size_t w, double *c) {
 /* Level quantities shared by all wavelengths, then rows for each varying one. */
 static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp, double *z,
                         double *rows, int reaper) {
+    /* Below four levels, scalar formulas avoid array guards and lane/run setup
+     * that cost more than the work they save. Packed active levels count too. */
+    reaper = reaper && nz >= 4;
     const tt_spectral_table *t = p->s->tables;
     size_t nt = p->tables;
     switch (p->kind) {
@@ -336,6 +339,19 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
         break;
     default:
         break;
+    }
+    /* Reuse each consecutive OCLO temperature bracket without changing the
+     * scalar interpolation order. Scratch stores exact run endpoints. */
+    size_t oclo_runs = 0;
+    if (reaper && p->kind == TT_CS_OCLO && FLT_RADIX == 2 && DBL_MANT_DIG >= 53 && nz <= 0x1p52 &&
+        nz <= SIZE_MAX / 3) {
+        for (size_t begin = 0; begin < nz;) {
+            size_t end = begin + 1;
+            while (end < nz && z[end] == z[begin])
+                ++end;
+            z[2 * nz + oclo_runs++] = (double)end;
+            begin = end;
+        }
     }
     for (size_t k = 0; k < p->count; ++k) {
         size_t w = p->index[k];
@@ -519,6 +535,26 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
             break;
         }
         case TT_CS_OCLO:
+            if (oclo_runs) {
+                size_t begin = 0;
+                for (size_t r = 0; r < oclo_runs; ++r) {
+                    size_t end = (size_t)z[2 * nz + r];
+                    double tag = z[begin];
+                    if (tag < 0) {
+                        double value = parameter(t + (tag == -1 ? 0 : nt - 1), w, 0);
+                        for (size_t i = begin; i < end; ++i)
+                            out[i] = value;
+                    } else {
+                        size_t q = (size_t)tag;
+                        double base = parameter(t + q, w, 0);
+                        double difference = parameter(t + q + 1, w, 0) - base;
+                        for (size_t i = begin; i < end; ++i)
+                            out[i] = base + z[nz + i] * difference;
+                    }
+                    begin = end;
+                }
+                break;
+            }
             for (size_t i = 0; i < nz; ++i) {
                 if (z[i] == -1)
                     out[i] = parameter(t, w, 0);

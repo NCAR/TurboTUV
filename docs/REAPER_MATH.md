@@ -11,66 +11,86 @@ the implementation, round-to-nearest mode, and an entire input array inside
 `[-600,600]` for exp or `[-260,260]` for pow(10,x). Other arrays use libm. The
 bounded results are normal, finite, and positive; the ordinary libm path
 handles overflow, underflow, nonfinite inputs, and other rounding modes.
-The range-reduction integer also requires `INT_MAX >= 65535`; platforms with
-a narrower `int` use libm. Optional guarded Clang/GCC loop hints schedule
+The range-reduction integer requires `INT_MAX >= 1772784`; narrower integer
+implementations use libm. Optional guarded Clang/GCC loop hints schedule
 independent array elements without changing the arithmetic. Set
 `TURBOTUV_REAPER_MATH_HINTS=OFF` to build without these hints.
 
 ## Construction
 
-Let `h = log(2)/64`. Choose the integer `k` by rounding `x/h` (exp) or
-`x*log(10)/h` (pow10). The approximate reciprocal used for this choice need
-not choose the ideal integer at an exact boundary: either neighboring integer
-gives a residual in the proved interval. Split h into
-`0x1.62e42fee00000p-7 + 0x1.a39ef35793c76p-39`. The first component has 33
-significant bits, and `abs(k) <= 55400`, so its product with k is exact.
-The subtraction from x is exact by Sterbenz's lemma (or subtraction of zero).
-One FMA subtracts the low component.
+Let `N = 2048` and `h = log(2)/N`. Choose integer `k` by rounding `x/h` (exp)
+or `x*log(10)/h` (pow10). The rounded reciprocal need not select the ideal
+integer at a reduction boundary: either neighboring integer leaves the
+residual inside the proved interval. Split h into
+`H = 0x1.62e42fec00000p-12` and `L = 0x1.d1cf79abc9e3bp-43`.
+H has 31 significant bits. With `abs(k) <= K = 1772784`, the product `k*H`
+uses at most 52 significant bits and is exact.
 
-For pow10, first form `x*log(10)` as a compensated product. The split is
-`0x1.26bb1bbb00000p+1 + 0x1.554560b752b6bp-33`. An FMA recovers the rounding
-residual of the high product; another adds the low product. Subtract the
-same exact k-times-h-high product before adding the low correction. Simply
-computing exp(x*log(10)) would not provide the required bound.
+For exp, form `C = x - k*H` and `r = fma(-k,L,C)`. The subtraction is exact
+by Sterbenz's lemma, or it subtracts zero. For pow10, first compensate the
+product with the split logarithm
+`LH = 0x1.26bb1bbb00000p+1`, `LL = 0x1.554560b752b6bp-33`:
 
-On the residual r, evaluate the degree-five Taylor polynomial for exp with
-five explicit FMAs and correctly rounded hexadecimal coefficients. Multiply
-by the correctly rounded table entry `2^(j/64)`, where j is k modulo 64, and
-then by the exact normal power of two. A positive integer bias implements
-the quotient and remainder without right-shifting a negative signed integer.
-The table was generated with Python Decimal at 100 decimal digits; the
-independent oracle uses MPFR at 200 bits.
+```
+A = round(x*LH)
+a = fma(x,LH,-A)
+B = fma(x,LL,a)
+C = A - k*H
+D = round(C+B)
+r = fma(-k,L,D)
+```
+
+The FMA recovers the high-product error, with minimum-subnormal allowances
+included below. `C` is exact. Simply evaluating exp(x*log(10)) would not
+provide this bound.
+
+Evaluate the cubic Taylor polynomial with three explicit FMAs and correctly
+rounded hexadecimal coefficients. Multiply by the rounded table entry
+`2^(j/N)`, where j is k modulo N, and by an exact normal power of two. A
+positive integer bias `1024*N` implements the quotient and remainder without
+right-shifting a negative signed integer. The table occupies 16,384 bytes.
+It was generated with Decimal at 100 decimal digits; independent validation
+uses Decimal at 120 digits and an MPFR exp2 oracle with an exact `j/N` input
+and a 53-bit destination, avoiding double rounding of the table constants.
 
 ## Conservative bound
 
-Write `u = 2^-53`, `epsilon = 2u`, and `gamma_5 = 5u/(1-5u)`.
-The rounded reciprocal, multiplication and integer selection imply
-`abs(r_exact) <= log(2)/128 + 3u*55401*h < 0.00542`. This includes both
-choices at every reduction boundary. High-part products use at most 49
-significant bits. The split-constant errors and rounding of the small
-residual, including the compensated pow10 product, contribute less than
-`epsilon/8` in absolute residual error. Subnormal intermediate products
-near zero add at most a few minimum subnormals and satisfy the same bound.
+Write `u = 2^-53`, `epsilon = 2u`, and `gamma_3 = 3u/(1-3u)`.
+Rounded reciprocal multiplication and integer selection give
+`abs(r_exact) <= h*(1/2 + 4u*(K+1))`. Including residual roundoff, use
+`a = h/2 + 1e-12 < 0.000169226` for the polynomial interval.
 
-Using `a = 0.00542`, conservative relative-error contributions in epsilon
-units are:
+The independent checker verifies the Sterbenz ratios using the actual split
+constants. The limiting lower ratio is k=1: its argument is at most 1.5h,
+so selection error is bounded locally by 12u, rather than the full-domain K
+bound. For k>=2 the lower ratio is at least 0.75 with ample margin. The upper
+ratio remains below two. This applies to both signs and to the compensated
+pow10 high product.
+
+The checker separately bounds the split-constant errors, each rounding in
+`B`, `D` and the final FMA, and minimum-subnormal terms. Its bounds on absolute
+residual error are 1.888e-20 for exp and 3.774e-20 for pow10. It also verifies
+that these errors fit within the selected interval. The old 64-entry helper's
+looser reduction allowance is not reused as an assumption.
+
+Conservative relative-error contributions in epsilon units are:
 
 | Source | Bound |
 | --- | ---: |
-| Reduction, through exp | 0.126 |
-| Five Horner FMAs, `gamma_5*exp(2a)/epsilon` | 2.528 |
-| Rounded polynomial coefficients, `u*exp(2a)/epsilon` | 0.506 |
-| Taylor remainder, `exp(2a)*a^6/(720*epsilon)` | 0.161 |
+| Reduction, through exp | 0.000170 |
+| Three Horner FMAs, `gamma_3*exp(2a)/epsilon` | 1.501 |
+| Rounded polynomial coefficients, `u*exp(2a)/epsilon` | 0.501 |
+| Taylor remainder, `exp(2a)*a^4/(24*epsilon)` | 0.154 |
 | Rounded table value | 0.500 |
 | Product with the table value | 0.500 |
-| Final exact normal power-of-two scaling | 0 |
+| Exact normal power-of-two scaling | 0 |
 
-Their sum, including products of the small error terms, is below 5 epsilon
-relative to the exact real function. An 8-epsilon development gate leaves
-margin for comparison to a correctly rounded binary64 oracle. This argument
-is uniform on the stated domains; it is not based on the benchmark profiles.
-Comparison to a particular platform's libm is measured separately, since C11
-does not specify a universal libm error bound.
+Combining the terms multiplicatively, including their cross terms, gives
+3.154790 epsilon, below **3.16 epsilon** relative to the exact real function
+throughout the guarded domains. This is tighter than the preceding helper's
+5-epsilon bound. An 8-epsilon development gate retains margin for comparison
+with a rounded reference. C11 does not specify a universal libm error bound;
+comparison with the platform's libm is measured separately.
 
 ## Validation and integration
 
@@ -121,7 +141,7 @@ bins, large contrasts, signed Taylor data, ordinary and extreme exponentials,
 and injected optional-allocation failures. It independently reconstructs the
 generic output and verifies that the preserved prepared path is identical.
 The selected implementation compares 710,370 values with a maximum difference
-of 6.383 epsilon and exercises 527 optional-metadata allocation failures.
+of 6.818 epsilon and exercises 527 optional-metadata allocation failures.
 These are measured regression-test results, not a uniform bound on every
 possible interpolated spectrum.
 
@@ -131,8 +151,26 @@ the ordinary segments still use their positive weights and conditioning sum.
 Any nonzero unguarded segment forces ordered replay. Previously, one invalid
 geometry flag could send the entire bin through ordered interpolation without
 checking cancellation in its ordinary segments. Extending the stress test
-exposed a 33.307-epsilon failure at trial 1338. A separate 100,000-spectrum
-screen of the corrected implementation compares 7,135,407 values, with maximum
-9.162 epsilon and 5,264 injected allocation failures. Its evidence and the
-unselected larger-table experiments that exposed the issue are retained in
+exposed a 33.307-epsilon failure at trial 1338. At the preceding mixed-bin
+checkpoint, a separate 100,000-spectrum screen of the corrected 64-entry
+implementation compared 7,135,407 values, with maximum 9.162 epsilon and 5,264
+injected allocation failures. The 2048-entry prototype passed the same screen
+at 8.858 epsilon. Those diagnostic results are retained in
 [`evidence/reaper/math-table-followup`](evidence/reaper/math-table-followup/).
+
+The selected 2048-entry helper is independently checked against 200-bit MPFR
+computations at every integer and half-integer reduction boundary, their eight
+binary64 neighbors in each direction, domain endpoints, dense residuals and
+one million seeded random inputs. Per compiler, exp compares 121,614,882 inputs
+and pow10 compares 121,348,084 inputs. Both GCC and Clang stay below 1.995 epsilon
+against the rounded MPFR values and the platform libm. These are boundary and
+sample checks, not an exhaustive enumeration of all binary64 inputs. The
+uniform bound above supplies the separate full-domain argument.
+
+The initial oracle used an archived prototype header; preprocessing-token
+comparison under both compilers verifies that the selected header and current
+oracle source produce identical translation units after standard adjacent
+string concatenation. The only changes were formatting and the table-size
+macro. Independent MPFR exp2 checks with a 53-bit destination also verify all
+2,048 stored table entries. Commands, hashes, bound calculations and oracle
+reports are in [`evidence/reaper/spectral-next`](evidence/reaper/spectral-next/).

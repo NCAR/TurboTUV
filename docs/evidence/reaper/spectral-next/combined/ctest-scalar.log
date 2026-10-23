@@ -1,0 +1,33 @@
+UpdateCTestConfiguration  from :/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3e-scalar/DartConfiguration.tcl
+Parse Config file:/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3e-scalar/DartConfiguration.tcl
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3e-scalar
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 18
+    Start 18: reaper_execution
+
+18: Test command: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3e-scalar/tests/test_reaper
+18: Working Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3e-scalar/tests
+18: Test timeout computed to be: 1500
+18: REAPER: 912 spectra, 550 atmospheres, 26 models, 364 columns, 124035553 values; maximum 0 eps
+1/2 Test #18: reaper_execution ....................   Passed    2.70 sec
+test 20
+    Start 20: reaper_interpolation_conditioning
+
+20: Test command: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3e-scalar/tests/test_reaper_interpolation
+20: Working Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3e-scalar/tests
+20: Test timeout computed to be: 1500
+20: cases=10000 compared=710370 maximum_epsilon=0 allocation_failures=527
+2/2 Test #20: reaper_interpolation_conditioning ...   Passed    0.29 sec
+
+The following tests passed:
+	reaper_execution
+	reaper_interpolation_conditioning
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   2.99 sec

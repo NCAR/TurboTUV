@@ -1,8 +1,12 @@
 # REAPER results
 
-Implementation is in progress on `reaper`. No additional 2x result or
-impossibility conclusion has been established. The denominator is prepared
-`main` at `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`, not the older baseline.
+The clarified session goal is achieved on `reaper`: TS1/GCC reaches
+**2.030x**, with a **2.025x 95% lower confidence bound**, over prepared
+`main` at `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`. The user confirmed on
+2026-10-23 that one passing case completes this session. The other three cases
+are deferred to follow-on sessions; see [REAPER_HANDOFF.md](REAPER_HANDOFF.md).
+Earlier sections preserve the original four-case search history and its
+conclusions at each checkpoint. The final combined result is at the end.
 
 ## R0: controls and measurement
 
@@ -721,3 +725,95 @@ are archived; x86-64 execution remains unverified.
 The [mixed-bin checkpoint](evidence/reaper/mixed-bin/) records the full
 validation, reproduction commands, source archives and fresh timing samples.
 The four-case objective remains **not achieved; feasibility unresolved**.
+
+## OCLO run reuse and bounded spectral math
+
+The next selected combination reuses consecutive OCLO temperature brackets
+without changing their scalar interpolation arithmetic. Run endpoints occupy
+existing scratch; binary-radix, precision and size guards preserve exact
+integer representation. Direct formulas with fewer than four active levels
+use the scalar path, including short packed subsets of larger columns.
+
+The spectral exp/pow10 helper now uses a 2048-entry table and a cubic
+polynomial. Its independent uniform error bound is below 3.16 epsilon on the
+existing guarded domains. A 120-digit Decimal calculation derives reduction,
+Sterbenz, Horner, coefficient and table/product bounds from the actual constants.
+MPFR exp2 with an exact input and a 53-bit destination verifies all table
+entries. The expanded 200-bit MPFR comparisons cover 121,614,882 exp and
+121,348,084 pow10 inputs per compiler, including every reduction integer and
+half-integer boundary and eight neighboring doubles on each side. Maximum
+difference is below 1.995 epsilon against MPFR and the platform libm. Samples
+and the uniform bound are distinct evidence; see [REAPER_MATH.md](REAPER_MATH.md).
+
+The first combined build passes all numerical checks and clears 2x on
+TS1/GCC, but its secondary one-layer Clang case regresses. A six-round
+investigation compares nine implementation configurations and preserves every
+sample. The table alone is near the control; its combination with OCLO run
+construction increases overhead on the short column. Scalar direct formulas
+below four active levels restore a 1.019x paired gain. The final rebuild and
+measurements below include that general size rule. The pre-cutoff evidence
+remains separately archived in `spectral-next/combined/`.
+
+Both 51-test C/Fortran suites, all 30 sanitizer tests and both 30-test
+hint-disabled suites pass. The scalar parameterization fallback and all eight
+minimal/generated installed consumers pass, including execution with
+`PATH=/nonexistent` and only libSystem dynamically linked. The 10,000-spectrum
+stress test compares 710,370 values at maximum 6.818 epsilon, with 527 optional
+allocation failures. Four full primary gates compare 165,382,800 values at
+maximum 9.913 epsilon. Held-out generated/interpreted configurations and all
+16 untuned 300-column gates pass; the latter compare 278,223,000 values at
+maximum 11.271 epsilon. Prepared/generic controls and transfer libm are preserved.
+
+Final primary timings use ten rotating paired rounds, 300 changing columns
+and ten repeats. All 80 samples exceed one second; the shortest takes
+1.537 seconds. Every candidate sample executes 3,000 REAPER columns and
+6,000 generated families, without fallback, declines or preparation failure.
+Profiling is disabled; hashes are stable and match the gated binaries.
+
+| Configuration | Compiler | Main median | REAPER median | Paired speedup | Lower 95% |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | gcc | 1080.7 us | 682.1 us | 1.583x | 1.580x |
+| tuv_5_4 | clang | 1081.0 us | 635.9 us | 1.700x | 1.698x |
+| ts1_tsmlt | gcc | 1110.3 us | 546.8 us | 2.030x | 2.025x |
+| ts1_tsmlt | clang | 965.5 us | 513.7 us | 1.881x | 1.877x |
+
+TS1/GCC clears the 2x lower-confidence requirement and completes the clarified
+session goal. The remaining three cases are deferred to follow-on sessions.
+
+Separate instrumented profiles retain the following costs. These measurements
+are attribution evidence and do not bound all possible portable rewrites.
+
+| Stage (us/column) | TUV GCC | TUV Clang | TS1 GCC | TS1 Clang |
+| --- | ---: | ---: | ---: | ---: |
+| Transfer, total | 322.605 | 306.863 | 223.264 | 210.090 |
+| Mixing | 50.466 | 57.223 | 32.964 | 37.379 |
+| Ordered slant depths | 103.813 | 98.576 | 71.543 | 68.624 |
+| Coefficients and forward elimination | 127.558 | 104.144 | 91.722 | 72.665 |
+| Remaining solve | 9.583 | 12.086 | 6.726 | 8.428 |
+| Transfer output | 30.247 | 33.942 | 19.623 | 22.350 |
+| Direct spectra | 141.804 | 138.652 | 54.835 | 53.808 |
+| Quantum yields | 36.687 | 36.635 | 20.186 | 19.501 |
+| Parameterized spectra | 0.000 | 0.000 | 140.199 | 132.989 |
+| Oxygen depth | 26.059 | 26.677 | 26.333 | 26.679 |
+| Photolysis integration | 84.155 | 71.514 | 41.567 | 37.486 |
+| Heating | 0.000 | 0.000 | 3.082 | 2.491 |
+| Dose | 21.290 | 15.397 | 0.000 | 0.000 |
+
+The 96 secondary samples have a minimum paired speedup of 1.002x
+against frozen main. No case regresses by more than 5%.
+The four 48-column hint-disabled gates compare 26,461,248 values exactly.
+Ten-process median setup-plus-selection costs are 32.996, 29.117, 24.306, 22.048 ms
+for TUV GCC/Clang and TS1 GCC/Clang respectively.
+Separate resource probes report 15.122–19.431 MB peak RSS. The constant
+exponential table grows from 512 to 16,384 bytes; no new per-model allocation
+is required. Transfer workspace and version-2 rate artifacts are unchanged.
+The frozen control does not report startup components, so these startup
+measurements do not establish a fresh incremental break-even point.
+
+The [spectral checkpoint](evidence/reaper/spectral-next/) includes all source
+archives, rejected candidates, original and final validation, regression
+investigation, independent math checks, profiles, resources and timing samples.
+The clarified **one-case session goal is achieved**. Further optimization
+of TUV/GCC, TUV/Clang and TS1/Clang is deferred at the user's request; no
+impossibility claim is made. ARM/macOS execution is verified; x86-64 Linux
+remains unverified. See [the handoff](REAPER_HANDOFF.md) for resuming.

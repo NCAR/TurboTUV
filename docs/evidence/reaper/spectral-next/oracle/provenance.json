@@ -1,0 +1,95 @@
+{
+  "prototype_header_sha256": "d8788cb878aa1fc6f81dadaa274241030efdbdf7c5addc73c8858686c07f6c47",
+  "selected_header_sha256": "885671bea2399497cf17474ffbf8e9ce47a421123705dd9021c7ea55111fed7e",
+  "compilers": {
+    "gcc": {
+      "prototype": {
+        "command": [
+          "/opt/homebrew/bin/gcc-15",
+          "-std=c11",
+          "-O3",
+          "-ffp-contract=off",
+          "-isysroot",
+          "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+          "-I/opt/homebrew/include",
+          "-DREAPER_ORACLE_TABLE=2048",
+          "-Ibuild/reaper/math-table-followup-clang/table-2048-degree-3",
+          "-Isrc",
+          "-E",
+          "-P",
+          "build/reaper/check-expanded-math.c"
+        ],
+        "source_sha256": "67a29b669bd3c0f7a1554a6a480373d3b1dde51ae2e773ee71ab05d4acf4fa81",
+        "preprocessed_sha256": "814293a8e5c09998de5efd20e5af87e7b64a31fb51fe4211c8d3a88d3bc100c2",
+        "token_sha256": "14dcd6ab955c2200f5aeac7ab759a721ec3810093d2ba0d7c726692a4ae5fed1",
+        "tokens": 32562
+      },
+      "selected": {
+        "command": [
+          "/opt/homebrew/bin/gcc-15",
+          "-std=c11",
+          "-O3",
+          "-ffp-contract=off",
+          "-isysroot",
+          "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+          "-I/opt/homebrew/include",
+          "-Isrc",
+          "-E",
+          "-P",
+          "tools/reaper/check_math.c"
+        ],
+        "source_sha256": "df5958addaa1b1191fdc747884e94457c7908a7349bd9f198e2eabfc2a16eb58",
+        "preprocessed_sha256": "f293e96757b2a2bf3fc84b8f3fb23bb1e694635216fd34db272868bf1ae52039",
+        "token_sha256": "14dcd6ab955c2200f5aeac7ab759a721ec3810093d2ba0d7c726692a4ae5fed1",
+        "tokens": 32562
+      },
+      "equivalent_preprocessing_tokens": true,
+      "measured_oracle_binary_sha256": "c6e12c717ed2e38b8f5a42b860cc09dc5d5fb4bdf4fb1d1135248dabb5abf790"
+    },
+    "clang": {
+      "prototype": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/clang",
+          "-std=c11",
+          "-O3",
+          "-ffp-contract=off",
+          "-isysroot",
+          "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+          "-I/opt/homebrew/include",
+          "-DREAPER_ORACLE_TABLE=2048",
+          "-Ibuild/reaper/math-table-followup-clang/table-2048-degree-3",
+          "-Isrc",
+          "-E",
+          "-P",
+          "build/reaper/check-expanded-math.c"
+        ],
+        "source_sha256": "67a29b669bd3c0f7a1554a6a480373d3b1dde51ae2e773ee71ab05d4acf4fa81",
+        "preprocessed_sha256": "0438138814792d684adc8f1abaef7d744cc1c72ee2c7d56425918a7af4a1cc1a",
+        "token_sha256": "e3d20c57fe448fc080b471603a0eed7d1a575f159b02414f0849244242d7347a",
+        "tokens": 32914
+      },
+      "selected": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/clang",
+          "-std=c11",
+          "-O3",
+          "-ffp-contract=off",
+          "-isysroot",
+          "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+          "-I/opt/homebrew/include",
+          "-Isrc",
+          "-E",
+          "-P",
+          "tools/reaper/check_math.c"
+        ],
+        "source_sha256": "df5958addaa1b1191fdc747884e94457c7908a7349bd9f198e2eabfc2a16eb58",
+        "preprocessed_sha256": "3ca46320f0ed60dc72b6f71054e7611ff834bd12dfa75e107e508c6581471c10",
+        "token_sha256": "e3d20c57fe448fc080b471603a0eed7d1a575f159b02414f0849244242d7347a",
+        "tokens": 32914
+      },
+      "equivalent_preprocessing_tokens": true,
+      "measured_oracle_binary_sha256": "46d27095c6ae76cdaae3064c942be8c8c94f0e21c77685f3fa436fa5814aca8e"
+    }
+  },
+  "note": "C preprocessing tokens are compared after whitespace removal and standard adjacent-string concatenation. Inputs include complete headers and oracle source."
+}

@@ -1,0 +1,564 @@
+{
+  "scope": "Apple M5 ARM64 macOS; GCC 15.2 and Clang 21.1.5; single-column C11/libm; frozen main 9e149851af5bc48fc7ce64b5fbe50c6959ff2d51",
+  "status": "session goal achieved: at least one primary case has a 95% lower speedup bound >= 2; remaining cases deferred by user",
+  "primary_gates": {
+    "gates": 4,
+    "compared": 165382800,
+    "maximum_epsilon": 9.91203882746315,
+    "all_passed": true
+  },
+  "hint_disabled_gates": {
+    "gates": 4,
+    "compared": 26461248,
+    "maximum_epsilon": 0.0,
+    "all_passed": true
+  },
+  "untuned_gates": {
+    "gates": 16,
+    "compared": 278223000,
+    "maximum_epsilon": 11.27063836181855,
+    "all_passed": true
+  },
+  "primary": {
+    "samples": 80,
+    "minimum_sample_ms": 1537.176,
+    "results": [
+      {
+        "config": "tuv_5_4",
+        "program": "reaper-gcc",
+        "median_us": 682.075,
+        "range_us": [
+          681.3,
+          706.01
+        ],
+        "paired_ratios": [
+          1.5824275760909423,
+          1.5847846147085964,
+          1.5828546307151232,
+          1.5802005378858746,
+          1.5889482333607232,
+          1.5311256214501212,
+          1.5850399014200212,
+          1.5831351827388815,
+          1.591866983651786,
+          1.5591860918825962
+        ],
+        "median_paired_speedup": 1.5829949067270024,
+        "speedup_lower_95": 1.5802005378858746
+      },
+      {
+        "config": "tuv_5_4",
+        "program": "reaper-clang",
+        "median_us": 635.94,
+        "range_us": [
+          635.02,
+          637.53
+        ],
+        "paired_ratios": [
+          1.6985473105614448,
+          1.6971590017265734,
+          1.7027545437393876,
+          1.6917303879920702,
+          1.7006193215756549,
+          1.7915705927564194,
+          1.7005287009063446,
+          1.6987342967790684,
+          1.700292904160499,
+          1.6975496980372418
+        ],
+        "median_paired_speedup": 1.6995136004697837,
+        "speedup_lower_95": 1.6978531561440091
+      },
+      {
+        "config": "ts1_tsmlt",
+        "program": "reaper-gcc",
+        "median_us": 546.79,
+        "range_us": [
+          545.66,
+          590.67
+        ],
+        "paired_ratios": [
+          1.878375404202008,
+          2.029550719614746,
+          2.0403383809715634,
+          2.018644375795021,
+          2.025426667883545,
+          2.031735573491462,
+          2.1223940697355173,
+          2.0346186269838364,
+          2.029404777134085,
+          2.0310405449950557
+        ],
+        "median_paired_speedup": 2.0302956323049006,
+        "speedup_lower_95": 2.025426667883545
+      },
+      {
+        "config": "ts1_tsmlt",
+        "program": "reaper-clang",
+        "median_us": 513.725,
+        "range_us": [
+          512.39,
+          514.6
+        ],
+        "paired_ratios": [
+          1.8856786611856846,
+          1.8869597340229034,
+          1.889654367118169,
+          1.8817933723196882,
+          1.8871757840707275,
+          1.8810656888750195,
+          1.8748491807106993,
+          1.8728332685581033,
+          1.8800257004341816,
+          1.8740786838062269
+        ],
+        "median_paired_speedup": 1.8814295305973538,
+        "speedup_lower_95": 1.8770521921202041
+      }
+    ],
+    "candidate_dispatch_verified": true,
+    "current_binary_hashes_verified": true,
+    "stable_hashes": true
+  },
+  "secondary": {
+    "samples": 96,
+    "minimum_sample_ms": 1320.315,
+    "minimum_paired_speedup": 1.0018975332068312,
+    "results": [
+      {
+        "family": "clang",
+        "name": "one-layer",
+        "paired_speedup": 1.0018975332068312,
+        "median_us": {
+          "reference": 5.3,
+          "candidate": 5.27
+        }
+      },
+      {
+        "family": "clang",
+        "name": "two-layer",
+        "paired_speedup": 1.130635838150289,
+        "median_us": {
+          "reference": 9.98,
+          "candidate": 8.65
+        }
+      },
+      {
+        "family": "clang",
+        "name": "odd-level",
+        "paired_speedup": 1.5099695843190266,
+        "median_us": {
+          "reference": 44.64,
+          "candidate": 29.55
+        }
+      },
+      {
+        "family": "clang",
+        "name": "odd-layer",
+        "paired_speedup": 1.5325054784514243,
+        "median_us": {
+          "reference": 62.94,
+          "candidate": 41.07
+        }
+      },
+      {
+        "family": "clang",
+        "name": "discrete",
+        "paired_speedup": 1.0686340263805054,
+        "median_us": {
+          "reference": 143.4,
+          "candidate": 134.22
+        }
+      },
+      {
+        "family": "clang",
+        "name": "reordered",
+        "paired_speedup": 1.5314003491293056,
+        "median_us": {
+          "reference": 1080.27,
+          "candidate": 704.61
+        }
+      },
+      {
+        "family": "clang",
+        "name": "host-tuv_5_4",
+        "paired_speedup": 1.819663857063544,
+        "median_us": {
+          "reference": 720.47,
+          "candidate": 396.26
+        }
+      },
+      {
+        "family": "clang",
+        "name": "host-ts1_tsmlt",
+        "paired_speedup": 2.0559474650149117,
+        "median_us": {
+          "reference": 716.34,
+          "candidate": 347.99
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "one-layer",
+        "paired_speedup": 1.2941176470588236,
+        "median_us": {
+          "reference": 5.94,
+          "candidate": 4.65
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "two-layer",
+        "paired_speedup": 1.2391073326248672,
+        "median_us": {
+          "reference": 11.52,
+          "candidate": 9.34
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "odd-level",
+        "paired_speedup": 1.7588823732321492,
+        "median_us": {
+          "reference": 50.99,
+          "candidate": 28.99
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "odd-layer",
+        "paired_speedup": 1.8094326071343068,
+        "median_us": {
+          "reference": 75.45,
+          "candidate": 41.77
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "discrete",
+        "paired_speedup": 1.090930071543965,
+        "median_us": {
+          "reference": 141.81,
+          "candidate": 129.99
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "reordered",
+        "paired_speedup": 1.483031814486683,
+        "median_us": {
+          "reference": 1076.83,
+          "candidate": 726.68
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "host-tuv_5_4",
+        "paired_speedup": 1.5831276543704,
+        "median_us": {
+          "reference": 712.68,
+          "candidate": 450.2
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "host-ts1_tsmlt",
+        "paired_speedup": 2.22193034929387,
+        "median_us": {
+          "reference": 855.19,
+          "candidate": 384.61
+        }
+      }
+    ],
+    "regressions_above_five_percent": []
+  },
+  "tests": {
+    "gcc": 51,
+    "clang": 51,
+    "sanitize": 30,
+    "plain-gcc": 30,
+    "plain-clang": 30
+  },
+  "stress": {
+    "cases": 10000,
+    "compared": 710370,
+    "maximum_epsilon": 6.8172746094716485,
+    "allocation_failures": 527
+  },
+  "math_bounds": {
+    "gcc": {
+      "header_sha256": "885671bea2399497cf17474ffbf8e9ce47a421123705dd9021c7ea55111fed7e",
+      "decimal_precision": 120,
+      "table": 2048,
+      "degree": 3,
+      "k_bound": 1772784,
+      "high_significant_bits": 31,
+      "exact_product_bits_bound": 52,
+      "residual_bound": "0.000169225386878892897806941435902875138690307649990296692900556642942723052238694998927212726317485031138183955327287765072",
+      "exp_reduction_absolute": "1.88792720727330570381551308899538943852594485911679588390430852362677153265354929211631021833666696379434269498628293925E-20",
+      "pow10_reduction_absolute": "3.77307481482202051682850472849797537292468284945964630908767964812512244764235103406884590069869056538164498290898211571E-20",
+      "conservative_eps": {
+        "reduction": "0.00016992418330073454797888068759854712885475017939185059910670381691493169010125176009358699737909752860787670297608192",
+        "horner": "1.50050776208202498472359909840787548416428342888422820566641907704629652188938458651623853176354659306304872694152579177",
+        "coefficients": "0.500169254027341494984706423579569560848840768749227224300162451635321875635424775805820883462495557467870362356660249353",
+        "remainder": "0.153942162387586871725414402881466171921415708509188037231439369508432823058028095619924480516473017891405377155286034719",
+        "table_and_product_first_order": "1"
+      },
+      "sum_eps": "3.15478910268025462003344043179329646570842528077577760930078132044322127054733456406465368818485532531160053793761001472",
+      "construction_verified": true,
+      "table_entries_verified": 2048,
+      "note": "Uniform binary64 nearest-rounding bound. Derivation: docs/REAPER_MATH.md.",
+      "mpfr_table": {
+        "checked": 2048,
+        "destination_precision": 53,
+        "exact": true
+      },
+      "table_oracle_sha256": "2ab0685412d8922694040236628f7366d18f2f9d8d8754af524a4ecd19429c41"
+    },
+    "clang": {
+      "header_sha256": "885671bea2399497cf17474ffbf8e9ce47a421123705dd9021c7ea55111fed7e",
+      "decimal_precision": 120,
+      "table": 2048,
+      "degree": 3,
+      "k_bound": 1772784,
+      "high_significant_bits": 31,
+      "exact_product_bits_bound": 52,
+      "residual_bound": "0.000169225386878892897806941435902875138690307649990296692900556642942723052238694998927212726317485031138183955327287765072",
+      "exp_reduction_absolute": "1.88792720727330570381551308899538943852594485911679588390430852362677153265354929211631021833666696379434269498628293925E-20",
+      "pow10_reduction_absolute": "3.77307481482202051682850472849797537292468284945964630908767964812512244764235103406884590069869056538164498290898211571E-20",
+      "conservative_eps": {
+        "reduction": "0.00016992418330073454797888068759854712885475017939185059910670381691493169010125176009358699737909752860787670297608192",
+        "horner": "1.50050776208202498472359909840787548416428342888422820566641907704629652188938458651623853176354659306304872694152579177",
+        "coefficients": "0.500169254027341494984706423579569560848840768749227224300162451635321875635424775805820883462495557467870362356660249353",
+        "remainder": "0.153942162387586871725414402881466171921415708509188037231439369508432823058028095619924480516473017891405377155286034719",
+        "table_and_product_first_order": "1"
+      },
+      "sum_eps": "3.15478910268025462003344043179329646570842528077577760930078132044322127054733456406465368818485532531160053793761001472",
+      "construction_verified": true,
+      "table_entries_verified": 2048,
+      "note": "Uniform binary64 nearest-rounding bound. Derivation: docs/REAPER_MATH.md.",
+      "mpfr_table": {
+        "checked": 2048,
+        "destination_precision": 53,
+        "exact": true
+      },
+      "table_oracle_sha256": "85a29d82d29c92fb5311868eebb3d4e1d80b77ac080f3232f2630ac6699868d3"
+    }
+  },
+  "oracle": {
+    "gcc-exp": {
+      "table": 2048,
+      "checked": 121614882,
+      "max_eps_mpfr": 1.99492967635398,
+      "max_eps_libm": 1.99492967635398,
+      "worst": "0x1.23d0f4980745ep+9"
+    },
+    "gcc-pow10": {
+      "table": 2048,
+      "checked": 121348084,
+      "max_eps_mpfr": 1.9949296763532312,
+      "max_eps_libm": 1.9949296763532312,
+      "worst": "-0x1.4b217b7b2424ap+7"
+    },
+    "clang-exp": {
+      "table": 2048,
+      "checked": 121614882,
+      "max_eps_mpfr": 1.99492967635398,
+      "max_eps_libm": 1.99492967635398,
+      "worst": "0x1.23d0f4980745ep+9"
+    },
+    "clang-pow10": {
+      "table": 2048,
+      "checked": 121348084,
+      "max_eps_mpfr": 1.9949296763532312,
+      "max_eps_libm": 1.9949296763532312,
+      "worst": "-0x1.4b217b7b2424ap+7"
+    }
+  },
+  "oracle_source_correspondence": {
+    "prototype_header_sha256": "d8788cb878aa1fc6f81dadaa274241030efdbdf7c5addc73c8858686c07f6c47",
+    "selected_header_sha256": "885671bea2399497cf17474ffbf8e9ce47a421123705dd9021c7ea55111fed7e",
+    "compilers": {
+      "gcc": {
+        "prototype": {
+          "command": [
+            "/opt/homebrew/bin/gcc-15",
+            "-std=c11",
+            "-O3",
+            "-ffp-contract=off",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+            "-I/opt/homebrew/include",
+            "-DREAPER_ORACLE_TABLE=2048",
+            "-Ibuild/reaper/math-table-followup-clang/table-2048-degree-3",
+            "-Isrc",
+            "-E",
+            "-P",
+            "build/reaper/check-expanded-math.c"
+          ],
+          "source_sha256": "67a29b669bd3c0f7a1554a6a480373d3b1dde51ae2e773ee71ab05d4acf4fa81",
+          "preprocessed_sha256": "814293a8e5c09998de5efd20e5af87e7b64a31fb51fe4211c8d3a88d3bc100c2",
+          "token_sha256": "14dcd6ab955c2200f5aeac7ab759a721ec3810093d2ba0d7c726692a4ae5fed1",
+          "tokens": 32562
+        },
+        "selected": {
+          "command": [
+            "/opt/homebrew/bin/gcc-15",
+            "-std=c11",
+            "-O3",
+            "-ffp-contract=off",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+            "-I/opt/homebrew/include",
+            "-Isrc",
+            "-E",
+            "-P",
+            "tools/reaper/check_math.c"
+          ],
+          "source_sha256": "df5958addaa1b1191fdc747884e94457c7908a7349bd9f198e2eabfc2a16eb58",
+          "preprocessed_sha256": "f293e96757b2a2bf3fc84b8f3fb23bb1e694635216fd34db272868bf1ae52039",
+          "token_sha256": "14dcd6ab955c2200f5aeac7ab759a721ec3810093d2ba0d7c726692a4ae5fed1",
+          "tokens": 32562
+        },
+        "equivalent_preprocessing_tokens": true,
+        "measured_oracle_binary_sha256": "c6e12c717ed2e38b8f5a42b860cc09dc5d5fb4bdf4fb1d1135248dabb5abf790"
+      },
+      "clang": {
+        "prototype": {
+          "command": [
+            "/opt/homebrew/opt/llvm/bin/clang",
+            "-std=c11",
+            "-O3",
+            "-ffp-contract=off",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+            "-I/opt/homebrew/include",
+            "-DREAPER_ORACLE_TABLE=2048",
+            "-Ibuild/reaper/math-table-followup-clang/table-2048-degree-3",
+            "-Isrc",
+            "-E",
+            "-P",
+            "build/reaper/check-expanded-math.c"
+          ],
+          "source_sha256": "67a29b669bd3c0f7a1554a6a480373d3b1dde51ae2e773ee71ab05d4acf4fa81",
+          "preprocessed_sha256": "0438138814792d684adc8f1abaef7d744cc1c72ee2c7d56425918a7af4a1cc1a",
+          "token_sha256": "e3d20c57fe448fc080b471603a0eed7d1a575f159b02414f0849244242d7347a",
+          "tokens": 32914
+        },
+        "selected": {
+          "command": [
+            "/opt/homebrew/opt/llvm/bin/clang",
+            "-std=c11",
+            "-O3",
+            "-ffp-contract=off",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+            "-I/opt/homebrew/include",
+            "-Isrc",
+            "-E",
+            "-P",
+            "tools/reaper/check_math.c"
+          ],
+          "source_sha256": "df5958addaa1b1191fdc747884e94457c7908a7349bd9f198e2eabfc2a16eb58",
+          "preprocessed_sha256": "3ca46320f0ed60dc72b6f71054e7611ff834bd12dfa75e107e508c6581471c10",
+          "token_sha256": "e3d20c57fe448fc080b471603a0eed7d1a575f159b02414f0849244242d7347a",
+          "tokens": 32914
+        },
+        "equivalent_preprocessing_tokens": true,
+        "measured_oracle_binary_sha256": "46d27095c6ae76cdaae3064c942be8c8c94f0e21c77685f3fa436fa5814aca8e"
+      }
+    },
+    "note": "C preprocessing tokens are compared after whitespace removal and standard adjacent-string concatenation. Inputs include complete headers and oracle source."
+  },
+  "startup_medians_ms": [
+    {
+      "config": "tuv_5_4",
+      "program": "reaper-gcc",
+      "setup": 18.378500000000003,
+      "selection": 14.471,
+      "total": 32.9965
+    },
+    {
+      "config": "tuv_5_4",
+      "program": "reaper-clang",
+      "setup": 18.973999999999997,
+      "selection": 10.055,
+      "total": 29.1175
+    },
+    {
+      "config": "ts1_tsmlt",
+      "program": "reaper-gcc",
+      "setup": 17.737000000000002,
+      "selection": 6.5405,
+      "total": 24.305500000000002
+    },
+    {
+      "config": "ts1_tsmlt",
+      "program": "reaper-clang",
+      "setup": 17.5435,
+      "selection": 4.542,
+      "total": 22.048000000000002
+    }
+  ],
+  "cross_architecture_execution_verified": false,
+  "tiny_investigation": [
+    {
+      "name": "main",
+      "median_us": 5.3149999999999995,
+      "paired_speedup": 1.0
+    },
+    {
+      "name": "previous",
+      "median_us": 5.63,
+      "paired_speedup": 0.9466538942213143
+    },
+    {
+      "name": "selected",
+      "median_us": 6.38,
+      "paired_speedup": 0.8405058596647382
+    },
+    {
+      "name": "oclo",
+      "median_us": 5.63,
+      "paired_speedup": 0.9405636326922107
+    },
+    {
+      "name": "table-256",
+      "median_us": 5.51,
+      "paired_speedup": 0.9609848484848484
+    },
+    {
+      "name": "table-2048",
+      "median_us": 5.404999999999999,
+      "paired_speedup": 0.9815775472200052
+    },
+    {
+      "name": "oclo-2048",
+      "median_us": 5.96,
+      "paired_speedup": 0.9080006526705102
+    },
+    {
+      "name": "small-cs",
+      "median_us": 5.265,
+      "paired_speedup": 1.0192775146920416
+    },
+    {
+      "name": "small-oclo",
+      "median_us": 5.43,
+      "paired_speedup": 0.9815769481224224
+    }
+  ],
+  "initial_combined_summary": "combined/summary.json",
+  "completion_scope": {
+    "clarified_by_user": "2026-10-23",
+    "required_passing_cases": 1,
+    "passing_cases": [
+      {
+        "config": "ts1_tsmlt",
+        "program": "reaper-gcc",
+        "speedup_lower_95": 2.025426667883545
+      }
+    ],
+    "remaining_optimization": "follow-on sessions; no further optimization runs in this closeout"
+  }
+}

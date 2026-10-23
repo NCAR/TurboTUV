@@ -1,0 +1,7 @@
+round 0
+round 1
+round 2
+round 3
+round 4
+round 5
+[{'name': 'main', 'median_us': 5.3149999999999995, 'paired_speedup': 1.0}, {'name': 'previous', 'median_us': 5.63, 'paired_speedup': 0.9466538942213143}, {'name': 'selected', 'median_us': 6.38, 'paired_speedup': 0.8405058596647382}, {'name': 'oclo', 'median_us': 5.63, 'paired_speedup': 0.9405636326922107}, {'name': 'table-256', 'median_us': 5.51, 'paired_speedup': 0.9609848484848484}, {'name': 'table-2048', 'median_us': 5.404999999999999, 'paired_speedup': 0.9815775472200052}, {'name': 'oclo-2048', 'median_us': 5.96, 'paired_speedup': 0.9080006526705102}, {'name': 'small-cs', 'median_us': 5.265, 'paired_speedup': 1.0192775146920416}, {'name': 'small-oclo', 'median_us': 5.43, 'paired_speedup': 0.9815769481224224}]
