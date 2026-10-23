@@ -56,6 +56,7 @@ struct tt_model {
     double *optical_storage, *rate_storage;
     struct tt_model_plan *plan; /* prepared runs; NULL if unavailable */
     int generic;                /* TT_EXECUTION_GENERIC selected */
+    int reaper;                 /* opt-in portable optimizations */
     tt_diagnostics diagnostics;
 };
 size_t tt_model_grid_index(const tt_model *model, const char *name, const char *units);

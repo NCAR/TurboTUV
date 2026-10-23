@@ -42,3 +42,12 @@ are in `docs/evidence/reaper/baseline/commands.sh`; paths to compiler-matched
 NetCDF Fortran installations must be adjusted on another machine. The original
 reference uses C++ only in its upstream dependencies/tests, never in TurboTUV's
 numerical library.
+
+
+`overhead_sweep.py` builds R1's isolated tile/overlap/O2/flux experiments,
+then times them serially in rotating rounds. It records compile/link commands,
+object and binary sizes, hashes, per-column execution counts and every sample.
+`--combined-only` tests the selected tile with both flux-check implementations.
+Prototype archives replace exactly `model_plan.c.o` and `spectrum_plan.c.o`;
+final retained binaries are rebuilt and validated through CMake. No generated
+functions or different floating-point options are involved in this sweep.

@@ -76,7 +76,7 @@ static tt_status scale_profile(tt_model *m, profile_state *s, double factor) {
 }
 static int usage(void) {
     fputs("Usage: turbotuv_bench CONFIG [--columns N] [--repeat R] [--seed S] [--output FILE]\n"
-          "                      [--generic] [--sweep] [--detail]\n",
+          "                      [--generic | --reaper] [--sweep] [--detail]\n",
           stderr);
     return 2;
 }
@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
     const char *path = NULL, *output = NULL;
     long columns = 1000, repeat = 1;
     unsigned long long seed = 2026;
-    int generic = 0, sweep = 0, detail = 0;
+    int generic = 0, reaper = 0, sweep = 0, detail = 0;
     for (int i = 1; i < argc; ++i) {
         if (!strcmp(argv[i], "--columns") && i + 1 < argc)
             columns = strtol(argv[++i], NULL, 10);
@@ -96,6 +96,8 @@ int main(int argc, char **argv) {
             output = argv[++i];
         else if (!strcmp(argv[i], "--generic"))
             generic = 1;
+        else if (!strcmp(argv[i], "--reaper"))
+            reaper = 1;
         else if (!strcmp(argv[i], "--sweep"))
             sweep = 1;
         else if (!strcmp(argv[i], "--detail"))
@@ -105,7 +107,7 @@ int main(int argc, char **argv) {
         else
             path = argv[i];
     }
-    if (!path || columns < 1 || repeat < 1)
+    if (!path || columns < 1 || repeat < 1 || (generic && reaper))
         return usage();
     tt_config *config = NULL;
     tt_model *model = NULL;
@@ -118,8 +120,9 @@ int main(int argc, char **argv) {
     }
     tt_config_destroy(config);
     double setup_seconds = seconds() - setup_start;
-    tt_status execution =
-        tt_model_set_execution(model, generic ? TT_EXECUTION_GENERIC : TT_EXECUTION_PREPARED);
+    tt_status execution = tt_model_set_execution(model, generic  ? TT_EXECUTION_GENERIC
+                                                        : reaper ? TT_EXECUTION_REAPER
+                                                                 : TT_EXECUTION_PREPARED);
     tt_model_dimensions shape = tt_model_shape(model);
     size_t nz = shape.levels, nl = nz - 1, n = nz * shape.wavelengths;
     profile_state air, o2, o3;
@@ -234,6 +237,7 @@ int main(int argc, char **argv) {
            path, total, nz, shape.wavelengths, shape.photolysis, shape.heating, shape.dose,
            generic     ? "generic"
            : execution ? "generic (not prepared)"
+           : reaper    ? "reaper"
                        : "prepared");
     printf("elapsed_ms=%.3f per_column_us=%.2f hash=%016llx\n", 1e3 * elapsed,
            1e6 * elapsed / (double)total, (unsigned long long)digest);

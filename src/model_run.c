@@ -34,9 +34,11 @@ tt_status tt_model_set_radiation(tt_model *m, const tt_radiation *r) {
     return TT_OK;
 }
 tt_status tt_model_set_execution(tt_model *m, tt_execution execution) {
-    if (!m || (execution != TT_EXECUTION_PREPARED && execution != TT_EXECUTION_GENERIC))
+    if (!m || (execution != TT_EXECUTION_PREPARED && execution != TT_EXECUTION_GENERIC &&
+               execution != TT_EXECUTION_REAPER))
         return TT_INVALID;
     m->generic = execution == TT_EXECUTION_GENERIC;
+    m->reaper = execution == TT_EXECUTION_REAPER;
     return m->generic || m->plan ? TT_OK : TT_NOT_FOUND;
 }
 tt_status tt_model_run(tt_model *m, double zenith, double scale, const tt_model_result **out,
@@ -47,6 +49,14 @@ tt_status tt_model_run(tt_model *m, double zenith, double scale, const tt_model_
         return failure(error, TT_INVALID, "Invalid model run arguments");
     /* A prepared run gives the generic results; for inputs it does not
      * cover it declines, and the generic sequence decides. */
+    if (m->plan && m->reaper) {
+        if (tt_model_reaper_run(m->plan, m, zenith, scale)) {
+            ++m->diagnostics.reaper_calls;
+            *out = &m->result;
+            return TT_OK;
+        }
+        ++m->diagnostics.reaper_declines;
+    }
     if (m->plan && !m->generic) {
         if (tt_model_plan_run(m->plan, m, zenith, scale)) {
             ++m->diagnostics.prepared_calls;

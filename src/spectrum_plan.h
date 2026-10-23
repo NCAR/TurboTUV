@@ -33,6 +33,9 @@ size_t tt_spectrum_plan_scratch(const tt_spectrum_plan *plan, size_t levels);
 tt_status tt_spectrum_plan_evaluate(const tt_spectrum_plan *plan, size_t levels,
                                     const double *temperature, const double *air, double *scratch,
                                     double *rows);
+tt_status tt_spectrum_reaper_evaluate(const tt_spectrum_plan *plan, size_t levels,
+                                      const double *temperature, const double *air, double *scratch,
+                                      double *rows);
 /* True if the classification guard rejected this spectrum's classification;
  * every wavelength then uses the generic kernel. Tests require false. */
 /* Profiling category: direct cross section, yield, parameterized. */

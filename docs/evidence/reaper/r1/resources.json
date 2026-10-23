@@ -1,0 +1,54 @@
+[
+  {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "build/reaper/r1-gcc/turbotuv_bench",
+      "examples/tuv_5_4.json",
+      "--reaper",
+      "--columns",
+      "1"
+    ],
+    "stdout": "config=examples/tuv_5_4.json columns=1 levels=121 wavelengths=156 photolysis=109 heating=0 dose=28 execution=reaper\nelapsed_ms=1.008 per_column_us=1008.00 hash=25c2b106fdd1d5a2\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=1 reaper_declines=0 generated_calls=0 profiling=0 setup_ms=20.883\n",
+    "resource_report": "        0.02 real         0.02 user         0.00 sys\n            18251776  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                1285  page reclaims\n                   3  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                   5  involuntary context switches\n           539640884  instructions retired\n           101778186  cycles elapsed\n            12960128  peak memory footprint\n"
+  },
+  {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "build/reaper/r1-gcc/turbotuv_bench",
+      "examples/ts1_tsmlt.json",
+      "--reaper",
+      "--columns",
+      "1"
+    ],
+    "stdout": "config=examples/ts1_tsmlt.json columns=1 levels=121 wavelengths=102 photolysis=73 heating=4 dose=0 execution=reaper\nelapsed_ms=0.963 per_column_us=963.00 hash=6f2d25df8ed38bea\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=1 reaper_declines=0 generated_calls=0 profiling=0 setup_ms=17.653\n",
+    "resource_report": "        0.02 real         0.02 user         0.00 sys\n            14548992  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                1060  page reclaims\n                   3  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                   5  involuntary context switches\n           523509064  instructions retired\n            94386566  cycles elapsed\n             9175424  peak memory footprint\n"
+  },
+  {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "build/reaper/r1-clang/turbotuv_bench",
+      "examples/tuv_5_4.json",
+      "--reaper",
+      "--columns",
+      "1"
+    ],
+    "stdout": "config=examples/tuv_5_4.json columns=1 levels=121 wavelengths=156 photolysis=109 heating=0 dose=28 execution=reaper\nelapsed_ms=0.878 per_column_us=878.00 hash=25c2b106fdd1d5a2\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=1 reaper_declines=0 generated_calls=0 profiling=0 setup_ms=18.964\n",
+    "resource_report": "        0.02 real         0.02 user         0.00 sys\n            18137088  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                1279  page reclaims\n                   3  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                   6  involuntary context switches\n           602926304  instructions retired\n           101660839  cycles elapsed\n            12878208  peak memory footprint\n"
+  },
+  {
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "build/reaper/r1-clang/turbotuv_bench",
+      "examples/ts1_tsmlt.json",
+      "--reaper",
+      "--columns",
+      "1"
+    ],
+    "stdout": "config=examples/ts1_tsmlt.json columns=1 levels=121 wavelengths=102 photolysis=73 heating=4 dose=0 execution=reaper\nelapsed_ms=0.845 per_column_us=845.00 hash=c3bdce85d5f2ef19\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=1 reaper_declines=0 generated_calls=0 profiling=0 setup_ms=16.871\n",
+    "resource_report": "        0.02 real         0.01 user         0.00 sys\n            14647296  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                1065  page reclaims\n                   3  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                   7  involuntary context switches\n           538274005  instructions retired\n            91307291  cycles elapsed\n             9257344  peak memory footprint\n"
+  }
+]

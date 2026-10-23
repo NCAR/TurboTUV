@@ -34,6 +34,12 @@ int main(int argc, char **argv) {
     CHECK(tt_model_run(m, NAN, 1, &r, &e) == TT_INVALID);
     CHECK(tt_model_diagnostics(m, &d) == TT_OK);
     CHECK(d.prepared_declines == 1 && d.generic_calls == 1 && d.prepared_calls == 0);
+    CHECK(tt_model_set_execution(m, TT_EXECUTION_REAPER) == TT_OK);
+    CHECK(tt_model_set_execution(m, (tt_execution)99) == TT_INVALID);
+    CHECK(tt_model_reset_diagnostics(m) == TT_OK);
+    CHECK(tt_model_run(m, 30, 1, &r, &e) == TT_OK);
+    CHECK(tt_model_diagnostics(m, &d) == TT_OK);
+    CHECK(d.reaper_calls == 1 && !d.prepared_calls && !d.generic_calls && !d.generated_calls);
     tt_model_destroy(m);
     return 0;
 }

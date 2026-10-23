@@ -146,3 +146,31 @@ for ts1_tsmlt, and building it takes 2–4 ms longer.
 For additional scientific datasets, regenerate the catalogue with
 `tools/embed_data.py`, or provide immutable compiled arrays through
 `tt_data_source`. Model factories never open scientific input files.
+
+## Opt-in REAPER execution
+
+The `reaper` branch provides `tt_model_set_execution(model, TT_EXECUTION_REAPER)`
+for portable optimization experiments. Prepared execution remains the default,
+and `TT_EXECUTION_GENERIC` remains available. Existing selector values and
+their exact-result contract are unchanged. REAPER permits roundoff within the
+field-specific gates in [REAPER_RESULTS.md](REAPER_RESULTS.md); its R1 changes
+actually retain bit identity. Unsupported columns use the established
+prepared/generic fallback and error behavior.
+
+`turbotuv_bench CONFIG --reaper` selects this path. Include
+`turbotuv_diagnostics.h` to query/reset per-model execution counters with
+`tt_model_diagnostics` and `tt_model_reset_diagnostics`. Counters report actual
+executors, including declines; requesting a path is not proof it ran.
+`TURBOTUV_PROFILE=ON` enables development-only stage timers. Keep it off for
+normal execution and performance acceptance. `--detail` reports supplemental
+model-run-only and host-update timings. The primary benchmark still includes
+both profile updates and model execution, and excludes output hashing/writing.
+
+The R1 numerical library is ordinary C11/libm, with model-owned scratch and
+no runtime compiler, Python, loading service or additional runtime dependency.
+`TURBOTUV_REAPER_RATE_TILE` (0/full, 1, 2, 4, 8, 16, 32),
+`TURBOTUV_REAPER_OVERLAP`, `TURBOTUV_REAPER_OXYGEN`, and
+`TURBOTUV_REAPER_FLUX_CHECK` are reproducible experiment switches. The measured
+defaults use full levels for Clang and 16 for other compilers, and enable the
+three overhead optimizations. See the results for the tested hardware and
+limits; compiler-specific defaults are tuning choices, not portability claims.

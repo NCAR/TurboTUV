@@ -96,3 +96,10 @@ are recorded in the validation document.
 
 To cite TurboTUV, use DOI:
 [10.5281/zenodo.23585039](https://doi.org/10.5281/zenodo.23585039).
+
+On the `reaper` branch, `TT_EXECUTION_REAPER` and `turbotuv_bench --reaper`
+select further portable optimizations while preserving the prepared default.
+The new path allows the documented roundoff gates; its first overhead changes
+retain bit identity. Fresh controls, validation, individual timings and the
+remaining work toward a further 2x are recorded in
+[docs/REAPER_RESULTS.md](docs/REAPER_RESULTS.md).

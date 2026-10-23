@@ -348,3 +348,20 @@ present speedups:
   temperature range (most ts1 parameterizations fix T below 200–280 K);
 * threads: models are independent, so a host can run one per thread, as
   `tests/test_parallel.c` does.
+
+## REAPER continuation
+
+The tables above are historical results on the previously recorded machine.
+The new campaign uses prepared `main` at `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`
+as its denominator. Its fresh Apple M5/GCC 15/Clang 21 controls, numerical
+policy, full-value gates, paired timings and rejected experiments are in
+[REAPER_RESULTS.md](REAPER_RESULTS.md). R1 adds optional ordered-arithmetic
+layout, fixed interpolation, shared O2 and memory-pass improvements. It has
+not yet achieved the additional four-case 2x target. Generated rate and
+spectral/transfer experiments follow; failed candidates alone do not prove
+that the objective is impossible.
+
+The timing driver now requires numerical-gate evidence when hashes may differ.
+For historical Fortran hash-only timing commands above, `--ungated` explicitly
+marks an exploratory comparison; that option cannot establish REAPER's
+roundoff or speedup acceptance.

@@ -1,6 +1,6 @@
 # REAPER implementation plan for TurboTUV
 
-Status: R0 implemented and validated; R1 onward in progress. Fresh controls and
+Status: R0 and R1 implemented and validated; R2 onward in progress. Fresh controls and
 measurement evidence are recorded in `docs/REAPER_RESULTS.md`.
 Prepared 2026-10-22 on branch `reaper`, based on `main` at
 `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`.
@@ -507,7 +507,7 @@ review itself has established neither a new speedup nor such a bound.
 
 - [x] R0: pinned control builds, numerical policy/comparator, complete test
   inventory, fresh profiles, and timing/dispatch evidence.
-- [ ] R1: portable overhead/layout/interpolation/O2 experiments, with isolated
+- [x] R1: portable overhead/layout/interpolation/O2 experiments, with isolated
   and combined measurements.
 - [ ] R2–R3: generated-kernel and arithmetic experiments covering the measured
   hot stages; deterministic emitted C; held-out numerical validation.

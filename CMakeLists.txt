@@ -8,6 +8,10 @@ option(TURBOTUV_BUILD_CLI "Build the standalone POSIX runner" ON)
 option(TURBOTUV_NETCDF_OUTPUT "Enable NetCDF output in the standalone runner" OFF)
 option(TURBOTUV_BUILD_BENCHMARK "Build the column benchmark (not installed)" ON)
 option(TURBOTUV_PROFILE "Benchmark-only stage timers (do not use for acceptance timings)" OFF)
+set(TURBOTUV_REAPER_RATE_TILE "" CACHE STRING "Experimental REAPER level tile (0 means full levels)")
+option(TURBOTUV_REAPER_OVERLAP "REAPER fixed conserving-interpolation schedules" ON)
+option(TURBOTUV_REAPER_OXYGEN "REAPER combined O2 evaluation and reusable workspace" ON)
+option(TURBOTUV_REAPER_FLUX_CHECK "REAPER fused flux finiteness check" ON)
 set(TURBOTUV_REFERENCE_BUILD "" CACHE PATH "Configured and built TUV-x reference directory")
 set(TURBOTUV_REFERENCE_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../TUV-x" CACHE PATH "TUV-x reference checkout")
 set(TURBOTUV_REFERENCE_PREFIX "" CACHE PATH "Compiler-matched NetCDF Fortran installation")
@@ -25,6 +29,16 @@ target_compile_features(turbotuv PUBLIC c_std_11)
 if(TURBOTUV_PROFILE)
     target_compile_definitions(turbotuv PRIVATE TT_PROFILE)
 endif()
+if(NOT TURBOTUV_REAPER_RATE_TILE STREQUAL "")
+    if(NOT TURBOTUV_REAPER_RATE_TILE MATCHES "^(0|1|2|4|8|16|32)$")
+        message(FATAL_ERROR "REAPER rate tile must be 0, 1, 2, 4, 8, 16 or 32")
+    endif()
+    target_compile_definitions(turbotuv PRIVATE TT_REAPER_RATE_TILE=${TURBOTUV_REAPER_RATE_TILE})
+endif()
+target_compile_definitions(turbotuv PRIVATE
+    TT_REAPER_OVERLAP=$<BOOL:${TURBOTUV_REAPER_OVERLAP}>
+    TT_REAPER_OXYGEN=$<BOOL:${TURBOTUV_REAPER_OXYGEN}>
+    TT_REAPER_FLUX_CHECK=$<BOOL:${TURBOTUV_REAPER_FLUX_CHECK}>)
 set_target_properties(turbotuv PROPERTIES C_EXTENSIONS OFF POSITION_INDEPENDENT_CODE ON)
 target_include_directories(turbotuv PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

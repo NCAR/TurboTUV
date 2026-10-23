@@ -290,7 +290,19 @@ static void model_runs(void) {
             const tt_model_result *result = NULL;
             tt_error e1, e2;
             require(tt_model_set_execution(model, TT_EXECUTION_PREPARED) == TT_OK, "prepared");
+#ifdef TT_TEST_REAPER
+            require(tt_model_reset_diagnostics(model) == TT_OK, "reset counters");
+#endif
             tt_status a = tt_model_run(model, zenith, scale, &result, &e1);
+#ifdef TT_TEST_REAPER
+            if (col < 12 && !a) {
+                tt_diagnostics diagnostics;
+                require(tt_model_diagnostics(model, &diagnostics) == TT_OK, "counters");
+                require(diagnostics.reaper_calls == 1 && !diagnostics.prepared_calls &&
+                            !diagnostics.generic_calls,
+                        "ordinary column unexpectedly fell back");
+            }
+#endif
             size_t k = 0;
             if (!a) {
                 k = collect(model, result, prepared) - 3 * nl * s.wavelengths * 16;

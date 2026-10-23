@@ -17,6 +17,8 @@
 #include "model_plan.h"
 #include "spectrum_plan.h"
 #include "diagnostics_internal.h"
+#include "reaper_internal.h"
+#include "oxygen_internal.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -53,7 +55,7 @@ struct tt_model_plan {
     size_t *reaction_cross, *reaction_yield, *radiator_cross; /* evaluation indices */
     size_t integral_count;
     integral *integrals;
-    double *oxygen_cross, *scratch, *block, maximum_temperature;
+    double *oxygen_cross, *oxygen_work, *scratch, *block, maximum_temperature;
     unsigned char *gas_initialized;
     int needs_temperature, needs_air, oxygen_reactions;
 };
@@ -74,6 +76,7 @@ void tt_model_plan_destroy(tt_model_plan *p) {
     free(p->radiator_cross);
     free(p->integrals);
     free(p->oxygen_cross);
+    free(p->oxygen_work);
     free(p->scratch);
     free(p->block);
     free(p->gas_initialized);
@@ -245,6 +248,14 @@ tt_status tt_model_plan_create(const tt_model *m, tt_model_plan **out) {
                 dose->terms[dose->count++] =
                     (term){w, TERM_CONSTANT, m->doses[d].weights[w], 0, NULL, NULL};
     }
+    if (!status && (m->bands.lyman_alpha != SIZE_MAX || m->bands.schumann_runge != SIZE_MAX)) {
+        if (nz > SIZE_MAX / 20 / sizeof(double))
+            status = TT_MEMORY;
+        else
+            p->oxygen_work = malloc(20 * nz * sizeof(double));
+        if (!p->oxygen_work)
+            status = TT_MEMORY;
+    }
     if (!status) {
         p->scratch = malloc((scratch ? scratch : 1) * sizeof(double));
         if (!m->host_solver && m->streams == 1)
@@ -324,6 +335,8 @@ static void integrate(const integral *g, const double *flux, size_t nz, double *
         integrate_tile(g, flux, nz, z0, nz - z0, out);
 }
 
+#include "reaper_rates.inc"
+
 static int finite_range(size_t n, const double *v, double lo, double hi) {
     int ok = 1;
     for (size_t i = 0; i < n; ++i)
@@ -334,7 +347,10 @@ static int all_finite(size_t n, const double *v) {
     return finite_range(n, v, -1.7976931348623157e308, 1.7976931348623157e308);
 }
 
-int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale) {
+static int run_plan(tt_model_plan *p, tt_model *m, double zenith, double scale, int reaper) {
+    tt_status (*evaluate)(const tt_spectrum_plan *, size_t, const double *, const double *,
+                          double *, double *) =
+        reaper ? tt_spectrum_reaper_evaluate : tt_spectrum_plan_evaluate;
     const tt_grid *height = &m->grids[m->height].value,
                   *wavelength = &m->grids[m->wavelength].value;
     const tt_profile *temperature = &m->profiles[m->temperature].value,
@@ -375,8 +391,7 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
         const double *columns = m->profiles[r->profile].value.columns;
         const double *constant = tt_spectrum_plan_constant(e->plan);
         if (!finite_range(nl, columns, 0, 1.7976931348623157e308) ||
-            tt_spectrum_plan_evaluate(e->plan, nl, temperature->midpoints, air->midpoints,
-                                      p->scratch, e->rows))
+            evaluate(e->plan, nl, temperature->midpoints, air->midpoints, p->scratch, e->rows))
             return 0;
         for (size_t w = 0; w < nw; ++w) {
             const double *cross = e->position[w] == SIZE_MAX ? NULL : e->rows + e->position[w] * nl;
@@ -404,10 +419,19 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
     }
     TT_TIME_END(&m->diagnostics, TT_STAGE_GAS, gas_time);
     TT_TIME_START(oxygen_depth_time);
-    if (oxygen && m->oxygen_radiator != SIZE_MAX &&
-        tt_oxygen_optics(&m->bands, nw, nz, temperature->edges, m->vertical, m->slant_air,
-                         m->slant_oxygen, m->radiators[m->oxygen_radiator].data, NULL))
-        return 0;
+    int shared_oxygen = reaper && TT_REAPER_OXYGEN;
+    if (oxygen && m->oxygen_radiator != SIZE_MAX) {
+        tt_status status =
+            shared_oxygen
+                ? tt_oxygen_optics_work(
+                      &m->bands, nw, nz, temperature->edges, m->vertical, m->slant_air,
+                      m->slant_oxygen, m->radiators[m->oxygen_radiator].data,
+                      p->oxygen_reactions ? p->oxygen_cross : NULL, p->oxygen_work)
+                : tt_oxygen_optics(&m->bands, nw, nz, temperature->edges, m->vertical, m->slant_air,
+                                   m->slant_oxygen, m->radiators[m->oxygen_radiator].data, NULL);
+        if (status)
+            return 0;
+    }
     TT_TIME_END(&m->diagnostics, TT_STAGE_OXYGEN_DEPTH, oxygen_depth_time);
     TT_TIME_START(transfer_time);
     /* Radiation, multiplied by the scale as the generic run does. */
@@ -436,6 +460,7 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
     if (m->solar != SIZE_MAX) {
         const double *solar = m->profiles[m->solar].value.midpoints;
         double *actinic = m->work, *irradiance = m->work + n;
+        int flux_ok = 1;
         for (size_t w = 0; w < nw; ++w) {
             double s = solar[w], denominator = wavelength->midpoints[w] * 1.e-13;
             for (size_t z = 0; z < nz; ++z) {
@@ -448,10 +473,12 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
                             radiation->down_irradiance[i]) *
                            s * hc / denominator;
                 irradiance[i] = e < 0 ? 0 : e;
+                if (reaper && TT_REAPER_FLUX_CHECK)
+                    flux_ok &= isfinite(actinic[i]) && isfinite(irradiance[i]);
             }
         }
         /* Omitted zero terms need finite fluxes. */
-        if (!all_finite(2 * n, m->work))
+        if (reaper && TT_REAPER_FLUX_CHECK ? !flux_ok : !all_finite(2 * n, m->work))
             return 0;
     }
     TT_TIME_END(&m->diagnostics, TT_STAGE_FLUX, flux_time);
@@ -461,8 +488,7 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
             evaluation *e = p->evaluations + i;
             if (e->levels == nz) {
                 TT_TIME_START(spectrum_time);
-                if (tt_spectrum_plan_evaluate(e->plan, nz, temperature->edges, air->edges,
-                                              p->scratch, e->rows))
+                if (evaluate(e->plan, nz, temperature->edges, air->edges, p->scratch, e->rows))
                     return 0;
                 TT_TIME_END(&m->diagnostics,
                             TT_STAGE_SPECTRA_DIRECT + tt_spectrum_plan_category(e->plan),
@@ -470,16 +496,26 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
             }
         }
         TT_TIME_START(oxygen_cross_time);
-        if (oxygen && p->oxygen_reactions &&
-            tt_oxygen_optics(&m->bands, nw, nz, temperature->edges, m->vertical, m->slant_air,
-                             m->slant_oxygen, NULL, p->oxygen_cross))
-            return 0;
+        if (oxygen && p->oxygen_reactions && !(shared_oxygen && m->oxygen_radiator != SIZE_MAX)) {
+            tt_status status =
+                shared_oxygen
+                    ? tt_oxygen_optics_work(&m->bands, nw, nz, temperature->edges, m->vertical,
+                                            m->slant_air, m->slant_oxygen, NULL, p->oxygen_cross,
+                                            p->oxygen_work)
+                    : tt_oxygen_optics(&m->bands, nw, nz, temperature->edges, m->vertical,
+                                       m->slant_air, m->slant_oxygen, NULL, p->oxygen_cross);
+            if (status)
+                return 0;
+        }
         TT_TIME_END(&m->diagnostics, TT_STAGE_OXYGEN_CROSS, oxygen_cross_time);
     }
     for (size_t i = 0; i < p->integral_count; ++i) {
         const integral *g = p->integrals + i;
         TT_TIME_START(rate_time);
-        integrate(g, g->dose ? m->work + n : m->work, nz, m->rate_storage + g->output);
+        if (reaper)
+            reaper_integrate(g, g->dose ? m->work + n : m->work, nz, m->rate_storage + g->output);
+        else
+            integrate(g, g->dose ? m->work + n : m->work, nz, m->rate_storage + g->output);
         TT_TIME_END(&m->diagnostics,
                     g->dose      ? TT_STAGE_DOSE
                     : g->heating ? TT_STAGE_HEATING
@@ -487,4 +523,11 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
                     rate_time);
     }
     return 1;
+}
+
+int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale) {
+    return run_plan(p, m, zenith, scale, 0);
+}
+int tt_model_reaper_run(tt_model_plan *p, tt_model *m, double zenith, double scale) {
+    return run_plan(p, m, zenith, scale, 1);
 }

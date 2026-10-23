@@ -161,7 +161,14 @@ int main(void) {
                 memcpy(generic + 6 * n, result->actinic_flux, n * sizeof(double));
                 memcpy(generic + 7 * n, result->spectral_irradiance, n * sizeof(double));
                 memcpy(generic + 8 * n, result->photolysis, rates * sizeof(double));
-                require(tt_model_set_execution(model, TT_EXECUTION_PREPARED) == TT_OK, "prepared");
+                require(tt_model_set_execution(model,
+#ifdef TT_TEST_REAPER
+                                               TT_EXECUTION_REAPER
+#else
+                                               TT_EXECUTION_PREPARED
+#endif
+                                               ) == TT_OK,
+                        "prepared");
                 require(tt_model_run(model, angles[a], 1.003, &result, &error) == TT_OK,
                         error.message);
                 require(

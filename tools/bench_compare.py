@@ -101,6 +101,11 @@ def main():
                     raise ValueError(f'{name}: increase --repeat; timed work shorter than required')
                 if gates and fields.get('profiling', '0') != '0':
                     raise ValueError('instrumented binary cannot supply acceptance timings')
+                if gates:
+                    counter = ('reaper_calls' if '--reaper' in extra else
+                               'generic_calls' if '--generic' in extra else 'prepared_calls')
+                    if counter in fields and int(fields[counter]) != int(fields['columns']):
+                        raise ValueError(f'{name}: requested executor did not handle every column')
                 times.setdefault((name, config.stem), []).append(us)
                 hashes.setdefault((name, config.stem), set()).add(value_hash)
                 rows.append((r, config.stem, name, us, value_hash))

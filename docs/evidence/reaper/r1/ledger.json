@@ -1,0 +1,546 @@
+{
+  "phase": "R1",
+  "entries": [
+    {
+      "family": "gcc",
+      "variant": "tile-1",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-1",
+          "median_us": 1711.86,
+          "range_us": [
+            1700.65,
+            1721.22
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-1",
+          "median_us": 1336.77,
+          "range_us": [
+            1322.62,
+            1344.12
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "gcc",
+      "variant": "tile-2",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-2",
+          "median_us": 1321.83,
+          "range_us": [
+            1320.69,
+            1325.02
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-2",
+          "median_us": 1193.59,
+          "range_us": [
+            1185.86,
+            1194.27
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "gcc",
+      "variant": "tile-4",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-4",
+          "median_us": 1151.08,
+          "range_us": [
+            1132.31,
+            1154.0
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-4",
+          "median_us": 1131.95,
+          "range_us": [
+            1124.23,
+            1132.93
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "gcc",
+      "variant": "tile-8",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-8",
+          "median_us": 1085.74,
+          "range_us": [
+            1079.89,
+            1095.1
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-8",
+          "median_us": 1110.96,
+          "range_us": [
+            1102.39,
+            1112.09
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "gcc",
+      "variant": "tile-16",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-16",
+          "median_us": 1064.38,
+          "range_us": [
+            1056.9,
+            1070.78
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-16",
+          "median_us": 1102.56,
+          "range_us": [
+            1095.42,
+            1103.26
+          ]
+        }
+      ],
+      "reason": "Selected measured level layout"
+    },
+    {
+      "family": "gcc",
+      "variant": "tile-32",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-32",
+          "median_us": 1129.35,
+          "range_us": [
+            1119.73,
+            1133.74
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-32",
+          "median_us": 1123.89,
+          "range_us": [
+            1114.28,
+            1127.91
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "gcc",
+      "variant": "tile-0",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-0",
+          "median_us": 1084.08,
+          "range_us": [
+            1078.31,
+            1090.46
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-0",
+          "median_us": 1111.77,
+          "range_us": [
+            1102.5,
+            1112.77
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "gcc",
+      "variant": "overlap",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "overlap",
+          "median_us": 1070.5,
+          "range_us": [
+            1062.08,
+            1073.26
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "overlap",
+          "median_us": 1019.16,
+          "range_us": [
+            1018.7,
+            1020.71
+          ]
+        }
+      ],
+      "reason": "Retained after isolated and combined measurements; exact arithmetic"
+    },
+    {
+      "family": "gcc",
+      "variant": "oxygen",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "oxygen",
+          "median_us": 1008.01,
+          "range_us": [
+            997.49,
+            1014.88
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "oxygen",
+          "median_us": 1040.75,
+          "range_us": [
+            1031.75,
+            1041.08
+          ]
+        }
+      ],
+      "reason": "Retained after isolated and combined measurements; exact arithmetic"
+    },
+    {
+      "family": "gcc",
+      "variant": "flux-check",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "flux-check",
+          "median_us": 1066.01,
+          "range_us": [
+            1053.2,
+            1099.36
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "flux-check",
+          "median_us": 1094.42,
+          "range_us": [
+            1092.93,
+            1099.89
+          ]
+        }
+      ],
+      "reason": "Retained after isolated and combined measurements; exact arithmetic"
+    },
+    {
+      "family": "clang",
+      "variant": "tile-1",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-1",
+          "median_us": 1616.02,
+          "range_us": [
+            1612.02,
+            1696.04
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-1",
+          "median_us": 1174.65,
+          "range_us": [
+            1171.56,
+            1193.67
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "clang",
+      "variant": "tile-2",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-2",
+          "median_us": 2126.23,
+          "range_us": [
+            2089.33,
+            2165.52
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-2",
+          "median_us": 1328.68,
+          "range_us": [
+            1312.1,
+            1339.62
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "clang",
+      "variant": "tile-4",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-4",
+          "median_us": 1610.56,
+          "range_us": [
+            1586.73,
+            1625.13
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-4",
+          "median_us": 1160.12,
+          "range_us": [
+            1146.08,
+            1161.5
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "clang",
+      "variant": "tile-8",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-8",
+          "median_us": 1175.27,
+          "range_us": [
+            1155.27,
+            1187.92
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-8",
+          "median_us": 990.38,
+          "range_us": [
+            977.05,
+            997.35
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "clang",
+      "variant": "tile-16",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-16",
+          "median_us": 1062.49,
+          "range_us": [
+            1049.4,
+            1069.88
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-16",
+          "median_us": 951.88,
+          "range_us": [
+            945.25,
+            955.61
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "clang",
+      "variant": "tile-32",
+      "retained": false,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-32",
+          "median_us": 1010.71,
+          "range_us": [
+            998.02,
+            1018.81
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-32",
+          "median_us": 936.67,
+          "range_us": [
+            922.08,
+            937.77
+          ]
+        }
+      ],
+      "reason": "Slower layout in one or both workloads"
+    },
+    {
+      "family": "clang",
+      "variant": "tile-0",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "tile-0",
+          "median_us": 944.06,
+          "range_us": [
+            933.82,
+            950.47
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "tile-0",
+          "median_us": 912.98,
+          "range_us": [
+            901.7,
+            917.93
+          ]
+        }
+      ],
+      "reason": "Selected measured level layout"
+    },
+    {
+      "family": "clang",
+      "variant": "overlap",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "overlap",
+          "median_us": 1070.15,
+          "range_us": [
+            1047.08,
+            1116.68
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "overlap",
+          "median_us": 879.08,
+          "range_us": [
+            870.87,
+            879.94
+          ]
+        }
+      ],
+      "reason": "Retained after isolated and combined measurements; exact arithmetic"
+    },
+    {
+      "family": "clang",
+      "variant": "oxygen",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "oxygen",
+          "median_us": 1026.83,
+          "range_us": [
+            1014.24,
+            1030.32
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "oxygen",
+          "median_us": 913.37,
+          "range_us": [
+            903.76,
+            919.3
+          ]
+        }
+      ],
+      "reason": "Retained after isolated and combined measurements; exact arithmetic"
+    },
+    {
+      "family": "clang",
+      "variant": "flux-check",
+      "retained": true,
+      "correctness": "all 300-column output hashes match frozen prepared; zero fallback calls",
+      "measurements": [
+        {
+          "config": "examples/tuv_5_4.json",
+          "variant": "flux-check",
+          "median_us": 1065.47,
+          "range_us": [
+            1053.73,
+            1072.46
+          ]
+        },
+        {
+          "config": "examples/ts1_tsmlt.json",
+          "variant": "flux-check",
+          "median_us": 951.1,
+          "range_us": [
+            944.36,
+            957.69
+          ]
+        }
+      ],
+      "reason": "Retained after isolated and combined measurements; exact arithmetic"
+    }
+  ],
+  "pending": "Generated sums and relaxed arithmetic belong to R2; no 2x claim."
+}

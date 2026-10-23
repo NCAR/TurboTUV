@@ -18,6 +18,7 @@ void tt_model_plan_destroy(tt_model_plan *plan);
  * run reports or evaluates. Model state is unchanged except result and work
  * storage, which the generic run overwrites. */
 int tt_model_plan_run(tt_model_plan *plan, tt_model *model, double zenith, double scale);
+int tt_model_reaper_run(tt_model_plan *plan, tt_model *model, double zenith, double scale);
 /* Spectrum plans whose classification guard fell back to generic evaluation
  * (expected zero; tests require it). */
 size_t tt_model_plan_generic_spectra(const tt_model_plan *plan);

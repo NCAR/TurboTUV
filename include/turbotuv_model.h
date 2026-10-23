@@ -104,9 +104,16 @@ const char *tt_model_rate_name(const tt_model *model, tt_rate_kind kind, size_t 
  * calls the public kernels in sequence, as a direct translation of TUV-x. The
  * results are bit-identical; a prepared run falls back to the generic
  * sequence for inputs it does not cover, such as invalid values, so errors
- * are the same too. Returns TT_NOT_FOUND if PREPARED is selected but could
- * not be prepared (runs are then generic). */
-typedef enum { TT_EXECUTION_PREPARED, TT_EXECUTION_GENERIC } tt_execution;
+ * are the same too. Returns TT_NOT_FOUND if PREPARED or REAPER is selected but could
+ * not be prepared (runs are then generic).
+ * REAPER is opt-in portable optimized execution. Its contract allows roundoff
+ * (see docs/REAPER_RESULTS.md); the existing selectors retain bit identity.
+ * Unsupported columns try PREPARED, then GENERIC with the original errors. */
+typedef enum {
+    TT_EXECUTION_PREPARED = 0,
+    TT_EXECUTION_GENERIC = 1,
+    TT_EXECUTION_REAPER = 2
+} tt_execution;
 tt_status tt_model_set_execution(tt_model *model, tt_execution execution);
 /* The reference scales all six fields by this argument directly. Preserve
  * that convention: pass the configured Earth-Sun distance, or 1 for unit

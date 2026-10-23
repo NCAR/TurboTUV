@@ -1,6 +1,6 @@
 /* Copyright (C) 2026 University Corporation for Atmospheric Research
  * SPDX-License-Identifier: Apache-2.0 */
-#include "turbotuv.h"
+#include "oxygen_internal.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -83,20 +83,22 @@ static void lyman_alpha(size_t nz, const double *column, const double *secchi, d
 }
 
 static void schumann_runge(size_t nz, const double *column, const double *temperature,
-                           const double *secchi, double *clamped, double *cross, double *depth) {
+                           const double *secchi, double *clamped, double *cross, double *depth,
+                           int reuse) {
     double colmin = exp(38), norm = 1 / (double)(nz - 1);
     size_t top = nz, bottom = 0;
     for (size_t z = 0; z < nz; ++z) {
         clamped[z] = fmax(column[z], colmin);
+        double shared_log = reuse && column[z] >= colmin ? log(clamped[z]) : 0;
         if (column[z] < colmin) {
             if (z < top)
                 top = z;
-        } else if (log(clamped[z]) > 56)
+        } else if ((reuse ? shared_log : log(clamped[z])) > 56)
             bottom = z + 1;
         for (size_t w = 0; w < 17; ++w) {
             cross[w * nz + z] = limiting_cross_section[w];
             if (column[z] >= colmin) {
-                double x = log(clamped[z]);
+                double x = reuse ? shared_log : log(clamped[z]);
                 if (x <= 56)
                     cross[w * nz + z] = exp(chebyshev(oxygen_a[w], x) * (temperature[z] - 220) +
                                             chebyshev(oxygen_b[w], x));
@@ -129,9 +131,10 @@ static void schumann_runge(size_t nz, const double *column, const double *temper
     }
 }
 
-tt_status tt_oxygen_optics(const tt_oxygen_bands *bands, size_t nw, size_t nz,
-                           const double *temperature, const double *vertical, const double *slant,
-                           const double *oxygen, double *depth, double *cross) {
+static tt_status optics(const tt_oxygen_bands *bands, size_t nw, size_t nz,
+                        const double *temperature, const double *vertical, const double *slant,
+                        const double *oxygen, double *depth, double *cross, double *workspace,
+                        int reuse) {
     if (!bands || !nw || nz < 2 || !temperature || !vertical || !slant || !oxygen ||
         (!depth && !cross) || nz > SIZE_MAX / sizeof(double) / 20 || nw > SIZE_MAX / nz)
         return TT_INVALID;
@@ -145,9 +148,9 @@ tt_status tt_oxygen_optics(const tt_oxygen_bands *bands, size_t nw, size_t nz,
             slant[z] < 0 || !isfinite(oxygen[z]) || oxygen[z] < 0 ||
             (z + 1 < nz && (!isfinite(vertical[z]) || vertical[z] <= 0)))
             return TT_INVALID;
-    double *work = malloc(20 * nz * sizeof(double));
+    double *work = reuse ? workspace : malloc(20 * nz * sizeof(double));
     if (!work)
-        return TT_MEMORY;
+        return reuse ? TT_INVALID : TT_MEMORY;
     double *secchi = work, *buffer = secchi + nz, *xs = buffer + nz;
     for (size_t z = 0; z + 1 < nz; ++z)
         secchi[z] = slant[z] <= .1 * 1.e36 ? slant[z] / vertical[z] : 2;
@@ -155,7 +158,8 @@ tt_status tt_oxygen_optics(const tt_oxygen_bands *bands, size_t nw, size_t nz,
     if (depth)
         for (size_t z = 0; z < nz; ++z)
             if (secchi[z] <= 0) {
-                free(work);
+                if (!reuse)
+                    free(work);
                 return TT_RANGE;
             }
     if (la != SIZE_MAX)
@@ -164,8 +168,22 @@ tt_status tt_oxygen_optics(const tt_oxygen_bands *bands, size_t nw, size_t nz,
     if (sr != SIZE_MAX) {
         double *target = cross ? cross + sr * nz : xs;
         schumann_runge(nz, oxygen, temperature, secchi, buffer, target,
-                       depth ? depth + sr * (nz - 1) : NULL);
+                       depth ? depth + sr * (nz - 1) : NULL, reuse);
     }
-    free(work);
+    if (!reuse)
+        free(work);
     return TT_OK;
+}
+
+tt_status tt_oxygen_optics(const tt_oxygen_bands *bands, size_t nw, size_t nz,
+                           const double *temperature, const double *vertical, const double *slant,
+                           const double *oxygen, double *depth, double *cross) {
+    return optics(bands, nw, nz, temperature, vertical, slant, oxygen, depth, cross, NULL, 0);
+}
+
+tt_status tt_oxygen_optics_work(const tt_oxygen_bands *bands, size_t nw, size_t nz,
+                                const double *temperature, const double *vertical,
+                                const double *slant, const double *oxygen, double *depth,
+                                double *cross, double *work) {
+    return optics(bands, nw, nz, temperature, vertical, slant, oxygen, depth, cross, work, 1);
 }

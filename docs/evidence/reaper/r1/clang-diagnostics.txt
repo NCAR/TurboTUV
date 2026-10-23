@@ -1,0 +1,7 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r1-clang
+    Start 19: execution_diagnostics
+1/1 Test #19: execution_diagnostics ............   Passed    0.14 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.15 sec

@@ -1,4 +1,5 @@
 #include "turbotuv.h"
+#include "../src/oxygen_internal.h"
 #include <float.h>
 #include <math.h>
 #include <stdint.h>
@@ -29,6 +30,7 @@ int main(void) {
     enum { NW = 23, NZ = 127 };
     double temp[NZ], vertical[NZ - 1], slant[NZ], oxygen[NZ], depth[NW * (NZ - 1)], cross[NW * NZ];
     double expected_depth[NW * (NZ - 1)], expected_cross[NW * NZ], coefficients[680];
+    double workspace[20 * NZ];
     tt_oxygen_bands bands;
     if (tt_oxygen_band_grid(NW, edges, &bands) || bands.lyman_alpha != 1 ||
         bands.schumann_runge != 4)
@@ -61,6 +63,23 @@ int main(void) {
             for (size_t i = 0; i < NW * nz; ++i)
                 cross[i] = expected_cross[i] = 1.1e-21;
             if (tt_oxygen_optics(&bands, NW, nz, temp, vertical, slant, oxygen, depth, cross))
+                return 1;
+            for (int mode = 1; mode <= 3; ++mode) {
+                for (size_t i = 0; i < NW * (nz - 1); ++i)
+                    expected_depth[i] = .125;
+                for (size_t i = 0; i < NW * nz; ++i)
+                    expected_cross[i] = 1.1e-21;
+                if (tt_oxygen_optics_work(&bands, NW, nz, temp, vertical, slant, oxygen,
+                                          mode & 1 ? expected_depth : NULL,
+                                          mode & 2 ? expected_cross : NULL, workspace))
+                    return 1;
+                if ((mode & 1) && memcmp(depth, expected_depth, NW * (nz - 1) * sizeof(double)))
+                    return 1;
+                if ((mode & 2) && memcmp(cross, expected_cross, NW * nz * sizeof(double)))
+                    return 1;
+            }
+            if (tt_oxygen_optics_work(&bands, NW, nz, temp, vertical, slant, oxygen, NULL, NULL,
+                                      workspace) != TT_INVALID)
                 return 1;
 #ifdef TT_HAVE_REFERENCE
             ref_oxygen(NW, (int)nz, edges, temp, vertical, slant, scale, expected_depth,

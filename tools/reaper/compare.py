@@ -9,6 +9,7 @@ Grid and label metadata are independently read through each build's CLI.
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 import subprocess
@@ -117,6 +118,17 @@ def compare_files(left, right, shape, columns, sweep=False):
     return summaries
 
 
+def finite_json(value):
+    """Keep rejected nonfinite inputs diagnostic and standards-compliant JSON."""
+    if isinstance(value, float) and not math.isfinite(value):
+        return str(value)
+    if isinstance(value, dict):
+        return {k: finite_json(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [finite_json(v) for v in value]
+    return value
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('reference', help='PATH[:ARG,ARG]')
@@ -150,7 +162,7 @@ def main():
         report['fields'] = compare_files(*paths, records[0]['fields'], a.columns, sweep)
     report['passed'] = all(f['failures'] == 0 for f in report['fields'])
     a.json.parent.mkdir(parents=True, exist_ok=True)
-    a.json.write_text(json.dumps(report, indent=2, allow_nan=False) + '\n')
+    a.json.write_text(json.dumps(finite_json(report), indent=2, allow_nan=False) + '\n')
     print(f"{'PASS' if report['passed'] else 'FAIL'}: {sum(f['compared'] for f in report['fields']):,} "
           f"values; {a.json}")
     for f in report['fields']:

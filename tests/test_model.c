@@ -53,6 +53,9 @@ int main(void) {
         tt_model *model = NULL;
         require(tt_model_create(tt_config_root(config), &source, &model, &error) == TT_OK,
                 error.message);
+#ifdef TT_TEST_REAPER
+        require(tt_model_set_execution(model, TT_EXECUTION_REAPER) == TT_OK, "REAPER selection");
+#endif
         const char *solver = tt_config_string(tt_config_get(
             tt_config_get(tt_config_get(tt_config_root(config), "radiative transfer"), "solver"),
             "type"));

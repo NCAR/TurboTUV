@@ -82,3 +82,52 @@ early exits/reductions in mixing and dependent array accesses in transfer as
 vectorization obstacles. This gives R3 a concrete portable-C target. Libm
 calls remain visible in the spectrum and O2 samples; allocation is not the
 largest sampled cost. R0 does not establish a hardware lower bound.
+
+## R1: portable overhead experiments
+
+`TT_EXECUTION_REAPER` is a new opt-in selector (value 2). The existing values
+0 and 1 and the prepared default are unchanged. REAPER declines to the exact
+prepared executor, then the generic sequence, when an input is unsupported.
+The first phase retains the original operation order throughout:
+
+* Rate-loop tiles 1, 2, 4, 8, 16, 32 and a full-level loop were measured on
+  each compiler/configuration. Clang selects the full-level loop, GCC 16
+  levels. These are register/cache layout choices; no ISA or vector runtime
+  is required. Smaller tiles were often much slower.
+* Temperature-parameterized spectra store their fixed overlap segments and
+  coordinate differences. Evaluation retains the original slope division,
+  endpoint interpolation, accumulation order, padding and range selection.
+* The O2 radiator and reactions share a single optics call when both need
+  the column. Scratch is model-owned; the public allocating wrapper remains
+  available. Depth-only, cross-only and combined calls are checked against
+  it on the existing O2 catalogue. Matching per-level logarithms are reused.
+* Flux formation also checks its final stored values for finiteness, avoiding
+  a separate pass. Its isolated effect is small; in combination it helps GCC
+  and is approximately neutral for Clang.
+
+The isolated sweeps and five-round interaction measurements are recorded in
+[`evidence/reaper/r1`](evidence/reaper/r1/). Every variant matched the frozen
+control's full-output hashes for all 300 changing columns. The selected CMake
+binaries additionally pass four full-value gates (165,382,800 values, zero
+absolute/relative/ULP error). All 43 C/reference CTests pass on both compiler
+families, including two new direct REAPER/Fortran model and host-update tests.
+The separate REAPER catalogue preserves the original exact prepared tests and
+asserts actual execution for ordinary successful columns. All 23 portable
+CTest suites also pass under Apple Clang address/undefined-behavior sanitizers.
+
+The first improvements do not reach 2x. Rate generation and relaxed
+accumulation experiments continue in R2; transfer and further spectral work
+remain necessary in R3. These results do not establish impossibility.
+
+Selected R1 binaries, ten alternating paired rounds with full-value gates:
+
+| Configuration | Compiler | Frozen main | R1 | Speedup | 95% lower bound |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | gcc | 1076.7 µs | 1006.2 µs | 1.070x | 1.066x |
+| tuv_5_4 | clang | 1077.0 µs | 918.7 µs | 1.172x | 1.171x |
+| ts1_tsmlt | gcc | 1106.5 µs | 956.6 µs | 1.157x | 1.156x |
+| ts1_tsmlt | clang | 963.6 µs | 801.8 µs | 1.202x | 1.193x |
+
+The minimum median gain is 1.070x (lower bound 1.066x). Every timed column
+ran the REAPER executor, with zero prepared or generic fallback calls.
+These are combined measurements, not multiplied isolated gains.

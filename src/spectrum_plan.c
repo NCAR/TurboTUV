@@ -11,6 +11,7 @@
  * evaluates those once, and a sweep of reference columns guards the
  * classification. */
 #include "spectrum_plan.h"
+#include "reaper_internal.h"
 #include "spectral_validation.h"
 #include <float.h>
 #include <math.h>
@@ -25,6 +26,10 @@
 #define EXP_LIMIT 700.0
 #define POW10_LIMIT 300.0
 
+typedef struct {
+    size_t point;
+    double dx, left, right, half_width;
+} overlap_segment;
 struct tt_spectrum_plan {
     const tt_spectrum *s;
     int cs, qy, kind, generic;
@@ -35,6 +40,8 @@ struct tt_spectrum_plan {
      * the exponential form, varying padded points and target bins. */
     size_t raw, first_bin, end_bin;
     double *x, *y, *powers;
+    size_t *overlap_offsets;
+    overlap_segment *overlaps;
 };
 
 static double clamp(double t, double lo, double hi) {
@@ -775,6 +782,53 @@ static void conserve(size_t nx, const double *x, const double *y, const double *
     }
 }
 
+/* Store only geometry. Evaluation replays each original operation in its
+ * original order, including the division and both endpoint interpolations. */
+static tt_status overlap_prepare(tt_spectrum_plan *p) {
+    const double *target = p->s->wavelength.edges;
+    size_t bins = p->end_bin - p->first_bin, count = 0;
+    p->overlap_offsets = calloc(bins + 1, sizeof(size_t));
+    if (!p->overlap_offsets)
+        return TT_MEMORY;
+    for (size_t i = p->first_bin; i < p->end_bin; ++i) {
+        p->overlap_offsets[i - p->first_bin] = count;
+        for (size_t k = 0; k + 1 < p->raw; ++k)
+            if (p->x[k + 1] > target[i] && p->x[k] < target[i + 1])
+                ++count;
+    }
+    p->overlap_offsets[bins] = count;
+    if (count > SIZE_MAX / sizeof(overlap_segment))
+        return TT_MEMORY;
+    p->overlaps = malloc((count ? count : 1) * sizeof(overlap_segment));
+    if (!p->overlaps)
+        return TT_MEMORY;
+    count = 0;
+    for (size_t i = p->first_bin; i < p->end_bin; ++i)
+        for (size_t k = 0; k + 1 < p->raw; ++k)
+            if (p->x[k + 1] > target[i] && p->x[k] < target[i + 1]) {
+                double a1 = fmax(p->x[k], target[i]), a2 = fmin(p->x[k + 1], target[i + 1]);
+                p->overlaps[count++] = (overlap_segment){k, p->x[k + 1] - p->x[k], a1 - p->x[k],
+                                                         a2 - p->x[k], 0.5 * (a2 - a1)};
+            }
+    return TT_OK;
+}
+
+static void conserve_prepared(const tt_spectrum_plan *p, const double *y, double *out,
+                              size_t stride) {
+    const double *target = p->s->wavelength.edges;
+    for (size_t i = p->first_bin; i < p->end_bin; ++i) {
+        size_t bin = i - p->first_bin;
+        double sum = 0;
+        for (size_t j = p->overlap_offsets[bin]; j < p->overlap_offsets[bin + 1]; ++j) {
+            const overlap_segment *s = p->overlaps + j;
+            double slope = (y[s->point + 1] - y[s->point]) / s->dx;
+            double b1 = y[s->point] + slope * s->left, b2 = y[s->point] + slope * s->right;
+            sum = sum + s->half_width * (b2 + b1);
+        }
+        out[bin * stride] = sum / (target[i + 1] - target[i]);
+    }
+}
+
 static tt_status parameterized_prepare(tt_spectrum_plan *p) {
     const tt_spectrum *s = p->s;
     const tt_temperature_model *m = &s->temperature;
@@ -817,7 +871,7 @@ static tt_status parameterized_prepare(tt_spectrum_plan *p) {
             }
     if (p->first_bin > p->end_bin)
         p->first_bin = p->end_bin = 0;
-    return TT_OK;
+    return overlap_prepare(p);
 }
 
 static tt_status parameterized_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp,
@@ -842,6 +896,8 @@ void tt_spectrum_plan_destroy(tt_spectrum_plan *p) {
     free(p->index);
     free(p->x);
     free(p->powers);
+    free(p->overlap_offsets);
+    free(p->overlaps);
     free(p);
 }
 
@@ -966,6 +1022,21 @@ tt_status tt_spectrum_plan_evaluate(const tt_spectrum_plan *p, size_t nz, const 
         cs_evaluate(p, nz, temperature, scratch, rows);
     else
         qy_evaluate(p, nz, temperature, air, scratch, rows);
+    return TT_OK;
+}
+
+tt_status tt_spectrum_reaper_evaluate(const tt_spectrum_plan *p, size_t nz,
+                                      const double *temperature, const double *air, double *scratch,
+                                      double *rows) {
+    if (!TT_REAPER_OVERLAP || p->kind >= 0 || p->generic || !p->count)
+        return tt_spectrum_plan_evaluate(p, nz, temperature, air, scratch, rows);
+    for (size_t z = 0; z < nz; ++z) {
+        memcpy(scratch, p->y, p->raw * sizeof(double));
+        tt_status status = apply(p, temperature[z], scratch);
+        if (status)
+            return status;
+        conserve_prepared(p, scratch, rows + z, nz);
+    }
     return TT_OK;
 }
 
