@@ -1,0 +1,9 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3c-scalar
+    Start 18: reaper_execution
+1/2 Test #18: reaper_execution ....................   Passed    2.69 sec
+    Start 20: reaper_interpolation_conditioning
+2/2 Test #20: reaper_interpolation_conditioning ...   Passed    0.17 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   2.86 sec

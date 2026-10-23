@@ -1,0 +1,85 @@
+[  5%] Built target turbotuv_yaml
+[  5%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_plan.c.o
+In file included from /Users/fillmore/NSF-NCAR/TurboTUV/src/spectrum_plan.c:15:
+/Users/fillmore/NSF-NCAR/TurboTUV/src/reaper_math.h:72:5: warning: loop not vectorized: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering [-Wpass-failed=transform-warning]
+   72 |     for (size_t i = 0; i < count; ++i) {
+      |     ^
+1 warning generated.
+[  6%] Linking C static library libturbotuv.a
+[ 39%] Built target turbotuv
+[ 40%] Linking C executable turbotuv
+[ 41%] Linking C executable turbotuv_bench
+[ 41%] Linking C executable turbotuv_reaper_export
+[ 45%] Built target turbotuv_bench
+[ 45%] Built target turbotuv_cli
+[ 45%] Built target turbotuv_reaper_export
+[ 46%] Linking C executable test_numerics
+[ 47%] Linking C executable dump_data
+[ 47%] Linking C executable test_radiation_invariants
+[ 49%] Built target test_numerics
+[ 49%] Built target test_radiation_invariants
+[ 49%] Built target dump_data
+[ 50%] Linking C executable test_spectral_invariants
+[ 50%] Linking C executable test_temperature_invariants
+[ 51%] Linking C executable test_yield_invariants
+[ 53%] Built target test_temperature_invariants
+[ 53%] Built target test_yield_invariants
+[ 54%] Built target test_spectral_invariants
+[ 56%] Linking C executable test_linalg_invariants
+[ 56%] Linking C executable test_oxygen_invariants
+[ 56%] Linking C executable test_rate_invariants
+[ 57%] Built target test_oxygen_invariants
+[ 58%] Built target test_linalg_invariants
+[ 58%] Built target test_rate_invariants
+[ 60%] Linking C executable test_discrete_invariants
+[ 60%] Linking C executable test_discrete_helper_invariants
+[ 61%] Linking C executable test_profile_invariants
+[ 63%] Built target test_discrete_invariants
+[ 63%] Built target test_discrete_helper_invariants
+[ 64%] Built target test_profile_invariants
+[ 66%] Linking C executable test_locale
+[ 67%] Built target test_fixtures
+[ 68%] Linking C executable test_reaper_math
+[ 68%] Building C object tests/CMakeFiles/test_reaper_interpolation.dir/test_reaper_interpolation.c.o
+[ 69%] Built target test_reaper_math
+[ 70%] Built target test_locale
+[ 71%] Linking C executable test_reaper_artifact
+[ 71%] Linking C executable test_reaper_preparation
+[ 72%] Built target test_reaper_artifact
+[ 73%] Built target test_reaper_preparation
+[ 73%] Linking C executable test_diagnostics
+[ 74%] Linking C executable test_model_invariants
+[ 75%] Built target test_diagnostics
+[ 76%] Built target test_model_invariants
+[ 77%] Linking C executable test_model_host_invariants
+[ 78%] Linking C executable test_reaper_host
+[ 79%] Built target test_model_host_invariants
+[ 80%] Built target test_reaper_host
+[ 82%] Linking C executable test_reaper_updates
+[ 82%] Linking C executable test_parallel
+[ 84%] Built target test_reaper_updates
+[ 84%] Built target test_parallel
+[ 86%] Linking C executable test_reaper_parallel
+[ 86%] Linking C executable dump_fixtures
+In file included from /Users/fillmore/NSF-NCAR/TurboTUV/tests/test_reaper_interpolation.c:25:
+In file included from /Users/fillmore/NSF-NCAR/TurboTUV/tests/../src/spectrum_plan.c:15:
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/../src/reaper_math.h:72:5: warning: loop not vectorized: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering [-Wpass-failed=transform-warning]
+   72 |     for (size_t i = 0; i < count; ++i) {
+      |     ^
+[ 87%] Built target dump_fixtures
+[ 88%] Built target test_reaper_parallel
+[ 89%] Linking C executable test_optics_invariants
+[ 90%] Linking C executable test_config_invariants
+[ 91%] Built target test_optics_invariants
+[ 92%] Built target test_config_invariants
+[ 93%] Linking C executable test_spectrum_invariants
+[ 94%] Linking C executable test_profile_config_invariants
+[ 95%] Built target test_spectrum_invariants
+[ 96%] Built target test_profile_config_invariants
+[ 97%] Linking C executable test_prepared
+[ 98%] Linking C executable test_reaper
+[ 98%] Built target test_prepared
+[ 99%] Built target test_reaper
+1 warning generated.
+[100%] Linking C executable test_reaper_interpolation
+[100%] Built target test_reaper_interpolation

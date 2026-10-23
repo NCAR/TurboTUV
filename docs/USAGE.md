@@ -195,6 +195,11 @@ loops, ordered O2 level lanes, and a separate REAPER transfer implementation.
 Radiator-role caches are invalidated by successful host replacement. Public
 fields, the Delta-Eddington algorithm, and discrete-ordinate support remain
 available. Scratch and caches belong to each model.
+Parameterized conserving interpolation uses positive endpoint weights only
+within guarded domains. Sensitive partial bins replay libm and the ordered
+interpolator; this preserves the standalone roundoff contract when endpoint
+cancellation amplifies a small spectral error. Cached direct spectra copy
+contiguous temperature runs, and HCFC formulas traverse independent levels.
 
 `TURBOTUV_REAPER_SPECTRUM_EXP=OFF` disables the bounded spectral exp/pow10
 implementation. Its default-on implementation has an independent binary64

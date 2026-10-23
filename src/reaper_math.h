@@ -27,14 +27,15 @@ static inline int tt_reaper_binary64(void) {
 #endif
 }
 
-/* In-place use is supported. All exceptional and out-of-domain operands use
- * libm, including arguments whose result could be subnormal. */
-static inline void tt_reaper_exponential_array(size_t count, const double *arg, double *out,
-                                               int base10) {
+/* In-place use is supported. Return one only when every operand used the
+ * bounded normal-domain implementation; outputs are produced in both cases.
+ * Exceptional/out-of-domain arrays use libm, including other rounding modes. */
+static inline int tt_reaper_exponential_array(size_t count, const double *arg, double *out,
+                                              int base10) {
     if (!tt_reaper_binary64() || fegetround() != FE_TONEAREST) {
         for (size_t i = 0; i < count; ++i)
             out[i] = base10 ? pow(10, arg[i]) : exp(arg[i]);
-        return;
+        return 0;
     }
     static const double powers[64] = {
         0x1.0000000000000p+0, 0x1.02c9a3e778061p+0, 0x1.059b0d3158574p+0, 0x1.0874518759bc8p+0,
@@ -61,7 +62,7 @@ static inline void tt_reaper_exponential_array(size_t count, const double *arg, 
     if (!valid) {
         for (size_t i = 0; i < count; ++i)
             out[i] = base10 ? pow(10, arg[i]) : exp(arg[i]);
-        return;
+        return 0;
     }
 #if TT_REAPER_MATH_HINTS && defined(__clang__) && __clang_major__ >= 4
 #pragma clang loop vectorize_width(2) interleave_count(2)
@@ -94,12 +95,13 @@ static inline void tt_reaper_exponential_array(size_t count, const double *arg, 
         memcpy(&scale, &bits, sizeof bits);
         out[i] = scale * p;
     }
+    return 1;
 }
 
-static inline void tt_reaper_exp_array(size_t count, const double *arg, double *out) {
-    tt_reaper_exponential_array(count, arg, out, 0);
+static inline int tt_reaper_exp_array(size_t count, const double *arg, double *out) {
+    return tt_reaper_exponential_array(count, arg, out, 0);
 }
-static inline void tt_reaper_pow10_array(size_t count, const double *arg, double *out) {
-    tt_reaper_exponential_array(count, arg, out, 1);
+static inline int tt_reaper_pow10_array(size_t count, const double *arg, double *out) {
+    return tt_reaper_exponential_array(count, arg, out, 1);
 }
 #endif

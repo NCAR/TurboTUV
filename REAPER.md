@@ -1,7 +1,8 @@
 # REAPER implementation plan for TurboTUV
 
-Status: R0 through R6 evaluated, with the selected transfer/spectral follow-up
-validated and R5 grouping rejected on measured throughput. The four-case 2x
+Status: R0 through R6 evaluated, with transfer/spectral improvements and a
+subsequent interpolation-conditioning fix validated. R5 grouping was rejected
+on measured throughput. Fresh primary gains are 1.545–1.995x. The four-case 2x
 objective remains unmet; feasibility is unresolved. Cross-architecture execution
 is not demonstrated. Evidence is recorded in `docs/REAPER_RESULTS.md`.
 Prepared 2026-10-22 on branch `reaper`, based on `main` at

@@ -1,0 +1,4 @@
+[ 11%] Built target turbotuv_yaml
+[ 14%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_plan.c.o
+[ 16%] Linking C static library libturbotuv.a
+[100%] Built target turbotuv

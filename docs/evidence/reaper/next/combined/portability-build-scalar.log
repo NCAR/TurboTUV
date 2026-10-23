@@ -1,0 +1,12 @@
+[ 11%] Built target turbotuv_yaml
+[ 14%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_plan.c.o
+[ 16%] Linking C static library libturbotuv.a
+[ 90%] Built target turbotuv
+[ 95%] Built target test_fixtures
+[ 97%] Linking C executable test_reaper
+[100%] Built target test_reaper
+[ 12%] Built target turbotuv_yaml
+[ 95%] Built target turbotuv
+[ 97%] Building C object tests/CMakeFiles/test_reaper_interpolation.dir/test_reaper_interpolation.c.o
+[100%] Linking C executable test_reaper_interpolation
+[100%] Built target test_reaper_interpolation

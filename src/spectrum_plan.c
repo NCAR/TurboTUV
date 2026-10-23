@@ -30,7 +30,7 @@
 
 typedef struct {
     size_t point;
-    double dx, left, right, half_width;
+    double dx, left, right, half_width, weight_a, weight_b;
 } overlap_segment;
 struct tt_spectrum_plan {
     const tt_spectrum *s;
@@ -41,6 +41,8 @@ struct tt_spectrum_plan {
     /* Parameterized cross sections: padded raw grid and values, powers of
      * the exponential form, varying padded points and target bins. */
     size_t raw, first_bin, end_bin;
+    int interpolation_bounded;
+    unsigned char *interpolation_mode;
     double *x, *y, *powers;
     size_t *overlap_offsets;
     overlap_segment *overlaps;
@@ -417,6 +419,19 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
                 out[i] = (z[i] * c[0] + z[nz + i] * c[1]) * 1.e-21;
             break;
         case TT_CS_HCFC:
+            if (reaper) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = 0;
+                for (size_t j = 0; j < t[0].rows; ++j)
+                    for (size_t i = 0; i < nz; ++i)
+                        out[i] = out[i] + z[j * nz + i] * c[j];
+                if (TT_REAPER_SPECTRUM_EXP)
+                    tt_reaper_exp_array(nz, out, out);
+                else
+                    for (size_t i = 0; i < nz; ++i)
+                        out[i] = exp(out[i]);
+                break;
+            }
             for (size_t i = 0; i < nz; ++i) {
                 double sigma = 0;
                 for (size_t j = 0; j < t[0].rows; ++j)
@@ -600,8 +615,8 @@ static void direct_cache_prepare(tt_spectrum_plan *p) {
     cs_evaluate(p, 2, temp, scratch, p->clamped, 0);
     free(scratch);
 }
-static void direct_cached(const tt_spectrum_plan *p, size_t nz, const double *temperature,
-                          double *scratch, double *rows) {
+static void direct_cached_original(const tt_spectrum_plan *p, size_t nz, const double *temperature,
+                                   double *scratch, double *rows) {
     double *packed = scratch, *work = packed + nz, *values = work + cs_scratch(p, nz);
     size_t active = 0;
     for (size_t z = 0; z < nz; ++z)
@@ -620,6 +635,57 @@ static void direct_cached(const tt_spectrum_plan *p, size_t nz, const double *te
             rows[k * nz + z] = temperature[z] <= p->clamp_low    ? lower
                                : temperature[z] >= p->clamp_high ? upper
                                                                  : values[k * active + j++];
+    }
+}
+
+/* Classify clamp regions once, then fill cached runs or copy active runs.
+ * The packed run endpoints must be exactly representable as doubles. */
+static void direct_cached(const tt_spectrum_plan *p, size_t nz, const double *temperature,
+                          double *scratch, double *rows) {
+    if (FLT_RADIX != 2 || DBL_MANT_DIG < 53 || nz > 0x1p51 || nz > (SIZE_MAX - 2) / 3) {
+        direct_cached_original(p, nz, temperature, scratch, rows);
+        return;
+    }
+    double *packed = scratch, *work = packed + nz, *values = work + cs_scratch(p, nz);
+    size_t active = 0;
+    for (size_t z = 0; z < nz; ++z)
+        if (!(temperature[z] <= p->clamp_low || temperature[z] >= p->clamp_high))
+            packed[active++] = temperature[z];
+    if (active == nz) {
+        cs_evaluate(p, nz, temperature, scratch, rows, 1);
+        return;
+    }
+    if (active)
+        cs_evaluate(p, active, packed, work, values, 1);
+    size_t nr = 0, z = 0;
+    while (z < nz) {
+        int kind = temperature[z] <= p->clamp_low ? 1 : temperature[z] >= p->clamp_high ? 2 : 0;
+        size_t end = z + 1;
+        while (end < nz) {
+            int next = temperature[end] <= p->clamp_low    ? 1
+                       : temperature[end] >= p->clamp_high ? 2
+                                                           : 0;
+            if (next != kind)
+                break;
+            ++end;
+        }
+        scratch[nr++] = (double)(3 * end + (size_t)kind);
+        z = end;
+    }
+    for (size_t k = 0; k < p->count; ++k) {
+        size_t pos = 0, j = 0;
+        for (size_t r = 0; r < nr; ++r) {
+            size_t code = (size_t)scratch[r], end = code / 3, kind = code % 3;
+            if (!kind) {
+                memcpy(rows + k * nz + pos, values + k * active + j, (end - pos) * sizeof(double));
+                j += end - pos;
+            } else {
+                double value = p->clamped[2 * k + kind - 1];
+                for (size_t i = pos; i < end; ++i)
+                    rows[k * nz + i] = value;
+            }
+            pos = end;
+        }
     }
 }
 
@@ -1015,8 +1081,10 @@ static void conserve(size_t nx, const double *x, const double *y, const double *
     }
 }
 
-/* Store only geometry. Evaluation replays each original operation in its
- * original order, including the division and both endpoint interpolations. */
+/* Store ordered geometry and positive integral weights. Exact prepared
+ * execution still replays the divisions and endpoint interpolations. REAPER
+ * uses weights only with bounded nonnegative spectra; risky partial bins
+ * receive an additional conditioning check before their result is retained. */
 static tt_status overlap_prepare(tt_spectrum_plan *p) {
     const double *target = p->s->wavelength.edges;
     size_t bins = p->end_bin - p->first_bin, count = 0;
@@ -1040,9 +1108,34 @@ static tt_status overlap_prepare(tt_spectrum_plan *p) {
         for (size_t k = 0; k + 1 < p->raw; ++k)
             if (p->x[k + 1] > target[i] && p->x[k] < target[i + 1]) {
                 double a1 = fmax(p->x[k], target[i]), a2 = fmin(p->x[k + 1], target[i + 1]);
-                p->overlaps[count++] = (overlap_segment){k, p->x[k + 1] - p->x[k], a1 - p->x[k],
-                                                         a2 - p->x[k], 0.5 * (a2 - a1)};
+                overlap_segment *segment = p->overlaps + count++;
+                *segment = (overlap_segment){
+                    k, p->x[k + 1] - p->x[k], a1 - p->x[k], a2 - p->x[k], 0.5 * (a2 - a1), -1, -1};
+                double fraction = (segment->left + segment->right) / segment->dx;
+                if (segment->dx >= 1.e-20 && segment->dx <= 1.e20 &&
+                    segment->half_width >= 1.e-20 && segment->half_width <= 1.e20 &&
+                    fraction >= 0 && fraction <= 2) {
+                    segment->weight_b = segment->half_width * fraction;
+                    segment->weight_a = 2 * segment->half_width - segment->weight_b;
+                }
             }
+    p->interpolation_mode = calloc(bins + 1, sizeof *p->interpolation_mode);
+    if (p->interpolation_mode) {
+        for (size_t bin = 0; bin < bins; ++bin) {
+            p->interpolation_mode[bin] = 1;
+            int sensitive = 0;
+            for (size_t j = p->overlap_offsets[bin]; j < p->overlap_offsets[bin + 1]; ++j) {
+                const overlap_segment *segment = p->overlaps + j;
+                if (segment->weight_a < 0)
+                    p->interpolation_mode[bin] = 0;
+                sensitive |= segment->weight_a < .5 * segment->half_width ||
+                             segment->weight_b < .5 * segment->half_width;
+            }
+            if (sensitive)
+                p->interpolation_mode[bin] |= 2;
+        }
+    } else
+        p->interpolation_bounded = 0;
     return TT_OK;
 }
 
@@ -1081,6 +1174,15 @@ static tt_status parameterized_prepare(tt_spectrum_plan *p) {
     p->x[n + 3] = 1.e38;
     p->y[0] = p->y[1] = p->y[n + 2] = p->y[n + 3] = 0;
     memcpy(p->y + 2, s->raw_data, n * sizeof(double));
+    /* Bounded exp/pow10 outputs remain normal through the guarded geometry.
+     * Fixed raw data must satisfy the same nonnegative-domain requirements. */
+    p->interpolation_bounded = m->range_count <= 4096 && (m->kind == TT_TEMPERATURE_EXPONENTIAL ||
+                                                          m->kind == TT_TEMPERATURE_HARWOOD);
+    for (size_t i = 0; i < np; ++i) {
+        double value = p->y[i];
+        p->interpolation_bounded &=
+            (value >= 0) & (value <= 1.e100) & ((value == 0) | (value >= 1.e-260));
+    }
     if (m->kind == TT_TEMPERATURE_EXPONENTIAL) {
         p->powers = malloc(m->terms * m->count * sizeof(double));
         if (!p->powers)
@@ -1192,7 +1294,7 @@ static const double *fixed_rows(const tt_spectrum_plan *p, double temperature) {
 /* The same range and term order, with independent levels as contiguous lanes.
  * Padding repeats a real lane; it cannot introduce a new status or branch. */
 static tt_status apply_lanes(const tt_spectrum_plan *p, const double *temperature, double *y,
-                             double *math) {
+                             double *math, int *bounded) {
     enum { TILE = TT_REAPER_PARAMETER_TILE };
     const tt_temperature_model *m = &p->s->temperature;
     size_t nr = m->range_count ? m->range_count : 1;
@@ -1240,15 +1342,19 @@ static tt_status apply_lanes(const tt_spectrum_plan *p, const double *temperatur
                     positive &= cs[i] >= 0;
                 if (positive) {
                     if (m->base_10)
-                        tt_reaper_pow10_array(m->count * TILE, math, math);
+                        *bounded &= tt_reaper_pow10_array(m->count * TILE, math, math);
                     else
-                        tt_reaper_exp_array(m->count * TILE, math, math);
-                } else
+                        *bounded &= tt_reaper_exp_array(m->count * TILE, math, math);
+                } else {
+                    *bounded = 0;
                     for (size_t i = 0; i < m->count * TILE; ++i)
                         math[i] = m->base_10 ? pow(10, math[i]) : exp(math[i]);
-            } else
+                }
+            } else {
+                *bounded = 0;
                 for (size_t i = 0; i < m->count * TILE; ++i)
                     math[i] = m->base_10 ? pow(10, math[i]) : exp(math[i]);
+            }
             for (size_t i = 0; i < m->count; ++i)
                 for (size_t z = 0; z < TILE; ++z)
                     if (active[z])
@@ -1286,10 +1392,12 @@ static tt_status apply_lanes(const tt_spectrum_plan *p, const double *temperatur
                 for (size_t z = 0; z < TILE; ++z)
                     math[i * TILE + z] = active[z] ? m->a[i] + m->b[i] / t[z] : 0;
             if (TT_REAPER_SPECTRUM_EXP)
-                tt_reaper_pow10_array(m->count * TILE, math, math);
-            else
+                *bounded &= tt_reaper_pow10_array(m->count * TILE, math, math);
+            else {
+                *bounded = 0;
                 for (size_t i = 0; i < m->count * TILE; ++i)
                     math[i] = pow(10, math[i]);
+            }
             for (size_t i = 0; i < m->count; ++i)
                 for (size_t z = 0; z < TILE; ++z)
                     if (active[z])
@@ -1312,6 +1420,7 @@ void tt_spectrum_plan_destroy(tt_spectrum_plan *p) {
     free(p->powers);
     free(p->overlap_offsets);
     free(p->overlaps);
+    free(p->interpolation_mode);
     free(p->fixed_masks);
     free(p->fixed_rows);
     free(p->clamped);
@@ -1493,29 +1602,81 @@ tt_status tt_spectrum_reaper_evaluate(const tt_spectrum_plan *p, size_t nz,
             for (size_t k = 0; k < p->raw; ++k)
                 for (size_t z = active; z < TILE; ++z)
                     lanes[k * TILE + z] = lanes[k * TILE + active - 1];
+            int positive = TT_REAPER_PARAMETER_BATCH && p->interpolation_bounded &&
+                           tt_reaper_binary64() && fegetround() == FE_TONEAREST;
             if (TT_REAPER_PARAMETER_BATCH) {
                 for (size_t z = active; z < TILE; ++z)
                     temperatures[z] = temperatures[active - 1];
-                tt_status status = apply_lanes(p, temperatures, lanes, lanes + TILE * p->raw);
+                tt_status status =
+                    apply_lanes(p, temperatures, lanes, lanes + TILE * p->raw, &positive);
                 if (status)
                     return status;
             }
+            /* Endpoint cancellation can amplify even a small spectral error.
+             * Accumulate the conditioning estimate with the weighted result,
+             * then replay libm and ordered interpolation if it is sensitive. */
+            int sensitive = !positive;
+            int exponential = p->s->temperature.kind == TT_TEMPERATURE_EXPONENTIAL ||
+                              p->s->temperature.kind == TT_TEMPERATURE_HARWOOD;
             const double *target = p->s->wavelength.edges;
-            for (size_t bin = 0; bin < p->count; ++bin) {
-                double sum[TILE] = {0};
-                for (size_t j = p->overlap_offsets[bin]; j < p->overlap_offsets[bin + 1]; ++j) {
-                    const overlap_segment *segment = p->overlaps + j;
-                    const double *a = lanes + segment->point * TILE, *b = a + TILE;
-                    for (size_t z = 0; z < TILE; ++z) {
-                        double slope = (b[z] - a[z]) / segment->dx;
-                        double b1 = a[z] + slope * segment->left;
-                        double b2 = a[z] + slope * segment->right;
-                        sum[z] = sum[z] + segment->half_width * (b2 + b1);
-                    }
+            if (!sensitive || !exponential)
+                for (size_t bin = 0; bin < p->count; ++bin) {
+                    double sum[TILE] = {0};
+                    unsigned kind = positive ? (unsigned)p->interpolation_mode[bin] : 0;
+                    if (kind & 1) {
+                        if (kind & 2) {
+                            double absolute[TILE] = {0};
+                            for (size_t j = p->overlap_offsets[bin];
+                                 j < p->overlap_offsets[bin + 1]; ++j) {
+                                const overlap_segment *segment = p->overlaps + j;
+                                const double *a = lanes + segment->point * TILE, *b = a + TILE;
+                                for (size_t z = 0; z < TILE; ++z) {
+                                    sum[z] = sum[z] +
+                                             (a[z] * segment->weight_a + b[z] * segment->weight_b);
+                                    absolute[z] = absolute[z] + segment->half_width * (a[z] + b[z]);
+                                }
+                            }
+                            /* absolute/sum bounds cancellation in the original
+                             * two-endpoint interpolation, across the entire bin. */
+                            for (size_t z = 0; z < active; ++z)
+                                sensitive |= absolute[z] > 4 * sum[z];
+                        } else {
+                            for (size_t j = p->overlap_offsets[bin];
+                                 j < p->overlap_offsets[bin + 1]; ++j) {
+                                const overlap_segment *segment = p->overlaps + j;
+                                const double *a = lanes + segment->point * TILE, *b = a + TILE;
+                                for (size_t z = 0; z < TILE; ++z)
+                                    sum[z] = sum[z] +
+                                             (a[z] * segment->weight_a + b[z] * segment->weight_b);
+                            }
+                        }
+                    } else
+                        for (size_t j = p->overlap_offsets[bin]; j < p->overlap_offsets[bin + 1];
+                             ++j) {
+                            const overlap_segment *segment = p->overlaps + j;
+                            const double *a = lanes + segment->point * TILE, *b = a + TILE;
+                            if (positive && segment->weight_a < 0)
+                                for (size_t z = 0; z < active; ++z)
+                                    sensitive |= (a[z] != 0) | (b[z] != 0);
+                            for (size_t z = 0; z < TILE; ++z) {
+                                double slope = (b[z] - a[z]) / segment->dx;
+                                double b1 = a[z] + slope * segment->left;
+                                double b2 = a[z] + slope * segment->right;
+                                sum[z] = sum[z] + segment->half_width * (b2 + b1);
+                            }
+                        }
+                    double width = target[p->first_bin + bin + 1] - target[p->first_bin + bin];
+                    for (size_t z = 0; z < active; ++z)
+                        rows[bin * nz + levels[z]] = sum[z] / width;
                 }
-                double width = target[p->first_bin + bin + 1] - target[p->first_bin + bin];
-                for (size_t z = 0; z < active; ++z)
-                    rows[bin * nz + levels[z]] = sum[z] / width;
+            if (sensitive && exponential) {
+                for (size_t z = 0; z < active; ++z) {
+                    memcpy(raw, p->y, p->raw * sizeof(double));
+                    tt_status status = apply_impl(p, temperatures[z], raw, NULL);
+                    if (status)
+                        return status;
+                    conserve_prepared(p, raw, rows + levels[z], nz);
+                }
             }
         }
         return TT_OK;
@@ -1528,7 +1689,8 @@ tt_status tt_spectrum_reaper_evaluate(const tt_spectrum_plan *p, size_t nz,
             continue;
         }
         memcpy(scratch, p->y, p->raw * sizeof(double));
-        tt_status status = apply_impl(p, temperature[z], scratch, scratch + p->raw);
+        /* Scalar experimental tiles retain libm and ordered interpolation. */
+        tt_status status = apply_impl(p, temperature[z], scratch, NULL);
         if (status)
             return status;
         conserve_prepared(p, scratch, rows + z, nz);

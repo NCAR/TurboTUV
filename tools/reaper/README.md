@@ -167,3 +167,12 @@ host-radiation harness times formation/upload of six changing arrays on both
 sides. These secondary three-round screens identify regressions; they do not
 replace the four primary ten-round comparisons. ARM/macOS is verified;
 x86-64 Linux execution remains unverified.
+
+The [spectral conditioning follow-up](../../docs/evidence/reaper/next/) adds
+an independent stress test for narrow interpolation bins, extreme contrasts,
+signed data and optional-allocation failure. It catches a 59.726-epsilon
+failure in the preceding implementation and validates the guarded weighted
+interpolator and ordered replay. The pointwise exponential bound is unchanged;
+it does not by itself bound a later subtractive interpolation. This checkpoint
+repeats full suites, installation, primary gates, untuned screens and ten-round
+timings; its archive retains all rejected prototypes and reproduction drivers.

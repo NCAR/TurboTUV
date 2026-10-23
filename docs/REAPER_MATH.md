@@ -88,3 +88,39 @@ uses the bounded function only with nonnegative existing cross sections, so
 subtraction cannot amplify the local approximation error. This local bound
 does not excuse cancellation elsewhere: the measured failures in transfer
 are retained in the experiment ledger.
+
+### Conserving parameterized spectra
+
+A pointwise exponential bound does not bound the relative error of a later
+subtraction. A new stress case with a large spectral contrast exposed this:
+the previous selected implementation differed from generic evaluation by
+59.7 epsilon in a narrow partial bin, despite satisfying the exponential's
+pointwise bound.
+
+REAPER now prepares positive endpoint weights for a segment's integral. If
+`h` is half the overlap width and `q = (left + right) / dx`, the weights are
+`A = h * (2 - q)` and `B = h * q`. The integral is `A*a + B*b`. Ordered prepared
+execution retains its original slope and two endpoint evaluations.
+
+Only nonnegative normal-domain exponential/Harwood inputs use these weights.
+The exponential helper reports whether its existing domain checks succeeded;
+interpolation reuses that result. Geometry outside the guarded normal range,
+signed/extreme raw data, unavailable optional metadata, unsupported arithmetic,
+and scalar experimental tiles retain libm and ordered interpolation.
+
+For partial bins with potentially sensitive endpoints, evaluation also sums
+`h*(a+b)` while computing the integral. If this sum exceeds four times the
+positive bin integral, the active level block is recomputed with libm and the
+ordered interpolator. Segments with `q` between 0.5 and 1.5 need no additional
+sum because both endpoint weights are at least `h/2`. This conditioning check
+addresses amplification by the existing endpoint subtraction; it does not
+change the uniform exp/pow10 bound above or replace the spectrum/model gates.
+
+The added stress test uses 1,000 deterministic spectra with narrow partial
+bins, large contrasts, signed Taylor data, ordinary and extreme exponentials,
+and injected optional-allocation failures. It independently reconstructs the
+generic output and verifies that the preserved prepared path is identical.
+The selected implementation compares 69,264 values with a maximum difference
+of 12.910 epsilon and exercises 53 optional-metadata allocation failures.
+These are measured regression-test results, not a uniform bound on every
+possible interpolated spectrum.

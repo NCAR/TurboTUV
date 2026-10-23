@@ -1,0 +1,48 @@
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3c-sanitize
+[  5%] Built target turbotuv_yaml
+[ 39%] Built target turbotuv
+[ 41%] Built target turbotuv_reaper_export
+[ 43%] Built target turbotuv_bench
+[ 45%] Built target turbotuv_cli
+[ 46%] Built target dump_data
+[ 49%] Built target test_numerics
+[ 49%] Built target test_radiation_invariants
+[ 51%] Built target test_spectral_invariants
+[ 53%] Built target test_yield_invariants
+[ 54%] Built target test_temperature_invariants
+[ 55%] Built target test_rate_invariants
+[ 57%] Built target test_oxygen_invariants
+[ 58%] Built target test_linalg_invariants
+[ 62%] Built target test_discrete_invariants
+[ 64%] Built target test_profile_invariants
+[ 64%] Built target test_discrete_helper_invariants
+[ 70%] Built target test_fixtures
+[ 70%] Built target test_locale
+[ 70%] Built target test_reaper_math
+[ 71%] Building C object tests/CMakeFiles/test_reaper_interpolation.dir/test_reaper_interpolation.c.o
+[ 73%] Built target test_reaper_preparation
+[ 73%] Built target test_reaper_artifact
+[ 75%] Built target test_diagnostics
+[ 76%] Built target test_model_invariants
+[ 80%] Built target test_model_host_invariants
+[ 80%] Built target test_reaper_host
+[ 84%] Built target test_reaper_updates
+[ 84%] Built target test_parallel
+[ 86%] Built target test_reaper_parallel
+[ 88%] Built target dump_fixtures
+[ 90%] Built target test_optics_invariants
+[ 94%] Built target test_spectrum_invariants
+[ 94%] Built target test_config_invariants
+[ 97%] Built target test_prepared
+[ 97%] Built target test_profile_config_invariants
+[ 99%] Built target test_reaper
+In file included from /Users/fillmore/NSF-NCAR/TurboTUV/tests/test_reaper_interpolation.c:25:
+In file included from /Users/fillmore/NSF-NCAR/TurboTUV/tests/../src/spectrum_plan.c:15:
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/../src/reaper_math.h:72:5: warning: loop not vectorized: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering [-Wpass-failed=transform-warning]
+   72 |     for (size_t i = 0; i < count; ++i) {
+      |     ^
+1 warning generated.
+[100%] Linking C executable test_reaper_interpolation
+[100%] Built target test_reaper_interpolation

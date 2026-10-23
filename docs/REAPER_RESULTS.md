@@ -540,3 +540,103 @@ The combined primary result remains 1.530/1.624x for TUV and 1.979/1.854x
 for TS1 (GCC/Clang), with lower confidence bounds below 2 in every case.
 **Not achieved; feasibility unresolved.** No bound rules out the remaining
 portable spectral and transfer transformations; optimization work continues.
+
+## Spectral conditioning follow-up after R6
+
+The next selected checkpoint changes only spectral evaluation and its tests.
+HCFC coefficient sums traverse contiguous independent levels while preserving
+each sum's order. Direct spectra classify temperature-clamp runs once, then
+copy active runs or fill cached values. Parameterized exponential/Harwood
+spectra use prepared positive interpolation weights when their data and
+geometry satisfy the guarded domain. Sensitive partial bins accumulate a
+conditioning estimate and replay libm plus ordered interpolation when needed.
+Optional-metadata allocation failure also preserves ordered replay. Prepared
+and generic arithmetic, transfer arithmetic, rate artifacts and the public
+ABI are unchanged.
+
+This is also a correctness fix. A deterministic stress test found a narrow
+partial bin with a very large spectral contrast where the preceding selected
+implementation differed from the generic reference by 59.726 epsilon, above
+the standalone 32-epsilon limit. Historical atmospheric-column gates remain
+valid for their recorded inputs. The new test checks 1,000 spectra and 69,264
+values, including nine-level tails, signed data, extreme exponents and 53
+optional-allocation failures. Its maximum is now 12.910 epsilon. Prepared
+results remain bit-identical to the independently assembled generic reference;
+signed data and allocation failures retain exact ordered replay. The spectral
+exponential's pointwise algorithm and conservative bound are unchanged. See
+[REAPER_MATH.md](REAPER_MATH.md) for the interpolation conditioning argument
+and its limits.
+
+All 51 C/Fortran CTests pass with GCC and Clang. All 30 ASan/UBSan tests and
+30 tests in each compiler's hint-disabled build pass. Focused checks after
+adding allocation injection and the final portability guard pass again. A
+scalar-parameter, spectral-approximation-disabled build passes the catalogue
+and stress tests. The final run-encoding guard changes no native benchmark or
+spectral object bytes in the six selected, hint-disabled and profiling builds;
+the before/after hashes are archived. Four 300-column primary gates compare
+165,382,800 values with maximum difference 9.913 epsilon. Four 48-column
+hint-disabled gates compare another 26,461,248 values exactly. Six held-out
+configurations per compiler pass ordered, roundoff, replay and incompatible
+artifact checks. The MPFR checks remain at 4,832,736 exp and 4,824,406 pow10
+arguments per compiler, with maxima 1.904956 and 1.904958 epsilon respectively.
+
+Fresh primary timings use ten rotating paired rounds, 300 changing columns
+and ten repeats per sample, against the same frozen prepared `main`. All 80
+samples exceed one second (minimum 1.579 seconds); slow samples are retained.
+Every candidate sample executes 3,000 REAPER columns and 6,000 generated
+families, with no declines, preparation failures or generic fallback and with
+profiling disabled. Hashes are stable within each binary.
+
+| Configuration | Compiler | Main median | REAPER median | Paired speedup | Lower 95% |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | GCC | 1078.6 us | 698.6 us | 1.545x | 1.541x |
+| tuv_5_4 | Clang | 1079.8 us | 655.3 us | 1.650x | 1.646x |
+| ts1_tsmlt | GCC | 1109.1 us | 555.9 us | 1.995x | 1.991x |
+| ts1_tsmlt | Clang | 965.1 us | 526.8 us | 1.831x | 1.825x |
+
+TUV improves on both compilers and TS1 improves on GCC. Clang TS1 is slightly
+slower than the preceding checkpoint with the added conditioning checks.
+The TS1 GCC result is a near miss, not a passing 2x result. All four lower
+confidence bounds remain below two.
+
+Separate instrumented profiles retain the following costs; these stage times
+are diagnostic measurements, not a lower bound on all possible rewrites.
+
+| Stage (us/column) | TUV GCC | TUV Clang | TS1 GCC | TS1 Clang |
+| --- | ---: | ---: | ---: | ---: |
+| Transfer, total | 321.793 | 305.669 | 225.876 | 209.384 |
+| Mixing | 50.203 | 56.823 | 32.793 | 37.156 |
+| Ordered slant depths | 103.741 | 98.136 | 74.722 | 68.434 |
+| Coefficients and forward elimination | 127.502 | 103.751 | 91.399 | 72.635 |
+| Remaining solve | 9.528 | 12.105 | 6.740 | 8.473 |
+| Transfer output | 29.836 | 33.947 | 19.582 | 22.020 |
+| Direct spectra | 158.186 | 156.643 | 63.167 | 63.619 |
+| Quantum yields | 36.684 | 36.444 | 20.991 | 19.610 |
+| Parameterized spectra | 0 | 0 | 141.787 | 133.579 |
+| Oxygen depth | 26.039 | 26.375 | 27.151 | 26.433 |
+| Photolysis integration | 84.137 | 71.572 | 41.546 | 37.240 |
+| Heating | 0 | 0 | 3.093 | 2.478 |
+| Dose | 21.253 | 15.336 | 0 | 0 |
+
+Ten-process median setup-plus-selection costs are 33.650/29.056 ms for TUV
+and 24.764/21.936 ms for TS1 (GCC/Clang). Separate resource probes report
+15.204–19.333 MB peak RSS. Transfer workspace remains 634,496/710,656 bytes
+for TUV and 478,976/555,136 bytes for TS1. Frozen-main binaries do not report
+startup components, so no fresh incremental break-even is inferred from these
+numbers. The R4 compile-cost and break-even observations retain their historical
+scope; version-2 generated artifacts are unchanged.
+
+All eight minimal/generated installed-consumer executions pass again with
+`PATH=/nonexistent`, with only libSystem dynamically linked. Six untuned shapes
+or rate lists and two changing host-radiation cases pass another 16 fresh-seed
+300-column gates: 278,223,000 values, maximum 11.271 epsilon. Their 96 secondary
+timing samples exceed one second; the smallest paired speedup is 1.000x and
+none regresses by more than 5%. These three-round screens do not replace the
+primary ten-round comparison. Verification remains ARM/macOS with portable
+C11/libm source; x86-64 Linux execution is still unverified.
+
+The [new evidence](evidence/reaper/next/) includes the experiment ledger,
+archived successful and rejected prototypes, reproduction commands, full test
+logs, numerical gates, profiles, all samples, installed consumers, source and
+binary provenance, and a file manifest. **Not achieved; feasibility unresolved.**
+No defensible lower bound yet rules out further portable improvements.

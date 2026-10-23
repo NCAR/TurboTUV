@@ -23,7 +23,8 @@ int main(void) {
         for (size_t n = 0; n <= 129; ++n) {
             for (size_t i = 0; i < n; ++i)
                 a[i] = c[i] = -limit + 2 * limit * (double)i / 129;
-            tt_reaper_exponential_array(n, a, b, base);
+            require(tt_reaper_exponential_array(n, a, b, base) == tt_reaper_binary64(),
+                    "ordinary bounded-domain result");
             tt_reaper_exponential_array(n, c, c, base);
             for (size_t i = 0; i < n; ++i) {
                 double ref = base ? pow(10, a[i]) : exp(a[i]);
@@ -34,7 +35,9 @@ int main(void) {
         for (size_t j = 0; j < sizeof unusual / sizeof *unusual; ++j) {
             double x = unusual[j];
             a[0] = c[0] = x;
-            tt_reaper_exponential_array(1, a, b, base);
+            require(tt_reaper_exponential_array(1, a, b, base) ==
+                        (tt_reaper_binary64() && (x >= -limit) && (x <= limit)),
+                    "exceptional bounded-domain result");
             tt_reaper_exponential_array(1, c, c, base);
             require(same(b[0], c[0]), "exceptional in-place result");
             double ref = base ? pow(10, x) : exp(x);
@@ -59,7 +62,8 @@ int main(void) {
                 continue;
             for (size_t i = 0; i < 129; ++i)
                 a[i] = c[i] = -limit + 2 * limit * (double)i / 129;
-            tt_reaper_exponential_array(129, a, b, base);
+            require(!tt_reaper_exponential_array(129, a, b, base),
+                    "rounding mode must decline bounded-domain result");
             tt_reaper_exponential_array(129, c, c, base);
             for (size_t i = 0; i < 129; ++i) {
                 double ref = base ? pow(10, a[i]) : exp(a[i]);

@@ -1,0 +1,233 @@
+[  1%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/parser.c.o
+[  2%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/api.c.o
+[  2%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/loader.c.o
+[  3%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/generated/reference_discrete_helpers.F90.o
+[  4%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/reader.c.o
+[  4%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/scanner.c.o
+[  5%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/generated/reference_spectra.F90.o
+[  5%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_bridge.F90.o
+[  5%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_config.F90.o
+[  5%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_discrete.F90.o
+[  6%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_linalg.F90.o
+[  7%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_model.F90.o
+[  7%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_optics.F90.o
+[  7%] Built target turbotuv_yaml
+[  8%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_profiles.F90.o
+[  9%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_spectrum.F90.o
+[ 10%] Building C object CMakeFiles/turbotuv.dir/src/numerics.c.o
+[ 10%] Building C object CMakeFiles/turbotuv.dir/src/geometry.c.o
+[ 11%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/generated/reference_yields.F90.o
+[ 12%] Building C object CMakeFiles/turbotuv.dir/src/data.c.o
+[ 12%] Building C object CMakeFiles/turbotuv.dir/src/radiation.c.o
+[ 12%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_model_host.F90.o
+[ 13%] Building C object CMakeFiles/turbotuv.dir/src/spectra.c.o
+[ 14%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_profile_config.F90.o
+[ 14%] Building C object CMakeFiles/turbotuv.dir/src/yields.c.o
+[ 15%] Building C object CMakeFiles/turbotuv.dir/src/weights.c.o
+[ 16%] Building C object CMakeFiles/turbotuv.dir/src/temperature.c.o
+[ 16%] Building C object CMakeFiles/turbotuv.dir/src/rates.c.o
+[ 17%] Building C object CMakeFiles/turbotuv.dir/src/oxygen.c.o
+[ 17%] Building C object CMakeFiles/turbotuv.dir/src/linalg.c.o
+[ 18%] Building C object CMakeFiles/turbotuv.dir/src/discrete_eigen.c.o
+[ 18%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_oxygen.F90.o
+[ 19%] Building C object CMakeFiles/turbotuv.dir/src/discrete_quadrature.c.o
+[ 20%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_rates.F90.o
+[ 20%] Building Fortran object tests/CMakeFiles/reference_bridge.dir/reference_temperature.F90.o
+[ 20%] Building C object CMakeFiles/turbotuv.dir/src/discrete.c.o
+[ 21%] Building C object CMakeFiles/turbotuv.dir/src/grid.c.o
+[ 21%] Building C object CMakeFiles/turbotuv.dir/src/profiles.c.o
+[ 22%] Linking Fortran static library libreference_bridge.a
+[ 23%] Building C object CMakeFiles/turbotuv.dir/src/tables.c.o
+[ 23%] Built target reference_bridge
+[ 23%] Building C object CMakeFiles/turbotuv.dir/src/solar_flux.c.o
+[ 24%] Building C object CMakeFiles/turbotuv.dir/src/optics.c.o
+[ 25%] Building C object CMakeFiles/turbotuv.dir/src/config.c.o
+[ 25%] Building C object CMakeFiles/turbotuv.dir/src/profile_config.c.o
+[ 26%] Building Fortran object tests/CMakeFiles/tuvx_bench.dir/__/bench/tuvx_bench.F90.o
+[ 27%] Building C object CMakeFiles/turbotuv.dir/src/build.c.o
+[ 27%] Building C object CMakeFiles/turbotuv.dir/src/spectrum.c.o
+[ 28%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_temperature.c.o
+[ 28%] Building C object CMakeFiles/turbotuv.dir/src/model_build.c.o
+[ 29%] Building C object CMakeFiles/turbotuv.dir/src/model_run.c.o
+[ 30%] Linking Fortran executable tuvx_bench
+[ 31%] Building C object CMakeFiles/turbotuv.dir/src/model_host.c.o
+[ 31%] Built target tuvx_bench
+[ 31%] Building C object CMakeFiles/turbotuv.dir/src/decimal.c.o
+[ 32%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_plan.c.o
+[ 32%] Building C object CMakeFiles/turbotuv.dir/src/model_plan.c.o
+[ 33%] Building C object CMakeFiles/turbotuv.dir/src/radiation_block.c.o
+[ 33%] Building C object CMakeFiles/turbotuv.dir/src/diagnostics.c.o
+[ 34%] Building C object CMakeFiles/turbotuv.dir/src/reaper_writer.c.o
+[ 35%] Building C object CMakeFiles/turbotuv.dir/src/reaper_descriptor.c.o
+[ 35%] Building C object CMakeFiles/turbotuv.dir/src/radiation_reaper.c.o
+[ 36%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-gcc/kernel-0.c.o
+[ 36%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-gcc/kernel-1.c.o
+[ 37%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-gcc/registry.c.o
+[ 37%] Linking C static library libturbotuv.a
+[ 37%] Built target turbotuv
+[ 37%] Building C object CMakeFiles/turbotuv_cli.dir/app/main.c.o
+[ 37%] Building C object tests/CMakeFiles/test_numerics.dir/test_numerics.c.o
+[ 39%] Building C object CMakeFiles/turbotuv_reaper_export.dir/tools/reaper/export.c.o
+[ 39%] Building C object CMakeFiles/turbotuv_bench.dir/bench/turbotuv_bench.c.o
+[ 39%] Linking C executable turbotuv_reaper_export
+[ 41%] Building C object CMakeFiles/turbotuv_cli.dir/app/output.c.o
+[ 41%] Linking C executable test_numerics
+[ 41%] Built target turbotuv_reaper_export
+[ 41%] Building C object tests/CMakeFiles/dump_data.dir/dump_data.c.o
+[ 41%] Built target test_numerics
+[ 41%] Building C object tests/CMakeFiles/test_radiation_invariants.dir/test_radiation.c.o
+[ 42%] Linking C executable turbotuv_bench
+[ 43%] Linking C executable dump_data
+[ 43%] Linking C executable turbotuv
+[ 43%] Built target turbotuv_bench
+[ 43%] Built target dump_data
+[ 43%] Built target turbotuv_cli
+[ 44%] Building C object tests/CMakeFiles/test_spectral_invariants.dir/test_spectra.c.o
+[ 44%] Building C object tests/CMakeFiles/test_yield_invariants.dir/test_yields.c.o
+[ 44%] Building C object tests/CMakeFiles/test_temperature_invariants.dir/test_temperature.c.o
+[ 45%] Linking C executable test_radiation_invariants
+[ 45%] Built target test_radiation_invariants
+[ 45%] Building C object tests/CMakeFiles/test_rate_invariants.dir/test_rates.c.o
+[ 46%] Linking C executable test_temperature_invariants
+[ 46%] Linking C executable test_spectral_invariants
+[ 47%] Linking C executable test_yield_invariants
+[ 47%] Built target test_temperature_invariants
+[ 47%] Built target test_spectral_invariants
+[ 47%] Built target test_yield_invariants
+[ 48%] Building C object tests/CMakeFiles/test_oxygen_invariants.dir/test_oxygen.c.o
+[ 48%] Building C object tests/CMakeFiles/test_linalg_invariants.dir/test_linalg.c.o
+[ 49%] Building C object tests/CMakeFiles/test_discrete_helper_invariants.dir/test_discrete_helpers.c.o
+[ 50%] Linking C executable test_rate_invariants
+[ 50%] Built target test_rate_invariants
+[ 51%] Building C object tests/CMakeFiles/test_discrete_invariants.dir/test_discrete.c.o
+[ 51%] Linking C executable test_discrete_helper_invariants
+[ 52%] Linking C executable test_oxygen_invariants
+[ 53%] Linking C executable test_linalg_invariants
+[ 53%] Built target test_discrete_helper_invariants
+[ 53%] Built target test_oxygen_invariants
+[ 53%] Built target test_linalg_invariants
+[ 54%] Building C object tests/CMakeFiles/test_profile_invariants.dir/test_profiles.c.o
+[ 55%] Building C object tests/CMakeFiles/test_locale.dir/test_locale.c.o
+[ 55%] Building C object tests/CMakeFiles/test_fixtures.dir/fixtures.c.o
+[ 56%] Linking C executable test_discrete_invariants
+[ 56%] Built target test_discrete_invariants
+[ 56%] Linking C executable test_locale
+[ 56%] Building C object tests/CMakeFiles/test_reaper_math.dir/test_reaper_math.c.o
+[ 56%] Built target test_locale
+[ 56%] Building C object tests/CMakeFiles/test_reaper_interpolation.dir/test_reaper_interpolation.c.o
+[ 56%] Linking C executable test_profile_invariants
+[ 56%] Built target test_profile_invariants
+[ 57%] Building C object tests/CMakeFiles/test_reaper_artifact.dir/test_reaper_artifact.c.o
+[ 59%] Linking C executable test_reaper_math
+[ 59%] Linking C static library libtest_fixtures.a
+[ 60%] Linking C executable test_reaper_interpolation
+[ 60%] Built target test_fixtures
+[ 60%] Built target test_reaper_math
+[ 61%] Building C object tests/CMakeFiles/test_diagnostics.dir/test_diagnostics.c.o
+[ 61%] Building C object tests/CMakeFiles/test_reaper_preparation.dir/test_reaper_preparation.c.o
+[ 61%] Built target test_reaper_interpolation
+[ 61%] Building C object tests/CMakeFiles/test_model_invariants.dir/test_model.c.o
+[ 61%] Linking C executable test_reaper_artifact
+[ 62%] Linking C executable test_diagnostics
+[ 62%] Built target test_reaper_artifact
+[ 62%] Built target test_diagnostics
+[ 62%] Building C object tests/CMakeFiles/test_model_host_invariants.dir/test_model_host.c.o
+[ 63%] Building C object tests/CMakeFiles/test_reaper_host.dir/test_model_host.c.o
+[ 64%] Linking C executable test_model_invariants
+[ 64%] Built target test_model_invariants
+[ 65%] Linking C executable test_model_host_invariants
+[ 65%] Building C object tests/CMakeFiles/test_reaper_updates.dir/test_reaper_updates.c.o
+[ 66%] Linking C executable test_reaper_host
+[ 66%] Built target test_model_host_invariants
+[ 66%] Building C object tests/CMakeFiles/test_parallel.dir/test_parallel.c.o
+[ 66%] Built target test_reaper_host
+[ 66%] Building C object tests/CMakeFiles/test_reaper_parallel.dir/test_parallel.c.o
+[ 67%] Linking C executable test_reaper_updates
+[ 67%] Built target test_reaper_updates
+[ 68%] Linking C executable test_parallel
+[ 68%] Building C object tests/CMakeFiles/test_reference.dir/test_reference.c.o
+[ 69%] Linking C executable test_reaper_parallel
+[ 69%] Built target test_parallel
+[ 70%] Building C object tests/CMakeFiles/test_radiation.dir/test_radiation.c.o
+[ 70%] Built target test_reaper_parallel
+[ 70%] Building C object tests/CMakeFiles/test_spectra.dir/test_spectra.c.o
+[ 70%] Linking C executable test_reaper_preparation
+[ 70%] Built target test_reaper_preparation
+[ 71%] Linking Fortran executable test_radiation
+[ 71%] Building C object tests/CMakeFiles/test_yields.dir/test_yields.c.o
+[ 72%] Linking Fortran executable test_reference
+[ 73%] Linking Fortran executable test_spectra
+[ 73%] Built target test_radiation
+[ 73%] Built target test_reference
+[ 74%] Built target test_spectra
+[ 74%] Building C object tests/CMakeFiles/test_temperature.dir/test_temperature.c.o
+[ 74%] Building C object tests/CMakeFiles/test_rates.dir/test_rates.c.o
+[ 75%] Building C object tests/CMakeFiles/test_oxygen.dir/test_oxygen.c.o
+[ 76%] Linking Fortran executable test_yields
+[ 76%] Built target test_yields
+[ 77%] Linking Fortran executable test_temperature
+[ 77%] Building C object tests/CMakeFiles/test_linalg.dir/test_linalg.c.o
+[ 78%] Linking Fortran executable test_rates
+[ 78%] Linking Fortran executable test_oxygen
+[ 78%] Built target test_temperature
+[ 78%] Built target test_rates
+[ 79%] Building C object tests/CMakeFiles/test_discrete_helpers.dir/test_discrete_helpers.c.o
+[ 80%] Building C object tests/CMakeFiles/test_discrete.dir/test_discrete.c.o
+[ 80%] Built target test_oxygen
+[ 81%] Building C object tests/CMakeFiles/test_profiles.dir/test_profiles.c.o
+[ 82%] Linking Fortran executable test_linalg
+[ 82%] Linking Fortran executable test_discrete_helpers
+[ 82%] Built target test_linalg
+[ 83%] Linking Fortran executable test_discrete
+[ 83%] Building C object tests/CMakeFiles/test_optics.dir/test_optics.c.o
+[ 83%] Built target test_discrete_helpers
+[ 83%] Building C object tests/CMakeFiles/test_config.dir/test_config.c.o
+[ 83%] Built target test_discrete
+[ 84%] Building C object tests/CMakeFiles/test_spectrum.dir/test_spectrum.c.o
+[ 84%] Linking Fortran executable test_profiles
+[ 84%] Linking Fortran executable test_optics
+[ 84%] Built target test_profiles
+[ 85%] Linking Fortran executable test_config
+[ 85%] Built target test_optics
+[ 85%] Building C object tests/CMakeFiles/test_profile_config.dir/test_profile_config.c.o
+[ 85%] Linking Fortran executable test_spectrum
+[ 86%] Building C object tests/CMakeFiles/test_model.dir/test_model.c.o
+[ 86%] Built target test_config
+[ 86%] Built target test_spectrum
+[ 87%] Building C object tests/CMakeFiles/test_model_host.dir/test_model_host.c.o
+[ 88%] Building C object tests/CMakeFiles/test_reaper_reference_model.dir/test_model.c.o
+[ 89%] Linking Fortran executable test_profile_config
+[ 89%] Built target test_profile_config
+[ 90%] Building C object tests/CMakeFiles/test_reaper_reference_model_host.dir/test_model_host.c.o
+[ 90%] Linking Fortran executable test_model
+[ 91%] Linking Fortran executable test_model_host
+[ 91%] Built target test_model
+[ 91%] Linking Fortran executable test_reaper_reference_model
+[ 92%] Building C object tests/CMakeFiles/test_reaper_reference_spectrum.dir/test_spectrum.c.o
+[ 92%] Built target test_model_host
+[ 92%] Building C object tests/CMakeFiles/dump_fixtures.dir/dump_data.c.o
+[ 92%] Built target test_reaper_reference_model
+[ 92%] Linking Fortran executable test_reaper_reference_model_host
+[ 93%] Building C object tests/CMakeFiles/test_optics_invariants.dir/test_optics.c.o
+[ 94%] Linking C executable dump_fixtures
+[ 94%] Built target test_reaper_reference_model_host
+[ 95%] Linking Fortran executable test_reaper_reference_spectrum
+[ 95%] Built target dump_fixtures
+[ 95%] Building C object tests/CMakeFiles/test_config_invariants.dir/test_config.c.o
+[ 96%] Building C object tests/CMakeFiles/test_spectrum_invariants.dir/test_spectrum.c.o
+[ 96%] Linking C executable test_optics_invariants
+[ 96%] Built target test_reaper_reference_spectrum
+[ 97%] Building C object tests/CMakeFiles/test_profile_config_invariants.dir/test_profile_config.c.o
+[ 97%] Built target test_optics_invariants
+[ 97%] Building C object tests/CMakeFiles/test_prepared.dir/test_prepared.c.o
+[ 98%] Linking C executable test_config_invariants
+[ 98%] Linking C executable test_spectrum_invariants
+[ 98%] Built target test_config_invariants
+[ 98%] Linking C executable test_profile_config_invariants
+[ 98%] Built target test_spectrum_invariants
+[ 99%] Building C object tests/CMakeFiles/test_reaper.dir/test_reaper.c.o
+[ 99%] Built target test_profile_config_invariants
+[100%] Linking C executable test_prepared
+[100%] Built target test_prepared
+[100%] Linking C executable test_reaper
+[100%] Built target test_reaper

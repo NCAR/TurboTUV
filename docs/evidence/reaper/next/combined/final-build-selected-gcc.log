@@ -1,0 +1,64 @@
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3c-selected-gcc
+[  3%] Built target turbotuv_yaml
+[ 13%] Built target reference_bridge
+[ 15%] Built target tuvx_bench
+[ 37%] Built target turbotuv
+[ 38%] Built target turbotuv_reaper_export
+[ 40%] Built target turbotuv_bench
+[ 41%] Built target turbotuv_cli
+[ 42%] Built target dump_data
+[ 44%] Built target test_numerics
+[ 44%] Built target test_radiation_invariants
+[ 45%] Built target test_spectral_invariants
+[ 46%] Built target test_yield_invariants
+[ 47%] Built target test_temperature_invariants
+[ 51%] Built target test_rate_invariants
+[ 51%] Built target test_linalg_invariants
+[ 51%] Built target test_oxygen_invariants
+[ 55%] Built target test_profile_invariants
+[ 55%] Built target test_discrete_helper_invariants
+[ 55%] Built target test_discrete_invariants
+[ 58%] Built target test_fixtures
+[ 58%] Built target test_reaper_math
+[ 58%] Built target test_locale
+[ 58%] Building C object tests/CMakeFiles/test_reaper_interpolation.dir/test_reaper_interpolation.c.o
+[ 60%] Built target test_reaper_artifact
+[ 60%] Built target test_reaper_preparation
+[ 62%] Built target test_model_invariants
+[ 62%] Built target test_diagnostics
+[ 65%] Built target test_model_host_invariants
+[ 65%] Built target test_reaper_host
+[ 67%] Built target test_reaper_updates
+[ 67%] Built target test_parallel
+[ 69%] Built target test_reference
+[ 69%] Built target test_reaper_parallel
+[ 72%] Built target test_spectra
+[ 72%] Built target test_radiation
+[ 75%] Built target test_yields
+[ 75%] Built target test_temperature
+[ 77%] Built target test_oxygen
+[ 77%] Built target test_rates
+[ 79%] Built target test_linalg
+[ 79%] Built target test_discrete_helpers
+[ 81%] Built target test_profiles
+[ 81%] Built target test_discrete
+[ 83%] Built target test_config
+[ 83%] Built target test_optics
+[ 85%] Built target test_profile_config
+[ 85%] Built target test_spectrum
+[ 88%] Built target test_model
+[ 88%] Built target test_model_host
+[ 90%] Built target test_reaper_reference_model
+[ 90%] Built target test_reaper_reference_model_host
+[ 92%] Built target dump_fixtures
+[ 93%] Built target test_reaper_reference_spectrum
+[ 95%] Built target test_optics_invariants
+[ 95%] Built target test_config_invariants
+[ 97%] Built target test_spectrum_invariants
+[ 97%] Built target test_profile_config_invariants
+[ 99%] Built target test_prepared
+[ 99%] Built target test_reaper
+[100%] Linking C executable test_reaper_interpolation
+[100%] Built target test_reaper_interpolation
