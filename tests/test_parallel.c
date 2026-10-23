@@ -1,5 +1,9 @@
 /* Independent model instances share immutable configuration and data only. */
 #include "turbotuv_model.h"
+#ifdef TT_TEST_REAPER
+#include "turbotuv_reaper.h"
+#include "turbotuv_diagnostics.h"
+#endif
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +16,27 @@ typedef struct {
     int success;
 } worker;
 static const double angles[WORKERS] = {0, 30, 89.9, 93};
+static int prepare_column(tt_model *m, size_t worker_index, size_t run) {
+#ifdef TT_TEST_REAPER
+    if (tt_model_set_execution(m, TT_EXECUTION_REAPER))
+        return 0;
+    size_t nz = tt_model_shape(m).levels;
+    double *temperature = malloc(nz * sizeof(double));
+    if (!temperature)
+        return 0;
+    for (size_t z = 0; z < nz; ++z)
+        temperature[z] = 210 + (double)(z % 71) + 0.3 * worker_index + 0.1 * run;
+    int ok = tt_model_update_profile(m, "temperature", "K", nz - 1, temperature, NULL, NULL, NULL,
+                                     NULL) == TT_OK;
+    free(temperature);
+    return ok;
+#else
+    (void)m;
+    (void)worker_index;
+    (void)run;
+    return 1;
+#endif
+}
 static size_t flatten(const tt_model_result *r, tt_model_dimensions s, double *target,
                       const double *expected) {
     const double *arrays[] = {r->radiation.direct_flux,
@@ -53,12 +78,19 @@ static void *calculate(void *argument) {
     w->success = tt_model_create(w->config, NULL, &m, &error) == TT_OK;
     for (size_t i = 0; i < RUNS && w->success; ++i) {
         const tt_model_result *result = NULL;
-        w->success = tt_model_run(m, angles[w->worker] + 0.01 * i, 0.99 + 0.001 * i, &result,
+        w->success = prepare_column(m, w->worker, i) &&
+                     tt_model_run(m, angles[w->worker] + 0.01 * i, 0.99 + 0.001 * i, &result,
                                   &error) == TT_OK;
         if (w->success)
             w->success =
                 flatten(result, tt_model_shape(m), NULL, w->expected + i * w->count) == w->count;
     }
+#ifdef TT_TEST_REAPER
+    tt_diagnostics d;
+    if (w->success)
+        w->success = tt_model_diagnostics(m, &d) == TT_OK && d.reaper_calls == RUNS &&
+                     (!tt_model_reaper_capabilities(m) || d.generated_calls >= RUNS);
+#endif
     tt_model_destroy(m);
     return NULL;
 }
@@ -87,7 +119,8 @@ int main(int argc, char **argv) {
                 return 1;
             for (size_t i = 0; i < RUNS; ++i) {
                 const tt_model_result *result = NULL;
-                if (tt_model_run(serial, angles[w] + 0.01 * i, 0.99 + 0.001 * i, &result, &error))
+                if (!prepare_column(serial, w, i) ||
+                    tt_model_run(serial, angles[w] + 0.01 * i, 0.99 + 0.001 * i, &result, &error))
                     return 1;
                 if (flatten(result, s, workers[w].expected + i * count, NULL) != count)
                     return 1;

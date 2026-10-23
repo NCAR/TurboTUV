@@ -1,0 +1,22 @@
+config=examples/ts1_tsmlt.json columns=900 levels=121 wavelengths=102 photolysis=73 heating=4 dose=0 execution=reaper
+elapsed_ms=847.557 per_column_us=941.73 hash=b8c3b71c1297cd1e
+prepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=900 reaper_declines=0 generated_calls=1800 generated_declines=0 profiling=0 setup_ms=18.523 preparation_ms=6.559
+run_only_us=940.376 updates_us=1.354
+        1.11 real         1.11 user         0.00 sys
+            14958592  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                1084  page reclaims
+                   3  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  82  involuntary context switches
+         29654785504  instructions retired
+          4830785620  cycles elapsed
+             9208192  peak memory footprint

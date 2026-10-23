@@ -39,6 +39,8 @@ tt_status tt_model_set_execution(tt_model *m, tt_execution execution) {
         return TT_INVALID;
     m->generic = execution == TT_EXECUTION_GENERIC;
     m->reaper = execution == TT_EXECUTION_REAPER;
+    if (m->reaper)
+        tt_model_reaper_autoselect(m);
     return m->generic || m->plan ? TT_OK : TT_NOT_FOUND;
 }
 tt_status tt_model_run(tt_model *m, double zenith, double scale, const tt_model_result **out,

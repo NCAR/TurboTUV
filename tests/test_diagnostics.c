@@ -1,4 +1,5 @@
 #include "turbotuv_diagnostics.h"
+#include "turbotuv_reaper.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,7 +40,10 @@ int main(int argc, char **argv) {
     CHECK(tt_model_reset_diagnostics(m) == TT_OK);
     CHECK(tt_model_run(m, 30, 1, &r, &e) == TT_OK);
     CHECK(tt_model_diagnostics(m, &d) == TT_OK);
-    CHECK(d.reaper_calls == 1 && !d.prepared_calls && !d.generic_calls && !d.generated_calls);
+    CHECK(d.reaper_calls == 1 && !d.prepared_calls && !d.generic_calls);
+    unsigned capabilities = tt_model_reaper_capabilities(m);
+    CHECK(d.generated_calls ==
+          ((capabilities & 1) != 0) + ((capabilities & 2) != 0) + ((capabilities & 4) != 0));
     tt_model_destroy(m);
     return 0;
 }

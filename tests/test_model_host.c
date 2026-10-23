@@ -171,12 +171,27 @@ int main(void) {
                         "prepared");
                 require(tt_model_run(model, angles[a], 1.003, &result, &error) == TT_OK,
                         error.message);
+#ifdef TT_TEST_REAPER
+                const double *checked[] = {result->radiation.direct_flux, result->actinic_flux,
+                                           result->spectral_irradiance, result->photolysis};
+                size_t lengths[] = {6 * n, n, n, rates}, offset = 0;
+                for (size_t f = 0; f < 4; ++f) {
+                    for (size_t i = 0; i < lengths[f]; ++i) {
+                        double expected = generic[offset + i], actual = checked[f][i];
+                        require((expected == 0) == (actual == 0) && !(expected >= 0 && actual < 0),
+                                "REAPER zero/sign mismatch");
+                        same(actual, expected, f ? 0 : 1, offset + i);
+                    }
+                    offset += lengths[f];
+                }
+#else
                 require(
                     !memcmp(generic, result->radiation.direct_flux, 6 * n * sizeof(double)) &&
                         !memcmp(generic + 6 * n, result->actinic_flux, n * sizeof(double)) &&
                         !memcmp(generic + 7 * n, result->spectral_irradiance, n * sizeof(double)) &&
                         !memcmp(generic + 8 * n, result->photolysis, rates * sizeof(double)),
                     "prepared and generic runs differ");
+#endif
                 (void)outputs;
                 double *rp = ref + 6 * n, *rh = rp + NZ * s.photolysis, *rd = rh + NZ * s.heating;
 #ifdef TT_HAVE_REFERENCE

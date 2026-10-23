@@ -30,7 +30,7 @@ typedef enum {
 } tt_stage;
 typedef struct {
     size_t prepared_calls, generic_calls, prepared_declines;
-    size_t reaper_calls, reaper_declines, generated_calls;
+    size_t reaper_calls, reaper_declines, generated_calls, generated_declines;
     size_t calls[TT_STAGE_COUNT];
     double seconds[TT_STAGE_COUNT];
     int profiling; /* nonzero only in TURBOTUV_PROFILE builds */

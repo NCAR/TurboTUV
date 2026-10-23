@@ -54,7 +54,7 @@ def main():
                    help='exploratory/historical comparisons only; explicitly disables acceptance')
     p.add_argument('--minimum-seconds', type=float, default=0,
                    help='reject samples shorter than this timed duration (acceptance: 1)')
-    p.add_argument('--allow-differences', nargs='+', default=[], metavar='NAME',
+    p.add_argument('--allow-differences', nargs='+', action='extend', default=[], metavar='NAME',
                    help='programs whose hashes may differ from their group')
     a = p.parse_args()
     if a.rounds < 1 or a.columns < 1:

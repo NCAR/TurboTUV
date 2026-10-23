@@ -166,7 +166,7 @@ normal execution and performance acceptance. `--detail` reports supplemental
 model-run-only and host-update timings. The primary benchmark still includes
 both profile updates and model execution, and excludes output hashing/writing.
 
-The R1 numerical library is ordinary C11/libm, with model-owned scratch and
+The numerical library is ordinary C11/libm, with model-owned scratch and
 no runtime compiler, Python, loading service or additional runtime dependency.
 `TURBOTUV_REAPER_RATE_TILE` (0/full, 1, 2, 4, 8, 16, 32),
 `TURBOTUV_REAPER_OVERLAP`, `TURBOTUV_REAPER_OXYGEN`, and
@@ -174,3 +174,18 @@ no runtime compiler, Python, loading service or additional runtime dependency.
 defaults use full levels for Clang and 16 for other compilers, and enable the
 three overhead optimizations. See the results for the tested hardware and
 limits; compiler-specific defaults are tuning choices, not portability claims.
+
+R2 adds optional static rate kernels through `turbotuv_reaper.h`.
+`tt_model_export_reaper` exports the C builder's immutable description;
+the development emitter generates bounded C functions from those exact terms.
+Build with `TURBOTUV_REAPER_SOURCES` to include kernels and their static
+registry, or explicitly call `tt_model_attach_reaper` with a linked descriptor.
+Selection checks ABI, dimensions, numerical mode and model fingerprint.
+Incompatible explicit attachments return a diagnostic and leave the model
+usable; missing coverage and declined family calls remain interpreted.
+`tt_model_reaper_capabilities` reports attached families. Diagnostics count
+accepted and declined generated family calls separately from model calls.
+`preparation_ms` reports selection/fingerprinting outside the timed loop.
+See [the generation workflow](../tools/reaper/README.md#static-rate-generation)
+for compiler flags, ordered/roundoff choices and ownership. Empty
+`TURBOTUV_REAPER_SOURCES` retains a build with no generation or loader dependency.

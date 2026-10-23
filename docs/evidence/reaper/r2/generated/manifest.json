@@ -1,0 +1,78 @@
+[
+  {
+    "compiler": "gcc",
+    "variant": "small-acc",
+    "source": "build/reaper/r2-combinations-gcc/small-acc/kernel-0.c",
+    "archive": "docs/evidence/reaper/r2/generated/gcc/kernel-0.c.gz",
+    "sha256": "0b7cb13e146f7053d7f4ac0e986989762f26b2256142192e5761162afa1fdf9e",
+    "bytes": 754346
+  },
+  {
+    "compiler": "gcc",
+    "variant": "small-acc",
+    "source": "build/reaper/r2-combinations-gcc/small-acc/kernel-1.c",
+    "archive": "docs/evidence/reaper/r2/generated/gcc/kernel-1.c.gz",
+    "sha256": "fb1757dd474c3dc043e7c6e9fd57e413231c20290e22d0e8375991b5b0e7cd79",
+    "bytes": 314917
+  },
+  {
+    "compiler": "gcc",
+    "variant": "small-acc",
+    "source": "build/reaper/r2-combinations-gcc/small-acc/registry.c",
+    "archive": "docs/evidence/reaper/r2/generated/gcc/registry.c.gz",
+    "sha256": "ae7623132f80b0585b85f786669ed4bf2a50316a19b23b8512b0ccf396b3bd3a",
+    "bytes": 351
+  },
+  {
+    "compiler": "gcc",
+    "source": "build/reaper/r2-combinations-gcc/tuv_5_4-plan.json",
+    "archive": "docs/evidence/reaper/r2/generated/gcc/tuv_5_4-plan.json.gz",
+    "sha256": "911ca66bd8e25815a6d22cc8a4411ceb30542432ccb51ee17daae5c09e1be0fe",
+    "bytes": 1749908
+  },
+  {
+    "compiler": "gcc",
+    "source": "build/reaper/r2-combinations-gcc/ts1_tsmlt-plan.json",
+    "archive": "docs/evidence/reaper/r2/generated/gcc/ts1_tsmlt-plan.json.gz",
+    "sha256": "d1cea8a9e8f22012d15adb4157d6befadbd7e2a8f19b915446b533bff7f09e49",
+    "bytes": 813919
+  },
+  {
+    "compiler": "clang",
+    "variant": "interleave-fma",
+    "source": "build/reaper/r2-combinations-clang/interleave-fma/kernel-0.c",
+    "archive": "docs/evidence/reaper/r2/generated/clang/kernel-0.c.gz",
+    "sha256": "94ea2861467df798c0f87e88882829fad31231f624ab8ec35e2df0f7d7fc1103",
+    "bytes": 761463
+  },
+  {
+    "compiler": "clang",
+    "variant": "interleave-fma",
+    "source": "build/reaper/r2-combinations-clang/interleave-fma/kernel-1.c",
+    "archive": "docs/evidence/reaper/r2/generated/clang/kernel-1.c.gz",
+    "sha256": "9f6ebf4115f461cca188cb2dd66a4fab3aa298b1f30852f02a4351aae3254c35",
+    "bytes": 313056
+  },
+  {
+    "compiler": "clang",
+    "variant": "interleave-fma",
+    "source": "build/reaper/r2-combinations-clang/interleave-fma/registry.c",
+    "archive": "docs/evidence/reaper/r2/generated/clang/registry.c.gz",
+    "sha256": "ae7623132f80b0585b85f786669ed4bf2a50316a19b23b8512b0ccf396b3bd3a",
+    "bytes": 351
+  },
+  {
+    "compiler": "clang",
+    "source": "build/reaper/r2-combinations-clang/tuv_5_4-plan.json",
+    "archive": "docs/evidence/reaper/r2/generated/clang/tuv_5_4-plan.json.gz",
+    "sha256": "911ca66bd8e25815a6d22cc8a4411ceb30542432ccb51ee17daae5c09e1be0fe",
+    "bytes": 1749908
+  },
+  {
+    "compiler": "clang",
+    "source": "build/reaper/r2-combinations-clang/ts1_tsmlt-plan.json",
+    "archive": "docs/evidence/reaper/r2/generated/clang/ts1_tsmlt-plan.json.gz",
+    "sha256": "d1cea8a9e8f22012d15adb4157d6befadbd7e2a8f19b915446b533bff7f09e49",
+    "bytes": 813919
+  }
+]

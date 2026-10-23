@@ -12,6 +12,7 @@
  * classification. */
 #include "spectrum_plan.h"
 #include "reaper_internal.h"
+#include "reaper_writer.h"
 #include "spectral_validation.h"
 #include <float.h>
 #include <math.h>
@@ -936,7 +937,7 @@ tt_status tt_spectrum_plan_create(const tt_spectrum *s, tt_spectrum_plan **out) 
     double *reference = malloc(3 * nw * nz * sizeof(double));
     int valid[3] = {0};
     p->constant = malloc(nw * sizeof(double));
-    p->coef = malloc(nw * p->stride * sizeof(double));
+    p->coef = calloc(nw * p->stride, sizeof(double));
     p->index = malloc(nw * sizeof(size_t));
     if (!status && !(reference && p->constant && p->coef && p->index))
         status = TT_MEMORY;
@@ -1109,4 +1110,124 @@ int tt_spectrum_plan_equal(const tt_spectrum_plan *a, const tt_spectrum_plan *b)
 
 int tt_spectrum_plan_category(const tt_spectrum_plan *p) {
     return p->s->parameterized ? 2 : p->qy ? 1 : 0;
+}
+
+/* Canonical immutable spectrum description. Keep this beside the authoritative
+ * prepared representation; Python never reconstructs spectrum classifications. */
+void tt_spectrum_plan_write(const tt_spectrum_plan *p, tt_reaper_writer *w) {
+    const tt_spectrum *s = p->s;
+    tt_rw_text(w, "{\"role\":");
+    tt_rw_size(w, (size_t)s->role);
+    tt_rw_text(w, ",\"kind\":");
+    tt_rw_size(w, (size_t)s->kind);
+    tt_rw_text(w, ",\"parameterized\":");
+    tt_rw_size(w, (size_t)s->parameterized);
+    tt_rw_text(w, ",\"generic\":");
+    tt_rw_size(w, (size_t)p->generic);
+    tt_rw_text(w, ",\"constant\":");
+    tt_rw_array(w, p->constant, p->nw);
+    tt_rw_text(w, ",\"coefficients\":");
+    tt_rw_array(w, p->coef, p->count * p->stride);
+    tt_rw_text(w, ",\"varying\":[");
+    for (size_t i = 0; i < p->count; ++i) {
+        if (i)
+            tt_rw_text(w, ",");
+        tt_rw_size(w, p->index[i]);
+    }
+    tt_rw_text(w, "],\"tables\":[");
+    for (size_t i = 0; i < s->table_count; ++i) {
+        if (i)
+            tt_rw_text(w, ",");
+        const tt_spectral_table *t = s->tables + i;
+        tt_rw_text(w, "[");
+        tt_rw_size(w, t->rows);
+        tt_rw_text(w, ",");
+        tt_rw_size(w, t->columns);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, t->values, t->rows * t->columns);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, t->temperatures, t->temperature_count);
+        tt_rw_text(w, "]");
+    }
+    tt_rw_text(w, "],\"overrides\":[");
+    for (size_t i = 0; i < s->override_count; ++i) {
+        if (i)
+            tt_rw_text(w, ",");
+        tt_rw_text(w, "[");
+        tt_rw_size(w, s->overrides[i].first);
+        tt_rw_text(w, ",");
+        tt_rw_size(w, s->overrides[i].end);
+        tt_rw_text(w, ",");
+        tt_rw_double(w, s->overrides[i].value);
+        tt_rw_text(w, "]");
+    }
+    tt_rw_text(w, "]");
+    if (p->qy) {
+        const tt_yield_options *q = &s->yield;
+        double values[] = {q->low_wavelength_value, q->high_wavelength_value,
+                           q->minimum_temperature,  q->maximum_temperature,
+                           q->minimum_wavelength,   q->maximum_wavelength,
+                           q->molecular_diameter,   q->molecular_weight};
+        tt_rw_text(w, ",\"yield\":[");
+        tt_rw_size(w, q->acetone_branches);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, values, sizeof values / sizeof *values);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, q->coefficients, q->coefficient_count);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, q->collision_rates, p->nw);
+        tt_rw_text(w, "]");
+    }
+    if (s->parameterized) {
+        const tt_temperature_model *t = &s->temperature;
+        size_t na = t->kind == TT_TEMPERATURE_EXPONENTIAL ? t->terms
+                    : t->kind == TT_TEMPERATURE_TAYLOR    ? t->terms * t->count
+                                                          : t->count;
+        size_t nb = t->kind == TT_TEMPERATURE_EXPONENTIAL ? t->terms : t->count;
+        double values[] = {t->base_temperature, t->base_wavelength, t->burkholder_a,
+                           t->burkholder_b};
+        tt_rw_text(w, ",\"temperature\":[");
+        tt_rw_size(w, t->kind);
+        tt_rw_text(w, ",");
+        tt_rw_size(w, t->first);
+        tt_rw_text(w, ",");
+        tt_rw_size(w, t->count);
+        tt_rw_text(w, ",");
+        tt_rw_size(w, t->terms);
+        tt_rw_text(w, ",");
+        tt_rw_size(w, t->base_10);
+        tt_rw_text(w, ",");
+        tt_rw_size(w, t->invert_temperature);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, values, 4);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, t->a, na);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, t->b, nb);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, t->powers, t->terms);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, t->sigma, t->count);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, p->x, p->raw);
+        tt_rw_text(w, ",");
+        tt_rw_array(w, p->y, p->raw);
+        tt_rw_text(w, ",[");
+        for (size_t i = 0; i < t->range_count; ++i) {
+            if (i)
+                tt_rw_text(w, ",");
+            const tt_temperature_range *r = t->ranges + i;
+            tt_rw_text(w, "[");
+            tt_rw_double(w, r->minimum);
+            tt_rw_text(w, ",");
+            tt_rw_double(w, r->maximum);
+            tt_rw_text(w, ",");
+            tt_rw_size(w, r->is_fixed);
+            tt_rw_text(w, ",");
+            tt_rw_double(w, r->fixed_value);
+            tt_rw_text(w, "]");
+        }
+        tt_rw_text(w, "]]");
+    }
+    tt_rw_text(w, "}");
 }

@@ -5,6 +5,7 @@
 #include "spectrum_plan.h"
 #include "fixtures.h"
 #include <math.h>
+#include <float.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,12 +26,44 @@ static void require(int ok, const char *message) {
     }
 }
 static uint64_t state = 2026;
+#ifdef TT_TEST_REAPER_ROUNDOFF
+static size_t radiation_values, output_values;
+static double worst_roundoff;
+#endif
 static double uniform(double lo, double hi) {
     state = state * 6364136223846793005u + 1442695040888963407u;
     return lo + (hi - lo) * ((double)(state >> 11) / 9007199254740992.0);
 }
 static void same(const double *a, const double *b, size_t n, const char *what) {
     compared += n;
+#ifdef TT_TEST_REAPER_ROUNDOFF
+    int model = !strcmp(what, "outputs and radiator views");
+    int transfer = !strcmp(what, "blocked radiation");
+    for (size_t i = 0; i < n; ++i) {
+        /* The inherited extreme standalone catalogue includes identical
+         * overflow results. Preserve those bit patterns/statuses; any changed
+         * nonfinite result still fails below. Ordinary model gates require
+         * all values finite independently. */
+        if (!memcmp(a + i, b + i, sizeof(double)))
+            continue;
+        int unit_floor = transfer || (model && i < radiation_values);
+        double norm = fmax(fabs(a[i]), fabs(b[i]));
+        if (unit_floor)
+            norm = fmax(norm, 1);
+        double error = !model && !transfer ? fabs(a[i] - b[i]) / (DBL_EPSILON * norm + DBL_MIN)
+                       : norm              ? fabs(a[i] - b[i]) / norm / DBL_EPSILON
+                                           : 0;
+        double limit = transfer || (model && i < output_values) ? 64 : 32;
+        /* Preserve finite values, structural zero and nonnegative outputs. */
+        if (!isfinite(a[i]) || !isfinite(b[i]) || (a[i] == 0) != (b[i] == 0) ||
+            (b[i] >= 0 && a[i] < 0) || error > limit) {
+            fprintf(stderr, "REAPER (%s): %s[%zu] %.17g != %.17g (%.3g eps)\n", origin, what, i,
+                    a[i], b[i], error);
+            exit(1);
+        }
+        worst_roundoff = fmax(worst_roundoff, error);
+    }
+#else
     if (n && memcmp(a, b, n * sizeof(double))) {
         for (size_t i = 0; i < n; ++i)
             if (memcmp(a + i, b + i, sizeof(double))) {
@@ -40,6 +73,7 @@ static void same(const double *a, const double *b, size_t n, const char *what) {
             }
         exit(1);
     }
+#endif
 }
 static tt_config *parse(const char *text) {
     tt_config *config = NULL;
@@ -230,6 +264,10 @@ static void model_runs(void) {
             names[i] = tt_config_string(tt_config_get(tt_config_at(radiators, i), "name"));
         tt_model_dimensions s = tt_model_shape(model);
         size_t nz = s.levels, nl = nz - 1, n = nz * s.wavelengths;
+#ifdef TT_TEST_REAPER_ROUNDOFF
+        radiation_values = 6 * n;
+        output_values = 8 * n + nz * (s.photolysis + s.heating + s.dose);
+#endif
         size_t size =
             8 * n + nz * (s.photolysis + s.heating + s.dose) + 3 * nl * s.wavelengths * nr;
         double *prepared = malloc(size * sizeof(double)), *generic = malloc(size * sizeof(double));
@@ -417,8 +455,14 @@ int main(void) {
     spectrum_plans();
     blocked_transfer();
     model_runs();
+#ifdef TT_TEST_REAPER_ROUNDOFF
+    printf("REAPER: %zu spectra, %zu atmospheres, %zu models, %zu columns, %zu values; maximum "
+           "%.3g eps\n",
+           spectra, atmospheres, models, columns, compared, worst_roundoff);
+#else
     printf("Prepared execution: %zu spectra, %zu atmospheres, %zu models, %zu columns, %zu values "
            "identical\n",
            spectra, atmospheres, models, columns, compared);
+#endif
     return 0;
 }

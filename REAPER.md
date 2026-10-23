@@ -509,8 +509,10 @@ review itself has established neither a new speedup nor such a bound.
   inventory, fresh profiles, and timing/dispatch evidence.
 - [x] R1: portable overhead/layout/interpolation/O2 experiments, with isolated
   and combined measurements.
-- [ ] R2–R3: generated-kernel and arithmetic experiments covering the measured
-  hot stages; deterministic emitted C; held-out numerical validation.
+- [x] R2: deterministic generated rate kernels, bounded-size/arithmetic sweeps,
+  static prototype, and held-out numerical validation.
+- [ ] R3: spectral and radiative-transfer experiments covering the remaining
+  measured hot stages; held-out numerical validation.
 - [ ] R4: static attachment and, if profitable, optional startup preparation,
   identity checks, cache, lifecycle tests, and deployment documentation.
 - [ ] R5: grouping assessment when the remaining profile justifies it, with

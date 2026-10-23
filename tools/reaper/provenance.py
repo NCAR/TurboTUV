@@ -25,11 +25,14 @@ def main():
     record = {'schema': 1, 'os': platform.platform(), 'machine': platform.machine(),
               'python': platform.python_version(), 'revision': output('git', 'rev-parse', 'HEAD'),
               'frozen_main': '9e149851af5bc48fc7ce64b5fbe50c6959ff2d51',
-              'floating_point': 'binary64; round to nearest; contraction off; no fast-math',
+              'floating_point': 'binary64; round to nearest; implicit contraction off; explicit fma only where selected; no fast-math',
               'files': {str(p): sha(p) for p in [Path('data/manifest.json'),
                         Path('bench/turbotuv_bench.c'), *Path('examples').glob('*.json')]},
               'working_diff_sha256': hashlib.sha256(subprocess.check_output(['git', 'diff'])).hexdigest(),
               'builds': []}
+    sources = output('git', 'ls-files', '--cached', '--others', '--exclude-standard', '--',
+                     'src', 'include', 'tools/reaper', 'tests', 'bench', 'app', 'CMakeLists.txt').splitlines()
+    record['source_sha256'] = {name: sha(name) for name in sorted(set(sources)) if Path(name).is_file()}
     if platform.system() == 'Darwin':
         record['cpu'] = output('sysctl', '-n', 'machdep.cpu.brand_string')
         record['power'] = output('pmset', '-g', 'batt')

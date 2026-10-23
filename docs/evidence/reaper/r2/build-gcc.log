@@ -1,0 +1,57 @@
+[  3%] Built target turbotuv_yaml
+[ 14%] Built target reference_bridge
+[ 16%] Built target tuvx_bench
+[ 40%] Built target turbotuv
+[ 41%] Built target dump_data
+[ 43%] Built target test_numerics
+[ 45%] Built target turbotuv_cli
+[ 45%] Built target turbotuv_reaper_export
+[ 46%] Built target test_radiation_invariants
+[ 47%] Built target turbotuv_bench
+[ 48%] Built target test_yield_invariants
+[ 50%] Built target test_temperature_invariants
+[ 51%] Built target test_spectral_invariants
+[ 53%] Built target test_rate_invariants
+[ 54%] Built target test_oxygen_invariants
+[ 55%] Built target test_linalg_invariants
+[ 56%] Built target test_discrete_helper_invariants
+[ 57%] Built target test_discrete_invariants
+[ 59%] Built target test_profile_invariants
+[ 60%] Built target test_locale
+[ 61%] Built target test_reaper_artifact
+[ 62%] Built target test_fixtures
+[ 63%] Built target test_diagnostics
+[ 64%] Built target test_model_host_invariants
+[ 66%] Built target test_reaper_parallel
+[ 67%] Built target test_reference
+[ 69%] Built target test_parallel
+[ 70%] Built target test_radiation
+[ 71%] Built target test_temperature
+[ 72%] Built target test_yields
+[ 74%] Built target test_spectra
+[ 75%] Built target test_oxygen
+[ 76%] Built target test_rates
+[ 78%] Built target test_linalg
+[ 80%] Built target test_discrete
+[ 81%] Built target test_profiles
+[ 83%] Built target test_optics
+[ 84%] Built target test_discrete_helpers
+[ 85%] Built target test_config
+[ 86%] Built target test_spectrum
+[ 87%] Built target test_profile_config
+[ 89%] Built target test_model_host
+[ 90%] Built target test_reaper_reference_model
+[ 91%] Built target test_reaper_reference_model_host
+[ 92%] Built target dump_fixtures
+[ 93%] Built target test_model
+[ 94%] Built target test_optics_invariants
+[ 95%] Built target test_config_invariants
+[ 97%] Built target test_profile_config_invariants
+[ 97%] Built target test_spectrum_invariants
+[ 97%] Building C object tests/CMakeFiles/test_reaper.dir/test_reaper.c.o
+[ 97%] Building C object tests/CMakeFiles/test_prepared.dir/test_prepared.c.o
+[ 98%] Built target test_model_invariants
+[ 99%] Linking C executable test_prepared
+[100%] Linking C executable test_reaper
+[100%] Built target test_prepared
+[100%] Built target test_reaper

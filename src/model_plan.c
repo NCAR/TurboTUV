@@ -19,6 +19,9 @@
 #include "diagnostics_internal.h"
 #include "reaper_internal.h"
 #include "oxygen_internal.h"
+#include "turbotuv_reaper.h"
+#include "reaper_writer.h"
+#include <float.h>
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -58,6 +61,11 @@ struct tt_model_plan {
     double *oxygen_cross, *oxygen_work, *scratch, *block, maximum_temperature;
     unsigned char *gas_initialized;
     int needs_temperature, needs_air, oxygen_reactions;
+    tt_reaper_kernels kernels;
+    unsigned capabilities;
+    unsigned char identity[32];
+    int has_identity, auto_checked;
+    const double **row_views;
 };
 
 void tt_model_plan_destroy(tt_model_plan *p) {
@@ -80,6 +88,7 @@ void tt_model_plan_destroy(tt_model_plan *p) {
     free(p->scratch);
     free(p->block);
     free(p->gas_initialized);
+    free(p->row_views);
     free(p);
 }
 
@@ -262,6 +271,16 @@ tt_status tt_model_plan_create(const tt_model *m, tt_model_plan **out) {
             p->block = malloc(tt_block_delta_eddington_work(nl) * sizeof(double));
         if (!p->scratch || (!m->host_solver && m->streams == 1 && !p->block))
             status = TT_MEMORY;
+    }
+    if (!status) {
+        p->row_views = calloc(p->evaluation_count + 1, sizeof(double *));
+        if (!p->row_views)
+            status = TT_MEMORY;
+        else {
+            for (size_t i = 0; i < p->evaluation_count; ++i)
+                p->row_views[i] = p->evaluations[i].rows;
+            p->row_views[p->evaluation_count] = p->oxygen_cross;
+        }
     }
     if (status) {
         tt_model_plan_destroy(p);
@@ -509,8 +528,29 @@ static int run_plan(tt_model_plan *p, tt_model *m, double zenith, double scale, 
         }
         TT_TIME_END(&m->diagnostics, TT_STAGE_OXYGEN_CROSS, oxygen_cross_time);
     }
+    unsigned generated = 0;
+    if (reaper && p->capabilities) {
+        tt_reaper_view view = {nz,          nw,           p->evaluation_count + 1, m->work,
+                               m->work + n, p->row_views, m->rate_storage};
+        tt_reaper_kernel functions[] = {p->kernels.photolysis_kernel, p->kernels.heating_kernel,
+                                        p->kernels.dose_kernel};
+        for (unsigned k = 0; k < 3; ++k)
+            if (functions[k]) {
+                TT_TIME_START(generated_time);
+                int accepted = functions[k](&view);
+                TT_TIME_END(&m->diagnostics, TT_STAGE_PHOTOLYSIS + k, generated_time);
+                if (accepted) {
+                    generated |= 1u << k;
+                    ++m->diagnostics.generated_calls;
+                } else
+                    ++m->diagnostics.generated_declines;
+            }
+    }
     for (size_t i = 0; i < p->integral_count; ++i) {
         const integral *g = p->integrals + i;
+        unsigned capability = g->dose ? 4u : g->heating ? 2u : 1u;
+        if (generated & capability)
+            continue;
         TT_TIME_START(rate_time);
         if (reaper)
             reaper_integrate(g, g->dose ? m->work + n : m->work, nz, m->rate_storage + g->output);
@@ -530,4 +570,198 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
 }
 int tt_model_reaper_run(tt_model_plan *p, tt_model *m, double zenith, double scale) {
     return run_plan(p, m, zenith, scale, 1);
+}
+
+/* Resolve prepared pointers into exported slot IDs and offsets by equality,
+ * never pointer ordering/subtraction between unrelated allocations. */
+static void write_row(const tt_model_plan *p, size_t nw, size_t nz, const double *row,
+                      tt_reaper_writer *w) {
+    if (!row) {
+        tt_rw_text(w, "null");
+        return;
+    }
+    for (size_t e = 0; e < p->evaluation_count; ++e)
+        for (size_t k = 0; k < p->evaluations[e].varying; ++k)
+            if (row == p->evaluations[e].rows + k * p->evaluations[e].levels) {
+                tt_rw_text(w, "[");
+                tt_rw_size(w, e);
+                tt_rw_text(w, ",");
+                tt_rw_size(w, k * p->evaluations[e].levels);
+                tt_rw_text(w, "]");
+                return;
+            }
+    for (size_t k = 0; p->oxygen_cross && k < nw; ++k)
+        if (row == p->oxygen_cross + k * nz) {
+            tt_rw_text(w, "[");
+            tt_rw_size(w, p->evaluation_count);
+            tt_rw_text(w, ",");
+            tt_rw_size(w, k * nz);
+            tt_rw_text(w, "]");
+            return;
+        }
+    w->failed = 1;
+}
+
+tt_status tt_model_export_reaper(tt_model *m, FILE *file, unsigned char digest[32]) {
+    if (!m || !m->plan || (!file && !digest))
+        return TT_INVALID;
+    if (sizeof(double) != 8 || DBL_MANT_DIG != 53 || DBL_MAX_EXP != 1024)
+        return TT_NOT_FOUND;
+    double one = 1;
+    uint64_t bits;
+    memcpy(&bits, &one, 8);
+    if (bits != UINT64_C(0x3ff0000000000000))
+        return TT_NOT_FOUND;
+    tt_model_plan *p = m->plan;
+    tt_reaper_writer w;
+    tt_rw_init(&w, file);
+    size_t nz = m->shape.levels, nw = m->shape.wavelengths;
+    tt_rw_text(&w, "{\"schema\":");
+    tt_rw_size(&w, TT_REAPER_SCHEMA);
+    tt_rw_text(&w, ",\"abi\":");
+    tt_rw_size(&w, TT_REAPER_ABI);
+    tt_rw_text(&w, ",\"implementation\":");
+    tt_rw_size(&w, TT_REAPER_IMPLEMENTATION);
+    tt_rw_text(&w, ",\"layout\":\"wavelength-level-v1\",\"levels\":");
+    tt_rw_size(&w, nz);
+    tt_rw_text(&w, ",\"wavelengths\":");
+    tt_rw_size(&w, nw);
+    tt_rw_text(&w, ",\"outputs\":[");
+    tt_rw_size(&w, m->shape.photolysis);
+    tt_rw_text(&w, ",");
+    tt_rw_size(&w, m->shape.heating);
+    tt_rw_text(&w, ",");
+    tt_rw_size(&w, m->shape.dose);
+    tt_rw_text(&w, "],\"wavelength_edges\":");
+    tt_rw_array(&w, m->grids[m->wavelength].value.edges, nw + 1);
+    tt_rw_text(&w, ",\"wavelength_midpoints\":");
+    tt_rw_array(&w, m->grids[m->wavelength].value.midpoints, nw);
+    tt_rw_text(&w, ",\"slots\":[");
+    for (size_t i = 0; i < p->evaluation_count; ++i) {
+        if (i)
+            tt_rw_text(&w, ",");
+        tt_rw_text(&w, "{\"levels\":");
+        tt_rw_size(&w, p->evaluations[i].levels);
+        tt_rw_text(&w, ",\"spectrum\":");
+        tt_spectrum_plan_write(p->evaluations[i].plan, &w);
+        tt_rw_text(&w, "}");
+    }
+    tt_rw_text(&w, "],\"oxygen_slot\":");
+    tt_rw_size(&w, p->evaluation_count);
+    tt_rw_text(&w, ",\"rates\":[");
+    for (size_t i = 0; i < p->integral_count; ++i) {
+        const integral *g = p->integrals + i;
+        unsigned family = g->dose ? 2 : g->heating ? 1 : 0;
+        size_t index = g->output / nz - (g->dose      ? m->shape.photolysis + m->shape.heating
+                                         : g->heating ? m->shape.photolysis
+                                                      : 0);
+        if (i)
+            tt_rw_text(&w, ",");
+        tt_rw_text(&w, "{\"family\":");
+        tt_rw_size(&w, family);
+        tt_rw_text(&w, ",\"name\":");
+        tt_rw_string(&w, tt_model_rate_name(m, (tt_rate_kind)family, index));
+        tt_rw_text(&w, ",\"output\":");
+        tt_rw_size(&w, g->output);
+        tt_rw_text(&w, ",\"scale\":");
+        tt_rw_double(&w, g->scale);
+        tt_rw_text(&w, ",\"terms\":[");
+        for (size_t j = 0; j < g->count; ++j) {
+            const term *t = g->terms + j;
+            if (j)
+                tt_rw_text(&w, ",");
+            tt_rw_text(&w, "[");
+            tt_rw_size(&w, t->w);
+            tt_rw_text(&w, ",");
+            tt_rw_size(&w, (size_t)t->kind);
+            tt_rw_text(&w, ",");
+            tt_rw_double(&w, t->value);
+            tt_rw_text(&w, ",");
+            tt_rw_double(&w, t->energy);
+            tt_rw_text(&w, ",");
+            write_row(p, nw, nz, t->cross, &w);
+            tt_rw_text(&w, ",");
+            write_row(p, nw, nz, t->yield, &w);
+            tt_rw_text(&w, "]");
+        }
+        tt_rw_text(&w, "]}");
+    }
+    tt_rw_text(&w, "]}\n");
+    unsigned char computed[32];
+    tt_sha256_final(&w.sha, computed);
+    if (w.failed)
+        return TT_INVALID;
+    memcpy(p->identity, computed, 32);
+    p->has_identity = 1;
+    if (digest)
+        memcpy(digest, computed, 32);
+    return TT_OK;
+}
+
+tt_status tt_model_reaper_identity(tt_model *m, unsigned char digest[32]) {
+    if (!m || !m->plan || !digest)
+        return TT_INVALID;
+    if (!m->plan->has_identity)
+        return tt_model_export_reaper(m, NULL, digest);
+    memcpy(digest, m->plan->identity, 32);
+    return TT_OK;
+}
+
+tt_status tt_model_attach_reaper(tt_model *m, const tt_reaper_kernels *k, tt_error *error) {
+    if (error)
+        memset(error, 0, sizeof *error);
+    const char *reason = NULL;
+    if (!m || !m->plan)
+        reason = "REAPER attachment requires a prepared model";
+    else if (!k) {
+        memset(&m->plan->kernels, 0, sizeof m->plan->kernels);
+        m->plan->capabilities = 0;
+        m->plan->auto_checked = 1;
+        return TT_OK;
+    } else if (k->abi != TT_REAPER_ABI || k->schema != TT_REAPER_SCHEMA ||
+               k->implementation != TT_REAPER_IMPLEMENTATION)
+        reason = "REAPER ABI/schema/implementation mismatch";
+    else if ((k->numerics != TT_REAPER_ORDERED && k->numerics != TT_REAPER_ROUNDOFF) ||
+             (k->accumulators != 1 && k->accumulators != 2 && k->accumulators != 4 &&
+              k->accumulators != 8) ||
+             (k->numerics == TT_REAPER_ORDERED && k->accumulators != 1) ||
+             (k->term_budget != 32 && k->term_budget != 64 && k->term_budget != 128 &&
+              k->term_budget != 256) ||
+             k->level_tile > 32)
+        reason = "REAPER numerical mode or layout mismatch";
+    else if (k->levels != m->shape.levels || k->wavelengths != m->shape.wavelengths ||
+             k->slots != m->plan->evaluation_count + 1 || k->photolysis != m->shape.photolysis ||
+             k->heating != m->shape.heating || k->dose != m->shape.dose)
+        reason = "REAPER dimensions/slots mismatch";
+    else {
+        unsigned char digest[32];
+        if (tt_model_reaper_identity(m, digest) || memcmp(k->model_sha256, digest, 32))
+            reason = "REAPER model fingerprint mismatch";
+    }
+    if (reason) {
+        if (error) {
+            error->status = TT_INVALID;
+            snprintf(error->message, sizeof error->message, "%s", reason);
+        }
+        return TT_INVALID;
+    }
+    m->plan->kernels = *k;
+    m->plan->capabilities = (k->photolysis_kernel ? 1u : 0u) | (k->heating_kernel ? 2u : 0u) |
+                            (k->dose_kernel ? 4u : 0u);
+    m->plan->auto_checked = 1;
+    return TT_OK;
+}
+unsigned tt_model_reaper_capabilities(const tt_model *m) {
+    return m && m->plan ? m->plan->capabilities : 0;
+}
+extern const tt_reaper_kernels *const *tt_reaper_builtin_tables(size_t *count);
+void tt_model_reaper_autoselect(tt_model *m) {
+    if (!m || !m->plan || m->plan->auto_checked)
+        return;
+    m->plan->auto_checked = 1;
+    size_t count = 0;
+    const tt_reaper_kernels *const *tables = tt_reaper_builtin_tables(&count);
+    for (size_t i = 0; i < count; ++i)
+        if (tt_model_attach_reaper(m, tables[i], NULL) == TT_OK)
+            return;
 }

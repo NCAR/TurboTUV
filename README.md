@@ -100,6 +100,8 @@ To cite TurboTUV, use DOI:
 On the `reaper` branch, `TT_EXECUTION_REAPER` and `turbotuv_bench --reaper`
 select further portable optimizations while preserving the prepared default.
 The new path allows the documented roundoff gates; its first overhead changes
-retain bit identity. Fresh controls, validation, individual timings and the
+retain bit identity. Optional generated C11 rate kernels now support static
+attachment; [generation instructions](tools/reaper/README.md#static-rate-generation)
+cover ordered and roundoff variants. Fresh controls, validation, timings and the
 remaining work toward a further 2x are recorded in
 [docs/REAPER_RESULTS.md](docs/REAPER_RESULTS.md).

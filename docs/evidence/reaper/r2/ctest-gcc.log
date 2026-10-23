@@ -1,0 +1,95 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r2-selected-gcc
+      Start  1: numerics
+ 1/45 Test  #1: numerics .........................   Passed    0.00 sec
+      Start  2: radiation_invariants
+ 2/45 Test  #2: radiation_invariants .............   Passed    0.00 sec
+      Start  3: spectral_invariants
+ 3/45 Test  #3: spectral_invariants ..............   Passed    0.01 sec
+      Start  4: yield_invariants
+ 4/45 Test  #4: yield_invariants .................   Passed    0.01 sec
+      Start  5: temperature_invariants
+ 5/45 Test  #5: temperature_invariants ...........   Passed    0.00 sec
+      Start  6: rate_invariants
+ 6/45 Test  #6: rate_invariants ..................   Passed    0.03 sec
+      Start  7: oxygen_invariants
+ 7/45 Test  #7: oxygen_invariants ................   Passed    0.01 sec
+      Start  8: linalg_invariants
+ 8/45 Test  #8: linalg_invariants ................   Passed    0.00 sec
+      Start  9: discrete_helper_invariants
+ 9/45 Test  #9: discrete_helper_invariants .......   Passed    0.00 sec
+      Start 10: discrete_invariants
+10/45 Test #10: discrete_invariants ..............   Passed    8.77 sec
+      Start 11: profile_invariants
+11/45 Test #11: profile_invariants ...............   Passed    0.13 sec
+      Start 12: locale_independence
+12/45 Test #12: locale_independence ..............   Passed    0.04 sec
+      Start 13: optics_invariants
+13/45 Test #13: optics_invariants ................   Passed    0.00 sec
+      Start 14: config_invariants
+14/45 Test #14: config_invariants ................   Passed    0.00 sec
+      Start 15: spectrum_invariants
+15/45 Test #15: spectrum_invariants ..............   Passed    0.05 sec
+      Start 16: profile_config_invariants
+16/45 Test #16: profile_config_invariants ........   Passed    0.10 sec
+      Start 17: prepared_execution
+17/45 Test #17: prepared_execution ...............   Passed    2.92 sec
+      Start 18: reaper_execution
+18/45 Test #18: reaper_execution .................   Passed    3.09 sec
+      Start 19: reaper_artifact
+19/45 Test #19: reaper_artifact ..................   Passed    0.31 sec
+      Start 20: execution_diagnostics
+20/45 Test #20: execution_diagnostics ............   Passed    0.05 sec
+      Start 21: model_invariants
+21/45 Test #21: model_invariants .................   Passed    1.64 sec
+      Start 22: model_host_invariants
+22/45 Test #22: model_host_invariants ............   Passed    2.08 sec
+      Start 23: parallel_models
+23/45 Test #23: parallel_models ..................   Passed    0.26 sec
+      Start 24: reaper_parallel_models
+24/45 Test #24: reaper_parallel_models ...........   Passed    0.31 sec
+      Start 25: cli
+25/45 Test #25: cli ..............................   Passed    1.01 sec
+      Start 26: reference_cli
+26/45 Test #26: reference_cli ....................   Passed    1.10 sec
+      Start 27: reference_numerics
+27/45 Test #27: reference_numerics ...............   Passed    0.02 sec
+      Start 28: reference_radiation
+28/45 Test #28: reference_radiation ..............   Passed    0.02 sec
+      Start 29: reference_spectra
+29/45 Test #29: reference_spectra ................   Passed    0.02 sec
+      Start 30: reference_yields
+30/45 Test #30: reference_yields .................   Passed    0.02 sec
+      Start 31: reference_temperature
+31/45 Test #31: reference_temperature ............   Passed    0.02 sec
+      Start 32: reference_rates
+32/45 Test #32: reference_rates ..................   Passed    0.12 sec
+      Start 33: reference_oxygen
+33/45 Test #33: reference_oxygen .................   Passed    0.03 sec
+      Start 34: reference_linalg
+34/45 Test #34: reference_linalg .................   Passed    0.02 sec
+      Start 35: reference_discrete_helpers
+35/45 Test #35: reference_discrete_helpers .......   Passed    0.02 sec
+      Start 36: reference_discrete
+36/45 Test #36: reference_discrete ...............   Passed   19.01 sec
+      Start 37: reference_profiles
+37/45 Test #37: reference_profiles ...............   Passed    0.59 sec
+      Start 38: reference_optics
+38/45 Test #38: reference_optics .................   Passed    0.05 sec
+      Start 39: reference_config
+39/45 Test #39: reference_config .................   Passed    0.02 sec
+      Start 40: reference_spectrum
+40/45 Test #40: reference_spectrum ...............   Passed    0.28 sec
+      Start 41: reference_profile_config
+41/45 Test #41: reference_profile_config .........   Passed    0.44 sec
+      Start 42: reference_model
+42/45 Test #42: reference_model ..................   Passed    4.76 sec
+      Start 43: reference_model_host
+43/45 Test #43: reference_model_host .............   Passed    3.83 sec
+      Start 44: reaper_reference_model
+44/45 Test #44: reaper_reference_model ...........   Passed    4.81 sec
+      Start 45: reaper_reference_model_host
+45/45 Test #45: reaper_reference_model_host ......   Passed    3.85 sec
+
+100% tests passed, 0 tests failed out of 45
+
+Total Test time (real) =  59.85 sec

@@ -123,6 +123,7 @@ int main(int argc, char **argv) {
     tt_status execution = tt_model_set_execution(model, generic  ? TT_EXECUTION_GENERIC
                                                         : reaper ? TT_EXECUTION_REAPER
                                                                  : TT_EXECUTION_PREPARED);
+    double preparation_seconds = seconds() - setup_start - setup_seconds;
     tt_model_dimensions shape = tt_model_shape(model);
     size_t nz = shape.levels, nl = nz - 1, n = nz * shape.wavelengths;
     profile_state air, o2, o3;
@@ -244,10 +245,12 @@ int main(int argc, char **argv) {
     tt_diagnostics diagnostics;
     tt_model_diagnostics(model, &diagnostics);
     printf("prepared_calls=%zu generic_calls=%zu prepared_declines=%zu reaper_calls=%zu "
-           "reaper_declines=%zu generated_calls=%zu profiling=%d setup_ms=%.3f\n",
+           "reaper_declines=%zu generated_calls=%zu generated_declines=%zu profiling=%d "
+           "setup_ms=%.3f preparation_ms=%.3f\n",
            diagnostics.prepared_calls, diagnostics.generic_calls, diagnostics.prepared_declines,
            diagnostics.reaper_calls, diagnostics.reaper_declines, diagnostics.generated_calls,
-           diagnostics.profiling, 1e3 * setup_seconds);
+           diagnostics.generated_declines, diagnostics.profiling, 1e3 * setup_seconds,
+           1e3 * preparation_seconds);
     if (detail)
         printf("run_only_us=%.3f updates_us=%.3f\n", 1e6 * run_elapsed / (double)total,
                1e6 * update_elapsed / (double)total);

@@ -36,4 +36,5 @@ tt_status tt_block_delta_eddington_profiled(size_t nr, const tt_radiator *radiat
                                             double zenith, const double *surface, double scale,
                                             double *work, tt_radiation *out,
                                             tt_diagnostics *diagnostics);
+void tt_model_reaper_autoselect(tt_model *model);
 #endif

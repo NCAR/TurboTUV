@@ -11,6 +11,7 @@
 #ifndef TT_SPECTRUM_PLAN_H
 #define TT_SPECTRUM_PLAN_H
 #include "spectrum_internal.h"
+#include "reaper_writer.h"
 
 typedef struct tt_spectrum_plan tt_spectrum_plan;
 
@@ -43,4 +44,5 @@ int tt_spectrum_plan_category(const tt_spectrum_plan *plan);
 int tt_spectrum_plan_generic(const tt_spectrum_plan *plan);
 /* Plans with equal prepared data produce equal values; models evaluate them once. */
 int tt_spectrum_plan_equal(const tt_spectrum_plan *a, const tt_spectrum_plan *b);
+void tt_spectrum_plan_write(const tt_spectrum_plan *plan, tt_reaper_writer *writer);
 #endif

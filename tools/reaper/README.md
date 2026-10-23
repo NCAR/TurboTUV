@@ -51,3 +51,70 @@ object and binary sizes, hashes, per-column execution counts and every sample.
 Prototype archives replace exactly `model_plan.c.o` and `spectrum_plan.c.o`;
 final retained binaries are rebuilt and validated through CMake. No generated
 functions or different floating-point options are involved in this sweep.
+
+## Static rate generation
+
+Build a normal library first. Its `turbotuv_reaper_export CONFIG PLAN.json`
+program exports the C builder's actual ordered terms, immutable spectrum
+state, slot identities, shapes, and bit-exact constants. Python does not
+parse the scientific configuration or decide whether a spectrum is constant.
+The canonical JSON uses IEEE binary64 hexadecimal bit strings, locale-free
+integers, and SHA-256. Export is unavailable on other floating-point formats;
+ordinary C execution remains available. Mutable column profiles and pointers
+are absent from this identity. Profiles, solar/surface values, geometry,
+optical properties, and supplied radiation are read on each call.
+
+For example, run these commands from the repository root (choose the compiler
+and platform flags used for the library):
+
+```sh
+build/release/turbotuv_reaper_export examples/tuv_5_4.json build/tuv-plan.json
+python3 tools/reaper/artifact.py build/tuv-plan.json --directory build/tuv-kernel \
+  --cc cc --term-budget 64 --accumulators 1
+cmake -S . -B build/generated -DCMAKE_BUILD_TYPE=Release \
+  "-DTURBOTUV_REAPER_SOURCES=$PWD/build/tuv-kernel/kernel-0.c;$PWD/build/tuv-kernel/registry.c"
+cmake --build build/generated
+```
+
+Supply several exported plans to `artifact.py` to create one registry. The
+compiler used for export and the one compiling generated code must honor the
+same numerical options; `-ffp-contract=off` is used throughout these
+experiments. The artifact record preserves compile arguments, plan/source
+hashes, source/object sizes, and generation/compile elapsed time. No target
+specific instructions or nonstandard vector types are emitted. Already
+compiled artifacts require neither Python nor an external compiler.
+
+The default generated reduction preserves the ordered arithmetic. Separate
+options select 2/4/8 accumulators, standard `fma`, interleaved outputs, repeated
+products, and level tiles. These are experiments under the documented
+roundoff gate, not permission to enable `-ffast-math`. Term budgets bound
+individual helpers to 32/64/128/256 source terms; large rates retain bounded
+chunks, and the level dimension remains a C loop. Constants are emitted as
+exact C11 hexadecimal literals. Calling the emitter twice on identical inputs
+and options produces identical C.
+
+Selecting `TT_EXECUTION_REAPER` searches an optional static registry once per
+model. A matching descriptor is copied into model-owned state. Every family
+reads explicit buffer views; code is immutable and may be shared by models.
+`tt_model_attach_reaper` also supports an externally linked descriptor. Null
+family pointers leave those families interpreted, a kernel that returns zero
+has its partial family output overwritten by the interpreter, and a null
+descriptor detaches. Code must remain alive until detached; static linking
+satisfies this requirement without module reference counts. The default
+prepared and generic selectors never invoke these functions.
+
+ABI, schema, implementation, shape, layout options, numerical policy, and
+model fingerprint are checked before attachment. An explicit mismatch returns
+`TT_INVALID` with a reason and preserves the old attachment. No matching static
+artifact leaves ordinary REAPER execution available. Capability bits identify
+photolysis/heating/dose coverage; `generated_calls` counts accepted family calls,
+not columns. Benchmark `preparation_ms` reports selection/fingerprinting time
+separately from ordinary `setup_ms` and the unchanged timed column boundary.
+The library never launches processes or opens a persistent binary cache.
+
+`rate_sweep.py` records generated-versus-interpreted experiments, every full
+output gate, source/object/binary sizes and hashes, and rotating timing rounds.
+Its short screening workloads select candidates; final claims use the full
+300-column, ten-round protocol above. Generated artifacts are optional;
+`TURBOTUV_REAPER_SOURCES` empty builds all ordinary execution paths without
+Python, generation, or dynamic loading.

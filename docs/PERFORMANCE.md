@@ -356,10 +356,11 @@ The new campaign uses prepared `main` at `9e149851af5bc48fc7ce64b5fbe50c6959ff2d
 as its denominator. Its fresh Apple M5/GCC 15/Clang 21 controls, numerical
 policy, full-value gates, paired timings and rejected experiments are in
 [REAPER_RESULTS.md](REAPER_RESULTS.md). R1 adds optional ordered-arithmetic
-layout, fixed interpolation, shared O2 and memory-pass improvements. It has
-not yet achieved the additional four-case 2x target. Generated rate and
-spectral/transfer experiments follow; failed candidates alone do not prove
-that the objective is impossible.
+layout, fixed interpolation, shared O2 and memory-pass improvements. R2 adds
+optional statically generated rate kernels; the combined median gains are
+1.118–1.264x across the four cases. The additional 2x target remains unmet.
+Spectral/transfer experiments continue in R3; failed candidates alone do not
+prove that the objective is impossible.
 
 The timing driver now requires numerical-gate evidence when hashes may differ.
 For historical Fortran hash-only timing commands above, `--ungated` explicitly

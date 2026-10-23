@@ -131,3 +131,83 @@ Selected R1 binaries, ten alternating paired rounds with full-value gates:
 The minimum median gain is 1.070x (lower bound 1.066x). Every timed column
 ran the REAPER executor, with zero prepared or generic fallback calls.
 These are combined measurements, not multiplied isolated gains.
+
+## R2: generated rate kernels
+
+The optional emitter consumes the canonical C model plan. It emits bounded
+C11 functions with literal offsets, hexadecimal constants, and explicit
+operation order. It does not reinterpret the scientific configuration. SHA-256
+fingerprints cover the immutable builder state and term lists. An optional
+static function table attaches matching photolysis/heating/dose families;
+uncovered or declined families remain interpreted. No runtime compiler,
+Python embedding, dynamic loader, or global mutable numerical workspace is used.
+
+GCC selects 32-term helpers, eight accumulators and one output at a time.
+Clang selects 64-term helpers, four accumulators, four interleaved outputs,
+and explicit standard `fma`. The generator also retains its ordered mode.
+Both configurations result from size/accumulator/interleave/FMA/tile sweeps,
+followed by combination tests. Large functions and product reuse generally
+cost more than they save; the complete ledger includes these rejected timings.
+
+All 45 C/Fortran CTests pass with each selected compiler build. All 25 portable
+suites pass under address/undefined-behavior sanitizers, including concurrent
+independent REAPER models. The original exact prepared tests remain intact;
+the separate REAPER catalogue applies the documented field-specific gates.
+Its inherited extreme standalone cases preserve identical nonfinite bit
+patterns and statuses; the primary complete-model gates independently require
+all outputs to be finite.
+
+The four 300-column gates compare 165,382,800 values. Maximum rate error is
+9.913 relative epsilon units; radiation and spectra remain unchanged in R2.
+Six held-out model descriptions per compiler change layer counts (including
+one and two), wavelength grids, rate order/scales, and transfer method.
+Ordered generated output is bit-identical; relaxed output passes the gates.
+The original primary artifacts correctly decline attachment to these altered
+models, including a same-shape reordered rate list. SHA test vectors, export
+determinism, mutation-stable identity, mismatch preservation, partial coverage,
+family decline/overwrite and detach tests also pass.
+
+Selected R2 CMake binaries, ten alternating paired rounds of 300 columns
+repeated five times (each run exceeds one second of timed work):
+
+| Configuration | Compiler | Frozen main | R2 | Speedup | 95% lower bound |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | gcc | 1074.0 µs | 960.6 µs | 1.118x | 1.116x |
+| tuv_5_4 | clang | 1077.1 µs | 852.0 µs | 1.264x | 1.262x |
+| ts1_tsmlt | gcc | 1104.7 µs | 938.7 µs | 1.175x | 1.174x |
+| ts1_tsmlt | clang | 959.8 µs | 778.5 µs | 1.233x | 1.229x |
+
+Every timed column ran REAPER, with two successful generated family calls
+and no family, prepared, or generic fallback. Output hashes remain stable
+within each binary. The target is **not achieved; feasibility remains unresolved**.
+These improvements do not establish an impossibility bound.
+
+Fresh instrumented residual costs, in µs/column:
+
+| Stage | tuv GCC | tuv Clang | ts1 GCC | ts1 Clang |
+| --- | ---: | ---: | ---: | ---: |
+| transfer | 456.7 | 426.0 | 317.3 | 293.7 |
+| mix | 143.0 | 141.5 | 99.1 | 96.4 |
+| slant | 105.2 | 97.8 | 73.9 | 68.2 |
+| coefficients | 107.7 | 82.4 | 75.4 | 57.5 |
+| solve | 68.8 | 70.6 | 48.3 | 49.5 |
+| spectra_direct | 255.7 | 227.4 | 96.6 | 87.7 |
+| spectra_parameterized | 0.0 | 0.0 | 366.2 | 273.5 |
+| photolysis | 84.0 | 71.1 | 41.5 | 36.9 |
+| heating | 0.0 | 0.0 | 3.1 | 2.5 |
+| dose | 21.2 | 15.3 | 0.0 | 0.0 |
+
+Transfer includes its substages. Even zero-cost remaining rate integration
+would leave these totals above half of frozen main. R3 therefore targets
+mixing, transfer layout and spectrum evaluation; isolated gains will not be
+multiplied to predict the combined result.
+
+Static attachment/fingerprinting adds about 5–15 ms in the recorded runs.
+Generated source emission and compilation took 8.66 s for the selected GCC
+prototype and 2.45 s for Clang, before linking. Runtime maximum RSS was
+14.8–18.9 MB. Cold-build and short-job break-even measurements remain part
+of R4/R6. This is an opt-in static prototype, not a runtime JIT/cache claim.
+
+Evidence is in [`evidence/reaper/r2`](evidence/reaper/r2/): source/plan archives,
+compile commands, object/binary sizes, all screening and held-out gates,
+reference/sanitizer logs, resource measurements, profiles, and paired samples.

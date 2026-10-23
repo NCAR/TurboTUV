@@ -1,0 +1,629 @@
+{
+  "schema": 1,
+  "policy": "reaper-roundoff-v1",
+  "epsilon_limit": 64,
+  "config": "build/reaper/r2-heldout-clang/discrete.json",
+  "config_sha256": "2b20f0cb8b43226e7a9aba49b3300a626fc366b14db17cf9d8aa1b5e018e50ba",
+  "columns": 48,
+  "seed": 934897,
+  "byteorder": "little",
+  "metadata": {
+    "format": "TurboTUV-1",
+    "altitude_km": [
+      0,
+      17.142857142857142,
+      34.285714285714285,
+      51.42857142857143,
+      68.57142857142857,
+      85.71428571428571,
+      102.85714285714286,
+      120
+    ],
+    "wavelength_nm": [
+      120.7,
+      121.65,
+      148.65,
+      176.2,
+      177.8,
+      179.39999999999998,
+      181,
+      182.65,
+      184.35,
+      186.05,
+      187.8,
+      189.6,
+      191.4,
+      193.25,
+      195.14999999999998,
+      197.05,
+      199,
+      201,
+      203.05,
+      205.14999999999998,
+      233.1909090909091,
+      287.17272727272723,
+      341.1545454545454,
+      395.1363636363636,
+      449.1181818181818,
+      503.09999999999997,
+      557.0818181818181,
+      611.0636363636363,
+      665.0454545454545,
+      719.0272727272727,
+      773.0090909090909
+    ],
+    "wavelength_edges_nm": [
+      120,
+      121.4,
+      121.9,
+      175.4,
+      177,
+      178.6,
+      180.2,
+      181.8,
+      183.5,
+      185.2,
+      186.9,
+      188.7,
+      190.5,
+      192.3,
+      194.2,
+      196.1,
+      198,
+      200,
+      202,
+      204.1,
+      206.2,
+      260.1818181818182,
+      314.16363636363633,
+      368.1454545454545,
+      422.1272727272727,
+      476.1090909090909,
+      530.090909090909,
+      584.0727272727272,
+      638.0545454545454,
+      692.0363636363636,
+      746.0181818181818,
+      800
+    ],
+    "photolysis_labels": [
+      "jno_i",
+      "jso",
+      "jsf6",
+      "jco2",
+      "jh2o_c",
+      "jhyac",
+      "jho2no2_b",
+      "jhocl",
+      "jhcfc22",
+      "jh2402",
+      "jclono2_b",
+      "jcl2o2",
+      "jch3cl",
+      "jch2br2",
+      "jcfc114",
+      "jcf3br",
+      "jbrono2_b",
+      "jbrcl",
+      "jacet",
+      "jch3cho",
+      "jch2o_a",
+      "jno3_a",
+      "jn2o5_a",
+      "jo3_b",
+      "jo2_a"
+    ],
+    "heating_labels": [
+      "jo3_b",
+      "jo2_a"
+    ],
+    "dose_labels": []
+  },
+  "sweep": false,
+  "reference": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r2-selected-clang/turbotuv_bench",
+      "build/reaper/r2-heldout-clang/discrete.json",
+      "--columns",
+      "48",
+      "--seed",
+      "934897"
+    ],
+    "binary_sha256": "22a8c8732a5c96c9971b061a743175054849879b03298883c0e3a595bb92230d",
+    "fields": {
+      "config": "build/reaper/r2-heldout-clang/discrete.json",
+      "columns": "48",
+      "levels": "8",
+      "wavelengths": "31",
+      "photolysis": "25",
+      "heating": "2",
+      "dose": "0",
+      "execution": "prepared",
+      "elapsed_ms": "7.011",
+      "per_column_us": "146.06",
+      "hash": "0eafbca79632ee51",
+      "prepared_calls": "48",
+      "generic_calls": "0",
+      "prepared_declines": "0",
+      "reaper_calls": "0",
+      "reaper_declines": "0",
+      "generated_calls": "0",
+      "generated_declines": "0",
+      "profiling": "0",
+      "setup_ms": "14.249",
+      "preparation_ms": "0.000"
+    },
+    "stdout": "config=build/reaper/r2-heldout-clang/discrete.json columns=48 levels=8 wavelengths=31 photolysis=25 heating=2 dose=0 execution=prepared\nelapsed_ms=7.011 per_column_us=146.06 hash=0eafbca79632ee51\nprepared_calls=48 generic_calls=0 prepared_declines=0 reaper_calls=0 reaper_declines=0 generated_calls=0 generated_declines=0 profiling=0 setup_ms=14.249 preparation_ms=0.000\n",
+    "output_sha256": "d54676d5ad4b7172a6ab4cf10d5e65e592a3a199373f6c652e3629e5822569b7"
+  },
+  "candidate": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r2-heldout-clang/ordered/turbotuv_bench",
+      "build/reaper/r2-heldout-clang/discrete.json",
+      "--reaper",
+      "--columns",
+      "48",
+      "--seed",
+      "934897"
+    ],
+    "binary_sha256": "5d195c99755df7f8dcf7d1fe4db349f3a0682e16d6ed04067a4790d5481a58bf",
+    "fields": {
+      "config": "build/reaper/r2-heldout-clang/discrete.json",
+      "columns": "48",
+      "levels": "8",
+      "wavelengths": "31",
+      "photolysis": "25",
+      "heating": "2",
+      "dose": "0",
+      "execution": "reaper",
+      "elapsed_ms": "6.677",
+      "per_column_us": "139.10",
+      "hash": "0eafbca79632ee51",
+      "prepared_calls": "0",
+      "generic_calls": "0",
+      "prepared_declines": "0",
+      "reaper_calls": "48",
+      "reaper_declines": "0",
+      "generated_calls": "96",
+      "generated_declines": "0",
+      "profiling": "0",
+      "setup_ms": "15.288",
+      "preparation_ms": "0.808"
+    },
+    "stdout": "config=build/reaper/r2-heldout-clang/discrete.json columns=48 levels=8 wavelengths=31 photolysis=25 heating=2 dose=0 execution=reaper\nelapsed_ms=6.677 per_column_us=139.10 hash=0eafbca79632ee51\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=48 reaper_declines=0 generated_calls=96 generated_declines=0 profiling=0 setup_ms=15.288 preparation_ms=0.808\n",
+    "output_sha256": "d54676d5ad4b7172a6ab4cf10d5e65e592a3a199373f6c652e3629e5822569b7"
+  },
+  "fields": [
+    {
+      "field": "direct_flux",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_flux",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_flux",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "direct_irradiance",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_irradiance",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_irradiance",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "actinic_flux",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "spectral_irradiance",
+      "shape": [
+        48,
+        31,
+        8
+      ],
+      "compared": 11904,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "photolysis",
+      "shape": [
+        48,
+        25,
+        8
+      ],
+      "compared": 9600,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "heating",
+      "shape": [
+        48,
+        2,
+        8
+      ],
+      "compared": 768,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.87556395652431e-22,
+        "candidate": 2.87556395652431e-22
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.87556395652431e-22,
+        "candidate": 2.87556395652431e-22
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.87556395652431e-22,
+        "candidate": 2.87556395652431e-22
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.87556395652431e-22,
+        "candidate": 2.87556395652431e-22
+      }
+    },
+    {
+      "field": "dose",
+      "shape": [
+        48,
+        0,
+        8
+      ],
+      "compared": 0,
+      "failures": 0
+    }
+  ],
+  "passed": true
+}
