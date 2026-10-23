@@ -12,6 +12,7 @@
  * classification. */
 #include "spectrum_plan.h"
 #include "reaper_internal.h"
+#include "reaper_math.h"
 #include "reaper_writer.h"
 #include "spectral_validation.h"
 #include <float.h>
@@ -43,6 +44,10 @@ struct tt_spectrum_plan {
     double *x, *y, *powers;
     size_t *overlap_offsets;
     overlap_segment *overlaps;
+    size_t fixed_count;
+    uint64_t *fixed_masks;
+    double *fixed_rows;
+    double *clamped, clamp_low, clamp_high;
 };
 
 static double clamp(double t, double lo, double hi) {
@@ -219,7 +224,7 @@ static int cs_prepare(tt_spectrum_plan *p, size_t w, double *c) {
 
 /* Level quantities shared by all wavelengths, then rows for each varying one. */
 static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp, double *z,
-                        double *rows) {
+                        double *rows, int reaper) {
     const tt_spectral_table *t = p->s->tables;
     size_t nt = p->tables;
     switch (p->kind) {
@@ -341,10 +346,26 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
             break;
         case TT_CS_CCL4:
         case TT_CS_CHCL3:
+            if (TT_REAPER_SPECTRUM_EXP && reaper && c[0] >= 1.e-40 && c[0] <= 1.e40) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[1] * z[i];
+                tt_reaper_pow10_array(nz, out, out);
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[0] * out[i];
+                break;
+            }
             for (size_t i = 0; i < nz; ++i)
                 out[i] = c[0] * pow(10, c[1] * z[i]);
             break;
         case TT_CS_CFC11:
+            if (TT_REAPER_SPECTRUM_EXP && reaper && c[0] >= 1.e-40 && c[0] <= 1.e40) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[1] * z[i];
+                tt_reaper_exp_array(nz, out, out);
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[0] * out[i];
+                break;
+            }
             for (size_t i = 0; i < nz; ++i)
                 out[i] = c[0] * exp(c[1] * z[i]);
             break;
@@ -355,6 +376,14 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
         case TT_CS_CH3ONO2:
         case TT_CS_HNO3:
         case TT_CS_RONO2:
+            if (TT_REAPER_SPECTRUM_EXP && reaper && c[0] >= 1.e-40 && c[0] <= 1.e40) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[1] * z[i];
+                tt_reaper_exp_array(nz, out, out);
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[0] * out[i];
+                break;
+            }
             for (size_t i = 0; i < nz; ++i)
                 out[i] = c[0] * exp(c[1] * z[i]);
             break;
@@ -363,6 +392,17 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
                 out[i] = temp[i] > 210 && temp[i] < 300 ? exp(c[0] * z[i] - c[1]) : c[2];
             break;
         case TT_CS_CL2:
+            if (TT_REAPER_SPECTRUM_EXP && reaper) {
+                double *ex1 = z + 3 * nz, *ex2 = ex1 + nz;
+                for (size_t i = 0; i < nz; ++i) {
+                    ex1[i] = z[i] * c[0];
+                    ex2[i] = z[nz + i] * c[1];
+                }
+                tt_reaper_exp_array(2 * nz, ex1, ex1);
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = z[2 * nz + i] * (27.3 * ex1[i] + .932 * ex2[i]);
+                break;
+            }
             for (size_t i = 0; i < nz; ++i) {
                 double ex1 = 27.3 * exp(z[i] * c[0]), ex2 = .932 * exp(z[nz + i] * c[1]);
                 out[i] = z[2 * nz + i] * (ex1 + ex2);
@@ -381,19 +421,54 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
                 double sigma = 0;
                 for (size_t j = 0; j < t[0].rows; ++j)
                     sigma = sigma + z[j * nz + i] * c[j];
-                out[i] = exp(sigma);
+                out[i] = TT_REAPER_SPECTRUM_EXP && reaper ? sigma : exp(sigma);
             }
+            if (TT_REAPER_SPECTRUM_EXP && reaper)
+                tt_reaper_exp_array(nz, out, out);
             break;
         case TT_CS_N2O:
+            if (TT_REAPER_SPECTRUM_EXP && reaper) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[0] + z[i] * c[1];
+                tt_reaper_exp_array(nz, out, out);
+                break;
+            }
             for (size_t i = 0; i < nz; ++i)
                 out[i] = exp(c[0] + z[i] * c[1]);
             break;
         case TT_CS_N2O5:
+            if (TT_REAPER_SPECTRUM_EXP && reaper && c[0] >= 1.e-40 && c[0] <= 1.e40) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[1] * z[i] / z[nz + i];
+                tt_reaper_pow10_array(nz, out, out);
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = c[0] * out[i];
+                break;
+            }
             for (size_t i = 0; i < nz; ++i)
                 out[i] = c[0] * pow(10, c[1] * z[i] / z[nz + i]);
             break;
         case TT_CS_NO2:
         case TT_CS_TINT:
+            if (TT_REAPER_TABLES && reaper) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = 0;
+                for (size_t q = 0; q < nt; ++q) {
+                    if (t[q].temperature_count == 2) {
+                        double base = parameter(t + q, w, 0);
+                        double difference = parameter(t + q, w, 1) - base;
+                        for (size_t i = 0; i < nz; ++i)
+                            out[i] = out[i] + base + z[(2 * q + 1) * nz + i] * difference;
+                    } else
+                        for (size_t i = 0; i < nz; ++i) {
+                            size_t j = (size_t)z[2 * q * nz + i];
+                            double base = parameter(t + q, w, j);
+                            out[i] = out[i] + base +
+                                     z[(2 * q + 1) * nz + i] * (parameter(t + q, w, j + 1) - base);
+                        }
+                }
+                break;
+            }
             for (size_t i = 0; i < nz; ++i) {
                 double value = 0;
                 for (size_t q = 0; q < nt; ++q) {
@@ -413,6 +488,13 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
             break;
         case TT_CS_O3: {
             size_t q = (size_t)c[0];
+            if (TT_REAPER_TABLES && reaper && t[q].temperature_count == 2) {
+                double base = parameter(t + q, w, 0);
+                double difference = parameter(t + q, w, 1) - base;
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = base + z[(2 * q + 1) * nz + i] * difference;
+                break;
+            }
             for (size_t i = 0; i < nz; ++i) {
                 size_t j = (size_t)z[2 * q * nz + i];
                 double f = z[(2 * q + 1) * nz + i];
@@ -437,6 +519,107 @@ static void cs_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
         default:
             break;
         }
+    }
+}
+
+/* Cache only complete clamp domains. Unclamped levels still execute the
+ * original formula, packed into a temporary level set. No temperature bins
+ * or approximations enter this reuse. */
+static size_t cs_scratch(const tt_spectrum_plan *p, size_t nz) {
+    return p->kind == TT_CS_HCFC ? p->s->tables[0].rows * nz : (8 + 2 * p->tables) * nz;
+}
+static void direct_cache_prepare(tt_spectrum_plan *p) {
+    if (!TT_REAPER_DIRECT_CACHE || !p->cs || p->generic || !p->count)
+        return;
+    double lo, hi;
+    switch (p->kind) {
+    case TT_CS_CCL4:
+    case TT_CS_CHCL3:
+        lo = 210;
+        hi = 300;
+        break;
+    case TT_CS_HCFC:
+        lo = 203;
+        hi = 295;
+        break;
+    case TT_CS_N2O:
+        lo = 194;
+        hi = 320;
+        break;
+    case TT_CS_N2O5:
+        lo = 233;
+        hi = 300;
+        break;
+#if TT_REAPER_DIRECT_CACHE > 1
+    case TT_CS_ACETONE:
+        lo = 235;
+        hi = 298;
+        break;
+    case TT_CS_H2O2:
+        lo = 200;
+        hi = 400;
+        break;
+    case TT_CS_O3_JPL06:
+        lo = nextafter(218, -INFINITY);
+        hi = nextafter(298, INFINITY);
+        break;
+    case TT_CS_CHBR3:
+        lo = 210;
+        hi = 300;
+        break;
+    case TT_CS_OCLO:
+        lo = p->s->tables[0].temperatures[0];
+        hi = p->s->tables[p->tables - 1].temperatures[0];
+        break;
+    case TT_CS_NO2:
+    case TT_CS_TINT:
+    case TT_CS_O3:
+        lo = DBL_MAX;
+        hi = -DBL_MAX;
+        for (size_t q = p->kind == TT_CS_O3 ? 1 : 0; q < p->tables; ++q) {
+            const tt_spectral_table *t = p->s->tables + q;
+            lo = fmin(lo, t->temperatures[0]);
+            hi = fmax(hi, t->temperatures[t->temperature_count - 1]);
+        }
+        break;
+#endif
+    default:
+        return;
+    }
+    p->clamped = malloc(2 * p->count * sizeof(double));
+    double *scratch = malloc(cs_scratch(p, 2) * sizeof(double));
+    if (!p->clamped || !scratch) {
+        free(p->clamped);
+        p->clamped = NULL;
+        free(scratch);
+        return;
+    }
+    double temp[] = {lo, hi};
+    p->clamp_low = lo;
+    p->clamp_high = hi;
+    cs_evaluate(p, 2, temp, scratch, p->clamped, 0);
+    free(scratch);
+}
+static void direct_cached(const tt_spectrum_plan *p, size_t nz, const double *temperature,
+                          double *scratch, double *rows) {
+    double *packed = scratch, *work = packed + nz, *values = work + cs_scratch(p, nz);
+    size_t active = 0;
+    for (size_t z = 0; z < nz; ++z)
+        if (!(temperature[z] <= p->clamp_low || temperature[z] >= p->clamp_high))
+            packed[active++] = temperature[z];
+    if (active == nz) {
+        cs_evaluate(p, nz, temperature, scratch, rows, 1);
+        return;
+    }
+    if (active)
+        cs_evaluate(p, active, packed, work, values, 1);
+    for (size_t k = 0; k < p->count; ++k) {
+        double lower = p->clamped[2 * k], upper = p->clamped[2 * k + 1];
+        size_t j = 0;
+        for (size_t z = 0; z < nz; ++z)
+            rows[k * nz + z] = temperature[z] <= p->clamp_low    ? lower
+                               : temperature[z] >= p->clamp_high ? upper
+                                                                 : values[k * active + j++];
     }
 }
 
@@ -521,7 +704,7 @@ static int qy_prepare(tt_spectrum_plan *p, size_t w, double *c) {
 }
 
 static void qy_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp, const double *m,
-                        double *z, double *rows) {
+                        double *z, double *rows, int reaper) {
     const tt_spectral_table *t = p->s->tables;
     const tt_yield_options *o = &p->s->yield;
     size_t nt = p->tables;
@@ -624,6 +807,28 @@ static void qy_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
         switch (p->kind) {
         case TT_QY_TINT:
         case TT_QY_NO2:
+            if (TT_REAPER_TABLES && reaper) {
+                for (size_t i = 0; i < nz; ++i)
+                    out[i] = 0;
+                for (size_t q = 0; q < nt; ++q) {
+                    if (t[q].temperature_count == 2) {
+                        double base = parameter(t + q, w, 0);
+                        double difference = parameter(t + q, w, 1) - base;
+                        for (size_t i = 0; i < nz; ++i)
+                            out[i] = out[i] + base + z[(2 * q + 1) * nz + i] * difference;
+                    } else
+                        for (size_t i = 0; i < nz; ++i) {
+                            size_t j = (size_t)z[2 * q * nz + i];
+                            double base = parameter(t + q, w, j);
+                            out[i] = out[i] + base +
+                                     z[(2 * q + 1) * nz + i] * (parameter(t + q, w, j + 1) - base);
+                        }
+                }
+                if (p->kind == TT_QY_NO2)
+                    for (size_t i = 0; i < nz; ++i)
+                        out[i] = fmax(out[i], 0);
+                break;
+            }
             for (size_t i = 0; i < nz; ++i) {
                 double value = 0;
                 for (size_t q = 0; q < nt; ++q) {
@@ -705,7 +910,8 @@ static void qy_evaluate(const tt_spectrum_plan *p, size_t nz, const double *temp
 /* ---- Temperature-parameterized cross sections -------------------------- */
 
 /* The parameterization as in temperature.c, on the padded raw values y. */
-static tt_status apply(const tt_spectrum_plan *p, double temperature, double *y) {
+static tt_status apply_impl(const tt_spectrum_plan *p, double temperature, double *y,
+                            double *math) {
     const tt_temperature_model *m = &p->s->temperature;
     size_t nr = m->range_count ? m->range_count : 1;
     for (size_t r = 0; r < nr; ++r) {
@@ -732,7 +938,24 @@ static tt_status apply(const tt_spectrum_plan *p, double temperature, double *y)
                 double value = 0;
                 for (size_t j = 0; j < m->terms; ++j)
                     value = value + factor[j] * p->powers[j * m->count + i];
-                cs[i] = cs[i] + (m->base_10 ? pow(10, value) : exp(value));
+                if (TT_REAPER_SPECTRUM_EXP && math)
+                    math[i] = value;
+                else
+                    cs[i] = cs[i] + (m->base_10 ? pow(10, value) : exp(value));
+            }
+            if (TT_REAPER_SPECTRUM_EXP && math) {
+                int positive = 1;
+                for (size_t i = 0; i < m->count; ++i)
+                    positive &= cs[i] >= 0;
+                if (!positive) {
+                    for (size_t i = 0; i < m->count; ++i)
+                        math[i] = m->base_10 ? pow(10, math[i]) : exp(math[i]);
+                } else if (m->base_10)
+                    tt_reaper_pow10_array(m->count, math, math);
+                else
+                    tt_reaper_exp_array(m->count, math, math);
+                for (size_t i = 0; i < m->count; ++i)
+                    cs[i] = cs[i] + math[i];
             }
             break;
         }
@@ -757,12 +980,21 @@ static tt_status apply(const tt_spectrum_plan *p, double temperature, double *y)
             break;
         }
         case TT_TEMPERATURE_HARWOOD:
-            for (size_t i = 0; i < m->count; ++i)
-                cs[i] = pow(10, m->a[i] + m->b[i] / t);
+            if (TT_REAPER_SPECTRUM_EXP && math) {
+                for (size_t i = 0; i < m->count; ++i)
+                    cs[i] = m->a[i] + m->b[i] / t;
+                tt_reaper_pow10_array(m->count, cs, cs);
+            } else
+                for (size_t i = 0; i < m->count; ++i)
+                    cs[i] = pow(10, m->a[i] + m->b[i] / t);
             break;
         }
     }
     return TT_OK;
+}
+
+static tt_status apply(const tt_spectrum_plan *p, double temperature, double *y) {
+    return apply_impl(p, temperature, y, NULL);
 }
 
 /* Conserving interpolation of target bins [first, end), as in numerics.c. */
@@ -887,6 +1119,187 @@ static tt_status parameterized_evaluate(const tt_spectrum_plan *p, size_t nz, co
     return TT_OK;
 }
 
+/* Signatures include every inclusive range, including overlaps and gaps. */
+static int fixed_signature(const tt_spectrum_plan *p, double temperature, uint64_t *mask) {
+    const tt_temperature_model *m = &p->s->temperature;
+    if (!m->range_count || m->range_count > 64 || !isfinite(temperature))
+        return 0;
+    uint64_t bits = 0;
+    for (size_t r = 0; r < m->range_count; ++r) {
+        const tt_temperature_range *range = m->ranges + r;
+        if (temperature < range->minimum || temperature > range->maximum)
+            continue;
+        if (!range->is_fixed)
+            return 0;
+        bits |= UINT64_C(1) << r;
+    }
+    *mask = bits;
+    return 1;
+}
+static void cache_candidate(tt_spectrum_plan *p, double temperature, double *scratch) {
+    uint64_t mask;
+    if (!fixed_signature(p, temperature, &mask))
+        return;
+    for (size_t i = 0; i < p->fixed_count; ++i)
+        if (p->fixed_masks[i] == mask)
+            return;
+    memcpy(scratch, p->y, p->raw * sizeof(double));
+    if (apply(p, temperature, scratch))
+        return;
+    conserve_prepared(p, scratch, p->fixed_rows + p->fixed_count * p->count, 1);
+    p->fixed_masks[p->fixed_count++] = mask;
+}
+static void fixed_prepare(tt_spectrum_plan *p) {
+    const tt_temperature_model *m = &p->s->temperature;
+    if (!TT_REAPER_FIXED_CACHE || !p->count || p->generic || !p->s->parameterized ||
+        !m->range_count || m->range_count > 64)
+        return;
+    size_t capacity = 6 * m->range_count + 1;
+    if (p->count > SIZE_MAX / capacity / sizeof(double))
+        return;
+    p->fixed_rows = malloc(capacity * p->count * sizeof(double));
+    p->fixed_masks = malloc(capacity * sizeof(uint64_t));
+    double *scratch = malloc(p->raw * sizeof(double));
+    if (!(p->fixed_rows && p->fixed_masks && scratch)) {
+        free(p->fixed_rows);
+        p->fixed_rows = NULL;
+        free(p->fixed_masks);
+        p->fixed_masks = NULL;
+        free(scratch);
+        return; /* Optional optimization; ordinary execution stays available. */
+    }
+    cache_candidate(p, 0, scratch);
+    for (size_t r = 0; r < m->range_count; ++r) {
+        double boundary[] = {m->ranges[r].minimum, m->ranges[r].maximum};
+        for (size_t k = 0; k < 2; ++k) {
+            cache_candidate(p, boundary[k], scratch);
+            cache_candidate(p, nextafter(boundary[k], -INFINITY), scratch);
+            cache_candidate(p, nextafter(boundary[k], INFINITY), scratch);
+        }
+    }
+    free(scratch);
+}
+static const double *fixed_rows(const tt_spectrum_plan *p, double temperature) {
+    uint64_t mask;
+    if (!p->fixed_count || !fixed_signature(p, temperature, &mask))
+        return NULL;
+    for (size_t i = 0; i < p->fixed_count; ++i)
+        if (mask == p->fixed_masks[i])
+            return p->fixed_rows + i * p->count;
+    return NULL;
+}
+
+/* The same range and term order, with independent levels as contiguous lanes.
+ * Padding repeats a real lane; it cannot introduce a new status or branch. */
+static tt_status apply_lanes(const tt_spectrum_plan *p, const double *temperature, double *y,
+                             double *math) {
+    enum { TILE = TT_REAPER_PARAMETER_TILE };
+    const tt_temperature_model *m = &p->s->temperature;
+    size_t nr = m->range_count ? m->range_count : 1;
+    for (size_t r = 0; r < nr; ++r) {
+        double t[TILE], factor[64 * TILE];
+        int active[TILE], any = 0;
+        for (size_t z = 0; z < TILE; ++z) {
+            double u = temperature[z];
+            active[z] = 1;
+            if (m->range_count) {
+                const tt_temperature_range *range = m->ranges + r;
+                active[z] = !(u < range->minimum || u > range->maximum);
+                if (range->is_fixed)
+                    u = range->fixed_value;
+            }
+            u = u - m->base_temperature;
+            if (m->kind == TT_TEMPERATURE_EXPONENTIAL && m->invert_temperature)
+                u = -u;
+            if (active[z] &&
+                (m->kind == TT_TEMPERATURE_HARWOOD || m->kind == TT_TEMPERATURE_BURKHOLDER) &&
+                u == 0)
+                return TT_RANGE;
+            t[z] = active[z] ? u : 1;
+            any |= active[z];
+        }
+        if (!any)
+            continue;
+        double *cs = y + (2 + m->first) * TILE;
+        switch (m->kind) {
+        case TT_TEMPERATURE_EXPONENTIAL:
+            for (size_t j = 0; j < m->terms; ++j)
+                for (size_t z = 0; z < TILE; ++z)
+                    factor[j * TILE + z] = m->a[j] + t[z] * m->b[j];
+            for (size_t i = 0; i < m->count; ++i) {
+                double value[TILE] = {0};
+                for (size_t j = 0; j < m->terms; ++j)
+                    for (size_t z = 0; z < TILE; ++z)
+                        value[z] = value[z] + factor[j * TILE + z] * p->powers[j * m->count + i];
+                for (size_t z = 0; z < TILE; ++z)
+                    math[i * TILE + z] = active[z] ? value[z] : 0;
+            }
+            if (TT_REAPER_SPECTRUM_EXP) {
+                int positive = 1;
+                for (size_t i = 0; i < m->count * TILE; ++i)
+                    positive &= cs[i] >= 0;
+                if (positive) {
+                    if (m->base_10)
+                        tt_reaper_pow10_array(m->count * TILE, math, math);
+                    else
+                        tt_reaper_exp_array(m->count * TILE, math, math);
+                } else
+                    for (size_t i = 0; i < m->count * TILE; ++i)
+                        math[i] = m->base_10 ? pow(10, math[i]) : exp(math[i]);
+            } else
+                for (size_t i = 0; i < m->count * TILE; ++i)
+                    math[i] = m->base_10 ? pow(10, math[i]) : exp(math[i]);
+            for (size_t i = 0; i < m->count; ++i)
+                for (size_t z = 0; z < TILE; ++z)
+                    if (active[z])
+                        cs[i * TILE + z] = cs[i * TILE + z] + math[i * TILE + z];
+            break;
+        case TT_TEMPERATURE_TAYLOR:
+            for (size_t j = 0; j < m->terms; ++j)
+                for (size_t z = 0; z < TILE; ++z)
+                    factor[j * TILE + z] = integer_power(t[z], j + 1);
+            for (size_t i = 0; i < m->count; ++i) {
+                double value[TILE];
+                for (size_t z = 0; z < TILE; ++z)
+                    value[z] = 1;
+                for (size_t j = 0; j < m->terms; ++j)
+                    for (size_t z = 0; z < TILE; ++z)
+                        value[z] = value[z] + m->a[j * m->count + i] * factor[j * TILE + z];
+                for (size_t z = 0; z < TILE; ++z)
+                    if (active[z])
+                        cs[i * TILE + z] = value[z] * m->sigma[i];
+            }
+            break;
+        case TT_TEMPERATURE_BURKHOLDER:
+            if (m->burkholder_b == 0)
+                return TT_INVALID;
+            for (size_t z = 0; z < TILE; ++z)
+                factor[z] = 1 + exp(m->burkholder_a / (m->burkholder_b * t[z]));
+            for (size_t i = 0; i < m->count; ++i)
+                for (size_t z = 0; z < TILE; ++z)
+                    if (active[z])
+                        cs[i * TILE + z] =
+                            (m->a[i] / factor[z] + m->b[i] * (1 - 1 / factor[z])) * 1.e-20;
+            break;
+        case TT_TEMPERATURE_HARWOOD:
+            for (size_t i = 0; i < m->count; ++i)
+                for (size_t z = 0; z < TILE; ++z)
+                    math[i * TILE + z] = active[z] ? m->a[i] + m->b[i] / t[z] : 0;
+            if (TT_REAPER_SPECTRUM_EXP)
+                tt_reaper_pow10_array(m->count * TILE, math, math);
+            else
+                for (size_t i = 0; i < m->count * TILE; ++i)
+                    math[i] = pow(10, math[i]);
+            for (size_t i = 0; i < m->count; ++i)
+                for (size_t z = 0; z < TILE; ++z)
+                    if (active[z])
+                        cs[i * TILE + z] = math[i * TILE + z];
+            break;
+        }
+    }
+    return TT_OK;
+}
+
 /* ---- Construction and evaluation --------------------------------------- */
 
 void tt_spectrum_plan_destroy(tt_spectrum_plan *p) {
@@ -899,6 +1312,9 @@ void tt_spectrum_plan_destroy(tt_spectrum_plan *p) {
     free(p->powers);
     free(p->overlap_offsets);
     free(p->overlaps);
+    free(p->fixed_masks);
+    free(p->fixed_rows);
+    free(p->clamped);
     free(p);
 }
 
@@ -982,6 +1398,8 @@ tt_status tt_spectrum_plan_create(const tt_spectrum *s, tt_spectrum_plan **out) 
         tt_spectrum_plan_destroy(p);
         return status;
     }
+    direct_cache_prepare(p);
+    fixed_prepare(p);
     *out = p;
     return TT_OK;
 }
@@ -1001,10 +1419,12 @@ double tt_spectrum_plan_maximum_temperature(const tt_spectrum_plan *p) {
     return p->maximum_temperature;
 }
 size_t tt_spectrum_plan_scratch(const tt_spectrum_plan *p, size_t nz) {
+    if (p->clamped)
+        return (1 + p->count) * nz + cs_scratch(p, nz);
     if (p->generic)
         return 0;
     if (p->kind < 0)
-        return p->raw;
+        return (2 + 2 * TT_REAPER_PARAMETER_TILE) * p->raw;
     if (p->cs && p->kind == TT_CS_HCFC)
         return p->s->tables[0].rows * nz;
     if (p->qy && p->kind == TT_QY_ACETONE)
@@ -1020,20 +1440,95 @@ tt_status tt_spectrum_plan_evaluate(const tt_spectrum_plan *p, size_t nz, const 
     if (p->kind < 0)
         return parameterized_evaluate(p, nz, temperature, scratch, rows);
     if (p->cs)
-        cs_evaluate(p, nz, temperature, scratch, rows);
+        cs_evaluate(p, nz, temperature, scratch, rows, 0);
     else
-        qy_evaluate(p, nz, temperature, air, scratch, rows);
+        qy_evaluate(p, nz, temperature, air, scratch, rows, 0);
     return TT_OK;
 }
 
 tt_status tt_spectrum_reaper_evaluate(const tt_spectrum_plan *p, size_t nz,
                                       const double *temperature, const double *air, double *scratch,
                                       double *rows) {
+    if (p->clamped) {
+        direct_cached(p, nz, temperature, scratch, rows);
+        return TT_OK;
+    }
+    if ((TT_REAPER_SPECTRUM_EXP || TT_REAPER_TABLES) && p->cs && !p->generic && p->count) {
+        cs_evaluate(p, nz, temperature, scratch, rows, 1);
+        return TT_OK;
+    }
+    if (TT_REAPER_TABLES && p->qy && !p->generic && p->count) {
+        qy_evaluate(p, nz, temperature, air, scratch, rows, 1);
+        return TT_OK;
+    }
     if (!TT_REAPER_OVERLAP || p->kind >= 0 || p->generic || !p->count)
         return tt_spectrum_plan_evaluate(p, nz, temperature, air, scratch, rows);
+    if (TT_REAPER_PARAMETER_TILE > 1) {
+        enum { TILE = TT_REAPER_PARAMETER_TILE };
+        double *raw = scratch, *math = raw + p->raw, *lanes = math + p->raw;
+        for (size_t first = 0; first < nz; first += TILE) {
+            size_t levels[TILE], active = 0;
+            double temperatures[TILE];
+            size_t count = nz - first < TILE ? nz - first : TILE;
+            for (size_t z = first; z < first + count; ++z) {
+                const double *cached = fixed_rows(p, temperature[z]);
+                if (cached) {
+                    for (size_t k = 0; k < p->count; ++k)
+                        rows[k * nz + z] = cached[k];
+                    continue;
+                }
+                if (!TT_REAPER_PARAMETER_BATCH) {
+                    memcpy(raw, p->y, p->raw * sizeof(double));
+                    tt_status status = apply_impl(p, temperature[z], raw, math);
+                    if (status)
+                        return status;
+                }
+                for (size_t k = 0; k < p->raw; ++k)
+                    lanes[k * TILE + active] = TT_REAPER_PARAMETER_BATCH ? p->y[k] : raw[k];
+                temperatures[active] = temperature[z];
+                levels[active++] = z;
+            }
+            if (!active)
+                continue;
+            for (size_t k = 0; k < p->raw; ++k)
+                for (size_t z = active; z < TILE; ++z)
+                    lanes[k * TILE + z] = lanes[k * TILE + active - 1];
+            if (TT_REAPER_PARAMETER_BATCH) {
+                for (size_t z = active; z < TILE; ++z)
+                    temperatures[z] = temperatures[active - 1];
+                tt_status status = apply_lanes(p, temperatures, lanes, lanes + TILE * p->raw);
+                if (status)
+                    return status;
+            }
+            const double *target = p->s->wavelength.edges;
+            for (size_t bin = 0; bin < p->count; ++bin) {
+                double sum[TILE] = {0};
+                for (size_t j = p->overlap_offsets[bin]; j < p->overlap_offsets[bin + 1]; ++j) {
+                    const overlap_segment *segment = p->overlaps + j;
+                    const double *a = lanes + segment->point * TILE, *b = a + TILE;
+                    for (size_t z = 0; z < TILE; ++z) {
+                        double slope = (b[z] - a[z]) / segment->dx;
+                        double b1 = a[z] + slope * segment->left;
+                        double b2 = a[z] + slope * segment->right;
+                        sum[z] = sum[z] + segment->half_width * (b2 + b1);
+                    }
+                }
+                double width = target[p->first_bin + bin + 1] - target[p->first_bin + bin];
+                for (size_t z = 0; z < active; ++z)
+                    rows[bin * nz + levels[z]] = sum[z] / width;
+            }
+        }
+        return TT_OK;
+    }
     for (size_t z = 0; z < nz; ++z) {
+        const double *cached = fixed_rows(p, temperature[z]);
+        if (cached) {
+            for (size_t k = 0; k < p->count; ++k)
+                rows[k * nz + z] = cached[k];
+            continue;
+        }
         memcpy(scratch, p->y, p->raw * sizeof(double));
-        tt_status status = apply(p, temperature[z], scratch);
+        tt_status status = apply_impl(p, temperature[z], scratch, scratch + p->raw);
         if (status)
             return status;
         conserve_prepared(p, scratch, rows + z, nz);

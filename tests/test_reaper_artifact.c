@@ -2,6 +2,7 @@
 #include "turbotuv_diagnostics.h"
 #include "reaper_writer.h"
 #include <math.h>
+#include <float.h>
 #include <stdlib.h>
 #include <string.h>
 #define CHECK(x)                                                                                   \
@@ -135,7 +136,14 @@ int main(int argc, char **argv) {
         CHECK(tt_model_set_execution(m, TT_EXECUTION_REAPER) == TT_OK);
         CHECK(tt_model_reset_diagnostics(m) == TT_OK);
         CHECK(tt_model_run(m, 89.9, 0.97, &r, &e) == TT_OK);
-        CHECK(!memcmp(expected, r->photolysis, count * sizeof(double)));
+        /* A declined generated family is overwritten by the interpreter.
+         * REAPER's spectrum inputs may now differ within its roundoff contract. */
+        for (size_t i = 0; i < count; ++i) {
+            double actual = r->photolysis[i], norm = fmax(fabs(actual), fabs(expected[i]));
+            CHECK(isfinite(actual) && (actual == 0) == (expected[i] == 0));
+            CHECK(!(expected[i] >= 0 && actual < 0));
+            CHECK(fabs(actual - expected[i]) <= 64 * DBL_EPSILON * norm);
+        }
         tt_diagnostics d;
         CHECK(tt_model_diagnostics(m, &d) == TT_OK && d.reaper_calls == 1 && !d.generated_calls &&
               d.generated_declines == 1);

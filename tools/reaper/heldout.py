@@ -83,7 +83,16 @@ def main():
             report=json.loads(gate.read_text())
             assert report['passed'] and int(report['candidate']['fields']['generated_calls'])>=48
             if mode=='ordered':
-                assert report['reference']['output_sha256']==report['candidate']['output_sha256']
+                # Check the ordered generated rate arithmetic with identical
+                # REAPER spectrum inputs. The gate above still compares the
+                # entire result to the independent prepared implementation.
+                replay=a.evidence/f'ordered-replay-{name}.json'
+                run([sys.executable,'tools/reaper/compare.py',str(a.base/'turbotuv_bench')+':--reaper',
+                     str(exe)+':--reaper','--config',config,'--columns','48','--seed','934897','--json',replay])
+                ordered=json.loads(replay.read_text())
+                assert ordered['passed'] and not int(ordered['reference']['fields']['generated_calls'])
+                assert ordered['reference']['output_sha256']==ordered['candidate']['output_sha256']
+                record['gates'].append(str(replay))
             record['gates'].append(str(gate))
             # Primary artifacts must not attach to altered model shapes/rate lists.
             if mode=='ordered':

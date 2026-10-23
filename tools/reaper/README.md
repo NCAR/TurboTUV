@@ -118,3 +118,23 @@ Its short screening workloads select candidates; final claims use the full
 300-column, ten-round protocol above. Generated artifacts are optional;
 `TURBOTUV_REAPER_SOURCES` empty builds all ordinary execution paths without
 Python, generation, or dynamic loading.
+
+## Spectrum and transfer experiments
+
+R3's selected implementation and rejected trials are recorded in
+[`docs/evidence/reaper/r3/LEDGER.md`](../../docs/evidence/reaper/r3/LEDGER.md).
+`spectrum_sweep.py`, `transfer_sweep.py`, `math_sweep.py`, and `oxygen_sweep.py`
+build isolated archive-member replacements for screening. Their historical
+reports include exact commands and archived experimental source. Use that
+source and its matching base archive when reproducing old variants; removed
+experiment macros have no effect in the final cleaned implementation.
+Final acceptance always uses rebuilt CMake binaries and full-value gates.
+
+`check_math_bounds.py` independently checks the spectral exponential's table
+constants and conservative error budget using Decimal arithmetic.
+`check_math.c` uses MPFR/GMP as development-only correctly rounded oracles;
+it checks every reduction boundary and neighboring binary64 inputs, domain
+endpoints, dense residuals, and seeded random samples. See
+[`docs/REAPER_MATH.md`](../../docs/REAPER_MATH.md) for the uniform error argument.
+The ordinary test suite checks exceptional arrays and rounding-mode fallback
+without requiring MPFR. The numerical library still depends only on C11/libm.

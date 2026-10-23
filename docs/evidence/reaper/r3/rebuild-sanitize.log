@@ -1,0 +1,71 @@
+[  5%] Built target turbotuv_yaml
+[  6%] Building C object CMakeFiles/turbotuv.dir/src/oxygen.c.o
+[  7%] Linking C static library libturbotuv.a
+ranlib: warning: 'libturbotuv.a(reaper_dispatch.c.o)' has no symbols
+ranlib: warning: 'libturbotuv.a(reaper_dispatch.c.o)' has no symbols
+[ 40%] Built target turbotuv
+[ 41%] Linking C executable turbotuv_bench
+[ 41%] Linking C executable turbotuv_reaper_export
+[ 42%] Linking C executable turbotuv
+[ 43%] Built target turbotuv_bench
+[ 45%] Built target turbotuv_cli
+[ 46%] Built target turbotuv_reaper_export
+[ 48%] Linking C executable dump_data
+[ 48%] Linking C executable test_numerics
+[ 49%] Linking C executable test_radiation_invariants
+[ 49%] Built target dump_data
+[ 50%] Built target test_radiation_invariants
+[ 51%] Built target test_numerics
+[ 52%] Linking C executable test_spectral_invariants
+[ 53%] Linking C executable test_yield_invariants
+[ 54%] Linking C executable test_temperature_invariants
+[ 55%] Built target test_yield_invariants
+[ 56%] Built target test_temperature_invariants
+[ 57%] Built target test_spectral_invariants
+[ 58%] Linking C executable test_rate_invariants
+[ 59%] Linking C executable test_oxygen_invariants
+[ 60%] Linking C executable test_linalg_invariants
+[ 61%] Built target test_oxygen_invariants
+[ 62%] Built target test_rate_invariants
+[ 63%] Built target test_linalg_invariants
+[ 64%] Linking C executable test_discrete_helper_invariants
+[ 65%] Linking C executable test_discrete_invariants
+[ 66%] Linking C executable test_profile_invariants
+[ 66%] Built target test_discrete_invariants
+[ 67%] Built target test_discrete_helper_invariants
+[ 68%] Linking C executable test_locale
+[ 69%] Built target test_profile_invariants
+[ 71%] Built target test_fixtures
+[ 72%] Linking C executable test_reaper_math
+[ 73%] Linking C executable test_reaper_artifact
+[ 74%] Built target test_locale
+[ 75%] Built target test_reaper_math
+[ 76%] Built target test_reaper_artifact
+[ 77%] Linking C executable test_diagnostics
+[ 78%] Linking C executable test_model_invariants
+[ 79%] Linking C executable test_model_host_invariants
+[ 79%] Built target test_model_invariants
+[ 80%] Built target test_diagnostics
+[ 81%] Built target test_model_host_invariants
+[ 82%] Linking C executable test_reaper_updates
+[ 83%] Linking C executable test_reaper_host
+[ 84%] Linking C executable test_parallel
+[ 84%] Built target test_reaper_updates
+[ 85%] Built target test_reaper_host
+[ 86%] Built target test_parallel
+[ 87%] Linking C executable test_reaper_parallel
+[ 88%] Linking C executable dump_fixtures
+[ 89%] Linking C executable test_optics_invariants
+[ 90%] Built target dump_fixtures
+[ 91%] Built target test_optics_invariants
+[ 92%] Built target test_reaper_parallel
+[ 93%] Linking C executable test_config_invariants
+[ 94%] Linking C executable test_spectrum_invariants
+[ 95%] Linking C executable test_profile_config_invariants
+[ 96%] Built target test_config_invariants
+[ 97%] Built target test_profile_config_invariants
+[ 98%] Built target test_spectrum_invariants
+[ 99%] Linking C executable test_prepared
+[100%] Linking C executable test_reaper
+[100%] Built target test_reaper
+[100%] Built target test_prepared

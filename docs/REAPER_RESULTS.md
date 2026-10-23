@@ -211,3 +211,81 @@ of R4/R6. This is an opt-in static prototype, not a runtime JIT/cache claim.
 Evidence is in [`evidence/reaper/r2`](evidence/reaper/r2/): source/plan archives,
 compile commands, object/binary sizes, all screening and held-out gates,
 reference/sanitizer logs, resource measurements, profiles, and paired samples.
+
+## R3: spectra, O2 lanes, and transfer layout
+
+The selected combination reuses exact fixed-temperature range results and
+expensive direct-formula clamp rows; evaluates tables and parameterized
+spectra across independent levels; and batches the ordered O2 recurrence.
+The separate REAPER transfer implementation uses contiguous mixing, cached
+immutable radiator roles, vectorizable validity reductions, and independent
+coefficient loops. Successful radiator replacement invalidates the role cache.
+Transfer arithmetic and its libm exponentials retain the original order.
+
+Selected spectrum formulas use a portable bounded exp/pow10 implementation.
+Its uniform error argument is in [REAPER_MATH.md](REAPER_MATH.md): less than
+5 epsilon relative to the real function over the guarded normal domains.
+Independent MPFR checks cover every reduction boundary and adjacent binary64
+inputs, domain endpoints, dense residuals, and seeded random values. Each
+compiler passes 4,832,736 exp and 4,824,406 pow10 samples with maxima below
+1.905 epsilon. Exceptional arrays, other rounding modes, and unsupported
+floating-point representations use libm. Approximate transfer exponentials
+fail the physical-zero/cancellation gates and were rejected.
+
+The full 49-test C/Fortran suite passes on each compiler. This now includes
+direct REAPER spectrum/Fortran comparisons and radiator-role mutation tests.
+All 28 sanitizer tests pass; a final O2 boundary-predicate correction was
+followed by both complete compiler suites and six affected sanitizer tests.
+The original exact prepared tests remain unchanged. Four final 300-column
+gates compare 165,382,800 values; the largest rate difference is 9.913 epsilon.
+Six held-out models per compiler pass both ordered and roundoff generated-rate
+tests, exact ordered replay against REAPER's interpreter, and mismatched
+artifact fallback. Ordered rate kernels now receive REAPER spectrum inputs,
+so their bit-identity claim applies to the same REAPER inputs.
+
+Final uninstrumented binaries, ten rotating paired rounds, 300 changing
+columns repeated ten times per run (every run exceeds one second):
+
+| Configuration | Compiler | Frozen main | R3 | Paired speedup | 95% lower bound |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | gcc | 1079.8 µs | 745.8 µs | 1.448x | 1.446x |
+| tuv_5_4 | clang | 1078.7 µs | 685.7 µs | 1.574x | 1.572x |
+| ts1_tsmlt | gcc | 1107.6 µs | 590.2 µs | 1.878x | 1.876x |
+| ts1_tsmlt | clang | 963.4 µs | 535.5 µs | 1.799x | 1.795x |
+
+Every timed column ran REAPER with two generated family calls and no family,
+prepared, or generic fallbacks. Hashes are stable within each binary. These
+combined measurements establish useful gains; the four-case 2x objective is
+**not achieved; feasibility unresolved**. Further transfer fusion and spectrum
+specialization remain unexplored, so these measurements cannot prove a bound.
+
+Fresh instrumented residual costs, in µs/column (transfer includes its listed
+substages; these attribution samples are separate from acceptance timings):
+
+| Stage | tuv GCC | tuv Clang | ts1 GCC | ts1 Clang |
+| --- | ---: | ---: | ---: | ---: |
+| transfer | 352.1 | 325.9 | 241.6 | 222.7 |
+| mix | 50.3 | 56.8 | 32.9 | 37.1 |
+| slant | 103.2 | 99.3 | 71.4 | 68.5 |
+| coefficients | 98.3 | 64.8 | 68.6 | 45.3 |
+| solve | 68.4 | 70.6 | 47.9 | 49.6 |
+| output | 31.0 | 33.4 | 20.3 | 21.6 |
+| spectra_direct | 171.3 | 169.6 | 67.7 | 65.7 |
+| spectra_yield | 36.5 | 36.7 | 20.1 | 19.8 |
+| spectra_parameterized | 0.0 | 0.0 | 145.1 | 127.9 |
+| oxygen_depth | 25.8 | 26.4 | 25.7 | 26.4 |
+| photolysis | 83.7 | 71.3 | 41.6 | 37.2 |
+| heating | 0.0 | 0.0 | 3.0 | 2.5 |
+| dose | 21.2 | 15.3 | 0.0 | 0.0 |
+
+The separate resource runs report 17.5–18.9 ms model construction, 4.7–14.2 ms
+REAPER selection/identity preparation, and 15.2–19.4 MB maximum RSS. Detailed
+profiles put host updates near 1.1–1.3 µs/column, so removing host overhead
+alone cannot close the remaining gap. Static rate source/compile costs remain
+those recorded in R2; R4 will harden attachment and deployment metadata.
+
+[`evidence/reaper/r3`](evidence/reaper/r3/) contains all selected-build gates,
+profiles, resource logs, oracle records, provenance and paired samples. Its
+[ledger](evidence/reaper/r3/LEDGER.md) records retained and rejected cache,
+layout, math, slant, coefficient, O2 and parameterization trials. Historical
+screening results are explicitly separated from the final combined timings.

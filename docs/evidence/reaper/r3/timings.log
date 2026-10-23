@@ -1,0 +1,13 @@
+10 rounds, 300 columns per run; median per column (range)
+
+tuv_5_4
+  main-gcc              1079.8 us (1066.9-1090.7)   1.00x  lower95 1.000x hash d67eeb3b503c4c8a
+  reaper-gcc             745.8 us (739.0-750.7)   1.45x  lower95 1.446x hash 619070732770e4f9  (differs)
+  main-clang            1078.7 us (1071.1-1080.7)   1.00x  lower95 1.000x hash 476d15cb1573d11f
+  reaper-clang           685.7 us (680.7-687.2)   1.57x  lower95 1.572x hash 780c7e955da572e9  (differs)
+
+ts1_tsmlt
+  main-gcc              1107.6 us (1104.8-1117.4)   1.00x  lower95 1.000x hash b41846b9473d9ec0
+  reaper-gcc             590.2 us (585.8-591.0)   1.88x  lower95 1.876x hash dd1add0f2df95cfb  (differs)
+  main-clang             963.4 us (961.0-967.7)   1.00x  lower95 1.000x hash 17cad347b1a5cfd9
+  reaper-clang           535.5 us (532.2-544.4)   1.80x  lower95 1.795x hash 6bd93b88da2ac230  (differs)

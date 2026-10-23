@@ -102,6 +102,8 @@ select further portable optimizations while preserving the prepared default.
 The new path allows the documented roundoff gates; its first overhead changes
 retain bit identity. Optional generated C11 rate kernels now support static
 attachment; [generation instructions](tools/reaper/README.md#static-rate-generation)
-cover ordered and roundoff variants. Fresh controls, validation, timings and the
+cover ordered and roundoff variants. Spectral reuse, bounded spectral math,
+and ordered transfer/O2 loop improvements are also available in REAPER.
+Fresh controls, validation, timings and the
 remaining work toward a further 2x are recorded in
 [docs/REAPER_RESULTS.md](docs/REAPER_RESULTS.md).

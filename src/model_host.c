@@ -1,6 +1,7 @@
 /* Copyright (C) 2026 University Corporation for Atmospheric Research
  * SPDX-License-Identifier: Apache-2.0 */
 #include "model_internal.h"
+#include "model_plan.h"
 #include <math.h>
 #include <stdint.h>
 #include <string.h>
@@ -93,8 +94,10 @@ tt_status tt_model_set_radiator(tt_model *m, const tt_named_radiator *r) {
         if (!strcmp(m->radiators[i].name, r->name)) {
             tt_status status = tt_model_copy_radiator(r, m->radiators + i, m->shape.levels - 1,
                                                       m->shape.wavelengths);
-            if (!status)
+            if (!status) {
                 m->radiator_views[i] = m->radiators[i].view;
+                tt_model_plan_radiators_changed(m->plan);
+            }
             return status;
         }
     return TT_NOT_FOUND;

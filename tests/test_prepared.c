@@ -383,10 +383,16 @@ static void blocked_transfer(void) {
     origin = "blocked Delta-Eddington";
     for (size_t wi = 0; wi < 2; ++wi) {
         size_t nw = widths[wi], field = (NL + 1) * nw;
+        size_t work_count =
+#ifdef TT_TEST_REAPER
+            tt_reaper_delta_eddington_work(NL, nw);
+#else
+            tt_block_delta_eddington_work(NL);
+#endif
         double *tau = malloc(3 * NR * NL * nw * sizeof(double)), *ssa = tau + NR * NL * nw,
                *g = ssa + NR * NL * nw, *mix = malloc(3 * NL * nw * sizeof(double)),
                *expected = malloc(12 * field * sizeof(double)), *actual = expected + 6 * field,
-               *work = malloc(tt_block_delta_eddington_work(NL) * sizeof(double)),
+               *work = malloc(work_count * sizeof(double)),
                *path = malloc(NL * (NL + 1) * sizeof(double)),
                *surface = malloc(nw * sizeof(double));
         int *nid = malloc((NL + 1) * sizeof(int));
@@ -436,7 +442,13 @@ static void blocked_transfer(void) {
                         expected[i] = expected[i] * scale;
                     require(tt_spherical_geometry(n + 1, z, angles[ai], nid, path) == TT_OK,
                             "geometry");
-                    require(tt_block_delta_eddington(NR, radiators, n, nw, nid, path, angles[ai],
+                    require(
+#ifdef TT_TEST_REAPER
+                            tt_reaper_delta_eddington
+#else
+                            tt_block_delta_eddington
+#endif
+                            (NR, radiators, n, nw, nid, path, angles[ai],
                                                      surface, scale, work, &r2) == TT_OK,
                             "blocked");
                     same(actual, expected, 6 * levels, "blocked radiation");

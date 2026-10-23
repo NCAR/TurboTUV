@@ -1,0 +1,358 @@
+[
+  {
+    "plans": [
+      {
+        "path": "build/reaper/r3-heldout-gcc/one-layer-plan.json",
+        "sha256": "baa6a951e2bde4f5be5ee6fa1f0275b028d3f456eeace200b992d5d253897b54",
+        "source_sha256": "fa8975e3463785c44be010f5857484e159beb73ef813aab6c32f7fb88624dc5b",
+        "source_bytes": 96740
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/two-layer-plan.json",
+        "sha256": "8d16e42f3b1247ee0cb5852f9c452a654eeb85c54948f40db2a74c88b4ff9904",
+        "source_sha256": "5d0a1abd099a6b00ab8b156c9c3b61af859d60569198f8c09b445e4a5dfb1a10",
+        "source_bytes": 45393
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/odd-level-plan.json",
+        "sha256": "0ab2a0bc8663c93562adf3acdbfbc2358c28e31f6d0cdd81e6629815782832c5",
+        "source_sha256": "16f12de2e116f3c1c4ef2bb7fcb2ba232fd027bcc9887b8fa2656a63beb93b59",
+        "source_bytes": 122515
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/odd-layer-plan.json",
+        "sha256": "ddcf4e481b50a1f8edb002de9be5b0c32bcc7d2b037179e601211d83689493cd",
+        "source_sha256": "ca65add88f522367cd3a4a16ad6549bf020fa4c2e3f2ad5b17e3e228913862ab",
+        "source_bytes": 54787
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/discrete-plan.json",
+        "sha256": "f8f0ac107484173c77493dcfd8b806c74fd276c615eae8a9ba4e79594eae9baf",
+        "source_sha256": "6d41245785a9f40f813991514fc0e3b042479caecb9271ca5795457efd7f4240",
+        "source_bytes": 37123
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/reordered-plan.json",
+        "sha256": "0e059fe6b81c6ff6ef0420fdb6511f5c87486f33ec4ccdbd26ca6d54b7175de2",
+        "source_sha256": "fdd1ae1968a77a8de6341b5e120e6f99d203c3f781412b75ff3942e247ec168c",
+        "source_bytes": 738143
+      }
+    ],
+    "commands": [
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-0.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-0.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-1.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-1.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-2.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-2.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-3.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-3.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-4.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-4.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-5.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/ordered/kernel-5.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/ordered/registry.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/ordered/registry.o"
+      ]
+    ],
+    "sources": [
+      "build/reaper/r3-heldout-gcc/ordered/kernel-0.c",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-1.c",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-2.c",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-3.c",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-4.c",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-5.c",
+      "build/reaper/r3-heldout-gcc/ordered/registry.c"
+    ],
+    "objects": [
+      "build/reaper/r3-heldout-gcc/ordered/kernel-0.o",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-1.o",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-2.o",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-3.o",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-4.o",
+      "build/reaper/r3-heldout-gcc/ordered/kernel-5.o",
+      "build/reaper/r3-heldout-gcc/ordered/registry.o"
+    ],
+    "compile_seconds": 8.02884583299965,
+    "object_bytes": 956576,
+    "gates": [
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-replay-one-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-one-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-replay-two-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-two-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-replay-odd-level.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-odd-level.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-replay-odd-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-odd-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-replay-discrete.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-discrete.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-replay-reordered.json",
+      "docs/evidence/reaper/r3/heldout-gcc/ordered-reordered.json"
+    ]
+  },
+  {
+    "plans": [
+      {
+        "path": "build/reaper/r3-heldout-gcc/one-layer-plan.json",
+        "sha256": "baa6a951e2bde4f5be5ee6fa1f0275b028d3f456eeace200b992d5d253897b54",
+        "source_sha256": "b353420ce19b69e732dd9c5fdacfd2dd0669c542b5b716416454830db5061fa4",
+        "source_bytes": 108633
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/two-layer-plan.json",
+        "sha256": "8d16e42f3b1247ee0cb5852f9c452a654eeb85c54948f40db2a74c88b4ff9904",
+        "source_sha256": "52a6bbfcc392b5784e0583024da379ee6ae630a406c005ff180fd3fc43cce6a3",
+        "source_bytes": 50282
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/odd-level-plan.json",
+        "sha256": "0ab2a0bc8663c93562adf3acdbfbc2358c28e31f6d0cdd81e6629815782832c5",
+        "source_sha256": "7fb0155dd7d443a9c90ec29bf6ad5d5b2021d8abb0bb64b7ad2ff07488339970",
+        "source_bytes": 136032
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/odd-layer-plan.json",
+        "sha256": "ddcf4e481b50a1f8edb002de9be5b0c32bcc7d2b037179e601211d83689493cd",
+        "source_sha256": "f7659c90d967cd1c9458c20e8be7d85bc946335d23cd5f21cbe71f7e06a4d269",
+        "source_bytes": 60604
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/discrete-plan.json",
+        "sha256": "f8f0ac107484173c77493dcfd8b806c74fd276c615eae8a9ba4e79594eae9baf",
+        "source_sha256": "dd60603d73fdca91f126fa77ccef847b7bf87f8eb698a7cee6ee10ced85f6c3f",
+        "source_bytes": 41316
+      },
+      {
+        "path": "build/reaper/r3-heldout-gcc/reordered-plan.json",
+        "sha256": "0e059fe6b81c6ff6ef0420fdb6511f5c87486f33ec4ccdbd26ca6d54b7175de2",
+        "source_sha256": "cd4c79d761a136c160e0725f178078d014144b34b88f17161faebfb06e032b78",
+        "source_bytes": 808388
+      }
+    ],
+    "commands": [
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-0.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-0.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-1.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-1.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-2.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-2.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-3.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-3.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-4.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-4.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-5.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/roundoff/kernel-5.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r3-heldout-gcc/roundoff/registry.c",
+        "-o",
+        "build/reaper/r3-heldout-gcc/roundoff/registry.o"
+      ]
+    ],
+    "sources": [
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-0.c",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-1.c",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-2.c",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-3.c",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-4.c",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-5.c",
+      "build/reaper/r3-heldout-gcc/roundoff/registry.c"
+    ],
+    "objects": [
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-0.o",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-1.o",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-2.o",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-3.o",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-4.o",
+      "build/reaper/r3-heldout-gcc/roundoff/kernel-5.o",
+      "build/reaper/r3-heldout-gcc/roundoff/registry.o"
+    ],
+    "compile_seconds": 8.527116540999486,
+    "object_bytes": 990472,
+    "gates": [
+      "docs/evidence/reaper/r3/heldout-gcc/roundoff-one-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/roundoff-two-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/roundoff-odd-level.json",
+      "docs/evidence/reaper/r3/heldout-gcc/roundoff-odd-layer.json",
+      "docs/evidence/reaper/r3/heldout-gcc/roundoff-discrete.json",
+      "docs/evidence/reaper/r3/heldout-gcc/roundoff-reordered.json"
+    ]
+  }
+]

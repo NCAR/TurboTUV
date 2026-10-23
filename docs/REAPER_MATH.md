@@ -1,0 +1,86 @@
+# Bounded exponential experiment
+
+This is an independent numerical argument for the optional REAPER spectrum
+experiment in `src/reaper_math.h`. It does not justify using the approximation
+inside the transfer solver: those trials failed the complete-output gates and
+are rejected. The existing generic and prepared paths continue to use libm.
+
+The implementation uses standard C11, `fma`, integer arithmetic, and `memcpy`.
+It selects the approximation only for the binary64 representation checked by
+the implementation, round-to-nearest mode, and an entire input array inside
+`[-600,600]` for exp or `[-260,260]` for pow(10,x). Other arrays use libm. The
+bounded results are normal, finite, and positive; the ordinary libm path
+handles overflow, underflow, nonfinite inputs, and other rounding modes.
+
+## Construction
+
+Let `h = log(2)/64`. Choose the integer `k` by rounding `x/h` (exp) or
+`x*log(10)/h` (pow10). The approximate reciprocal used for this choice need
+not choose the ideal integer at an exact boundary: either neighboring integer
+gives a residual in the proved interval. Split h into
+`0x1.62e42fee00000p-7 + 0x1.a39ef35793c76p-39`. The first component has 33
+significant bits, and `abs(k) <= 55400`, so its product with k is exact.
+The subtraction from x is exact by Sterbenz's lemma (or subtraction of zero).
+One FMA subtracts the low component.
+
+For pow10, first form `x*log(10)` as a compensated product. The split is
+`0x1.26bb1bbb00000p+1 + 0x1.554560b752b6bp-33`. An FMA recovers the rounding
+residual of the high product; another adds the low product. Subtract the
+same exact k-times-h-high product before adding the low correction. Simply
+computing exp(x*log(10)) would not provide the required bound.
+
+On the residual r, evaluate the degree-five Taylor polynomial for exp with
+five explicit FMAs and correctly rounded hexadecimal coefficients. Multiply
+by the correctly rounded table entry `2^(j/64)`, where j is k modulo 64, and
+then by the exact normal power of two. A positive integer bias implements
+the quotient and remainder without right-shifting a negative signed integer.
+The table was generated with Python Decimal at 100 decimal digits; the
+independent oracle uses MPFR at 200 bits.
+
+## Conservative bound
+
+Write `u = 2^-53`, `epsilon = 2u`, and `gamma_5 = 5u/(1-5u)`.
+The rounded reciprocal, multiplication and integer selection imply
+`abs(r_exact) <= log(2)/128 + 3u*55401*h < 0.00542`. This includes both
+choices at every reduction boundary. High-part products use at most 49
+significant bits. The split-constant errors and rounding of the small
+residual, including the compensated pow10 product, contribute less than
+`epsilon/8` in absolute residual error. Subnormal intermediate products
+near zero add at most a few minimum subnormals and satisfy the same bound.
+
+Using `a = 0.00542`, conservative relative-error contributions in epsilon
+units are:
+
+| Source | Bound |
+| --- | ---: |
+| Reduction, through exp | 0.126 |
+| Five Horner FMAs, `gamma_5*exp(2a)/epsilon` | 2.528 |
+| Rounded polynomial coefficients, `u*exp(2a)/epsilon` | 0.506 |
+| Taylor remainder, `exp(2a)*a^6/(720*epsilon)` | 0.161 |
+| Rounded table value | 0.500 |
+| Product with the table value | 0.500 |
+| Final exact normal power-of-two scaling | 0 |
+
+Their sum, including products of the small error terms, is below 5 epsilon
+relative to the exact real function. An 8-epsilon development gate leaves
+margin for comparison to a correctly rounded binary64 oracle. This argument
+is uniform on the stated domains; it is not based on the benchmark profiles.
+Comparison to a particular platform's libm is measured separately, since C11
+does not specify a universal libm error bound.
+
+## Validation and integration
+
+`tools/reaper/check_math.c` uses MPFR only as a development oracle. It visits
+every reduction integer and half-integer boundary throughout each domain,
+neighboring binary64 inputs on both sides, the domain endpoints and zero,
+dense residual samples, and reproducible random inputs. Ordinary C tests
+also cover array tails, in-place operation, exceptional operands, and rounding
+mode fallback. Neither MPFR nor Python is a runtime library dependency.
+
+Each use in a spectrum remains subject to its original 32-epsilon test and
+the complete model's 64-epsilon gates. Prefactor integrations are restricted
+to safe normal-product domains. The additive exponential parameterization
+uses the bounded function only with nonnegative existing cross sections, so
+subtraction cannot amplify the local approximation error. This local bound
+does not excuse cancellation elsewhere: the measured failures in transfer
+are retained in the experiment ledger.

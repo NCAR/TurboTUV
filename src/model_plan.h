@@ -37,4 +37,16 @@ tt_status tt_block_delta_eddington_profiled(size_t nr, const tt_radiator *radiat
                                             double *work, tt_radiation *out,
                                             tt_diagnostics *diagnostics);
 void tt_model_reaper_autoselect(tt_model *model);
+void tt_model_plan_radiators_changed(tt_model_plan *plan);
+size_t tt_reaper_delta_eddington_work(size_t layers, size_t wavelengths);
+tt_status tt_reaper_delta_eddington(size_t nr, const tt_radiator *radiators, size_t n, size_t nw,
+                                    const int *nid, const double *path, double zenith,
+                                    const double *surface, double scale, double *work,
+                                    tt_radiation *out);
+tt_status tt_reaper_delta_eddington_profiled(size_t nr, const tt_radiator *radiators, size_t n,
+                                             size_t nw, const int *nid, const double *path,
+                                             double zenith, const double *surface, double scale,
+                                             double *work, tt_radiation *out,
+                                             tt_diagnostics *diagnostics,
+                                             const unsigned char *roles);
 #endif

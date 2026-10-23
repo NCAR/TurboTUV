@@ -1,0 +1,21 @@
+config=examples/tuv_5_4.json columns=3000 levels=121 wavelengths=156 photolysis=109 heating=0 dose=28 execution=reaper
+elapsed_ms=2217.501 per_column_us=739.17 hash=780c7e955da572e9
+prepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=3000 reaper_declines=0 generated_calls=6000 generated_declines=0 profiling=1 setup_ms=34.251 preparation_ms=11.892
+run_only_us=738.056 updates_us=1.111
+stage_geometry_us=10.467 stage_geometry_calls=3000
+stage_gas_us=8.608 stage_gas_calls=3000
+stage_oxygen_depth_us=33.629 stage_oxygen_depth_calls=3000
+stage_transfer_us=379.038 stage_transfer_calls=3000
+stage_flux_us=19.056 stage_flux_calls=3000
+stage_spectra_direct_us=165.664 stage_spectra_direct_calls=282000
+stage_spectra_yield_us=35.631 stage_spectra_yield_calls=120000
+stage_spectra_parameterized_us=0.000 stage_spectra_parameterized_calls=0
+stage_oxygen_cross_us=0.014 stage_oxygen_cross_calls=3000
+stage_photolysis_us=68.809 stage_photolysis_calls=3000
+stage_heating_us=0.000 stage_heating_calls=0
+stage_dose_us=14.780 stage_dose_calls=3000
+stage_mix_us=102.712 stage_mix_calls=33000
+stage_slant_us=95.011 stage_slant_calls=30000
+stage_coefficients_us=79.983 stage_coefficients_calls=30000
+stage_solve_us=68.443 stage_solve_calls=30000
+stage_output_us=32.018 stage_output_calls=30000

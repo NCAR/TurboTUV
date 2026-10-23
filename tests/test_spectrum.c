@@ -5,6 +5,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef TT_TEST_REAPER
+#include "spectrum_plan.h"
+static tt_status calculate_reaper(const tt_spectrum *s, size_t nz, const double *temp,
+                                  const double *air, double *out) {
+    if (!s || s->role == TT_SPECTRUM_WEIGHT)
+        return tt_spectrum_calculate(s, nz, temp, air, out);
+    tt_spectrum_plan *p = NULL;
+    tt_status status = tt_spectrum_plan_create(s, &p);
+    if (status)
+        return status;
+    const size_t *indices;
+    size_t varying = tt_spectrum_plan_varying(p, &indices);
+    size_t work = tt_spectrum_plan_scratch(p, nz);
+    double *scratch = calloc(work ? work : 1, sizeof(double));
+    double *rows = calloc(varying ? varying * nz : 1, sizeof(double));
+    if (!scratch || !rows)
+        status = TT_MEMORY;
+    else
+        status = tt_spectrum_reaper_evaluate(p, nz, temp, air, scratch, rows);
+    if (!status) {
+        const double *constant = tt_spectrum_plan_constant(p);
+        for (size_t w = 0; w < s->wavelength.cells; ++w)
+            for (size_t z = 0; z < nz; ++z)
+                out[w * nz + z] = constant[w];
+        for (size_t k = 0; k < varying; ++k)
+            memcpy(out + indices[k] * nz, rows + k * nz, nz * sizeof(double));
+    }
+    free(scratch);
+    free(rows);
+    tt_spectrum_plan_destroy(p);
+    return status;
+}
+#define tt_spectrum_calculate calculate_reaper
+#endif
 #ifdef TT_HAVE_REFERENCE
 void ref_spectrum(int, int, const char *, int, int, int, const double *, const double *,
                   const double *, const double *, double *);

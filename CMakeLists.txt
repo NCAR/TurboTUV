@@ -12,6 +12,10 @@ set(TURBOTUV_REAPER_RATE_TILE "" CACHE STRING "Experimental REAPER level tile (0
 option(TURBOTUV_REAPER_OVERLAP "REAPER fixed conserving-interpolation schedules" ON)
 option(TURBOTUV_REAPER_OXYGEN "REAPER combined O2 evaluation and reusable workspace" ON)
 option(TURBOTUV_REAPER_FLUX_CHECK "REAPER fused flux finiteness check" ON)
+option(TURBOTUV_REAPER_SPECTRUM_EXP "REAPER bounded spectrum exponentials (libm fallback)" ON)
+option(TURBOTUV_REAPER_FIXED_CACHE "REAPER exact fixed temperature-range cache" ON)
+set(TURBOTUV_REAPER_DIRECT_CACHE "1" CACHE STRING "REAPER clamp cache: 0 off, 1 expensive formulas, 2 all")
+set(TURBOTUV_REAPER_BLOCK "16" CACHE STRING "REAPER wavelengths per transfer block")
 set(TURBOTUV_REAPER_SOURCES "" CACHE STRING "Optional generated C sources and static registry")
 set(TURBOTUV_REFERENCE_BUILD "" CACHE PATH "Configured and built TUV-x reference directory")
 set(TURBOTUV_REFERENCE_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../TUV-x" CACHE PATH "TUV-x reference checkout")
@@ -25,7 +29,7 @@ add_library(turbotuv src/numerics.c src/geometry.c src/data.c src/radiation.c sr
     src/config.c src/profile_config.c src/build.c src/spectrum.c src/spectrum_temperature.c
     src/model_build.c src/model_run.c src/model_host.c src/decimal.c
     src/spectrum_plan.c src/model_plan.c src/radiation_block.c src/diagnostics.c
-    src/reaper_writer.c src/reaper_dispatch.c)
+    src/reaper_writer.c src/reaper_dispatch.c src/radiation_reaper.c)
 if(TURBOTUV_REAPER_SOURCES)
     target_sources(turbotuv PRIVATE ${TURBOTUV_REAPER_SOURCES})
     target_compile_definitions(turbotuv PRIVATE TT_REAPER_BUILTINS)
@@ -44,7 +48,17 @@ endif()
 target_compile_definitions(turbotuv PRIVATE
     TT_REAPER_OVERLAP=$<BOOL:${TURBOTUV_REAPER_OVERLAP}>
     TT_REAPER_OXYGEN=$<BOOL:${TURBOTUV_REAPER_OXYGEN}>
-    TT_REAPER_FLUX_CHECK=$<BOOL:${TURBOTUV_REAPER_FLUX_CHECK}>)
+    TT_REAPER_FLUX_CHECK=$<BOOL:${TURBOTUV_REAPER_FLUX_CHECK}>
+    TT_REAPER_SPECTRUM_EXP=$<BOOL:${TURBOTUV_REAPER_SPECTRUM_EXP}>
+    TT_REAPER_FIXED_CACHE=$<BOOL:${TURBOTUV_REAPER_FIXED_CACHE}>
+    TT_REAPER_DIRECT_CACHE=${TURBOTUV_REAPER_DIRECT_CACHE})
+if(NOT TURBOTUV_REAPER_BLOCK MATCHES "^(2|4|8|16|32)$")
+    message(FATAL_ERROR "REAPER transfer block must be 2, 4, 8, 16 or 32")
+endif()
+target_compile_definitions(turbotuv PRIVATE TT_REAPER_BLOCK=${TURBOTUV_REAPER_BLOCK})
+if(NOT TURBOTUV_REAPER_DIRECT_CACHE MATCHES "^[012]$")
+    message(FATAL_ERROR "REAPER direct cache must be 0, 1 or 2")
+endif()
 set_target_properties(turbotuv PROPERTIES C_EXTENSIONS OFF POSITION_INDEPENDENT_CODE ON)
 target_include_directories(turbotuv PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

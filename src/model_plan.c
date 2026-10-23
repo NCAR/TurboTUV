@@ -22,6 +22,7 @@
 #include "turbotuv_reaper.h"
 #include "reaper_writer.h"
 #include <float.h>
+#include <fenv.h>
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -66,6 +67,10 @@ struct tt_model_plan {
     unsigned char identity[32];
     int has_identity, auto_checked;
     const double **row_views;
+    double *reaper_block;
+    int reaper_prepared;
+    size_t radiator_count;
+    unsigned char *reaper_roles;
 };
 
 void tt_model_plan_destroy(tt_model_plan *p) {
@@ -88,7 +93,9 @@ void tt_model_plan_destroy(tt_model_plan *p) {
     free(p->scratch);
     free(p->block);
     free(p->gas_initialized);
+    free(p->reaper_roles);
     free(p->row_views);
+    free(p->reaper_block);
     free(p);
 }
 
@@ -366,6 +373,41 @@ static int all_finite(size_t n, const double *v) {
     return finite_range(n, v, -1.7976931348623157e308, 1.7976931348623157e308);
 }
 
+void tt_model_plan_radiators_changed(tt_model_plan *p) {
+    if (p && p->reaper_roles)
+        memset(p->reaper_roles, 0, p->radiator_count);
+}
+
+/* All radiator views are immutable copies. Only optical depth changes during
+ * gas/O2 evaluation. A successful host replacement invalidates this cache. */
+static const unsigned char *radiator_roles(tt_model_plan *p, const tt_model *m, size_t count) {
+    if (!p->reaper_roles || fegetround() != FE_TONEAREST)
+        return NULL;
+    for (size_t j = 0; j < m->radiator_count; ++j) {
+        if (p->reaper_roles[j])
+            continue;
+        const tt_radiator *r = m->radiator_views + j;
+        int valid = 1, zero = 1, absorb = 1, scatter = 1;
+        for (size_t k = 0; k < count; ++k) {
+            double tau = r->optical_depth[k], a = r->single_scattering_albedo[k],
+                   g = r->asymmetry[k];
+            valid &= (tau >= 0) & (tau <= DBL_MAX) & (a >= 0) & (a <= 1) & (fabs(g) <= 1);
+            zero &= tau == 0;
+            absorb &= a == 0;
+            scatter &= (a == 1) & (g == 0);
+        }
+        if (!valid)
+            return NULL;
+        int dynamic = m->radiators[j].gas || j == m->oxygen_radiator;
+        p->reaper_roles[j] = (unsigned char)((zero && !dynamic ? 1
+                                              : absorb         ? 2
+                                              : scatter        ? 3
+                                                               : 4) |
+                                             (dynamic ? 8 : 0));
+    }
+    return p->reaper_roles;
+}
+
 static int run_plan(tt_model_plan *p, tt_model *m, double zenith, double scale, int reaper) {
     tt_status (*evaluate)(const tt_spectrum_plan *, size_t, const double *, const double *,
                           double *, double *) =
@@ -459,10 +501,17 @@ static int run_plan(tt_model_plan *p, tt_model *m, double zenith, double scale, 
         for (size_t i = 0; i < 6 * n; ++i)
             m->radiation_storage[i] = m->host_radiation[i] * scale;
     } else if (m->streams == 1) {
-        if (tt_block_delta_eddington_profiled(m->radiator_count, m->radiator_views, nl, nw, m->nid,
-                                              m->path, zenith,
-                                              m->profiles[m->surface].value.midpoints, scale,
-                                              p->block, radiation, &m->diagnostics))
+        tt_status status =
+            reaper && p->reaper_block
+                ? tt_reaper_delta_eddington_profiled(
+                      m->radiator_count, m->radiator_views, nl, nw, m->nid, m->path, zenith,
+                      m->profiles[m->surface].value.midpoints, scale, p->reaper_block, radiation,
+                      &m->diagnostics, radiator_roles(p, m, layer))
+                : tt_block_delta_eddington_profiled(m->radiator_count, m->radiator_views, nl, nw,
+                                                    m->nid, m->path, zenith,
+                                                    m->profiles[m->surface].value.midpoints, scale,
+                                                    p->block, radiation, &m->diagnostics);
+        if (status)
             return 0;
     } else {
         if (tt_mix_radiators(m->radiator_count, m->radiator_views, nl, nw, m->streams,
@@ -756,7 +805,21 @@ unsigned tt_model_reaper_capabilities(const tt_model *m) {
 }
 extern const tt_reaper_kernels *const *tt_reaper_builtin_tables(size_t *count);
 void tt_model_reaper_autoselect(tt_model *m) {
-    if (!m || !m->plan || m->plan->auto_checked)
+    if (!m || !m->plan)
+        return;
+    if (!m->plan->reaper_prepared) {
+        m->plan->reaper_prepared = 1;
+        m->plan->radiator_count = m->radiator_count;
+        if (TT_REAPER_ROLES)
+            m->plan->reaper_roles = calloc(m->radiator_count ? m->radiator_count : 1, 1);
+        if (!m->host_solver && m->streams == 1) {
+            size_t count =
+                tt_reaper_delta_eddington_work(m->shape.levels - 1, m->shape.wavelengths);
+            if (count && count <= SIZE_MAX / sizeof(double))
+                m->plan->reaper_block = malloc(count * sizeof(double));
+        }
+    }
+    if (m->plan->auto_checked)
         return;
     m->plan->auto_checked = 1;
     size_t count = 0;

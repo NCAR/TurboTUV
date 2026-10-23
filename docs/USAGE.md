@@ -189,3 +189,19 @@ accepted and declined generated family calls separately from model calls.
 See [the generation workflow](../tools/reaper/README.md#static-rate-generation)
 for compiler flags, ordered/roundoff choices and ownership. Empty
 `TURBOTUV_REAPER_SOURCES` retains a build with no generation or loader dependency.
+
+R3 adds fixed-temperature spectrum caches, contiguous table/parameterization
+loops, ordered O2 level lanes, and a separate REAPER transfer implementation.
+Radiator-role caches are invalidated by successful host replacement. Public
+fields, the Delta-Eddington algorithm, and discrete-ordinate support remain
+available. Scratch and caches belong to each model.
+
+`TURBOTUV_REAPER_SPECTRUM_EXP=OFF` disables the bounded spectral exp/pow10
+implementation. Its default-on implementation has an independent binary64
+error bound in [REAPER_MATH.md](REAPER_MATH.md), domain/rounding-mode guards,
+and ordinary libm fallback. Transfer exponentials always use libm.
+`TURBOTUV_REAPER_FIXED_CACHE`, `TURBOTUV_REAPER_DIRECT_CACHE` (0/off,
+1/expensive formulas, 2/all), and `TURBOTUV_REAPER_BLOCK` (2/4/8/16/32)
+control the corresponding development experiments. The default block is 16.
+Other internal lane choices are recorded in `src/reaper_internal.h` and the
+experiment ledger; they do not require a particular ISA or vector library.

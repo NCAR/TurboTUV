@@ -1,6 +1,7 @@
 /* Copyright (C) 2026 University Corporation for Atmospheric Research
  * SPDX-License-Identifier: Apache-2.0 */
 #include "oxygen_internal.h"
+#include "reaper_internal.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -82,14 +83,60 @@ static void lyman_alpha(size_t nz, const double *column, const double *secchi, d
                            : 1000;
 }
 
+/* Independent levels share the Chebyshev coefficient stream. No summation
+ * is reassociated: each lane follows the original recurrence exactly. */
+static void schumann_rows(size_t nz, const double *logs, const double *temperature, double *cross) {
+#if TT_REAPER_O2_LANES
+    enum { TILE = TT_REAPER_O2_LANES };
+    for (size_t first = 0; first < nz; first += TILE) {
+        size_t count = nz - first < TILE ? nz - first : TILE, levels[TILE], active = 0;
+        double y[TILE], y2[TILE], t[TILE];
+        for (size_t z = first; z < first + count; ++z)
+            /* Zero marks column < exp(38). Do not assume log(exp(38))
+             * rounds to exactly 38 on every standard math library. */
+            if (logs[z] != 0 && logs[z] <= 56) {
+                double v = (2 * logs[z] - (38 + 56)) / (56 - 38);
+                y[active] = v;
+                y2[active] = 2 * v;
+                t[active] = temperature[z] - 220;
+                levels[active++] = z;
+            }
+        for (size_t w = 0; w < 17; ++w) {
+            double a[TILE] = {0}, a1[TILE] = {0}, b[TILE] = {0}, b1[TILE] = {0};
+            for (size_t j = 20; j-- > 1;)
+                for (size_t z = 0; z < active; ++z) {
+                    double previous = a[z];
+                    a[z] = y2[z] * a[z] - a1[z] + oxygen_a[w][j];
+                    a1[z] = previous;
+                    previous = b[z];
+                    b[z] = y2[z] * b[z] - b1[z] + oxygen_b[w][j];
+                    b1[z] = previous;
+                }
+            for (size_t z = 0; z < active; ++z) {
+                double aa = y[z] * a[z] - a1[z] + .5 * oxygen_a[w][0];
+                double bb = y[z] * b[z] - b1[z] + .5 * oxygen_b[w][0];
+                cross[w * nz + levels[z]] = exp(aa * t[z] + bb);
+            }
+        }
+    }
+#else
+    (void)nz;
+    (void)logs;
+    (void)temperature;
+    (void)cross;
+#endif
+}
+
 static void schumann_runge(size_t nz, const double *column, const double *temperature,
                            const double *secchi, double *clamped, double *cross, double *depth,
-                           int reuse) {
+                           int reuse, double *logs) {
     double colmin = exp(38), norm = 1 / (double)(nz - 1);
     size_t top = nz, bottom = 0;
     for (size_t z = 0; z < nz; ++z) {
         clamped[z] = fmax(column[z], colmin);
         double shared_log = reuse && column[z] >= colmin ? log(clamped[z]) : 0;
+        if (TT_REAPER_O2_LANES && reuse)
+            logs[z] = shared_log;
         if (column[z] < colmin) {
             if (z < top)
                 top = z;
@@ -97,7 +144,7 @@ static void schumann_runge(size_t nz, const double *column, const double *temper
             bottom = z + 1;
         for (size_t w = 0; w < 17; ++w) {
             cross[w * nz + z] = limiting_cross_section[w];
-            if (column[z] >= colmin) {
+            if (!(TT_REAPER_O2_LANES && reuse) && column[z] >= colmin) {
                 double x = reuse ? shared_log : log(clamped[z]);
                 if (x <= 56)
                     cross[w * nz + z] = exp(chebyshev(oxygen_a[w], x) * (temperature[z] - 220) +
@@ -105,6 +152,8 @@ static void schumann_runge(size_t nz, const double *column, const double *temper
             }
         }
     }
+    if (TT_REAPER_O2_LANES && reuse)
+        schumann_rows(nz, logs, temperature, cross);
     if (bottom == nz)
         bottom = nz - 1;
     for (size_t w = 0; w < 17; ++w) {
@@ -168,7 +217,7 @@ static tt_status optics(const tt_oxygen_bands *bands, size_t nw, size_t nz,
     if (sr != SIZE_MAX) {
         double *target = cross ? cross + sr * nz : xs;
         schumann_runge(nz, oxygen, temperature, secchi, buffer, target,
-                       depth ? depth + sr * (nz - 1) : NULL, reuse);
+                       depth ? depth + sr * (nz - 1) : NULL, reuse, work + 19 * nz);
     }
     if (!reuse)
         free(work);
