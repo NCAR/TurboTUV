@@ -1614,7 +1614,7 @@ void tt_spectrum_plan_write(const tt_spectrum_plan *p, tt_reaper_writer *w) {
     tt_rw_text(w, "{\"role\":");
     tt_rw_size(w, (size_t)s->role);
     tt_rw_text(w, ",\"kind\":");
-    tt_rw_size(w, (size_t)s->kind);
+    tt_rw_int(w, s->kind);
     tt_rw_text(w, ",\"parameterized\":");
     tt_rw_size(w, (size_t)s->parameterized);
     tt_rw_text(w, ",\"generic\":");

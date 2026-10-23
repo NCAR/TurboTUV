@@ -17,6 +17,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include "turbotuv_model.h"
 #include "turbotuv_diagnostics.h"
+#include "turbotuv_reaper.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -244,6 +245,14 @@ int main(int argc, char **argv) {
            1e6 * elapsed / (double)total, (unsigned long long)digest);
     tt_diagnostics diagnostics;
     tt_model_diagnostics(model, &diagnostics);
+    tt_reaper_info reaper_info;
+    tt_model_reaper_info(model, &reaper_info);
+    if (reaper)
+        printf("reaper_selection=%s reaper_capabilities=%u reaper_optimizations=%u "
+               "reaper_preparation_failures=%u reaper_workspace_bytes=%zu\n",
+               tt_reaper_selection_name(reaper_info.selection), reaper_info.capabilities,
+               reaper_info.optimizations, reaper_info.preparation_failures,
+               reaper_info.transfer_workspace_bytes);
     printf("prepared_calls=%zu generic_calls=%zu prepared_declines=%zu reaper_calls=%zu "
            "reaper_declines=%zu generated_calls=%zu generated_declines=%zu profiling=%d "
            "setup_ms=%.3f preparation_ms=%.3f\n",

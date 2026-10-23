@@ -64,6 +64,9 @@ struct tt_model_plan {
     int needs_temperature, needs_air, oxygen_reactions;
     tt_reaper_kernels kernels;
     unsigned capabilities;
+    tt_reaper_selection selection;
+    unsigned preparation_failures;
+    size_t reaper_block_bytes;
     unsigned char identity[32];
     int has_identity, auto_checked;
     const double **row_views;
@@ -765,18 +768,23 @@ tt_status tt_model_attach_reaper(tt_model *m, const tt_reaper_kernels *k, tt_err
     else if (!k) {
         memset(&m->plan->kernels, 0, sizeof m->plan->kernels);
         m->plan->capabilities = 0;
+        m->plan->selection = TT_REAPER_DETACHED;
         m->plan->auto_checked = 1;
         return TT_OK;
     } else if (k->abi != TT_REAPER_ABI || k->schema != TT_REAPER_SCHEMA ||
-               k->implementation != TT_REAPER_IMPLEMENTATION)
-        reason = "REAPER ABI/schema/implementation mismatch";
+               k->implementation != TT_REAPER_IMPLEMENTATION || k->generator != TT_REAPER_GENERATOR)
+        reason = "REAPER ABI/schema/implementation/generator mismatch";
     else if ((k->numerics != TT_REAPER_ORDERED && k->numerics != TT_REAPER_ROUNDOFF) ||
              (k->accumulators != 1 && k->accumulators != 2 && k->accumulators != 4 &&
               k->accumulators != 8) ||
-             (k->numerics == TT_REAPER_ORDERED && k->accumulators != 1) ||
+             (k->numerics == TT_REAPER_ORDERED &&
+              (k->accumulators != 1 || (k->features & TT_REAPER_FMA))) ||
              (k->term_budget != 32 && k->term_budget != 64 && k->term_budget != 128 &&
               k->term_budget != 256) ||
-             k->level_tile > 32)
+             (k->level_tile != 0 && k->level_tile != 1 && k->level_tile != 2 &&
+              k->level_tile != 4 && k->level_tile != 8 && k->level_tile != 16 && k->level_tile != 32) ||
+             (k->interleave != 1 && k->interleave != 2 && k->interleave != 4 && k->interleave != 8) ||
+             (k->features & ~(TT_REAPER_FMA | TT_REAPER_REUSE_PRODUCTS)))
         reason = "REAPER numerical mode or layout mismatch";
     else if (k->levels != m->shape.levels || k->wavelengths != m->shape.wavelengths ||
              k->slots != m->plan->evaluation_count + 1 || k->photolysis != m->shape.photolysis ||
@@ -786,6 +794,8 @@ tt_status tt_model_attach_reaper(tt_model *m, const tt_reaper_kernels *k, tt_err
         unsigned char digest[32];
         if (tt_model_reaper_identity(m, digest) || memcmp(k->model_sha256, digest, 32))
             reason = "REAPER model fingerprint mismatch";
+        else if (tt_reaper_recipe_identity(k, digest) || memcmp(k->recipe_sha256, digest, 32))
+            reason = "REAPER generation recipe mismatch";
     }
     if (reason) {
         if (error) {
@@ -798,10 +808,27 @@ tt_status tt_model_attach_reaper(tt_model *m, const tt_reaper_kernels *k, tt_err
     m->plan->capabilities = (k->photolysis_kernel ? 1u : 0u) | (k->heating_kernel ? 2u : 0u) |
                             (k->dose_kernel ? 4u : 0u);
     m->plan->auto_checked = 1;
+    m->plan->selection = TT_REAPER_ATTACHED;
     return TT_OK;
 }
 unsigned tt_model_reaper_capabilities(const tt_model *m) {
     return m && m->plan ? m->plan->capabilities : 0;
+}
+tt_status tt_model_reaper_info(const tt_model *m, tt_reaper_info *info) {
+    if (!m || !info)
+        return TT_INVALID;
+    memset(info, 0, sizeof *info);
+    info->selection = m->plan ? m->plan->selection : TT_REAPER_NO_PLAN;
+    if (m->plan) {
+        const tt_model_plan *p = m->plan;
+        info->capabilities = p->capabilities;
+        info->optimizations = (p->reaper_roles ? TT_REAPER_ROLE_CACHE : 0u) |
+                              (p->reaper_block ? TT_REAPER_TRANSFER_WORKSPACE : 0u);
+        info->preparation_failures = p->preparation_failures;
+        info->transfer_workspace_bytes = p->reaper_block_bytes;
+        memcpy(info->recipe_sha256, p->kernels.recipe_sha256, 32);
+    }
+    return TT_OK;
 }
 extern const tt_reaper_kernels *const *tt_reaper_builtin_tables(size_t *count);
 void tt_model_reaper_autoselect(tt_model *m) {
@@ -810,13 +837,20 @@ void tt_model_reaper_autoselect(tt_model *m) {
     if (!m->plan->reaper_prepared) {
         m->plan->reaper_prepared = 1;
         m->plan->radiator_count = m->radiator_count;
-        if (TT_REAPER_ROLES)
+        if (TT_REAPER_ROLES) {
             m->plan->reaper_roles = calloc(m->radiator_count ? m->radiator_count : 1, 1);
+            if (!m->plan->reaper_roles)
+                m->plan->preparation_failures |= TT_REAPER_ROLE_CACHE;
+        }
         if (!m->host_solver && m->streams == 1) {
             size_t count =
                 tt_reaper_delta_eddington_work(m->shape.levels - 1, m->shape.wavelengths);
             if (count && count <= SIZE_MAX / sizeof(double))
                 m->plan->reaper_block = malloc(count * sizeof(double));
+            if (m->plan->reaper_block)
+                m->plan->reaper_block_bytes = count * sizeof(double);
+            else
+                m->plan->preparation_failures |= TT_REAPER_TRANSFER_WORKSPACE;
         }
     }
     if (m->plan->auto_checked)
@@ -824,7 +858,15 @@ void tt_model_reaper_autoselect(tt_model *m) {
     m->plan->auto_checked = 1;
     size_t count = 0;
     const tt_reaper_kernels *const *tables = tt_reaper_builtin_tables(&count);
+    m->plan->selection = count ? TT_REAPER_NO_MATCH : TT_REAPER_NO_ARTIFACTS;
+    if (count) {
+        unsigned char digest[32];
+        if (tt_model_reaper_identity(m, digest)) {
+            m->plan->selection = TT_REAPER_IDENTITY_UNAVAILABLE;
+            return;
+        }
+    }
     for (size_t i = 0; i < count; ++i)
-        if (tt_model_attach_reaper(m, tables[i], NULL) == TT_OK)
+        if (tables[i] && tt_model_attach_reaper(m, tables[i], NULL) == TT_OK)
             return;
 }

@@ -205,3 +205,32 @@ and ordinary libm fallback. Transfer exponentials always use libm.
 control the corresponding development experiments. The default block is 16.
 Other internal lane choices are recorded in `src/reaper_internal.h` and the
 experiment ledger; they do not require a particular ISA or vector library.
+
+R4 uses descriptor ABI/schema/implementation version 2 and generator version
+2. Regenerate version-1 artifacts with the current C exporter and emitter.
+The descriptor records accumulator/tile/interleave choices and FMA/product
+reuse flags, with a recipe digest in addition to the model digest. Parameterized
+spectrum kinds use a signed sentinel independent of the platform's `size_t`.
+`tt_reaper_recipe_identity` supports descriptors supplied by an embedding host.
+These identities check compatibility; the host remains responsible for the
+code it links.
+
+`tt_model_reaper_info` reports attachment state, selected family capabilities,
+optional role-cache/transfer-workspace availability, allocation failures, and
+the active recipe identity. States distinguish unchecked selection, explicit
+detach, absent artifacts, incompatible artifacts, unavailable identity, and
+missing prepared plans. `tt_reaper_selection_name` returns stable short labels;
+the benchmark prints them with preparation and workspace details. A failed
+explicit attachment preserves the previous valid descriptor and state.
+Counter resets do not erase this information. Optional workspace failure keeps
+the established transfer path usable and is covered by fault-injection tests.
+
+Static linking is the supported deployment route. Selection reuses its result
+within a model, and immutable code can be shared by independent models. The
+library does not launch a compiler or manage a persistent binary cache. An
+optional runtime loader was not added: it would not improve the measured
+steady-state arithmetic, and the static route already executes without Python
+or a compiler. `artifact.py` records a separate offline build identity covering
+the source, recipe, compiler binary/version/target, effective flags and host
+compatibility information. It does not treat an arbitrary cached object as safe
+to load.

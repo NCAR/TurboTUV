@@ -104,6 +104,11 @@ void tt_rw_size(tt_reaper_writer *w, size_t n) {
     snprintf(buf, sizeof buf, "%zu", n);
     tt_rw_text(w, buf);
 }
+void tt_rw_int(tt_reaper_writer *w, int n) {
+    char buf[32];
+    snprintf(buf, sizeof buf, "%d", n);
+    tt_rw_text(w, buf);
+}
 void tt_rw_double(tt_reaper_writer *w, double x) {
     uint64_t bits = 0;
     memcpy(&bits, &x, sizeof bits);

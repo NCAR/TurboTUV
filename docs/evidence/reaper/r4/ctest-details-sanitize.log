@@ -1,0 +1,470 @@
+Start testing: Oct 23 00:36 MDT
+----------------------------------------------------------
+1/29 Testing: numerics
+1/29 Test: numerics
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_numerics"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"numerics" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+numerical invariants, error handling, and embedded catalogue passed
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"numerics" end time: Oct 23 00:36 MDT
+"numerics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/29 Testing: radiation_invariants
+2/29 Test: radiation_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_radiation_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"radiation_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+275 atmospheres, 1750 comparisons; worst 11.1 epsilon-scaled error
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Passed.
+"radiation_invariants" end time: Oct 23 00:36 MDT
+"radiation_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/29 Testing: spectral_invariants
+3/29 Test: spectral_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_spectral_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"spectral_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+26 cross-section kernels: 43 comparisons; worst 0.624 relative epsilon-scaled error
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"spectral_invariants" end time: Oct 23 00:36 MDT
+"spectral_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/29 Testing: yield_invariants
+4/29 Test: yield_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_yield_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"yield_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+21 quantum yields and 13 weights: 132032 comparisons; worst 13.5 relative epsilon-scaled error
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Passed.
+"yield_invariants" end time: Oct 23 00:36 MDT
+"yield_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/29 Testing: temperature_invariants
+5/29 Test: temperature_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_temperature_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"temperature_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+4 temperature parameterizations: 9407 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"temperature_invariants" end time: Oct 23 00:36 MDT
+"temperature_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/29 Testing: rate_invariants
+6/29 Test: rate_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_rate_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"rate_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Photolysis, heating, dose: 4141 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.23 sec
+----------------------------------------------------------
+Test Passed.
+"rate_invariants" end time: Oct 23 00:36 MDT
+"rate_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/29 Testing: oxygen_invariants
+7/29 Test: oxygen_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_oxygen_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"oxygen_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+O2 bands: 46460 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"oxygen_invariants" end time: Oct 23 00:36 MDT
+"oxygen_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/29 Testing: linalg_invariants
+8/29 Test: linalg_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_linalg_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"linalg_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Dense/banded LINPACK: 0 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"linalg_invariants" end time: Oct 23 00:36 MDT
+"linalg_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/29 Testing: discrete_helper_invariants
+9/29 Test: discrete_helper_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_discrete_helper_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"discrete_helper_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Discrete-ordinate helpers: 508 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"discrete_helper_invariants" end time: Oct 23 00:36 MDT
+"discrete_helper_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/29 Testing: discrete_invariants
+10/29 Test: discrete_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_discrete_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"discrete_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+4400 atmospheres, 13600 comparisons; worst 46 epsilon-scaled error
+<end of output>
+Test time =  54.24 sec
+----------------------------------------------------------
+Test Passed.
+"discrete_invariants" end time: Oct 23 00:37 MDT
+"discrete_invariants" time elapsed: 00:00:54
+----------------------------------------------------------
+
+11/29 Testing: profile_invariants
+11/29 Test: profile_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_profile_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"profile_invariants" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Grids and profiles: 698 cases, 136273 comparisons; worst 5.85 epsilon-scaled error
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Passed.
+"profile_invariants" end time: Oct 23 00:37 MDT
+"profile_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/29 Testing: locale_independence
+12/29 Test: locale_independence
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_locale" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"locale_independence" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Locale de_DE.UTF-8: 32065 values identical to the C locale
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"locale_independence" end time: Oct 23 00:37 MDT
+"locale_independence" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/29 Testing: optics_invariants
+13/29 Test: optics_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_optics_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"optics_invariants" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Optical properties: 432 cases, 712866 comparisons; worst 0.556 relative epsilon-scaled error
+<end of output>
+Test time =   0.18 sec
+----------------------------------------------------------
+Test Passed.
+"optics_invariants" end time: Oct 23 00:37 MDT
+"optics_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/29 Testing: config_invariants
+14/29 Test: config_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_config_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"config_invariants" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Configuration: 281 documents, 25385 checks
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"config_invariants" end time: Oct 23 00:37 MDT
+"config_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/29 Testing: spectrum_invariants
+15/29 Test: spectrum_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_spectrum_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"spectrum_invariants" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Prepared spectra: 970 cases, 7189693 comparisons, worst 0 relative eps
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"spectrum_invariants" end time: Oct 23 00:37 MDT
+"spectrum_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/29 Testing: profile_config_invariants
+16/29 Test: profile_config_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_profile_config_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"profile_config_invariants" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Profile configuration: 237 cases, 103742 comparisons, worst 0 relative eps
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"profile_config_invariants" end time: Oct 23 00:37 MDT
+"profile_config_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/29 Testing: prepared_execution
+17/29 Test: prepared_execution
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_prepared"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"prepared_execution" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/test_prepared.c:146:62: runtime error: index 970 out of bounds for type 'const struct spectrum_case[1]'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /Users/fillmore/NSF-NCAR/TurboTUV/tests/test_prepared.c:146:62
+Prepared execution: 912 spectra, 550 atmospheres, 26 models, 364 columns, 124035553 values identical
+<end of output>
+Test time =  11.65 sec
+----------------------------------------------------------
+Test Passed.
+"prepared_execution" end time: Oct 23 00:37 MDT
+"prepared_execution" time elapsed: 00:00:11
+----------------------------------------------------------
+
+18/29 Testing: reaper_execution
+18/29 Test: reaper_execution
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_reaper"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"reaper_execution" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+/Users/fillmore/NSF-NCAR/TurboTUV/tests/test_prepared.c:146:62: runtime error: index 970 out of bounds for type 'const struct spectrum_case[1]'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /Users/fillmore/NSF-NCAR/TurboTUV/tests/test_prepared.c:146:62
+REAPER: 912 spectra, 550 atmospheres, 26 models, 364 columns, 124035553 values; maximum 11.7 eps
+<end of output>
+Test time =  11.68 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_execution" end time: Oct 23 00:38 MDT
+"reaper_execution" time elapsed: 00:00:11
+----------------------------------------------------------
+
+19/29 Testing: reaper_bounded_math
+19/29 Test: reaper_bounded_math
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_reaper_math"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"reaper_bounded_math" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+REAPER bounded math: tails, in-place, exceptions, boundaries and rounding modes pass
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_bounded_math" end time: Oct 23 00:38 MDT
+"reaper_bounded_math" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/29 Testing: reaper_artifact
+20/29 Test: reaper_artifact
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_reaper_artifact" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"reaper_artifact" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+SHA-256 vectors, deterministic export, runtime updates, mismatch/partial/decline/detach: passed
+<end of output>
+Test time =   1.16 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_artifact" end time: Oct 23 00:38 MDT
+"reaper_artifact" time elapsed: 00:00:01
+----------------------------------------------------------
+
+21/29 Testing: reaper_preparation_failure
+21/29 Test: reaper_preparation_failure
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_reaper_preparation" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"reaper_preparation_failure" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+REAPER optional allocation failure: observable, usable, and numerically valid
+<end of output>
+Test time =   0.49 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_preparation_failure" end time: Oct 23 00:38 MDT
+"reaper_preparation_failure" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/29 Testing: execution_diagnostics
+22/29 Test: execution_diagnostics
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_diagnostics" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"execution_diagnostics" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"execution_diagnostics" end time: Oct 23 00:38 MDT
+"execution_diagnostics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/29 Testing: model_invariants
+23/29 Test: model_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_model_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"model_invariants" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+Whole model: 27 configurations, 380 runs, 4320 comparisons, worst 0 eps
+<end of output>
+Test time =   6.39 sec
+----------------------------------------------------------
+Test Passed.
+"model_invariants" end time: Oct 23 00:38 MDT
+"model_invariants" time elapsed: 00:00:06
+----------------------------------------------------------
+
+24/29 Testing: model_host_invariants
+24/29 Test: model_host_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_model_host_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"model_host_invariants" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+Host model: 528 runs, 0 comparisons, worst 0 eps
+<end of output>
+Test time =   8.47 sec
+----------------------------------------------------------
+Test Passed.
+"model_host_invariants" end time: Oct 23 00:38 MDT
+"model_host_invariants" time elapsed: 00:00:08
+----------------------------------------------------------
+
+25/29 Testing: reaper_host_updates
+25/29 Test: reaper_host_updates
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_reaper_host"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"reaper_host_updates" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+Host model: 528 runs, 11327712 comparisons, worst 2.47 eps
+<end of output>
+Test time =   8.56 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_host_updates" end time: Oct 23 00:38 MDT
+"reaper_host_updates" time elapsed: 00:00:08
+----------------------------------------------------------
+
+26/29 Testing: reaper_radiator_updates
+26/29 Test: reaper_radiator_updates
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_reaper_updates" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"reaper_radiator_updates" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+REAPER radiator replacements: zero, absorption, scattering, general and rejected updates pass
+<end of output>
+Test time =   3.57 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_radiator_updates" end time: Oct 23 00:38 MDT
+"reaper_radiator_updates" time elapsed: 00:00:03
+----------------------------------------------------------
+
+27/29 Testing: parallel_models
+27/29 Test: parallel_models
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_parallel" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"parallel_models" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+Concurrent models: 4410208 bit-identical values across 4 workers
+<end of output>
+Test time =   0.74 sec
+----------------------------------------------------------
+Test Passed.
+"parallel_models" end time: Oct 23 00:38 MDT
+"parallel_models" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/29 Testing: reaper_parallel_models
+28/29 Test: reaper_parallel_models
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests/test_reaper_parallel" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"reaper_parallel_models" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+Concurrent models: 4410208 bit-identical values across 4 workers
+<end of output>
+Test time =   0.83 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_parallel_models" end time: Oct 23 00:38 MDT
+"reaper_parallel_models" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/29 Testing: cli
+29/29 Test: cli
+Command: "/Users/fillmore/miniforge3/bin/python3.13" "/Users/fillmore/NSF-NCAR/TurboTUV/tests/test_cli.py" "--program" "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/turbotuv" "--examples" "/Users/fillmore/NSF-NCAR/TurboTUV/examples"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-sanitize/tests
+"cli" start time: Oct 23 00:38 MDT
+Output:
+----------------------------------------------------------
+CLI: JSON/YAML, isolated runtime, output integrity, 0 numeric comparisons; worst 0 eps
+<end of output>
+Test time =   2.80 sec
+----------------------------------------------------------
+Test Passed.
+"cli" end time: Oct 23 00:38 MDT
+"cli" time elapsed: 00:00:02
+----------------------------------------------------------
+
+End testing: Oct 23 00:38 MDT

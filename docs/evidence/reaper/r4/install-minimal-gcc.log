@@ -1,0 +1,19 @@
+-- Install configuration: "Release"
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/lib/libturbotuv.a
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/include/turbotuv.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/include/turbotuv_config.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/include/turbotuv_model.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/include/turbotuv_diagnostics.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/include/turbotuv_reaper.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/licenses/LibYAML.txt
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/licenses/TurboTUV.txt
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/lib/cmake/TurboTUV/TurboTUVTargets.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/lib/cmake/TurboTUV/TurboTUVTargets-release.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/lib/cmake/TurboTUV/TurboTUVConfig.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/lib/cmake/TurboTUV/TurboTUVConfigVersion.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/examples
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/examples/column.c
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/examples/ts1_tsmlt.yml
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/examples/tuv_5_4.yml
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/examples/ts1_tsmlt.json
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-install-minimal-gcc/share/TurboTUV/examples/tuv_5_4.json

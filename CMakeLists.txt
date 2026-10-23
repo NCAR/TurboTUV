@@ -29,10 +29,12 @@ add_library(turbotuv src/numerics.c src/geometry.c src/data.c src/radiation.c sr
     src/config.c src/profile_config.c src/build.c src/spectrum.c src/spectrum_temperature.c
     src/model_build.c src/model_run.c src/model_host.c src/decimal.c
     src/spectrum_plan.c src/model_plan.c src/radiation_block.c src/diagnostics.c
-    src/reaper_writer.c src/reaper_dispatch.c src/radiation_reaper.c)
+    src/reaper_writer.c src/reaper_descriptor.c src/radiation_reaper.c)
 if(TURBOTUV_REAPER_SOURCES)
     target_sources(turbotuv PRIVATE ${TURBOTUV_REAPER_SOURCES})
     target_compile_definitions(turbotuv PRIVATE TT_REAPER_BUILTINS)
+else()
+    target_sources(turbotuv PRIVATE src/reaper_dispatch.c)
 endif()
 add_library(TurboTUV::turbotuv ALIAS turbotuv)
 target_compile_features(turbotuv PUBLIC c_std_11)

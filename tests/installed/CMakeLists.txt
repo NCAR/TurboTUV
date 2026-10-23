@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(TurboTUVInstalledConsumer LANGUAGES C)
+find_package(TurboTUV CONFIG REQUIRED)
+add_executable(reaper_consumer reaper_consumer.c)
+target_link_libraries(reaper_consumer PRIVATE TurboTUV::turbotuv)
+set_target_properties(reaper_consumer PROPERTIES C_EXTENSIONS OFF)

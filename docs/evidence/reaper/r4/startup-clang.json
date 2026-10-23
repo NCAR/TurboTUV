@@ -1,0 +1,398 @@
+{
+  "samples": [
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+      ],
+      "stdout": "setup_ms=25.522 preparation_ms=0.040 sum=124.75609447571301\n",
+      "fields": {
+        "setup_ms": "25.522",
+        "preparation_ms": "0.040",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "main",
+      "round": 0,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=5 setup_ms=19.414 preparation_ms=9.826 reuse_ns=1.788 sum=124.75609447571301\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "5",
+        "setup_ms": "19.414",
+        "preparation_ms": "9.826",
+        "reuse_ns": "1.788",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "candidate",
+      "round": 0,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=5 setup_ms=16.568 preparation_ms=9.418 reuse_ns=1.812 sum=124.75609447571301\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "5",
+        "setup_ms": "16.568",
+        "preparation_ms": "9.418",
+        "reuse_ns": "1.812",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "candidate",
+      "round": 1,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+      ],
+      "stdout": "setup_ms=16.691 preparation_ms=0.034 sum=124.75609447571301\n",
+      "fields": {
+        "setup_ms": "16.691",
+        "preparation_ms": "0.034",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "main",
+      "round": 1,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+      ],
+      "stdout": "setup_ms=16.913 preparation_ms=0.033 sum=124.75609447571301\n",
+      "fields": {
+        "setup_ms": "16.913",
+        "preparation_ms": "0.033",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "main",
+      "round": 2,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=5 setup_ms=17.743 preparation_ms=9.792 reuse_ns=1.693 sum=124.75609447571301\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "5",
+        "setup_ms": "17.743",
+        "preparation_ms": "9.792",
+        "reuse_ns": "1.693",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "candidate",
+      "round": 2,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=5 setup_ms=17.801 preparation_ms=9.726 reuse_ns=1.717 sum=124.75609447571301\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "5",
+        "setup_ms": "17.801",
+        "preparation_ms": "9.726",
+        "reuse_ns": "1.717",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "candidate",
+      "round": 3,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+      ],
+      "stdout": "setup_ms=17.840 preparation_ms=0.035 sum=124.75609447571301\n",
+      "fields": {
+        "setup_ms": "17.840",
+        "preparation_ms": "0.035",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "main",
+      "round": 3,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+      ],
+      "stdout": "setup_ms=17.543 preparation_ms=0.033 sum=124.75609447571301\n",
+      "fields": {
+        "setup_ms": "17.543",
+        "preparation_ms": "0.033",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "main",
+      "round": 4,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=5 setup_ms=17.586 preparation_ms=9.730 reuse_ns=1.693 sum=124.75609447571301\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "5",
+        "setup_ms": "17.586",
+        "preparation_ms": "9.730",
+        "reuse_ns": "1.693",
+        "sum": "124.75609447571301"
+      },
+      "config": "tuv_5_4",
+      "program": "candidate",
+      "round": 4,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+      ],
+      "stdout": "setup_ms=16.079 preparation_ms=0.053 sum=56.922587129715446\n",
+      "fields": {
+        "setup_ms": "16.079",
+        "preparation_ms": "0.053",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "main",
+      "round": 0,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=3 setup_ms=15.738 preparation_ms=4.397 reuse_ns=1.693 sum=56.922587129715446\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "3",
+        "setup_ms": "15.738",
+        "preparation_ms": "4.397",
+        "reuse_ns": "1.693",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "candidate",
+      "round": 0,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=3 setup_ms=16.071 preparation_ms=4.399 reuse_ns=1.693 sum=56.922587129715446\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "3",
+        "setup_ms": "16.071",
+        "preparation_ms": "4.399",
+        "reuse_ns": "1.693",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "candidate",
+      "round": 1,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+      ],
+      "stdout": "setup_ms=15.394 preparation_ms=0.042 sum=56.922587129715446\n",
+      "fields": {
+        "setup_ms": "15.394",
+        "preparation_ms": "0.042",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "main",
+      "round": 1,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+      ],
+      "stdout": "setup_ms=15.417 preparation_ms=0.044 sum=56.922587129715446\n",
+      "fields": {
+        "setup_ms": "15.417",
+        "preparation_ms": "0.044",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "main",
+      "round": 2,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=3 setup_ms=15.902 preparation_ms=4.503 reuse_ns=1.812 sum=56.922587129715446\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "3",
+        "setup_ms": "15.902",
+        "preparation_ms": "4.503",
+        "reuse_ns": "1.812",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "candidate",
+      "round": 2,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=3 setup_ms=15.503 preparation_ms=4.383 reuse_ns=1.812 sum=56.922587129715446\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "3",
+        "setup_ms": "15.503",
+        "preparation_ms": "4.383",
+        "reuse_ns": "1.812",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "candidate",
+      "round": 3,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+      ],
+      "stdout": "setup_ms=15.668 preparation_ms=0.053 sum=56.922587129715446\n",
+      "fields": {
+        "setup_ms": "15.668",
+        "preparation_ms": "0.053",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "main",
+      "round": 3,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-consumer-clang",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+      ],
+      "stdout": "setup_ms=14.771 preparation_ms=0.043 sum=56.922587129715446\n",
+      "fields": {
+        "setup_ms": "14.771",
+        "preparation_ms": "0.043",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "main",
+      "round": 4,
+      "path": "/nonexistent"
+    },
+    {
+      "command": [
+        "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-consumer-selected-clang/reaper_consumer",
+        "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json",
+        "attached"
+      ],
+      "stdout": "selection=attached capabilities=3 setup_ms=15.248 preparation_ms=4.595 reuse_ns=1.812 sum=56.922587129715446\n",
+      "fields": {
+        "selection": "attached",
+        "capabilities": "3",
+        "setup_ms": "15.248",
+        "preparation_ms": "4.595",
+        "reuse_ns": "1.812",
+        "sum": "56.922587129715446"
+      },
+      "config": "ts1_tsmlt",
+      "program": "candidate",
+      "round": 4,
+      "path": "/nonexistent"
+    }
+  ],
+  "summary": [
+    {
+      "config": "tuv_5_4",
+      "initialization_ms": {
+        "main": 17.576,
+        "candidate": 27.527
+      },
+      "extra_initialization_ms": 9.951,
+      "steady_saved_us": 392.93999999999994,
+      "static_break_even_columns": 26,
+      "with_emission_compile_columns": 6077,
+      "median_repeat_selection_ns": 1.717,
+      "note": "Estimate uses R3 gated latency and R4 bit-identical outputs; emission/compile excludes final linking."
+    },
+    {
+      "config": "ts1_tsmlt",
+      "initialization_ms": {
+        "main": 15.461,
+        "candidate": 20.134999999999998
+      },
+      "extra_initialization_ms": 4.673999999999998,
+      "steady_saved_us": 427.905,
+      "static_break_even_columns": 11,
+      "with_emission_compile_columns": 5568,
+      "median_repeat_selection_ns": 1.812,
+      "note": "Estimate uses R3 gated latency and R4 bit-identical outputs; emission/compile excludes final linking."
+    }
+  ],
+  "steady_source": "docs/evidence/reaper/r3/timings.json",
+  "artifact": "docs/evidence/reaper/r4/artifact-clang.json",
+  "binary_sha256": {
+    "build/reaper/main-consumer-clang": "5af9a92ad3691ec5b7eb083d9e0d9546380cd809b25ea60bf416d4bfe7613579",
+    "build/reaper/r4-consumer-selected-clang/reaper_consumer": "c929267151877451720fabb5e9f987688a59fdc2f3867f227970abc3e4423fb0"
+  }
+}

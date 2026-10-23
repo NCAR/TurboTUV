@@ -21,6 +21,7 @@ typedef struct {
 void tt_rw_init(tt_reaper_writer *w, FILE *file);
 void tt_rw_text(tt_reaper_writer *w, const char *s);
 void tt_rw_size(tt_reaper_writer *w, size_t n);
+void tt_rw_int(tt_reaper_writer *w, int n);
 void tt_rw_double(tt_reaper_writer *w, double x);
 void tt_rw_array(tt_reaper_writer *w, const double *x, size_t n);
 void tt_rw_string(tt_reaper_writer *w, const char *s);

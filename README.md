@@ -104,6 +104,8 @@ retain bit identity. Optional generated C11 rate kernels now support static
 attachment; [generation instructions](tools/reaper/README.md#static-rate-generation)
 cover ordered and roundoff variants. Spectral reuse, bounded spectral math,
 and ordered transfer/O2 loop improvements are also available in REAPER.
+Versioned model/recipe identities, observable fallback reasons, and installed
+static-library checks cover artifact attachment and deployment.
 Fresh controls, validation, timings and the
 remaining work toward a further 2x are recorded in
 [docs/REAPER_RESULTS.md](docs/REAPER_RESULTS.md).

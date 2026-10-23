@@ -1,0 +1,596 @@
+[
+  {
+    "schema": 2,
+    "generator": 2,
+    "plans": [
+      {
+        "path": "build/reaper/r4-heldout-gcc/one-layer-plan.json",
+        "sha256": "42c7c3fc4eed2b40025cf4e6687951b5d73d130c4da309297b64e73f3b1fc821",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 0,
+          "term_budget": 32,
+          "accumulators": 1,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "42c7c3fc4eed2b40025cf4e6687951b5d73d130c4da309297b64e73f3b1fc821"
+        },
+        "recipe_sha256": "c8149eaf578fe00273887c17ef6384b7922839959531da9d5f0764125297f0e0",
+        "source_sha256": "7e29c10944913815799d30604fd09266d6d0d8a18fe42cc579e162c9bcffeb9b",
+        "source_bytes": 97163
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/two-layer-plan.json",
+        "sha256": "0180637e530a43eae325e968268203bcb66567145937dd20b9ef877781179cf1",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 0,
+          "term_budget": 32,
+          "accumulators": 1,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "0180637e530a43eae325e968268203bcb66567145937dd20b9ef877781179cf1"
+        },
+        "recipe_sha256": "2bb377dbadce101f8cc3b0d3e05f8a831e6fb18add7a4191b61fb15b24256b33",
+        "source_sha256": "2977cf57c8b2d094d9bcf27654f458f4cbbbed3062aa0e756b34f3208b94d3ca",
+        "source_bytes": 45816
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/odd-level-plan.json",
+        "sha256": "beeef35f74cf9698bf170f40595eed8dfc8d805e5e5d22ae20cc535f31eaeac7",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 0,
+          "term_budget": 32,
+          "accumulators": 1,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "beeef35f74cf9698bf170f40595eed8dfc8d805e5e5d22ae20cc535f31eaeac7"
+        },
+        "recipe_sha256": "e66dbda343519221bfb77c07c99453b58af73c1d4de35a12cc3ecffd9f9fd8aa",
+        "source_sha256": "8a2f2efa4d79d4931a2c427fea360eed60e79018628438a1fd3374b560d66a88",
+        "source_bytes": 122938
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/odd-layer-plan.json",
+        "sha256": "2b7ba5e97ddc0e2afb837b1259e29ea58115cc0b37bc333f63d4c7c983f44c85",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 0,
+          "term_budget": 32,
+          "accumulators": 1,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "2b7ba5e97ddc0e2afb837b1259e29ea58115cc0b37bc333f63d4c7c983f44c85"
+        },
+        "recipe_sha256": "e117327a1730b61b25407c95a5d08aadfe3c885a12039c7ae6df2dbb3c250779",
+        "source_sha256": "362d8e8ac2eb089979e89993666293ca85d4adddd5b7547a363a8e84192ecfda",
+        "source_bytes": 55210
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/discrete-plan.json",
+        "sha256": "2f5cf8b667fa4c6ce00ce94d5bff2a2c682757339a7ca92f87a6fd69fd90c7b9",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 0,
+          "term_budget": 32,
+          "accumulators": 1,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "2f5cf8b667fa4c6ce00ce94d5bff2a2c682757339a7ca92f87a6fd69fd90c7b9"
+        },
+        "recipe_sha256": "940037266ca23707791f2c56232a4073e2092df73243a2bc9aea28fa0a7cd87d",
+        "source_sha256": "87a55215b2d7d9e21c04d7c6ef2ae04215dbb2fa3c189b641930015f9ecfbef6",
+        "source_bytes": 37546
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/reordered-plan.json",
+        "sha256": "89b37e9bf18ea4401ad67f8be212f5ec19bc29e1b479bfa5461f5adfdcf1c199",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 0,
+          "term_budget": 32,
+          "accumulators": 1,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "89b37e9bf18ea4401ad67f8be212f5ec19bc29e1b479bfa5461f5adfdcf1c199"
+        },
+        "recipe_sha256": "ce1d5179e70e17742a14959ab6da2f7d54c7dda60e86c393c4934e5a2734f21d",
+        "source_sha256": "782baf6caf864cd2f83b7b0deb6d599fc48f6ce3fce4298f32da97ce8560b32c",
+        "source_bytes": 738566
+      }
+    ],
+    "commands": [
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-0.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-0.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-1.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-1.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-2.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-2.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-3.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-3.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-4.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-4.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-5.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/ordered/kernel-5.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/ordered/registry.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/ordered/registry.o"
+      ]
+    ],
+    "sources": [
+      "build/reaper/r4-heldout-gcc/ordered/kernel-0.c",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-1.c",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-2.c",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-3.c",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-4.c",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-5.c",
+      "build/reaper/r4-heldout-gcc/ordered/registry.c"
+    ],
+    "objects": [
+      "build/reaper/r4-heldout-gcc/ordered/kernel-0.o",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-1.o",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-2.o",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-3.o",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-4.o",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-5.o",
+      "build/reaper/r4-heldout-gcc/ordered/registry.o"
+    ],
+    "compiler": {
+      "path": "/opt/homebrew/Cellar/gcc/15.2.0/bin/gcc-15",
+      "version": "gcc-15 (Homebrew GCC 15.2.0) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "sha256": "6a9e8f1e0e740794a73858a57dd6dd2dfc07e0adffb8fa8f4d0b0af81c1d2015",
+      "target": "aarch64-apple-darwin25"
+    },
+    "flags": [
+      "-std=c11",
+      "-O3",
+      "-fPIC",
+      "-DNDEBUG",
+      "-ffp-contract=off",
+      "-Iinclude",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk"
+    ],
+    "host": {
+      "system": "Darwin",
+      "release": "27.0.0",
+      "machine": "arm64"
+    },
+    "header_sha256": "e8e785857a7cd5470495e8c102f2c71d9183e4f9d5a30436bbe2351db2e89565",
+    "generator_sha256": "46893ec0abd76e567e1cb6737b91c0cc8d6b5cdce8d36f6089e03c18864d268d",
+    "compile_seconds": 8.408173042000271,
+    "object_bytes": 956784,
+    "object_sha256": {
+      "build/reaper/r4-heldout-gcc/ordered/kernel-0.o": "fddfde8bdeefbea7f60ffbf6b03a37120a36ea8e03e4ef2acc927bb49a6079df",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-1.o": "602a38b0761e7957f7d6b7b2266e6a7e0cffc63cdbe7de962b07e634a3402a67",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-2.o": "76f1d3e4fbbd4753dc44f331c8f7a79124ffcbc2580d11a7fe268d2665cdde38",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-3.o": "febb445a82021a7dcef27901a866d72e5e97c41104935ff5cc1b49546771f1d6",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-4.o": "070e0290dfe138b9f985e9f02b8a160a78acd0612687fb18af24c4bc6bd706ff",
+      "build/reaper/r4-heldout-gcc/ordered/kernel-5.o": "f42261db5389f4493fd4926d18db90216edc0b29e15c988d1efda63bd95e51e4",
+      "build/reaper/r4-heldout-gcc/ordered/registry.o": "a4b6bb775c3a6c38f6455d30aa5f6fe0d622839157ad1f9d31153ee187db4884"
+    },
+    "build_identity": "fcd8d895491ba12483b3094bb6d26dfe25573b3d6f9dcf02270a292e2e7e7559",
+    "gates": [
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-replay-one-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-one-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-replay-two-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-two-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-replay-odd-level.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-odd-level.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-replay-odd-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-odd-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-replay-discrete.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-discrete.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-replay-reordered.json",
+      "docs/evidence/reaper/r4/heldout-gcc/ordered-reordered.json"
+    ]
+  },
+  {
+    "schema": 2,
+    "generator": 2,
+    "plans": [
+      {
+        "path": "build/reaper/r4-heldout-gcc/one-layer-plan.json",
+        "sha256": "42c7c3fc4eed2b40025cf4e6687951b5d73d130c4da309297b64e73f3b1fc821",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 1,
+          "term_budget": 32,
+          "accumulators": 4,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "42c7c3fc4eed2b40025cf4e6687951b5d73d130c4da309297b64e73f3b1fc821"
+        },
+        "recipe_sha256": "c7760d47bd3e0337a0d9fd44947d1422cd1dc6cae465f6025305d628a23e3d4c",
+        "source_sha256": "c8e0d20828da22b944a6c00d98bb35e3300d7fdd19ba85d311b5b4d2f32dd500",
+        "source_bytes": 109056
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/two-layer-plan.json",
+        "sha256": "0180637e530a43eae325e968268203bcb66567145937dd20b9ef877781179cf1",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 1,
+          "term_budget": 32,
+          "accumulators": 4,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "0180637e530a43eae325e968268203bcb66567145937dd20b9ef877781179cf1"
+        },
+        "recipe_sha256": "faec25a140d0d028af376fd2867aa52518ef8ed069514cd6d351daaeac0b2761",
+        "source_sha256": "8899a10e6c782398e29f7a6285df6a7e99f5a9bf3de6b503bcce88a8b25d8b6e",
+        "source_bytes": 50705
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/odd-level-plan.json",
+        "sha256": "beeef35f74cf9698bf170f40595eed8dfc8d805e5e5d22ae20cc535f31eaeac7",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 1,
+          "term_budget": 32,
+          "accumulators": 4,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "beeef35f74cf9698bf170f40595eed8dfc8d805e5e5d22ae20cc535f31eaeac7"
+        },
+        "recipe_sha256": "d03c081d5ffbdb8e7deaa4438bc12ec709b9efe2aeb5df10fc7a305921cc0c67",
+        "source_sha256": "0614f1000eb30e7ca988b69f49b9ff415129fcc3f79c951b14ba4ace88bc38bc",
+        "source_bytes": 136455
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/odd-layer-plan.json",
+        "sha256": "2b7ba5e97ddc0e2afb837b1259e29ea58115cc0b37bc333f63d4c7c983f44c85",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 1,
+          "term_budget": 32,
+          "accumulators": 4,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "2b7ba5e97ddc0e2afb837b1259e29ea58115cc0b37bc333f63d4c7c983f44c85"
+        },
+        "recipe_sha256": "39baaeb15439c18dccc475d90bfa2b1f5b584d0445c64b2f01cf2aad6a653599",
+        "source_sha256": "ebbffcb8df5bcdb42c87ab9c951516d934328dcdd61f10056c807a98796d1cf5",
+        "source_bytes": 61027
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/discrete-plan.json",
+        "sha256": "2f5cf8b667fa4c6ce00ce94d5bff2a2c682757339a7ca92f87a6fd69fd90c7b9",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 1,
+          "term_budget": 32,
+          "accumulators": 4,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "2f5cf8b667fa4c6ce00ce94d5bff2a2c682757339a7ca92f87a6fd69fd90c7b9"
+        },
+        "recipe_sha256": "5df7deabac4dae6a2e08ece3a06f172455bc2e4d3b532a47fbd22b572a9aefa6",
+        "source_sha256": "6d0df3a3a3de51fefed8d90d917d923654413660cef6391418f2f04c15358d2f",
+        "source_bytes": 41739
+      },
+      {
+        "path": "build/reaper/r4-heldout-gcc/reordered-plan.json",
+        "sha256": "89b37e9bf18ea4401ad67f8be212f5ec19bc29e1b479bfa5461f5adfdcf1c199",
+        "recipe": {
+          "generator": 2,
+          "abi": 2,
+          "schema": 2,
+          "implementation": 2,
+          "numerics": 1,
+          "term_budget": 32,
+          "accumulators": 4,
+          "level_tile": 8,
+          "interleave": 2,
+          "features": 2,
+          "model_sha256": "89b37e9bf18ea4401ad67f8be212f5ec19bc29e1b479bfa5461f5adfdcf1c199"
+        },
+        "recipe_sha256": "f817fee8cc75d33a8e6d23ce7293ac9236278344f261be600ed7bd1cce936a73",
+        "source_sha256": "a1b4b2192c707ee528bf5da6990e8e75a2f966511b10a81a60487be239cbe150",
+        "source_bytes": 808811
+      }
+    ],
+    "commands": [
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-0.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-0.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-1.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-1.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-2.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-2.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-3.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-3.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-4.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-4.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-5.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/roundoff/kernel-5.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-fPIC",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-c",
+        "build/reaper/r4-heldout-gcc/roundoff/registry.c",
+        "-o",
+        "build/reaper/r4-heldout-gcc/roundoff/registry.o"
+      ]
+    ],
+    "sources": [
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-0.c",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-1.c",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-2.c",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-3.c",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-4.c",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-5.c",
+      "build/reaper/r4-heldout-gcc/roundoff/registry.c"
+    ],
+    "objects": [
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-0.o",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-1.o",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-2.o",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-3.o",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-4.o",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-5.o",
+      "build/reaper/r4-heldout-gcc/roundoff/registry.o"
+    ],
+    "compiler": {
+      "path": "/opt/homebrew/Cellar/gcc/15.2.0/bin/gcc-15",
+      "version": "gcc-15 (Homebrew GCC 15.2.0) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "sha256": "6a9e8f1e0e740794a73858a57dd6dd2dfc07e0adffb8fa8f4d0b0af81c1d2015",
+      "target": "aarch64-apple-darwin25"
+    },
+    "flags": [
+      "-std=c11",
+      "-O3",
+      "-fPIC",
+      "-DNDEBUG",
+      "-ffp-contract=off",
+      "-Iinclude",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk"
+    ],
+    "host": {
+      "system": "Darwin",
+      "release": "27.0.0",
+      "machine": "arm64"
+    },
+    "header_sha256": "e8e785857a7cd5470495e8c102f2c71d9183e4f9d5a30436bbe2351db2e89565",
+    "generator_sha256": "46893ec0abd76e567e1cb6737b91c0cc8d6b5cdce8d36f6089e03c18864d268d",
+    "compile_seconds": 8.853466374999698,
+    "object_bytes": 990680,
+    "object_sha256": {
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-0.o": "558a1b3865a9db5a181c6a1b54e86a716ae0a3b950d5badc914bc44f99aeb400",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-1.o": "d667d135bb80cf2cbdb7c1e1560c6c21127c16578e359239c554b033378a1cf8",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-2.o": "34cd9fa14f23bde346883c0d7dcc196ab4278897972fec724f2f2bb18fda4018",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-3.o": "ca9acdc35afeb73b075c2dad80f178da4aef4a8615bfeb3f1fe12a685aeed2b0",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-4.o": "64d47b5655922c7432dceef02b2594d0e369f7119f36a736141d515d13a15731",
+      "build/reaper/r4-heldout-gcc/roundoff/kernel-5.o": "db5537d527174b6a978a520af0e09f5d7d15abe2582f6b4412be577985d9099b",
+      "build/reaper/r4-heldout-gcc/roundoff/registry.o": "a4b6bb775c3a6c38f6455d30aa5f6fe0d622839157ad1f9d31153ee187db4884"
+    },
+    "build_identity": "5db5370700ab37de99c34e50a831928bc8fbe30fab9c9d9b95ab4e76e6ebafe4",
+    "gates": [
+      "docs/evidence/reaper/r4/heldout-gcc/roundoff-one-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/roundoff-two-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/roundoff-odd-level.json",
+      "docs/evidence/reaper/r4/heldout-gcc/roundoff-odd-layer.json",
+      "docs/evidence/reaper/r4/heldout-gcc/roundoff-discrete.json",
+      "docs/evidence/reaper/r4/heldout-gcc/roundoff-reordered.json"
+    ]
+  }
+]

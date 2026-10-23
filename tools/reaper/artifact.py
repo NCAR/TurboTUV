@@ -7,16 +7,28 @@ returned sources can also be supplied to CMake's TURBOTUV_REAPER_SOURCES.
 import argparse
 import hashlib
 import json
+import platform
 from pathlib import Path
+import shutil
 import subprocess
 import time
-from generate import generate
+from generate import VERSION, generate, recipe, recipe_digest
 
 
 def build(plans, directory, cc, flags, budget=64, accumulators=1, tile=0,
           interleave=1, fma=False, reuse=False):
     directory.mkdir(parents=True, exist_ok=True)
-    record = {'plans': [], 'commands': [], 'sources': [], 'objects': []}
+    compiler = Path(shutil.which(cc) or cc).resolve()
+    compiler_version = subprocess.check_output([str(compiler), '--version'], text=True).strip()
+    record = {'schema': 2, 'generator': VERSION, 'plans': [], 'commands': [],
+              'sources': [], 'objects': [],
+              'compiler': {'path': str(compiler), 'version': compiler_version,
+                           'sha256': hashlib.sha256(compiler.read_bytes()).hexdigest(),
+                           'target': subprocess.check_output([str(compiler), '-dumpmachine'], text=True).strip()},
+              'flags': list(flags), 'host': {'system': platform.system(),
+                                           'release': platform.release(), 'machine': platform.machine()},
+              'header_sha256': hashlib.sha256(Path('include/turbotuv_reaper.h').read_bytes()).hexdigest(),
+              'generator_sha256': hashlib.sha256(Path(__file__).with_name('generate.py').read_bytes()).hexdigest()}
     symbols = []
     started = time.monotonic()
     for i, path in enumerate(plans):
@@ -25,10 +37,13 @@ def build(plans, directory, cc, flags, budget=64, accumulators=1, tile=0,
         symbol = f'tt_generated_{i}'
         symbols.append(symbol)
         source = directory / f'kernel-{i}.c'
-        code = generate(json.loads(raw), digest, symbol, budget, accumulators, tile, interleave, fma, reuse)
+        plan = json.loads(raw)
+        description = recipe(plan, digest, budget, accumulators, tile, interleave, fma, reuse)
+        code = generate(plan, digest, symbol, budget, accumulators, tile, interleave, fma, reuse)
         source.write_text(code)
         record['sources'].append(str(source))
         record['plans'].append({'path': str(path), 'sha256': digest,
+                                'recipe': description, 'recipe_sha256': recipe_digest(description),
                                 'source_sha256': hashlib.sha256(code.encode()).hexdigest(),
                                 'source_bytes': len(code)})
     registry = directory / 'registry.c'
@@ -50,6 +65,14 @@ def build(plans, directory, cc, flags, budget=64, accumulators=1, tile=0,
         record['objects'].append(str(obj))
     record['compile_seconds'] = time.monotonic() - started
     record['object_bytes'] = sum(Path(o).stat().st_size for o in record['objects'])
+    record['object_sha256'] = {o: hashlib.sha256(Path(o).read_bytes()).hexdigest() for o in record['objects']}
+    # An offline build identity, not a runtime loader/cache. Include the exact
+    # source, compiler, flags, target and host compatibility description.
+    key = {k: record[k] for k in ['schema', 'generator', 'compiler', 'flags', 'host',
+                                 'header_sha256', 'generator_sha256']}
+    key['recipes'] = [p['recipe_sha256'] for p in record['plans']]
+    key['sources'] = [hashlib.sha256(Path(s).read_bytes()).hexdigest() for s in record['sources']]
+    record['build_identity'] = hashlib.sha256(json.dumps(key, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
     return record
 
 

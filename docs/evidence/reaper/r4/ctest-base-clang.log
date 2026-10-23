@@ -1,0 +1,61 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-base-clang
+      Start  1: numerics
+ 1/28 Test  #1: numerics .........................   Passed    0.22 sec
+      Start  2: radiation_invariants
+ 2/28 Test  #2: radiation_invariants .............   Passed    0.09 sec
+      Start  3: spectral_invariants
+ 3/28 Test  #3: spectral_invariants ..............   Passed    0.15 sec
+      Start  4: yield_invariants
+ 4/28 Test  #4: yield_invariants .................   Passed    0.09 sec
+      Start  5: temperature_invariants
+ 5/28 Test  #5: temperature_invariants ...........   Passed    0.08 sec
+      Start  6: rate_invariants
+ 6/28 Test  #6: rate_invariants ..................   Passed    0.19 sec
+      Start  7: oxygen_invariants
+ 7/28 Test  #7: oxygen_invariants ................   Passed    0.09 sec
+      Start  8: linalg_invariants
+ 8/28 Test  #8: linalg_invariants ................   Passed    0.09 sec
+      Start  9: discrete_helper_invariants
+ 9/28 Test  #9: discrete_helper_invariants .......   Passed    0.09 sec
+      Start 10: discrete_invariants
+10/28 Test #10: discrete_invariants ..............   Passed    7.88 sec
+      Start 11: profile_invariants
+11/28 Test #11: profile_invariants ...............   Passed    0.27 sec
+      Start 12: locale_independence
+12/28 Test #12: locale_independence ..............   Passed    0.19 sec
+      Start 13: optics_invariants
+13/28 Test #13: optics_invariants ................   Passed    0.15 sec
+      Start 14: config_invariants
+14/28 Test #14: config_invariants ................   Passed    0.15 sec
+      Start 15: spectrum_invariants
+15/28 Test #15: spectrum_invariants ..............   Passed    0.19 sec
+      Start 16: profile_config_invariants
+16/28 Test #16: profile_config_invariants ........   Passed    0.23 sec
+      Start 17: prepared_execution
+17/28 Test #17: prepared_execution ...............   Passed    2.62 sec
+      Start 18: reaper_execution
+18/28 Test #18: reaper_execution .................   Passed    2.59 sec
+      Start 19: reaper_bounded_math
+19/28 Test #19: reaper_bounded_math ..............   Passed    0.08 sec
+      Start 20: reaper_artifact
+20/28 Test #20: reaper_artifact ..................   Passed    0.43 sec
+      Start 21: execution_diagnostics
+21/28 Test #21: execution_diagnostics ............   Passed    0.20 sec
+      Start 22: model_invariants
+22/28 Test #22: model_invariants .................   Passed    1.69 sec
+      Start 23: model_host_invariants
+23/28 Test #23: model_host_invariants ............   Passed    2.32 sec
+      Start 24: reaper_host_updates
+24/28 Test #24: reaper_host_updates ..............   Passed    2.32 sec
+      Start 25: reaper_radiator_updates
+25/28 Test #25: reaper_radiator_updates ..........   Passed    0.91 sec
+      Start 26: parallel_models
+26/28 Test #26: parallel_models ..................   Passed    0.41 sec
+      Start 27: reaper_parallel_models
+27/28 Test #27: reaper_parallel_models ...........   Passed    0.39 sec
+      Start 28: cli
+28/28 Test #28: cli ..............................   Passed    1.14 sec
+
+100% tests passed, 0 tests failed out of 28
+
+Total Test time (real) =  25.25 sec

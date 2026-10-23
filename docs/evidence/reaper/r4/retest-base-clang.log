@@ -1,0 +1,9 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-base-clang
+    Start 20: reaper_artifact
+1/2 Test #20: reaper_artifact ..................   Passed    0.51 sec
+    Start 21: reaper_preparation_failure
+2/2 Test #21: reaper_preparation_failure .......   Passed    0.23 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.74 sec

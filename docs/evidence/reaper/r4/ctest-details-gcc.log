@@ -1,0 +1,802 @@
+Start testing: Oct 23 00:36 MDT
+----------------------------------------------------------
+1/50 Testing: numerics
+1/50 Test: numerics
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_numerics"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"numerics" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+numerical invariants, error handling, and embedded catalogue passed
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Passed.
+"numerics" end time: Oct 23 00:36 MDT
+"numerics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/50 Testing: radiation_invariants
+2/50 Test: radiation_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_radiation_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"radiation_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+275 atmospheres, 1750 comparisons; worst 11.1 epsilon-scaled error
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"radiation_invariants" end time: Oct 23 00:36 MDT
+"radiation_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/50 Testing: spectral_invariants
+3/50 Test: spectral_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_spectral_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"spectral_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+26 cross-section kernels: 43 comparisons; worst 0.624 relative epsilon-scaled error
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Passed.
+"spectral_invariants" end time: Oct 23 00:36 MDT
+"spectral_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/50 Testing: yield_invariants
+4/50 Test: yield_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_yield_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"yield_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+21 quantum yields and 13 weights: 132032 comparisons; worst 13.5 relative epsilon-scaled error
+<end of output>
+Test time =   0.10 sec
+----------------------------------------------------------
+Test Passed.
+"yield_invariants" end time: Oct 23 00:36 MDT
+"yield_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/50 Testing: temperature_invariants
+5/50 Test: temperature_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_temperature_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"temperature_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+4 temperature parameterizations: 9407 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"temperature_invariants" end time: Oct 23 00:36 MDT
+"temperature_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/50 Testing: rate_invariants
+6/50 Test: rate_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_rate_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"rate_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Photolysis, heating, dose: 4141 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"rate_invariants" end time: Oct 23 00:36 MDT
+"rate_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/50 Testing: oxygen_invariants
+7/50 Test: oxygen_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_oxygen_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"oxygen_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+O2 bands: 46460 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"oxygen_invariants" end time: Oct 23 00:36 MDT
+"oxygen_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/50 Testing: linalg_invariants
+8/50 Test: linalg_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_linalg_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"linalg_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Dense/banded LINPACK: 0 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"linalg_invariants" end time: Oct 23 00:36 MDT
+"linalg_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/50 Testing: discrete_helper_invariants
+9/50 Test: discrete_helper_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_discrete_helper_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"discrete_helper_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Discrete-ordinate helpers: 508 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"discrete_helper_invariants" end time: Oct 23 00:36 MDT
+"discrete_helper_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/50 Testing: discrete_invariants
+10/50 Test: discrete_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_discrete_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"discrete_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+4400 atmospheres, 13600 comparisons; worst 46 epsilon-scaled error
+<end of output>
+Test time =   9.30 sec
+----------------------------------------------------------
+Test Passed.
+"discrete_invariants" end time: Oct 23 00:36 MDT
+"discrete_invariants" time elapsed: 00:00:09
+----------------------------------------------------------
+
+11/50 Testing: profile_invariants
+11/50 Test: profile_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_profile_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"profile_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Grids and profiles: 698 cases, 136273 comparisons; worst 5.85 epsilon-scaled error
+<end of output>
+Test time =   0.25 sec
+----------------------------------------------------------
+Test Passed.
+"profile_invariants" end time: Oct 23 00:36 MDT
+"profile_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/50 Testing: locale_independence
+12/50 Test: locale_independence
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_locale" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"locale_independence" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Locale de_DE.UTF-8: 32065 values identical to the C locale
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"locale_independence" end time: Oct 23 00:36 MDT
+"locale_independence" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/50 Testing: optics_invariants
+13/50 Test: optics_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_optics_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"optics_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Optical properties: 432 cases, 712866 comparisons; worst 0.556 relative epsilon-scaled error
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"optics_invariants" end time: Oct 23 00:36 MDT
+"optics_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/50 Testing: config_invariants
+14/50 Test: config_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_config_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"config_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Configuration: 281 documents, 25385 checks
+<end of output>
+Test time =   0.14 sec
+----------------------------------------------------------
+Test Passed.
+"config_invariants" end time: Oct 23 00:36 MDT
+"config_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/50 Testing: spectrum_invariants
+15/50 Test: spectrum_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_spectrum_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"spectrum_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Prepared spectra: 970 cases, 7189693 comparisons, worst 0 relative eps
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"spectrum_invariants" end time: Oct 23 00:36 MDT
+"spectrum_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/50 Testing: profile_config_invariants
+16/50 Test: profile_config_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_profile_config_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"profile_config_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Profile configuration: 237 cases, 103742 comparisons, worst 0 relative eps
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"profile_config_invariants" end time: Oct 23 00:36 MDT
+"profile_config_invariants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/50 Testing: prepared_execution
+17/50 Test: prepared_execution
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_prepared"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"prepared_execution" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Prepared execution: 912 spectra, 550 atmospheres, 26 models, 364 columns, 124035553 values identical
+<end of output>
+Test time =   3.01 sec
+----------------------------------------------------------
+Test Passed.
+"prepared_execution" end time: Oct 23 00:36 MDT
+"prepared_execution" time elapsed: 00:00:03
+----------------------------------------------------------
+
+18/50 Testing: reaper_execution
+18/50 Test: reaper_execution
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reaper_execution" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+REAPER: 912 spectra, 550 atmospheres, 26 models, 364 columns, 124035553 values; maximum 10.7 eps
+<end of output>
+Test time =   3.12 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_execution" end time: Oct 23 00:36 MDT
+"reaper_execution" time elapsed: 00:00:03
+----------------------------------------------------------
+
+19/50 Testing: reaper_bounded_math
+19/50 Test: reaper_bounded_math
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_math"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reaper_bounded_math" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+REAPER bounded math: tails, in-place, exceptions, boundaries and rounding modes pass
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_bounded_math" end time: Oct 23 00:36 MDT
+"reaper_bounded_math" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/50 Testing: reaper_artifact
+20/50 Test: reaper_artifact
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_artifact" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reaper_artifact" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+SHA-256 vectors, deterministic export, runtime updates, mismatch/partial/decline/detach: passed
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_artifact" end time: Oct 23 00:36 MDT
+"reaper_artifact" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/50 Testing: reaper_preparation_failure
+21/50 Test: reaper_preparation_failure
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_preparation" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reaper_preparation_failure" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+REAPER optional allocation failure: observable, usable, and numerically valid
+<end of output>
+Test time =   0.23 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_preparation_failure" end time: Oct 23 00:36 MDT
+"reaper_preparation_failure" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/50 Testing: execution_diagnostics
+22/50 Test: execution_diagnostics
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_diagnostics" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"execution_diagnostics" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"execution_diagnostics" end time: Oct 23 00:36 MDT
+"execution_diagnostics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/50 Testing: model_invariants
+23/50 Test: model_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_model_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"model_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Whole model: 27 configurations, 380 runs, 4320 comparisons, worst 0 eps
+<end of output>
+Test time =   1.80 sec
+----------------------------------------------------------
+Test Passed.
+"model_invariants" end time: Oct 23 00:36 MDT
+"model_invariants" time elapsed: 00:00:01
+----------------------------------------------------------
+
+24/50 Testing: model_host_invariants
+24/50 Test: model_host_invariants
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_model_host_invariants"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"model_host_invariants" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Host model: 528 runs, 0 comparisons, worst 0 eps
+<end of output>
+Test time =   2.25 sec
+----------------------------------------------------------
+Test Passed.
+"model_host_invariants" end time: Oct 23 00:36 MDT
+"model_host_invariants" time elapsed: 00:00:02
+----------------------------------------------------------
+
+25/50 Testing: reaper_host_updates
+25/50 Test: reaper_host_updates
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_host"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reaper_host_updates" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Host model: 528 runs, 11327712 comparisons, worst 2.47 eps
+<end of output>
+Test time =   2.30 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_host_updates" end time: Oct 23 00:36 MDT
+"reaper_host_updates" time elapsed: 00:00:02
+----------------------------------------------------------
+
+26/50 Testing: reaper_radiator_updates
+26/50 Test: reaper_radiator_updates
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_updates" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reaper_radiator_updates" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+REAPER radiator replacements: zero, absorption, scattering, general and rejected updates pass
+<end of output>
+Test time =   1.20 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_radiator_updates" end time: Oct 23 00:36 MDT
+"reaper_radiator_updates" time elapsed: 00:00:01
+----------------------------------------------------------
+
+27/50 Testing: parallel_models
+27/50 Test: parallel_models
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_parallel" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"parallel_models" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Concurrent models: 4410208 bit-identical values across 4 workers
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"parallel_models" end time: Oct 23 00:36 MDT
+"parallel_models" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/50 Testing: reaper_parallel_models
+28/50 Test: reaper_parallel_models
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_parallel" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/tuv_5_4.json" "/Users/fillmore/NSF-NCAR/TurboTUV/examples/ts1_tsmlt.json"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reaper_parallel_models" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+Concurrent models: 4410208 bit-identical values across 4 workers
+<end of output>
+Test time =   0.45 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_parallel_models" end time: Oct 23 00:36 MDT
+"reaper_parallel_models" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/50 Testing: cli
+29/50 Test: cli
+Command: "/Users/fillmore/miniforge3/envs/earth-eval/bin/python" "/Users/fillmore/NSF-NCAR/TurboTUV/tests/test_cli.py" "--program" "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/turbotuv" "--examples" "/Users/fillmore/NSF-NCAR/TurboTUV/examples"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"cli" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+CLI: JSON/YAML, isolated runtime, output integrity, 0 numeric comparisons; worst 0 eps
+<end of output>
+Test time =   1.24 sec
+----------------------------------------------------------
+Test Passed.
+"cli" end time: Oct 23 00:36 MDT
+"cli" time elapsed: 00:00:01
+----------------------------------------------------------
+
+30/50 Testing: reference_cli
+30/50 Test: reference_cli
+Command: "/Users/fillmore/miniforge3/envs/earth-eval/bin/python" "/Users/fillmore/NSF-NCAR/TurboTUV/tests/test_cli.py" "--program" "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/turbotuv" "--examples" "/Users/fillmore/NSF-NCAR/TurboTUV/examples" "--reference" "/Users/fillmore/NSF-NCAR/TurboTUV/build/reference-gcc"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_cli" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+CLI: JSON/YAML, isolated runtime, output integrity, 428396 numeric comparisons; worst 0 eps
+<end of output>
+Test time =   1.13 sec
+----------------------------------------------------------
+Test Passed.
+"reference_cli" end time: Oct 23 00:36 MDT
+"reference_cli" time elapsed: 00:00:01
+----------------------------------------------------------
+
+31/50 Testing: reference_numerics
+31/50 Test: reference_numerics
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reference"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_numerics" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+863465 C/Fortran and analytic comparisons; worst 2 epsilon-scaled error
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Passed.
+"reference_numerics" end time: Oct 23 00:36 MDT
+"reference_numerics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/50 Testing: reference_radiation
+32/50 Test: reference_radiation
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_radiation"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_radiation" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+275 atmospheres, 377125 comparisons; worst 11.1 epsilon-scaled error
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"reference_radiation" end time: Oct 23 00:36 MDT
+"reference_radiation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/50 Testing: reference_spectra
+33/50 Test: reference_spectra
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_spectra"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_spectra" start time: Oct 23 00:36 MDT
+Output:
+----------------------------------------------------------
+26 cross-section kernels: 951643 comparisons; worst 0.624 relative epsilon-scaled error
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"reference_spectra" end time: Oct 23 00:37 MDT
+"reference_spectra" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/50 Testing: reference_yields
+34/50 Test: reference_yields
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_yields"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_yields" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+21 quantum yields and 13 weights: 1295363 comparisons; worst 13.5 relative epsilon-scaled error
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"reference_yields" end time: Oct 23 00:37 MDT
+"reference_yields" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/50 Testing: reference_temperature
+35/50 Test: reference_temperature
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_temperature"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_temperature" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+4 temperature parameterizations: 417727 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Passed.
+"reference_temperature" end time: Oct 23 00:37 MDT
+"reference_temperature" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/50 Testing: reference_rates
+36/50 Test: reference_rates
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_rates"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_rates" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Photolysis, heating, dose: 53821 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.25 sec
+----------------------------------------------------------
+Test Passed.
+"reference_rates" end time: Oct 23 00:37 MDT
+"reference_rates" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/50 Testing: reference_oxygen
+37/50 Test: reference_oxygen
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_oxygen"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_oxygen" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+O2 bands: 318240 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"reference_oxygen" end time: Oct 23 00:37 MDT
+"reference_oxygen" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/50 Testing: reference_linalg
+38/50 Test: reference_linalg
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_linalg"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_linalg" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Dense/banded LINPACK: 753290 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.09 sec
+----------------------------------------------------------
+Test Passed.
+"reference_linalg" end time: Oct 23 00:37 MDT
+"reference_linalg" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/50 Testing: reference_discrete_helpers
+39/50 Test: reference_discrete_helpers
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_discrete_helpers"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_discrete_helpers" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Discrete-ordinate helpers: 100460 comparisons; worst 0 relative epsilon-scaled error
+<end of output>
+Test time =   0.09 sec
+----------------------------------------------------------
+Test Passed.
+"reference_discrete_helpers" end time: Oct 23 00:37 MDT
+"reference_discrete_helpers" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/50 Testing: reference_discrete
+40/50 Test: reference_discrete
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_discrete"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_discrete" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+4400 atmospheres, 16368400 comparisons; worst 46 epsilon-scaled error
+<end of output>
+Test time =  19.17 sec
+----------------------------------------------------------
+Test Passed.
+"reference_discrete" end time: Oct 23 00:37 MDT
+"reference_discrete" time elapsed: 00:00:19
+----------------------------------------------------------
+
+41/50 Testing: reference_profiles
+41/50 Test: reference_profiles
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_profiles"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_profiles" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Grids and profiles: 698 cases, 541858 comparisons; worst 5.85 epsilon-scaled error
+<end of output>
+Test time =   0.73 sec
+----------------------------------------------------------
+Test Passed.
+"reference_profiles" end time: Oct 23 00:37 MDT
+"reference_profiles" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/50 Testing: reference_optics
+42/50 Test: reference_optics
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_optics"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_optics" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Optical properties: 432 cases, 2316702 comparisons; worst 0.556 relative epsilon-scaled error
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"reference_optics" end time: Oct 23 00:37 MDT
+"reference_optics" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/50 Testing: reference_config
+43/50 Test: reference_config
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_config"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests
+"reference_config" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Configuration: 281 documents, 26385 checks
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"reference_config" end time: Oct 23 00:37 MDT
+"reference_config" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/50 Testing: reference_spectrum
+44/50 Test: reference_spectrum
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_spectrum"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/reference-runtime
+"reference_spectrum" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Prepared spectra: 970 cases, 7189693 comparisons, worst 0 relative eps
+<end of output>
+Test time =   0.45 sec
+----------------------------------------------------------
+Test Passed.
+"reference_spectrum" end time: Oct 23 00:37 MDT
+"reference_spectrum" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/50 Testing: reference_profile_config
+45/50 Test: reference_profile_config
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_profile_config"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/reference-runtime
+"reference_profile_config" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Profile configuration: 237 cases, 87105 comparisons, worst 0 relative eps
+<end of output>
+Test time =   0.59 sec
+----------------------------------------------------------
+Test Passed.
+"reference_profile_config" end time: Oct 23 00:37 MDT
+"reference_profile_config" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/50 Testing: reference_model
+46/50 Test: reference_model
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_model"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/reference-runtime
+"reference_model" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Whole model: 27 configurations, 380 runs, 30117173 comparisons, worst 0 eps
+<end of output>
+Test time =   5.03 sec
+----------------------------------------------------------
+Test Passed.
+"reference_model" end time: Oct 23 00:37 MDT
+"reference_model" time elapsed: 00:00:05
+----------------------------------------------------------
+
+47/50 Testing: reference_model_host
+47/50 Test: reference_model_host
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_model_host"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/reference-runtime
+"reference_model_host" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Host model: 528 runs, 8769552 comparisons, worst 0 eps
+<end of output>
+Test time =   4.06 sec
+----------------------------------------------------------
+Test Passed.
+"reference_model_host" end time: Oct 23 00:37 MDT
+"reference_model_host" time elapsed: 00:00:04
+----------------------------------------------------------
+
+48/50 Testing: reaper_reference_model
+48/50 Test: reaper_reference_model
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_reference_model"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/reference-runtime
+"reaper_reference_model" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Whole model: 27 configurations, 380 runs, 30117173 comparisons, worst 9.72 eps
+<end of output>
+Test time =   5.01 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_reference_model" end time: Oct 23 00:37 MDT
+"reaper_reference_model" time elapsed: 00:00:05
+----------------------------------------------------------
+
+49/50 Testing: reaper_reference_model_host
+49/50 Test: reaper_reference_model_host
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_reference_model_host"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/reference-runtime
+"reaper_reference_model_host" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Host model: 528 runs, 20097264 comparisons, worst 3.21 eps
+<end of output>
+Test time =   4.07 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_reference_model_host" end time: Oct 23 00:37 MDT
+"reaper_reference_model_host" time elapsed: 00:00:04
+----------------------------------------------------------
+
+50/50 Testing: reaper_reference_spectrum
+50/50 Test: reaper_reference_spectrum
+Command: "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/test_reaper_reference_spectrum"
+Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/tests/reference-runtime
+"reaper_reference_spectrum" start time: Oct 23 00:37 MDT
+Output:
+----------------------------------------------------------
+Prepared spectra: 970 cases, 7189693 comparisons, worst 3.53 relative eps
+<end of output>
+Test time =   0.45 sec
+----------------------------------------------------------
+Test Passed.
+"reaper_reference_spectrum" end time: Oct 23 00:37 MDT
+"reaper_reference_spectrum" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 23 00:37 MDT

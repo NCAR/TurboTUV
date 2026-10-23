@@ -1,0 +1,43 @@
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-base-clang
+[  5%] Built target turbotuv_yaml
+[ 39%] Built target turbotuv
+[ 43%] Built target turbotuv_bench
+[ 47%] Built target test_numerics
+[ 47%] Built target turbotuv_cli
+[ 47%] Built target turbotuv_reaper_export
+[ 48%] Built target dump_data
+[ 51%] Built target test_yield_invariants
+[ 51%] Built target test_radiation_invariants
+[ 53%] Built target test_spectral_invariants
+[ 61%] Built target test_linalg_invariants
+[ 61%] Built target test_rate_invariants
+[ 61%] Built target test_oxygen_invariants
+[ 61%] Built target test_temperature_invariants
+[ 63%] Built target test_locale
+[ 64%] Built target test_discrete_invariants
+[ 68%] Built target test_discrete_helper_invariants
+[ 68%] Built target test_profile_invariants
+[ 68%] Building C object tests/CMakeFiles/test_reaper_preparation.dir/test_reaper_preparation.c.o
+[ 70%] Built target test_fixtures
+[ 73%] Building C object tests/CMakeFiles/test_reaper_artifact.dir/test_reaper_artifact.c.o
+[ 73%] Built target test_reaper_math
+[ 76%] Built target test_model_invariants
+[ 76%] Built target test_diagnostics
+[ 80%] Built target test_reaper_host
+[ 80%] Built target test_model_host_invariants
+[ 84%] Built target test_reaper_updates
+[ 84%] Built target test_parallel
+[ 85%] Linking C executable test_reaper_artifact
+[ 87%] Built target test_reaper_parallel
+[ 90%] Built target dump_fixtures
+[ 91%] Built target test_optics_invariants
+[ 95%] Built target test_config_invariants
+[ 95%] Built target test_spectrum_invariants
+[ 97%] Built target test_profile_config_invariants
+[ 98%] Built target test_prepared
+[ 98%] Built target test_reaper_artifact
+[ 99%] Built target test_reaper
+[100%] Linking C executable test_reaper_preparation
+[100%] Built target test_reaper_preparation

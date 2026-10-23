@@ -14,6 +14,22 @@ from pathlib import Path
 import re
 import struct
 
+VERSION = 2
+
+
+def recipe(plan, digest, budget, accumulators, tile, interleave, use_fma, reuse):
+    """Keep key order and encoding identical to tt_reaper_recipe_identity."""
+    return {'generator': VERSION, 'abi': plan['abi'], 'schema': plan['schema'],
+            'implementation': plan['implementation'],
+            'numerics': int(accumulators != 1 or use_fma), 'term_budget': budget,
+            'accumulators': accumulators, 'level_tile': tile, 'interleave': interleave,
+            'features': int(use_fma) | (2 * int(reuse)), 'model_sha256': digest}
+
+
+def recipe_digest(description):
+    raw = json.dumps(description, separators=(',', ':'), ensure_ascii=True) + '\n'
+    return hashlib.sha256(raw.encode('ascii')).hexdigest()
+
 
 def literal(bits):
     if not re.fullmatch('[0-9a-f]{16}', bits):
@@ -45,8 +61,13 @@ def product(term, family):
 
 
 def generate(plan, digest, symbol, budget, accumulators, tile, interleave, use_fma, reuse=False):
-    if plan['schema'] != 1 or plan['abi'] != 1 or plan['implementation'] != 1:
+    if plan['schema'] != VERSION or plan['abi'] != VERSION or plan['implementation'] != VERSION:
         raise ValueError('unsupported plan schema/ABI/implementation')
+    if (budget not in (32, 64, 128, 256) or accumulators not in (1, 2, 4, 8) or
+            tile not in (0, 1, 2, 4, 8, 16, 32) or interleave not in (1, 2, 4, 8)):
+        raise ValueError('unsupported generation recipe')
+    if not re.fullmatch('[0-9a-f]{64}', digest) or not re.fullmatch('[A-Za-z_][A-Za-z0-9_]*', symbol):
+        raise ValueError('invalid digest or C identifier')
     nz, nw = plan['levels'], plan['wavelengths']
     if nz < 2 or nw < 1:
         raise ValueError('invalid dimensions')
@@ -117,11 +138,20 @@ def generate(plan, digest, symbol, budget, accumulators, tile, interleave, use_f
         lines += [f'    {name}(v);' for name in calls]
         lines += ['    return 1;', '}']
     bytes_ = ','.join('0x' + digest[i:i + 2] for i in range(0, 64, 2))
+    identity = recipe(plan, digest, budget, accumulators, tile, interleave, use_fma, reuse)
+    recipe_sha = recipe_digest(identity)
+    recipe_bytes = ','.join('0x' + recipe_sha[i:i + 2] for i in range(0, 64, 2))
     nr, nh, nd = plan['outputs']
     lines += [f'const tt_reaper_kernels {symbol} = {{',
-              f'    TT_REAPER_ABI, TT_REAPER_SCHEMA, TT_REAPER_IMPLEMENTATION, {"TT_REAPER_ROUNDOFF" if relaxed else "TT_REAPER_ORDERED"},',
-              f'    {nz}, {nw}, {len(plan["slots"]) + 1}, {nr}, {nh}, {nd}, {budget}, {accumulators}, {tile},',
-              f'    {{{bytes_}}},', f'    {", ".join(families)}', '};', '']
+              f'    .abi = {plan["abi"]}, .schema = {plan["schema"]}, .implementation = {plan["implementation"]},',
+              f'    .numerics = {"TT_REAPER_ROUNDOFF" if relaxed else "TT_REAPER_ORDERED"},',
+              f'    .levels = {nz}, .wavelengths = {nw}, .slots = {len(plan["slots"]) + 1},',
+              f'    .photolysis = {nr}, .heating = {nh}, .dose = {nd},',
+              f'    .term_budget = {budget}, .accumulators = {accumulators}, .level_tile = {tile},',
+              f'    .generator = {VERSION}, .interleave = {interleave}, .features = {identity["features"]},',
+              f'    .model_sha256 = {{{bytes_}}}, .recipe_sha256 = {{{recipe_bytes}}},',
+              f'    .photolysis_kernel = {families[0]}, .heating_kernel = {families[1]}, .dose_kernel = {families[2]}',
+              '};', '']
     return '\n'.join(lines)
 
 

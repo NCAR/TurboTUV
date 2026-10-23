@@ -1,0 +1,3 @@
+[ 50%] Building C object CMakeFiles/reaper_consumer.dir/reaper_consumer.c.o
+[100%] Linking C executable reaper_consumer
+[100%] Built target reaper_consumer

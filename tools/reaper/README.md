@@ -130,6 +130,23 @@ source and its matching base archive when reproducing old variants; removed
 experiment macros have no effect in the final cleaned implementation.
 Final acceptance always uses rebuilt CMake binaries and full-value gates.
 
+The current descriptor/export format is version 2. Regenerate older artifacts;
+do not combine a historical generated initializer with a newer public header.
+The emitter records every numerical/layout choice and hashes a canonical
+recipe that the C attacher independently recomputes. `artifact.py` also records
+compiler binary/version/target, effective flags, host information, source/object
+hashes, and an offline build identity. This is provenance for static deployment,
+not a persistent runtime compilation cache. Historic evidence is reproduced
+with the source and tools at its phase commit.
+
+`tests/installed` is a standalone CMake consumer of an installed package. It
+checks generated and ordinary static libraries, destroys configuration before
+execution, verifies per-model selection reuse and detach, and queries actual
+execution counts. R4 runs this consumer with `PATH=/nonexistent` after building
+to demonstrate that execution does not locate Python or a compiler. A separate
+test compiles a private model-plan allocation shim; no fault-injection state is
+present in the shipped library.
+
 `check_math_bounds.py` independently checks the spectral exponential's table
 constants and conservative error budget using Decimal arithmetic.
 `check_math.c` uses MPFR/GMP as development-only correctly rounded oracles;

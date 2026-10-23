@@ -73,6 +73,15 @@ target_include_directories(test_reaper_artifact PRIVATE ${PROJECT_SOURCE_DIR}/sr
 target_link_libraries(test_reaper_artifact PRIVATE turbotuv)
 add_test(NAME reaper_artifact COMMAND test_reaper_artifact
     ${PROJECT_SOURCE_DIR}/examples/tuv_5_4.json ${PROJECT_SOURCE_DIR}/examples/ts1_tsmlt.json)
+add_executable(test_reaper_preparation test_reaper_preparation.c)
+target_include_directories(test_reaper_preparation PRIVATE ${PROJECT_SOURCE_DIR}/src)
+target_link_libraries(test_reaper_preparation PRIVATE turbotuv)
+target_compile_definitions(test_reaper_preparation PRIVATE $<TARGET_PROPERTY:turbotuv,COMPILE_DEFINITIONS>)
+if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(test_reaper_preparation PRIVATE -ffp-contract=off)
+endif()
+add_test(NAME reaper_preparation_failure COMMAND test_reaper_preparation
+    ${PROJECT_SOURCE_DIR}/examples/tuv_5_4.json ${PROJECT_SOURCE_DIR}/examples/ts1_tsmlt.json)
 add_executable(test_diagnostics test_diagnostics.c)
 target_link_libraries(test_diagnostics PRIVATE turbotuv)
 add_test(NAME execution_diagnostics COMMAND test_diagnostics ${PROJECT_SOURCE_DIR}/examples/tuv_5_4.json)

@@ -82,6 +82,7 @@ def main():
                  str(exe)+':--reaper','--config',config,'--columns','48','--seed','934897','--json',gate])
             report=json.loads(gate.read_text())
             assert report['passed'] and int(report['candidate']['fields']['generated_calls'])>=48
+            assert report['candidate']['fields']['reaper_selection'] == 'attached'
             if mode=='ordered':
                 # Check the ordered generated rate arithmetic with identical
                 # REAPER spectrum inputs. The gate above still compares the
@@ -101,6 +102,7 @@ def main():
                      str(a.primary)+':--reaper','--config',config,'--columns','48','--seed','934897','--json',gate])
                 report=json.loads(gate.read_text())
                 assert report['passed'] and not int(report['candidate']['fields']['generated_calls'])
+                assert report['candidate']['fields']['reaper_selection'] == 'no-match'
         records.append(record)
     (a.evidence/'artifacts.json').write_text(json.dumps(records,indent=2)+'\n')
     print('Held-out ordered, roundoff and incompatible-primary fallback gates passed.')

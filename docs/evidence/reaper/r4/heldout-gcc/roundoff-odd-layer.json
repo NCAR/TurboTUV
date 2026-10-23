@@ -1,0 +1,692 @@
+{
+  "schema": 1,
+  "policy": "reaper-roundoff-v1",
+  "epsilon_limit": 64,
+  "config": "build/reaper/r4-heldout-gcc/odd-layer.json",
+  "config_sha256": "226015d1bb69d6875f62279e40308d7a7c070a067b6fb4be859ed7750000f03e",
+  "columns": 48,
+  "seed": 934897,
+  "byteorder": "little",
+  "metadata": {
+    "format": "TurboTUV-1",
+    "altitude_km": [
+      0,
+      7.0588235294117645,
+      14.117647058823529,
+      21.176470588235293,
+      28.235294117647058,
+      35.294117647058826,
+      42.35294117647059,
+      49.41176470588235,
+      56.470588235294116,
+      63.529411764705884,
+      70.58823529411765,
+      77.6470588235294,
+      84.70588235294117,
+      91.76470588235294,
+      98.8235294117647,
+      105.88235294117646,
+      112.94117647058823,
+      120
+    ],
+    "wavelength_nm": [
+      120.7,
+      121.65,
+      148.65,
+      176.2,
+      177.8,
+      179.39999999999998,
+      181,
+      182.65,
+      184.35,
+      186.05,
+      187.8,
+      189.6,
+      191.4,
+      193.25,
+      195.14999999999998,
+      197.05,
+      199,
+      201,
+      203.05,
+      205.14999999999998,
+      214.68285714285713,
+      231.64857142857142,
+      248.6142857142857,
+      265.58,
+      282.54571428571427,
+      299.51142857142855,
+      316.47714285714284,
+      333.4428571428571,
+      350.4085714285714,
+      367.3742857142857,
+      384.34,
+      401.30571428571426,
+      418.27142857142854,
+      435.2371428571428,
+      452.20285714285717,
+      469.16857142857145,
+      486.1342857142857,
+      503.09999999999997,
+      520.0657142857143,
+      537.0314285714286,
+      553.9971428571429,
+      570.9628571428572,
+      587.9285714285714,
+      604.8942857142857,
+      621.86,
+      638.8257142857143,
+      655.7914285714286,
+      672.7571428571429,
+      689.722857142857,
+      706.6885714285713,
+      723.6542857142857,
+      740.62,
+      757.5857142857143,
+      774.5514285714286,
+      791.5171428571429
+    ],
+    "wavelength_edges_nm": [
+      120,
+      121.4,
+      121.9,
+      175.4,
+      177,
+      178.6,
+      180.2,
+      181.8,
+      183.5,
+      185.2,
+      186.9,
+      188.7,
+      190.5,
+      192.3,
+      194.2,
+      196.1,
+      198,
+      200,
+      202,
+      204.1,
+      206.2,
+      223.16571428571427,
+      240.13142857142856,
+      257.09714285714284,
+      274.0628571428571,
+      291.0285714285714,
+      307.9942857142857,
+      324.96,
+      341.92571428571426,
+      358.89142857142855,
+      375.85714285714283,
+      392.8228571428571,
+      409.7885714285714,
+      426.7542857142857,
+      443.71999999999997,
+      460.6857142857143,
+      477.65142857142854,
+      494.6171428571428,
+      511.5828571428571,
+      528.5485714285714,
+      545.5142857142857,
+      562.48,
+      579.4457142857143,
+      596.4114285714286,
+      613.3771428571429,
+      630.3428571428572,
+      647.3085714285714,
+      664.2742857142857,
+      681.24,
+      698.2057142857142,
+      715.1714285714286,
+      732.1371428571429,
+      749.1028571428571,
+      766.0685714285714,
+      783.0342857142857,
+      800
+    ],
+    "photolysis_labels": [
+      "jno_i",
+      "jso",
+      "jsf6",
+      "jco2",
+      "jh2o_c",
+      "jhyac",
+      "jho2no2_b",
+      "jhocl",
+      "jhcfc22",
+      "jh2402",
+      "jclono2_b",
+      "jcl2o2",
+      "jch3cl",
+      "jch2br2",
+      "jcfc114",
+      "jcf3br",
+      "jbrono2_b",
+      "jbrcl",
+      "jacet",
+      "jch3cho",
+      "jch2o_a",
+      "jno3_a",
+      "jn2o5_a",
+      "jo3_b",
+      "jo2_a"
+    ],
+    "heating_labels": [
+      "jo3_b",
+      "jo2_a"
+    ],
+    "dose_labels": []
+  },
+  "sweep": false,
+  "reference": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-selected-gcc/turbotuv_bench",
+      "build/reaper/r4-heldout-gcc/odd-layer.json",
+      "--columns",
+      "48",
+      "--seed",
+      "934897"
+    ],
+    "binary_sha256": "29434d1a02caea06172da12d89dfb85152b953cf894aed981c69e2b063d0a093",
+    "fields": {
+      "config": "build/reaper/r4-heldout-gcc/odd-layer.json",
+      "columns": "48",
+      "levels": "18",
+      "wavelengths": "55",
+      "photolysis": "25",
+      "heating": "2",
+      "dose": "0",
+      "execution": "prepared",
+      "elapsed_ms": "3.729",
+      "per_column_us": "77.69",
+      "hash": "c97e9d397b4c92d0",
+      "prepared_calls": "48",
+      "generic_calls": "0",
+      "prepared_declines": "0",
+      "reaper_calls": "0",
+      "reaper_declines": "0",
+      "generated_calls": "0",
+      "generated_declines": "0",
+      "profiling": "0",
+      "setup_ms": "15.660",
+      "preparation_ms": "0.000"
+    },
+    "stdout": "config=build/reaper/r4-heldout-gcc/odd-layer.json columns=48 levels=18 wavelengths=55 photolysis=25 heating=2 dose=0 execution=prepared\nelapsed_ms=3.729 per_column_us=77.69 hash=c97e9d397b4c92d0\nprepared_calls=48 generic_calls=0 prepared_declines=0 reaper_calls=0 reaper_declines=0 generated_calls=0 generated_declines=0 profiling=0 setup_ms=15.660 preparation_ms=0.000\n",
+    "output_sha256": "15ba093496a187042d3536507417d981fb80eab10586df39a9d5d9d101791a76"
+  },
+  "candidate": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r4-heldout-gcc/roundoff/turbotuv_bench",
+      "build/reaper/r4-heldout-gcc/odd-layer.json",
+      "--reaper",
+      "--columns",
+      "48",
+      "--seed",
+      "934897"
+    ],
+    "binary_sha256": "6902e7fff106c8d0274452ca2ac05c71145c27be4b62f1c96a79971348231eef",
+    "fields": {
+      "config": "build/reaper/r4-heldout-gcc/odd-layer.json",
+      "columns": "48",
+      "levels": "18",
+      "wavelengths": "55",
+      "photolysis": "25",
+      "heating": "2",
+      "dose": "0",
+      "execution": "reaper",
+      "elapsed_ms": "2.128",
+      "per_column_us": "44.33",
+      "hash": "f9144176ce088d45",
+      "reaper_selection": "attached",
+      "reaper_capabilities": "3",
+      "reaper_optimizations": "3",
+      "reaper_preparation_failures": "0",
+      "reaper_workspace_bytes": "59688",
+      "prepared_calls": "0",
+      "generic_calls": "0",
+      "prepared_declines": "0",
+      "reaper_calls": "48",
+      "reaper_declines": "0",
+      "generated_calls": "96",
+      "generated_declines": "0",
+      "profiling": "0",
+      "setup_ms": "15.729",
+      "preparation_ms": "1.683"
+    },
+    "stdout": "config=build/reaper/r4-heldout-gcc/odd-layer.json columns=48 levels=18 wavelengths=55 photolysis=25 heating=2 dose=0 execution=reaper\nelapsed_ms=2.128 per_column_us=44.33 hash=f9144176ce088d45\nreaper_selection=attached reaper_capabilities=3 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=59688\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=48 reaper_declines=0 generated_calls=96 generated_declines=0 profiling=0 setup_ms=15.729 preparation_ms=1.683\n",
+    "output_sha256": "c00b92d4c5e47e61d61fee149136180354596db3c6771ea41966efc41899ac5c"
+  },
+  "fields": [
+    {
+      "field": "direct_flux",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_flux",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_flux",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "direct_irradiance",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_irradiance",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_irradiance",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "actinic_flux",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "spectral_irradiance",
+      "shape": [
+        48,
+        55,
+        18
+      ],
+      "compared": 47520,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "photolysis",
+      "shape": [
+        48,
+        25,
+        18
+      ],
+      "compared": 21600,
+      "failures": 0,
+      "absolute": {
+        "maximum": 2.220446049250313e-16,
+        "column": 17,
+        "row": 21,
+        "level": 16,
+        "reference": 0.5017973026045364,
+        "candidate": 0.5017973026045361
+      },
+      "relative": {
+        "maximum": 8.774266693879944e-16,
+        "column": 45,
+        "row": 23,
+        "level": 13,
+        "reference": 0.003954116136421466,
+        "candidate": 0.003954116136421469
+      },
+      "epsilon": {
+        "maximum": 3.951578421300707,
+        "column": 45,
+        "row": 23,
+        "level": 13,
+        "reference": 0.003954116136421466,
+        "candidate": 0.003954116136421469
+      },
+      "ulp": {
+        "maximum": 7,
+        "column": 7,
+        "row": 23,
+        "level": 16,
+        "reference": 0.0036978252442202296,
+        "candidate": 0.0036978252442202266
+      }
+    },
+    {
+      "field": "heating",
+      "shape": [
+        48,
+        2,
+        18
+      ],
+      "compared": 1728,
+      "failures": 0,
+      "absolute": {
+        "maximum": 1.316553672920962e-36,
+        "column": 37,
+        "row": 0,
+        "level": 8,
+        "reference": 1.5120330354422868e-21,
+        "candidate": 1.512033035442288e-21
+      },
+      "relative": {
+        "maximum": 8.707175319987992e-16,
+        "column": 37,
+        "row": 0,
+        "level": 8,
+        "reference": 1.5120330354422868e-21,
+        "candidate": 1.512033035442288e-21
+      },
+      "epsilon": {
+        "maximum": 3.92136315265475,
+        "column": 37,
+        "row": 0,
+        "level": 8,
+        "reference": 1.5120330354422868e-21,
+        "candidate": 1.512033035442288e-21
+      },
+      "ulp": {
+        "maximum": 7,
+        "column": 37,
+        "row": 0,
+        "level": 8,
+        "reference": 1.5120330354422868e-21,
+        "candidate": 1.512033035442288e-21
+      }
+    },
+    {
+      "field": "dose",
+      "shape": [
+        48,
+        0,
+        18
+      ],
+      "compared": 0,
+      "failures": 0
+    }
+  ],
+  "passed": true
+}

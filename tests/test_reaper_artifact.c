@@ -71,8 +71,15 @@ int main(int argc, char **argv) {
     CHECK(tt_model_reaper_identity(NULL, a) == TT_INVALID);
     for (int config = 1; config < argc; ++config) {
         tt_model *m = create(argv[config]), *other = create(argv[config]);
+        tt_reaper_info info;
+        CHECK(tt_model_reaper_info(m, &info) == TT_OK && info.selection == TT_REAPER_UNCHECKED);
         char *first = export_text(m, a), *second = export_text(other, b);
         CHECK(!strcmp(first, second) && !memcmp(a, b, 32));
+        CHECK(tt_model_set_execution(other, TT_EXECUTION_REAPER) == TT_OK);
+        CHECK(tt_model_reaper_info(other, &info) == TT_OK &&
+              (info.selection == TT_REAPER_ATTACHED || info.selection == TT_REAPER_NO_ARTIFACTS ||
+               info.selection == TT_REAPER_NO_MATCH));
+        CHECK((info.selection == TT_REAPER_ATTACHED) == (info.capabilities != 0));
         tt_model_destroy(other);
         free(second);
         CHECK(tt_model_reaper_identity(m, b) == TT_OK && !memcmp(a, b, 32));
@@ -80,29 +87,39 @@ int main(int argc, char **argv) {
         tt_error e;
         CHECK(tt_config_parse(first, strlen(first), &description, &e) == TT_OK);
         size_t slots = tt_config_size(tt_config_get(tt_config_root(description), "slots")) + 1;
+        tt_config_node entries = tt_config_get(tt_config_root(description), "slots");
+        for (size_t i = 0; i + 1 < slots; ++i) {
+            tt_config_node s = tt_config_get(tt_config_at(entries, i), "spectrum");
+            int parameterized, kind;
+            CHECK(tt_config_integer(tt_config_get(s, "parameterized"), &parameterized) == TT_OK);
+            CHECK(tt_config_integer(tt_config_get(s, "kind"), &kind) == TT_OK);
+            if (parameterized)
+                CHECK(kind == -1); /* Stable signed sentinel, including on 32-bit size_t. */
+        }
         tt_config_destroy(description);
         free(first);
         tt_model_dimensions shape = tt_model_shape(m);
-        tt_reaper_kernels k = {TT_REAPER_ABI,
-                               TT_REAPER_SCHEMA,
-                               TT_REAPER_IMPLEMENTATION,
-                               TT_REAPER_ORDERED,
-                               shape.levels,
-                               shape.wavelengths,
-                               slots,
-                               shape.photolysis,
-                               shape.heating,
-                               shape.dose,
-                               64,
-                               1,
-                               0,
-                               {0},
-                               declines,
-                               NULL,
-                               NULL};
+        tt_reaper_kernels k = {.abi = TT_REAPER_ABI,
+                               .schema = TT_REAPER_SCHEMA,
+                               .implementation = TT_REAPER_IMPLEMENTATION,
+                               .generator = TT_REAPER_GENERATOR,
+                               .numerics = TT_REAPER_ORDERED,
+                               .levels = shape.levels,
+                               .wavelengths = shape.wavelengths,
+                               .slots = slots,
+                               .photolysis = shape.photolysis,
+                               .heating = shape.heating,
+                               .dose = shape.dose,
+                               .term_budget = 64,
+                               .accumulators = 1,
+                               .interleave = 1,
+                               .photolysis_kernel = declines};
         memcpy(k.model_sha256, a, 32);
+        CHECK(tt_reaper_recipe_identity(&k, k.recipe_sha256) == TT_OK);
         CHECK(tt_model_attach_reaper(m, &k, &e) == TT_OK);
         CHECK(tt_model_reaper_capabilities(m) == 1);
+        CHECK(tt_model_reaper_info(m, &info) == TT_OK && info.selection == TT_REAPER_ATTACHED &&
+              !memcmp(info.recipe_sha256, k.recipe_sha256, 32));
         tt_reaper_kernels bad = k;
         bad.abi++;
         CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "ABI"));
@@ -116,6 +133,26 @@ int main(int argc, char **argv) {
         bad = k;
         bad.numerics = (tt_reaper_numerics)99;
         CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "numerical"));
+        bad = k;
+        bad.generator++;
+        CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "generator"));
+        bad = k;
+        bad.features = TT_REAPER_FMA;
+        CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "numerical"));
+        bad = k;
+        bad.interleave = 3;
+        CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "layout"));
+        bad = k;
+        bad.level_tile = 3;
+        CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "layout"));
+        bad = k;
+        bad.features = 0x80u;
+        CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "layout"));
+        bad = k;
+        bad.features = TT_REAPER_REUSE_PRODUCTS; /* Valid choice, wrong recipe digest. */
+        CHECK(tt_model_attach_reaper(m, &bad, &e) == TT_INVALID && strstr(e.message, "recipe"));
+        CHECK(tt_model_reaper_info(m, &info) == TT_OK && info.selection == TT_REAPER_ATTACHED &&
+              !memcmp(info.recipe_sha256, k.recipe_sha256, 32));
         CHECK(tt_model_reaper_capabilities(m) == 1);
         size_t count = shape.levels * (shape.photolysis + shape.heating + shape.dose);
         double *expected = malloc(count * sizeof(double));
@@ -135,6 +172,9 @@ int main(int argc, char **argv) {
         memcpy(expected, r->photolysis, count * sizeof(double));
         CHECK(tt_model_set_execution(m, TT_EXECUTION_REAPER) == TT_OK);
         CHECK(tt_model_reset_diagnostics(m) == TT_OK);
+        CHECK(tt_model_reaper_info(m, &info) == TT_OK && info.selection == TT_REAPER_ATTACHED &&
+              !info.preparation_failures && (info.optimizations & TT_REAPER_TRANSFER_WORKSPACE) &&
+              info.transfer_workspace_bytes);
         CHECK(tt_model_run(m, 89.9, 0.97, &r, &e) == TT_OK);
         /* A declined generated family is overwritten by the interpreter.
          * REAPER's spectrum inputs may now differ within its roundoff contract. */
@@ -149,6 +189,9 @@ int main(int argc, char **argv) {
               d.generated_declines == 1);
         CHECK(tt_model_run(m, NAN, 1, &r, &e) == TT_INVALID);
         CHECK(tt_model_attach_reaper(m, NULL, &e) == TT_OK && !tt_model_reaper_capabilities(m));
+        CHECK(tt_model_set_execution(m, TT_EXECUTION_PREPARED) == TT_OK);
+        CHECK(tt_model_set_execution(m, TT_EXECUTION_REAPER) == TT_OK);
+        CHECK(tt_model_reaper_info(m, &info) == TT_OK && info.selection == TT_REAPER_DETACHED);
         CHECK(tt_model_run(m, 30, 1, &r, &e) == TT_OK);
         free(expected);
         free(temperature);

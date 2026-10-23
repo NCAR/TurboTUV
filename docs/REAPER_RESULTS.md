@@ -289,3 +289,67 @@ profiles, resource logs, oracle records, provenance and paired samples. Its
 [ledger](evidence/reaper/r3/LEDGER.md) records retained and rejected cache,
 layout, math, slant, coefficient, O2 and parameterization trials. Historical
 screening results are explicitly separated from the final combined timings.
+
+## R4: static attachment and deployment
+
+Version-2 descriptors now include generator version, interleave width,
+FMA/product-reuse flags, and a canonical recipe digest in addition to the model
+digest. C independently recomputes the recipe identity during attachment.
+The spectrum-kind sentinel is serialized as signed `-1`, removing dependence
+on `size_t` width. Version-1 exports/descriptors must be regenerated.
+Explicit ABI, layout, numerical-policy, recipe or model mismatches preserve
+the previous valid attachment and report the reason.
+
+`tt_model_reaper_info` exposes automatic selection, absent/incompatible
+artifacts, explicit detach, selected capabilities, and optional-workspace
+allocation failures. Allocation failure uses the existing transfer workspace;
+an injected-failure test compares every output field and verifies successful
+REAPER execution. Selection is cached per model, descriptor storage is copied,
+and static code is safely shared by concurrent independent models.
+
+All 50 C/Fortran tests pass on GCC and Clang, and all 29 sanitizer tests pass.
+Four 300-column gates are bit-identical to R3, including all 165,382,800 values.
+The six altered model descriptions per compiler again pass generated ordered,
+roundoff, exact ordered replay, and incompatible-artifact fallback tests. The
+fallback evidence now explicitly reports `no-match` and zero generated calls.
+
+Minimal C11/libm builds disable testing, the CLI, the benchmark, generation and
+Python discovery. Installed CMake consumers pass for both minimal and generated
+libraries, on both compilers and both primary models, with `PATH=/nonexistent`
+during execution. Their only dynamic dependency on this machine is libSystem;
+Python, a compiler, a dynamic loader adapter and C++ are not runtime dependencies.
+This demonstrates the required static route on ARM/macOS. x86-64 execution has
+not yet been demonstrated.
+
+Static deployment already provides profitable reuse, so a runtime compiler,
+loader and persistent binary cache were not added. Such integration would add
+platform and lifecycle work without reducing the measured column arithmetic.
+The offline artifact record includes compiler binary/version/target, effective
+flags, host compatibility information, all recipe/source/object hashes and a
+build identity. It does not claim to validate or load an arbitrary cached binary.
+
+Fresh-model initialization medians from five alternating process runs, and
+estimated break-even using R3's gated steady-state savings:
+
+| Configuration | Compiler | Frozen main initialization | R4 initialization | Extra startup | Static break-even |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | gcc | 16.779 ms | 30.951 ms | 14.172 ms | 43 columns |
+| tuv_5_4 | clang | 17.576 ms | 27.527 ms | 9.951 ms | 26 columns |
+| ts1_tsmlt | gcc | 15.708 ms | 22.575 ms | 6.867 ms | 14 columns |
+| ts1_tsmlt | clang | 15.461 ms | 20.135 ms | 4.674 ms | 11 columns |
+
+These are fresh model/process measurements with a warm OS file cache, not a
+cold-machine claim. Repeated selection within a model costs about 1.5–1.8 ns
+in the 10,000-call probes. Emitting and compiling both primary kernel sets in
+isolation takes 8.346 s for GCC and 2.378 s for Clang. Generated object totals
+are 1,572,432 and 649,680 bytes respectively. Charging that entire build to a
+single configuration yields estimated break-even counts of 16,145–25,033 for
+GCC and 5,568–6,077 for Clang; these exclude final linking and other build work.
+Already linked deployments pay only the static initialization cost above.
+Separate resource runs report maximum RSS of 15.2–19.5 MB.
+
+A three-round R3/R4 regression screen reports paired median ratios of 0.980–1.000
+and stable identical hashes. No regression exceeds the plan's 5% investigation
+threshold. This screen is not a new ten-round 2x acceptance claim; the primary
+target remains **not achieved; feasibility unresolved**.
+Evidence is in [`evidence/reaper/r4`](evidence/reaper/r4/).
