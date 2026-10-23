@@ -1,0 +1,15 @@
+gcc small-8 pass True compile 10.719630416002474
+gcc small-16 pass True compile 8.808359833001305
+gcc small-16-acc4 pass True compile 8.576616916998319
+gcc align-4 pass True compile 4.007932958997117
+gcc group-4 pass True compile 3.8540219999995315
+gcc group-8 pass True compile 4.388193250000768
+gcc group-2 pass True compile 3.5226227499988454
+gcc group-4-small pass True compile 5.486440958000458
+gcc timed 0 tuv_5_4
+gcc timed 0 ts1_tsmlt
+gcc timed 1 tuv_5_4
+gcc timed 1 ts1_tsmlt
+gcc timed 2 tuv_5_4
+gcc timed 2 ts1_tsmlt
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 691.01, 'range_us': [690.03, 691.45]}, {'config': 'tuv_5_4', 'variant': 'small-8', 'median_us': 712.09, 'range_us': [708.43, 712.66]}, {'config': 'tuv_5_4', 'variant': 'small-16', 'median_us': 694.49, 'range_us': [691.78, 696.32]}, {'config': 'tuv_5_4', 'variant': 'small-16-acc4', 'median_us': 688.55, 'range_us': [688.08, 689.52]}, {'config': 'tuv_5_4', 'variant': 'align-4', 'median_us': 739.45, 'range_us': [739.14, 742.01]}, {'config': 'tuv_5_4', 'variant': 'group-4', 'median_us': 737.2, 'range_us': [736.61, 740.61]}, {'config': 'tuv_5_4', 'variant': 'group-8', 'median_us': 741.13, 'range_us': [741.07, 742.9]}, {'config': 'tuv_5_4', 'variant': 'group-2', 'median_us': 736.88, 'range_us': [735.46, 738.78]}, {'config': 'tuv_5_4', 'variant': 'group-4-small', 'median_us': 718.46, 'range_us': [717.95, 722.04]}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 550.92, 'range_us': [549.83, 552.11]}, {'config': 'ts1_tsmlt', 'variant': 'small-8', 'median_us': 556.76, 'range_us': [554.97, 558.73]}, {'config': 'ts1_tsmlt', 'variant': 'small-16', 'median_us': 551.26, 'range_us': [549.74, 552.18]}, {'config': 'ts1_tsmlt', 'variant': 'small-16-acc4', 'median_us': 549.42, 'range_us': [548.65, 549.64]}, {'config': 'ts1_tsmlt', 'variant': 'align-4', 'median_us': 570.32, 'range_us': [569.7, 582.57]}, {'config': 'ts1_tsmlt', 'variant': 'group-4', 'median_us': 567.8, 'range_us': [566.0, 568.75]}, {'config': 'ts1_tsmlt', 'variant': 'group-8', 'median_us': 574.66, 'range_us': [572.71, 589.62]}, {'config': 'ts1_tsmlt', 'variant': 'group-2', 'median_us': 566.49, 'range_us': [564.58, 581.12]}, {'config': 'ts1_tsmlt', 'variant': 'group-4-small', 'median_us': 568.22, 'range_us': [567.67, 569.24]}]

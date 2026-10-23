@@ -176,3 +176,10 @@ interpolator and ordered replay. The pointwise exponential bound is unchanged;
 it does not by itself bound a later subtractive interpolation. This checkpoint
 repeats full suites, installation, primary gates, untuned screens and ten-round
 timings; its archive retains all rejected prototypes and reproduction drivers.
+
+Subsequent [rate-layout screens](../../docs/evidence/reaper/rate-layout/)
+retain smaller and wavelength-aligned generated-kernel candidates; no new
+artifact recipe is selected. [Larger spectral-table screens](../../docs/evidence/reaper/math-table-followup/)
+remain unselected pending independent math validation. Their expanded stress
+tests exposed a mixed-bin conditioning omission, corrected and fully checked
+in the [mixed-bin checkpoint](../../docs/evidence/reaper/mixed-bin/).

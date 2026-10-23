@@ -1,0 +1,20 @@
+-- Install configuration: "Release"
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/bin/turbotuv
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/lib/libturbotuv.a
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/include/turbotuv.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/include/turbotuv_config.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/include/turbotuv_model.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/include/turbotuv_diagnostics.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/include/turbotuv_reaper.h
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/licenses/LibYAML.txt
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/licenses/TurboTUV.txt
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/lib/cmake/TurboTUV/TurboTUVTargets.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/lib/cmake/TurboTUV/TurboTUVTargets-release.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/lib/cmake/TurboTUV/TurboTUVConfig.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/lib/cmake/TurboTUV/TurboTUVConfigVersion.cmake
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/examples
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/examples/column.c
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/examples/ts1_tsmlt.yml
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/examples/tuv_5_4.yml
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/examples/ts1_tsmlt.json
+-- Installing: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-install-selected-clang/share/TurboTUV/examples/tuv_5_4.json

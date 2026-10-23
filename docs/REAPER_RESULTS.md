@@ -640,3 +640,84 @@ archived successful and rejected prototypes, reproduction commands, full test
 logs, numerical gates, profiles, all samples, installed consumers, source and
 binary provenance, and a file manifest. **Not achieved; feasibility unresolved.**
 No defensible lower bound yet rules out further portable improvements.
+
+## Mixed-bin conditioning and further screening
+
+Further rate and math screens uncovered an omission in the preceding
+interpolation fix. A bin containing both ordinary segments and zero padding
+outside the guarded geometry could bypass the conditioning check on its
+ordinary segments. With the existing math helper, expanding the deterministic
+stress test fails trial 1338 at 33.307 epsilon. Larger-table candidates fail
+another instance at 93.280 epsilon. This is a standalone interpolation issue;
+the previous primary atmospheric-column comparisons retain their recorded
+scope.
+
+The correction accumulates positive weights and the conditioning estimate
+for ordinary segments even in these mixed bins. Zero-valued padding adds
+exactly zero; any nonzero segment outside the guarded geometry forces libm
+and ordered replay. The standard test now covers 10,000 spectra, 710,370
+values and 527 optional-allocation failures, with maximum 6.383 epsilon. A
+separate 100,000-spectrum screen covers 7,135,407 values and 5,264 allocation
+failures, with maximum 9.162 epsilon for the selected 64-entry math helper.
+Signed cases and optional-allocation failures remain exact ordered replays.
+
+Both 51-test C/Fortran suites, the 30-test sanitizer suite and both 30-test
+hint-disabled suites pass. Focused final tests and the scalar parameterization
+fallback pass. All eight minimal/generated installed consumers pass with
+`PATH=/nonexistent` and only libSystem dynamically linked. Four 300-column
+primary gates compare 165,382,800 values at maximum 9.913 epsilon. The six
+held-out generated/interpreted configurations per compiler pass, followed by
+16 untuned 300-column gates with 278,223,000 values at maximum 11.271 epsilon.
+The spectral math header is unchanged; SHA-256 ties its existing independent
+bound and MPFR oracle records to this checkpoint. No new rate artifact or
+math approximation is selected.
+
+The [rate-layout assessment](evidence/reaper/rate-layout/) screens eight
+variants per compiler: 8/16-term helpers, aligned wavelength traversal, and
+greedy output grouping by wavelength-set overlap. All 32 screening gates
+pass. The three-round screens retain 108 samples; a separate five-round
+confirmation retains 40 samples of at least one second. GCC's best small
+candidate confirms only 1.00007/1.00040x over the selected implementation
+(TUV/TS1), so it is rejected. Clang's grouped 32-term candidate confirms
+1.00410/1.00753x and remains an unselected combination candidate. Private
+prototype descriptors do not encode the new layout flags and must not be
+used as production artifacts.
+
+The [larger-table assessment](evidence/reaper/math-table-followup/) screens
+256/512/1024-entry degree-four and 2048-entry degree-three spectral helpers.
+The 256/512-entry versions save roughly 2–8 us in short screens; larger
+versions are not timed after failing the original stress test. All five math
+variants pass the 100,000-spectrum screen after the mixed-bin correction.
+None is selected: the expanded independent reduction proof, MPFR boundary
+inventory and combined validation remain necessary. The per-spectrum profile
+still attributes about 40 us/TUV column and 26 us/TS1 column to CL2; exponential
+and Harwood parameterizations dominate TS1's spectral cost. These diagnostic
+measurements do not establish a performance lower bound.
+
+Fresh primary results use the same ten rotating paired rounds, 300 changing
+columns and ten repeats. All 80 samples are retained; the shortest takes
+1.576 seconds. Candidate samples each execute 3,000 REAPER columns and
+6,000 generated families, without fallback, declines or preparation failures.
+Profiling is disabled and hashes are stable.
+
+| Configuration | Compiler | Main median | REAPER median | Paired speedup | Lower 95% |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | gcc | 1079.4 us | 698.8 us | 1.546x | 1.543x |
+| tuv_5_4 | clang | 1080.1 us | 655.0 us | 1.648x | 1.616x |
+| ts1_tsmlt | gcc | 1109.3 us | 557.3 us | 1.992x | 1.987x |
+| ts1_tsmlt | clang | 965.6 us | 525.6 us | 1.836x | 1.835x |
+
+All four lower confidence bounds remain below two.
+
+The 96 secondary timing samples have a minimum paired speedup of
+0.963x against frozen main; no untuned case regresses by more than 5%.
+The four 48-column hint-disabled gates compare 26,461,248 values exactly.
+Ten-process median setup-plus-selection costs are 33.059, 29.398, 24.572, 22.239 ms
+for TUV GCC/Clang and TS1 GCC/Clang respectively. Separate resource probes
+report 15.237–19.268 MB peak RSS. Transfer workspace and generated artifacts
+are unchanged. Source/binary provenance, separate profiles and exact commands
+are archived; x86-64 execution remains unverified.
+
+The [mixed-bin checkpoint](evidence/reaper/mixed-bin/) records the full
+validation, reproduction commands, source archives and fresh timing samples.
+The four-case objective remains **not achieved; feasibility unresolved**.

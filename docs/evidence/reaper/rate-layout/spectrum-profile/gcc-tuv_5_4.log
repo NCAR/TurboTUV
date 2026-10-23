@@ -1,0 +1,48 @@
+config=examples/tuv_5_4.json columns=900 levels=121 wavelengths=156 photolysis=109 heating=0 dose=28 execution=reaper
+elapsed_ms=621.286 per_column_us=690.32 hash=619070732770e4f9
+reaper_selection=attached reaper_capabilities=5 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=634496
+prepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=900 reaper_declines=0 generated_calls=1800 generated_declines=0 profiling=0 setup_ms=31.713 preparation_ms=16.667
+spectrum role=0 kind=0 calls=53159 values=0 total_us=672.340
+spectrum role=0 kind=1 calls=901 values=17007276 total_us=3553.391
+spectrum role=0 kind=2 calls=901 values=2507483 total_us=2550.364
+spectrum role=0 kind=3 calls=1802 values=7958533 total_us=8696.795
+spectrum role=0 kind=4 calls=901 values=17007276 total_us=2178.907
+spectrum role=0 kind=5 calls=3604 values=19732801 total_us=21610.498
+spectrum role=0 kind=6 calls=901 values=2180420 total_us=3319.502
+spectrum role=0 kind=7 calls=901 values=2398462 total_us=2596.140
+spectrum role=0 kind=8 calls=901 values=17007276 total_us=36124.229
+spectrum role=0 kind=9 calls=901 values=17007276 total_us=2648.115
+spectrum role=0 kind=10 calls=901 values=3270630 total_us=574.589
+spectrum role=0 kind=11 calls=2703 values=5451050 total_us=7594.824
+spectrum role=0 kind=12 calls=901 values=6759302 total_us=7446.289
+spectrum role=0 kind=13 calls=901 values=0 total_us=11.206
+spectrum role=0 kind=14 calls=901 values=3379651 total_us=3504.992
+spectrum role=0 kind=15 calls=901 values=2943567 total_us=2240.419
+spectrum role=0 kind=16 calls=901 values=0 total_us=6.914
+spectrum role=0 kind=17 calls=901 values=0 total_us=7.868
+spectrum role=0 kind=18 calls=901 values=10684058 total_us=2336.264
+spectrum role=0 kind=20 calls=1802 values=12159896 total_us=5947.351
+spectrum role=0 kind=21 calls=901 values=17007276 total_us=10133.028
+spectrum role=0 kind=22 calls=901 values=0 total_us=11.444
+spectrum role=0 kind=23 calls=1802 values=8721680 total_us=9596.109
+spectrum role=0 kind=24 calls=901 values=0 total_us=13.113
+spectrum role=0 kind=25 calls=6307 values=19623780 total_us=10649.920
+spectrum role=1 kind=0 calls=18921 values=0 total_us=261.068
+spectrum role=1 kind=1 calls=1802 values=2616504 total_us=1728.535
+spectrum role=1 kind=2 calls=901 values=545105 total_us=255.585
+spectrum role=1 kind=3 calls=901 values=1308252 total_us=964.165
+spectrum role=1 kind=4 calls=901 values=1308252 total_us=977.516
+spectrum role=1 kind=5 calls=901 values=0 total_us=16.451
+spectrum role=1 kind=6 calls=901 values=17007276 total_us=2109.289
+spectrum role=1 kind=7 calls=901 values=654126 total_us=145.435
+spectrum role=1 kind=8 calls=901 values=2943567 total_us=432.968
+spectrum role=1 kind=9 calls=901 values=2289441 total_us=327.110
+spectrum role=1 kind=10 calls=901 values=17007276 total_us=2053.499
+spectrum role=1 kind=11 calls=901 values=17007276 total_us=2230.644
+spectrum role=1 kind=12 calls=901 values=2289441 total_us=19267.321
+spectrum role=1 kind=13 calls=901 values=17007276 total_us=1991.749
+spectrum role=1 kind=14 calls=901 values=1308252 total_us=187.635
+spectrum role=1 kind=15 calls=901 values=0 total_us=10.490
+spectrum role=1 kind=16 calls=901 values=0 total_us=5.722
+spectrum role=1 kind=17 calls=901 values=0 total_us=11.683
+spectrum role=1 kind=18 calls=901 values=0 total_us=7.868

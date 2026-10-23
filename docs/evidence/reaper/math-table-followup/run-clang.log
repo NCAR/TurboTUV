@@ -1,0 +1,5 @@
+clang table-256-degree-4 pass True
+clang table-512-degree-4 pass True
+clang table-1024-degree-4 pass False
+clang table-2048-degree-3 pass False
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 649.52}, {'config': 'tuv_5_4', 'variant': 'table-256-degree-4', 'median_us': 643.55}, {'config': 'tuv_5_4', 'variant': 'table-512-degree-4', 'median_us': 643.23}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 524.42}, {'config': 'ts1_tsmlt', 'variant': 'table-256-degree-4', 'median_us': 518.31}, {'config': 'ts1_tsmlt', 'variant': 'table-512-degree-4', 'median_us': 517.95}]

@@ -1,0 +1,206 @@
+{
+  "clang": {
+    "commands": [
+      [
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "-DTT_REAPER_BLOCK=16",
+        "-DTT_REAPER_BUILTINS",
+        "-DTT_REAPER_DIRECT_CACHE=1",
+        "-DTT_REAPER_FIXED_CACHE=1",
+        "-DTT_REAPER_FLUX_CHECK=1",
+        "-DTT_REAPER_MATH_HINTS=1",
+        "-DTT_REAPER_OVERLAP=1",
+        "-DTT_REAPER_OXYGEN=1",
+        "-DTT_REAPER_SPECTRUM_EXP=1",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/include",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml/include",
+        "-O3",
+        "-DNDEBUG",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-ffp-contract=off",
+        "-Isrc",
+        "-c",
+        "build/reaper/spectrum-cost-profile/spectrum_plan.c",
+        "-o",
+        "build/reaper/spectrum-cost-profile/clang/spectrum_plan.c.o"
+      ],
+      [
+        "ar",
+        "r",
+        "build/reaper/spectrum-cost-profile/clang/libturbotuv.a",
+        "build/reaper/spectrum-cost-profile/clang/spectrum_plan.c.o"
+      ],
+      [
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "-DTT_REAPER_BLOCK=16",
+        "-DTT_REAPER_BUILTINS",
+        "-DTT_REAPER_DIRECT_CACHE=1",
+        "-DTT_REAPER_FIXED_CACHE=1",
+        "-DTT_REAPER_FLUX_CHECK=1",
+        "-DTT_REAPER_MATH_HINTS=1",
+        "-DTT_REAPER_OVERLAP=1",
+        "-DTT_REAPER_OXYGEN=1",
+        "-DTT_REAPER_SPECTRUM_EXP=1",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/include",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml/include",
+        "-O3",
+        "-DNDEBUG",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-ffp-contract=off",
+        "build/reaper/r3c-selected-clang/CMakeFiles/turbotuv_bench.dir/bench/turbotuv_bench.c.o",
+        "build/reaper/spectrum-cost-profile/clang/libturbotuv.a",
+        "-lm",
+        "-o",
+        "build/reaper/spectrum-cost-profile/clang/turbotuv_bench"
+      ]
+    ],
+    "cases": [
+      {
+        "config": "tuv_5_4",
+        "command": [
+          "build/reaper/spectrum-cost-profile/clang/turbotuv_bench",
+          "examples/tuv_5_4.json",
+          "--reaper",
+          "--columns",
+          "300",
+          "--repeat",
+          "3"
+        ],
+        "stdout": "config=examples/tuv_5_4.json columns=900 levels=121 wavelengths=156 photolysis=109 heating=0 dose=28 execution=reaper\nelapsed_ms=587.453 per_column_us=652.73 hash=780c7e955da572e9\nreaper_selection=attached reaper_capabilities=5 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=710656\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=900 reaper_declines=0 generated_calls=1800 generated_declines=0 profiling=0 setup_ms=34.141 preparation_ms=12.006\n",
+        "stderr": "spectrum role=0 kind=0 calls=53159 values=0 total_us=706.196\nspectrum role=0 kind=1 calls=901 values=17007276 total_us=3527.164\nspectrum role=0 kind=2 calls=901 values=2507483 total_us=2523.184\nspectrum role=0 kind=3 calls=1802 values=7958533 total_us=8390.665\nspectrum role=0 kind=4 calls=901 values=17007276 total_us=1557.827\nspectrum role=0 kind=5 calls=3604 values=19732801 total_us=20861.864\nspectrum role=0 kind=6 calls=901 values=2180420 total_us=3347.635\nspectrum role=0 kind=7 calls=901 values=2398462 total_us=2516.031\nspectrum role=0 kind=8 calls=901 values=17007276 total_us=35907.030\nspectrum role=0 kind=9 calls=901 values=17007276 total_us=2571.106\nspectrum role=0 kind=10 calls=901 values=3270630 total_us=609.875\nspectrum role=0 kind=11 calls=2703 values=5451050 total_us=7295.132\nspectrum role=0 kind=12 calls=901 values=6759302 total_us=7131.338\nspectrum role=0 kind=13 calls=901 values=0 total_us=5.722\nspectrum role=0 kind=14 calls=901 values=3379651 total_us=3415.823\nspectrum role=0 kind=15 calls=901 values=2943567 total_us=2113.581\nspectrum role=0 kind=16 calls=901 values=0 total_us=12.159\nspectrum role=0 kind=17 calls=901 values=0 total_us=13.113\nspectrum role=0 kind=18 calls=901 values=10684058 total_us=2303.362\nspectrum role=0 kind=20 calls=1802 values=12159896 total_us=6256.580\nspectrum role=0 kind=21 calls=901 values=17007276 total_us=12258.530\nspectrum role=0 kind=22 calls=901 values=0 total_us=16.689\nspectrum role=0 kind=23 calls=1802 values=8721680 total_us=9245.396\nspectrum role=0 kind=24 calls=901 values=0 total_us=13.828\nspectrum role=0 kind=25 calls=6307 values=19623780 total_us=11009.932\nspectrum role=1 kind=0 calls=18921 values=0 total_us=249.147\nspectrum role=1 kind=1 calls=1802 values=2616504 total_us=1734.018\nspectrum role=1 kind=2 calls=901 values=545105 total_us=221.491\nspectrum role=1 kind=3 calls=901 values=1308252 total_us=1019.478\nspectrum role=1 kind=4 calls=901 values=1308252 total_us=959.635\nspectrum role=1 kind=5 calls=901 values=0 total_us=8.583\nspectrum role=1 kind=6 calls=901 values=17007276 total_us=2092.123\nspectrum role=1 kind=7 calls=901 values=654126 total_us=151.873\nspectrum role=1 kind=8 calls=901 values=2943567 total_us=525.951\nspectrum role=1 kind=9 calls=901 values=2289441 total_us=321.627\nspectrum role=1 kind=10 calls=901 values=17007276 total_us=1971.722\nspectrum role=1 kind=11 calls=901 values=17007276 total_us=2089.977\nspectrum role=1 kind=12 calls=901 values=2289441 total_us=19048.452\nspectrum role=1 kind=13 calls=901 values=17007276 total_us=1949.549\nspectrum role=1 kind=14 calls=901 values=1308252 total_us=188.828\nspectrum role=1 kind=15 calls=901 values=0 total_us=14.782\nspectrum role=1 kind=16 calls=901 values=0 total_us=10.967\nspectrum role=1 kind=17 calls=901 values=0 total_us=6.437\nspectrum role=1 kind=18 calls=901 values=0 total_us=6.676\n"
+      },
+      {
+        "config": "ts1_tsmlt",
+        "command": [
+          "build/reaper/spectrum-cost-profile/clang/turbotuv_bench",
+          "examples/ts1_tsmlt.json",
+          "--reaper",
+          "--columns",
+          "300",
+          "--repeat",
+          "3"
+        ],
+        "stdout": "config=examples/ts1_tsmlt.json columns=900 levels=121 wavelengths=102 photolysis=73 heating=4 dose=0 execution=reaper\nelapsed_ms=470.643 per_column_us=522.94 hash=c2722997a9f981a2\nreaper_selection=attached reaper_capabilities=3 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=555136\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=900 reaper_declines=0 generated_calls=1800 generated_declines=0 profiling=0 setup_ms=17.396 preparation_ms=4.456\n",
+        "stderr": "spectrum role=0 kind=0 calls=28832 values=0 total_us=362.396\nspectrum role=0 kind=2 calls=901 values=2289441 total_us=2380.610\nspectrum role=0 kind=4 calls=901 values=11120142 total_us=1041.412\nspectrum role=0 kind=5 calls=901 values=5233008 total_us=5512.476\nspectrum role=0 kind=8 calls=901 values=11120142 total_us=23587.227\nspectrum role=0 kind=9 calls=901 values=11120142 total_us=1695.633\nspectrum role=0 kind=10 calls=901 values=2398462 total_us=479.460\nspectrum role=0 kind=12 calls=901 values=5342029 total_us=5638.361\nspectrum role=0 kind=13 calls=901 values=0 total_us=17.166\nspectrum role=0 kind=14 calls=901 values=3379651 total_us=3339.529\nspectrum role=0 kind=18 calls=901 values=5560071 total_us=1234.770\nspectrum role=0 kind=20 calls=1802 values=9988486 total_us=5173.683\nspectrum role=0 kind=21 calls=901 values=11120142 total_us=7965.565\nspectrum role=0 kind=22 calls=901 values=0 total_us=8.583\nspectrum role=0 kind=25 calls=901 values=1635315 total_us=1059.771\nspectrum role=1 kind=0 calls=14416 values=0 total_us=178.337\nspectrum role=1 kind=1 calls=1802 values=436084 total_us=483.751\nspectrum role=1 kind=2 calls=901 values=654126 total_us=237.703\nspectrum role=1 kind=3 calls=901 values=654126 total_us=880.718\nspectrum role=1 kind=4 calls=901 values=654126 total_us=806.093\nspectrum role=1 kind=7 calls=901 values=763147 total_us=183.344\nspectrum role=1 kind=8 calls=901 values=2071399 total_us=363.111\nspectrum role=1 kind=11 calls=901 values=11120142 total_us=1370.907\nspectrum role=1 kind=12 calls=901 values=1417273 total_us=13097.048\nspectrum role=1 kind=14 calls=901 values=1090210 total_us=159.264\nspectrum role=1 kind=17 calls=901 values=0 total_us=15.497\nspectrum role=1 kind=18 calls=901 values=0 total_us=10.967\nspectrum role=1 kind=19 calls=901 values=327063 total_us=75.579\nspectrum role=1 kind=20 calls=1802 values=0 total_us=25.272\nspectrum role=2 kind=0 calls=11713 values=39247560 total_us=80242.395\nspectrum role=2 kind=1 calls=1802 values=11120142 total_us=33393.860\nspectrum role=2 kind=2 calls=901 values=2180420 total_us=1591.921\nspectrum role=2 kind=3 calls=901 values=4142798 total_us=5507.708\n"
+      }
+    ]
+  },
+  "gcc": {
+    "commands": [
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-DTT_REAPER_BLOCK=16",
+        "-DTT_REAPER_BUILTINS",
+        "-DTT_REAPER_DIRECT_CACHE=1",
+        "-DTT_REAPER_FIXED_CACHE=1",
+        "-DTT_REAPER_FLUX_CHECK=1",
+        "-DTT_REAPER_MATH_HINTS=1",
+        "-DTT_REAPER_OVERLAP=1",
+        "-DTT_REAPER_OXYGEN=1",
+        "-DTT_REAPER_SPECTRUM_EXP=1",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/include",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml/include",
+        "-O3",
+        "-DNDEBUG",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-ffp-contract=off",
+        "-Isrc",
+        "-c",
+        "build/reaper/spectrum-cost-profile/spectrum_plan.c",
+        "-o",
+        "build/reaper/spectrum-cost-profile/gcc/spectrum_plan.c.o"
+      ],
+      [
+        "ar",
+        "r",
+        "build/reaper/spectrum-cost-profile/gcc/libturbotuv.a",
+        "build/reaper/spectrum-cost-profile/gcc/spectrum_plan.c.o"
+      ],
+      [
+        "/opt/homebrew/bin/gcc-15",
+        "-DTT_REAPER_BLOCK=16",
+        "-DTT_REAPER_BUILTINS",
+        "-DTT_REAPER_DIRECT_CACHE=1",
+        "-DTT_REAPER_FIXED_CACHE=1",
+        "-DTT_REAPER_FLUX_CHECK=1",
+        "-DTT_REAPER_MATH_HINTS=1",
+        "-DTT_REAPER_OVERLAP=1",
+        "-DTT_REAPER_OXYGEN=1",
+        "-DTT_REAPER_SPECTRUM_EXP=1",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/include",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml",
+        "-I/Users/fillmore/NSF-NCAR/TurboTUV/third_party/libyaml/include",
+        "-O3",
+        "-DNDEBUG",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-ffp-contract=off",
+        "build/reaper/r3c-selected-gcc/CMakeFiles/turbotuv_bench.dir/bench/turbotuv_bench.c.o",
+        "build/reaper/spectrum-cost-profile/gcc/libturbotuv.a",
+        "-lm",
+        "-o",
+        "build/reaper/spectrum-cost-profile/gcc/turbotuv_bench"
+      ]
+    ],
+    "cases": [
+      {
+        "config": "tuv_5_4",
+        "command": [
+          "build/reaper/spectrum-cost-profile/gcc/turbotuv_bench",
+          "examples/tuv_5_4.json",
+          "--reaper",
+          "--columns",
+          "300",
+          "--repeat",
+          "3"
+        ],
+        "stdout": "config=examples/tuv_5_4.json columns=900 levels=121 wavelengths=156 photolysis=109 heating=0 dose=28 execution=reaper\nelapsed_ms=621.286 per_column_us=690.32 hash=619070732770e4f9\nreaper_selection=attached reaper_capabilities=5 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=634496\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=900 reaper_declines=0 generated_calls=1800 generated_declines=0 profiling=0 setup_ms=31.713 preparation_ms=16.667\n",
+        "stderr": "spectrum role=0 kind=0 calls=53159 values=0 total_us=672.340\nspectrum role=0 kind=1 calls=901 values=17007276 total_us=3553.391\nspectrum role=0 kind=2 calls=901 values=2507483 total_us=2550.364\nspectrum role=0 kind=3 calls=1802 values=7958533 total_us=8696.795\nspectrum role=0 kind=4 calls=901 values=17007276 total_us=2178.907\nspectrum role=0 kind=5 calls=3604 values=19732801 total_us=21610.498\nspectrum role=0 kind=6 calls=901 values=2180420 total_us=3319.502\nspectrum role=0 kind=7 calls=901 values=2398462 total_us=2596.140\nspectrum role=0 kind=8 calls=901 values=17007276 total_us=36124.229\nspectrum role=0 kind=9 calls=901 values=17007276 total_us=2648.115\nspectrum role=0 kind=10 calls=901 values=3270630 total_us=574.589\nspectrum role=0 kind=11 calls=2703 values=5451050 total_us=7594.824\nspectrum role=0 kind=12 calls=901 values=6759302 total_us=7446.289\nspectrum role=0 kind=13 calls=901 values=0 total_us=11.206\nspectrum role=0 kind=14 calls=901 values=3379651 total_us=3504.992\nspectrum role=0 kind=15 calls=901 values=2943567 total_us=2240.419\nspectrum role=0 kind=16 calls=901 values=0 total_us=6.914\nspectrum role=0 kind=17 calls=901 values=0 total_us=7.868\nspectrum role=0 kind=18 calls=901 values=10684058 total_us=2336.264\nspectrum role=0 kind=20 calls=1802 values=12159896 total_us=5947.351\nspectrum role=0 kind=21 calls=901 values=17007276 total_us=10133.028\nspectrum role=0 kind=22 calls=901 values=0 total_us=11.444\nspectrum role=0 kind=23 calls=1802 values=8721680 total_us=9596.109\nspectrum role=0 kind=24 calls=901 values=0 total_us=13.113\nspectrum role=0 kind=25 calls=6307 values=19623780 total_us=10649.920\nspectrum role=1 kind=0 calls=18921 values=0 total_us=261.068\nspectrum role=1 kind=1 calls=1802 values=2616504 total_us=1728.535\nspectrum role=1 kind=2 calls=901 values=545105 total_us=255.585\nspectrum role=1 kind=3 calls=901 values=1308252 total_us=964.165\nspectrum role=1 kind=4 calls=901 values=1308252 total_us=977.516\nspectrum role=1 kind=5 calls=901 values=0 total_us=16.451\nspectrum role=1 kind=6 calls=901 values=17007276 total_us=2109.289\nspectrum role=1 kind=7 calls=901 values=654126 total_us=145.435\nspectrum role=1 kind=8 calls=901 values=2943567 total_us=432.968\nspectrum role=1 kind=9 calls=901 values=2289441 total_us=327.110\nspectrum role=1 kind=10 calls=901 values=17007276 total_us=2053.499\nspectrum role=1 kind=11 calls=901 values=17007276 total_us=2230.644\nspectrum role=1 kind=12 calls=901 values=2289441 total_us=19267.321\nspectrum role=1 kind=13 calls=901 values=17007276 total_us=1991.749\nspectrum role=1 kind=14 calls=901 values=1308252 total_us=187.635\nspectrum role=1 kind=15 calls=901 values=0 total_us=10.490\nspectrum role=1 kind=16 calls=901 values=0 total_us=5.722\nspectrum role=1 kind=17 calls=901 values=0 total_us=11.683\nspectrum role=1 kind=18 calls=901 values=0 total_us=7.868\n"
+      },
+      {
+        "config": "ts1_tsmlt",
+        "command": [
+          "build/reaper/spectrum-cost-profile/gcc/turbotuv_bench",
+          "examples/ts1_tsmlt.json",
+          "--reaper",
+          "--columns",
+          "300",
+          "--repeat",
+          "3"
+        ],
+        "stdout": "config=examples/ts1_tsmlt.json columns=900 levels=121 wavelengths=102 photolysis=73 heating=4 dose=0 execution=reaper\nelapsed_ms=496.106 per_column_us=551.23 hash=25de28c39075ff28\nreaper_selection=attached reaper_capabilities=3 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=478976\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=900 reaper_declines=0 generated_calls=1800 generated_declines=0 profiling=0 setup_ms=17.831 preparation_ms=6.380\n",
+        "stderr": "spectrum role=0 kind=0 calls=28832 values=0 total_us=391.006\nspectrum role=0 kind=2 calls=901 values=2289441 total_us=2453.566\nspectrum role=0 kind=4 calls=901 values=11120142 total_us=1433.611\nspectrum role=0 kind=5 calls=901 values=5233008 total_us=5728.483\nspectrum role=0 kind=8 calls=901 values=11120142 total_us=23598.909\nspectrum role=0 kind=9 calls=901 values=11120142 total_us=1669.168\nspectrum role=0 kind=10 calls=901 values=2398462 total_us=500.441\nspectrum role=0 kind=12 calls=901 values=5342029 total_us=5912.781\nspectrum role=0 kind=13 calls=901 values=0 total_us=14.305\nspectrum role=0 kind=14 calls=901 values=3379651 total_us=3434.181\nspectrum role=0 kind=18 calls=901 values=5560071 total_us=1269.102\nspectrum role=0 kind=20 calls=1802 values=9988486 total_us=4927.158\nspectrum role=0 kind=21 calls=901 values=11120142 total_us=7205.963\nspectrum role=0 kind=22 calls=901 values=0 total_us=7.629\nspectrum role=0 kind=25 calls=901 values=1635315 total_us=1025.438\nspectrum role=1 kind=0 calls=14416 values=0 total_us=189.543\nspectrum role=1 kind=1 calls=1802 values=436084 total_us=537.157\nspectrum role=1 kind=2 calls=901 values=654126 total_us=255.585\nspectrum role=1 kind=3 calls=901 values=654126 total_us=825.882\nspectrum role=1 kind=4 calls=901 values=654126 total_us=826.597\nspectrum role=1 kind=7 calls=901 values=763147 total_us=154.734\nspectrum role=1 kind=8 calls=901 values=2071399 total_us=285.149\nspectrum role=1 kind=11 calls=901 values=11120142 total_us=1441.717\nspectrum role=1 kind=12 calls=901 values=1417273 total_us=12888.193\nspectrum role=1 kind=14 calls=901 values=1090210 total_us=166.655\nspectrum role=1 kind=17 calls=901 values=0 total_us=8.583\nspectrum role=1 kind=18 calls=901 values=0 total_us=10.014\nspectrum role=1 kind=19 calls=901 values=327063 total_us=146.627\nspectrum role=1 kind=20 calls=1802 values=0 total_us=19.789\nspectrum role=2 kind=0 calls=11713 values=39247560 total_us=92966.557\nspectrum role=2 kind=1 calls=1802 values=11120142 total_us=26141.644\nspectrum role=2 kind=2 calls=901 values=2180420 total_us=1807.451\nspectrum role=2 kind=3 calls=901 values=4142798 total_us=5961.895\n"
+      }
+    ]
+  }
+}

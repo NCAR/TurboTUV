@@ -1,0 +1,4 @@
+gcc tuv_5_4 {'selected': 671.97, 'candidate': 673.61} 1.0000741465729452
+gcc ts1_tsmlt {'selected': 542.75, 'candidate': 542.84} 1.0004038772213248
+clang tuv_5_4 {'selected': 645.9, 'candidate': 642.1} 1.0040964600401916
+clang ts1_tsmlt {'selected': 523.06, 'candidate': 517.57} 1.0075315419435615

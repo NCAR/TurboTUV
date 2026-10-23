@@ -1,0 +1,5 @@
+gcc tuv_5_4 {'selected': 666.93, 'candidate': 667.65} 1.000833506980621
+Traceback (most recent call last):
+  File "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/rate-layout-confirm.py", line 12, in <module>
+    assert float(fields['elapsed_ms'])>=1000 and fields['reaper_calls']=='1800' and fields['generated_calls']=='3600' and fields['profiling']=='0'
+AssertionError

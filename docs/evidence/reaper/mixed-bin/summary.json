@@ -1,0 +1,384 @@
+{
+  "scope": "Apple M5 ARM64 macOS; GCC 15.2 and Clang 21.1.5; single-column C11/libm; frozen main 9e149851af5bc48fc7ce64b5fbe50c6959ff2d51",
+  "status": "not achieved; feasibility unresolved",
+  "primary_gates": {
+    "gates": 4,
+    "compared": 165382800,
+    "maximum_epsilon": 9.91203882746315,
+    "all_passed": true
+  },
+  "hint_disabled_gates": {
+    "gates": 4,
+    "compared": 26461248,
+    "maximum_epsilon": 0.0,
+    "all_passed": true
+  },
+  "untuned_gates": {
+    "gates": 16,
+    "compared": 278223000,
+    "maximum_epsilon": 11.27063836181855,
+    "all_passed": true
+  },
+  "primary": {
+    "samples": 80,
+    "minimum_sample_ms": 1575.756,
+    "results": [
+      {
+        "config": "tuv_5_4",
+        "program": "reaper-gcc",
+        "median_us": 698.8199999999999,
+        "range_us": [
+          697.05,
+          703.44
+        ],
+        "paired_ratios": [
+          1.5403531346057617,
+          1.5439098346587334,
+          1.5431320409447018,
+          1.5450263429160462,
+          1.5376435801205504,
+          1.5484384638558535,
+          1.5462157257776445,
+          1.6008336556228782,
+          1.5479520837816514,
+          1.5480891765346012
+        ],
+        "median_paired_speedup": 1.5456210343468455,
+        "speedup_lower_95": 1.5431320409447018
+      },
+      {
+        "config": "tuv_5_4",
+        "program": "reaper-clang",
+        "median_us": 655.0150000000001,
+        "range_us": [
+          653.95,
+          731.58
+        ],
+        "paired_ratios": [
+          1.6510565478464145,
+          1.6506307821698907,
+          1.6503938450265616,
+          1.6472890138950458,
+          1.616034387215624,
+          1.5792687380399373,
+          1.6535929744177167,
+          1.6481080256332012,
+          1.476284206785314,
+          1.6461103901061147
+        ],
+        "median_paired_speedup": 1.6476985197641234,
+        "speedup_lower_95": 1.616034387215624
+      },
+      {
+        "config": "ts1_tsmlt",
+        "program": "reaper-gcc",
+        "median_us": 557.255,
+        "range_us": [
+          556.1,
+          558.65
+        ],
+        "paired_ratios": [
+          1.9914772727272727,
+          1.9972518590365342,
+          1.988310593972426,
+          1.9847613931417316,
+          1.9862525731674572,
+          1.9849369537182977,
+          1.993420816750923,
+          1.992017259978425,
+          1.9963136126595937,
+          2.028510821888258
+        ],
+        "median_paired_speedup": 1.9917472663528488,
+        "speedup_lower_95": 1.9866237738453618
+      },
+      {
+        "config": "ts1_tsmlt",
+        "program": "reaper-clang",
+        "median_us": 525.63,
+        "range_us": [
+          525.25,
+          526.6
+        ],
+        "paired_ratios": [
+          1.8357407936054808,
+          1.8781281519401678,
+          1.8315659209900048,
+          1.8382940661515623,
+          1.8349235915760662,
+          1.8355870399209937,
+          1.8257500949487278,
+          1.8348583712214888,
+          1.8361312621064225,
+          1.8377252230826309
+        ],
+        "median_paired_speedup": 1.8356639167632371,
+        "speedup_lower_95": 1.8348583712214888
+      }
+    ],
+    "candidate_dispatch_verified": true,
+    "current_binary_hashes_verified": true,
+    "stable_hashes": true
+  },
+  "secondary": {
+    "samples": 96,
+    "minimum_sample_ms": 1320.366,
+    "minimum_paired_speedup": 0.9625,
+    "results": [
+      {
+        "family": "clang",
+        "name": "one-layer",
+        "paired_speedup": 0.9625,
+        "median_us": {
+          "reference": 5.39,
+          "candidate": 5.6
+        }
+      },
+      {
+        "family": "clang",
+        "name": "two-layer",
+        "paired_speedup": 1.1413551401869158,
+        "median_us": {
+          "reference": 9.78,
+          "candidate": 8.57
+        }
+      },
+      {
+        "family": "clang",
+        "name": "odd-level",
+        "paired_speedup": 1.4835164835164834,
+        "median_us": {
+          "reference": 44.55,
+          "candidate": 30.08
+        }
+      },
+      {
+        "family": "clang",
+        "name": "odd-layer",
+        "paired_speedup": 1.5293831957260806,
+        "median_us": {
+          "reference": 62.98,
+          "candidate": 41.07
+        }
+      },
+      {
+        "family": "clang",
+        "name": "discrete",
+        "paired_speedup": 1.0535188457008247,
+        "median_us": {
+          "reference": 143.11,
+          "candidate": 135.84
+        }
+      },
+      {
+        "family": "clang",
+        "name": "reordered",
+        "paired_speedup": 1.4964997083090257,
+        "median_us": {
+          "reference": 1077.39,
+          "candidate": 720.89
+        }
+      },
+      {
+        "family": "clang",
+        "name": "host-tuv_5_4",
+        "paired_speedup": 1.7480932665068643,
+        "median_us": {
+          "reference": 721.44,
+          "candidate": 413.01
+        }
+      },
+      {
+        "family": "clang",
+        "name": "host-ts1_tsmlt",
+        "paired_speedup": 1.9856896263711787,
+        "median_us": {
+          "reference": 713.22,
+          "candidate": 359.18
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "one-layer",
+        "paired_speedup": 1.21,
+        "median_us": {
+          "reference": 6.05,
+          "candidate": 4.96
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "two-layer",
+        "paired_speedup": 1.2353556485355648,
+        "median_us": {
+          "reference": 11.8,
+          "candidate": 9.45
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "odd-level",
+        "paired_speedup": 1.7322274881516588,
+        "median_us": {
+          "reference": 51.02,
+          "candidate": 29.45
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "odd-layer",
+        "paired_speedup": 1.812319538017324,
+        "median_us": {
+          "reference": 75.57,
+          "candidate": 41.56
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "discrete",
+        "paired_speedup": 1.086923076923077,
+        "median_us": {
+          "reference": 141.3,
+          "candidate": 130.0
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "reordered",
+        "paired_speedup": 1.4475785278634228,
+        "median_us": {
+          "reference": 1076.85,
+          "candidate": 742.73
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "host-tuv_5_4",
+        "paired_speedup": 1.522655381721809,
+        "median_us": {
+          "reference": 712.52,
+          "candidate": 467.88
+        }
+      },
+      {
+        "family": "gcc",
+        "name": "host-ts1_tsmlt",
+        "paired_speedup": 2.1608145712117377,
+        "median_us": {
+          "reference": 854.17,
+          "candidate": 395.11
+        }
+      }
+    ]
+  },
+  "tests": {
+    "gcc": 51,
+    "clang": 51,
+    "sanitize": 30,
+    "plain-gcc": 30,
+    "plain-clang": 30
+  },
+  "stress": {
+    "cases": 10000,
+    "compared": 710370,
+    "maximum_epsilon": 6.382615589088428,
+    "allocation_failures": 527
+  },
+  "extended_stress": {
+    "cases": 100000,
+    "compared": 7135407,
+    "maximum_epsilon": 9.161948531223167,
+    "allocation_failures": 5264
+  },
+  "unchanged_math": {
+    "header_sha256": "34ccd035bc2e336bb4535b3aa9f33dd2d04b89e5cff2a526a295728b02f4c7f7",
+    "source_unchanged": true,
+    "evidence": {
+      "docs/evidence/reaper/next/combined/math-bound.json": {
+        "sha256": "fc4c961328f884d8230c5992471c876bbe63ec9ce0f49c21d6f0c25ee74af5d8",
+        "result": {
+          "header_sha256": "34ccd035bc2e336bb4535b3aa9f33dd2d04b89e5cff2a526a295728b02f4c7f7",
+          "decimal_precision": 100,
+          "table_entries_verified": 64,
+          "conservative_eps": {
+            "reduction": "0.126",
+            "horner": "2.527247414175040048799009981383207640630047331999227724225842242756745287086108451530264132920446309",
+            "coefficients": "0.5054494828350077291789751821247736742278635912745270701544705478396574620357474105431753064107804155",
+            "remainder": "0.1602989765342849849484532582488957501781851357604631987227160418011969208519108291817387537672378271",
+            "table": "0.5",
+            "table_product": "0.5"
+          },
+          "sum_eps": "4.318995873544332762926438421756877065036096059034217993103028832397599669973766691255178193098464551",
+          "note": "Reduction and arithmetic derivation: docs/REAPER_MATH.md."
+        }
+      },
+      "docs/evidence/reaper/next/combined/oracle-exp-clang.json": {
+        "sha256": "0fd5dc26619aeb6184abbbe29675699975bea35e449d3eaf36cf543d7ba0731b",
+        "result": {
+          "checked": 4832736,
+          "max_eps_mpfr": 1.9049557420027894,
+          "max_eps_libm": 1.9049557420027894,
+          "worst": "0x1.6888ae5f26c2cp+7"
+        }
+      },
+      "docs/evidence/reaper/next/combined/oracle-exp-gcc.json": {
+        "sha256": "0fd5dc26619aeb6184abbbe29675699975bea35e449d3eaf36cf543d7ba0731b",
+        "result": {
+          "checked": 4832736,
+          "max_eps_mpfr": 1.9049557420027894,
+          "max_eps_libm": 1.9049557420027894,
+          "worst": "0x1.6888ae5f26c2cp+7"
+        }
+      },
+      "docs/evidence/reaper/next/combined/oracle-pow10-clang.json": {
+        "sha256": "bd6296eb95468540a8cc0aadd917595f8e7ef8d1715e133d85bac8353bfff1c3",
+        "result": {
+          "checked": 4824406,
+          "max_eps_mpfr": 1.904957483350894,
+          "max_eps_libm": 1.904957483350894,
+          "worst": "-0x1.0b253e13e76ap+5"
+        }
+      },
+      "docs/evidence/reaper/next/combined/oracle-pow10-gcc.json": {
+        "sha256": "bd6296eb95468540a8cc0aadd917595f8e7ef8d1715e133d85bac8353bfff1c3",
+        "result": {
+          "checked": 4824406,
+          "max_eps_mpfr": 1.904957483350894,
+          "max_eps_libm": 1.904957483350894,
+          "worst": "-0x1.0b253e13e76ap+5"
+        }
+      }
+    }
+  },
+  "startup_medians_ms": [
+    {
+      "config": "tuv_5_4",
+      "program": "reaper-gcc",
+      "setup": 18.418,
+      "selection": 14.637,
+      "total": 33.0595
+    },
+    {
+      "config": "tuv_5_4",
+      "program": "reaper-clang",
+      "setup": 19.16,
+      "selection": 10.269,
+      "total": 29.3985
+    },
+    {
+      "config": "ts1_tsmlt",
+      "program": "reaper-gcc",
+      "setup": 18.063499999999998,
+      "selection": 6.534,
+      "total": 24.5715
+    },
+    {
+      "config": "ts1_tsmlt",
+      "program": "reaper-clang",
+      "setup": 17.6115,
+      "selection": 4.6555,
+      "total": 22.238500000000002
+    }
+  ],
+  "cross_architecture_execution_verified": false
+}

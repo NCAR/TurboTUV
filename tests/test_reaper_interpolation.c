@@ -35,7 +35,7 @@ int main(void) {
     enum { MAX_RAW = 129, MAX_BINS = 17, NZ = 9 };
     size_t compared = 0;
     double worst = 0;
-    for (size_t trial = 0; trial < 1000; ++trial) {
+    for (size_t trial = 0; trial < 10000; ++trial) {
         size_t nr = 2 + (size_t)(rnd() * (MAX_RAW - 2)), nw = 1 + (size_t)(rnd() * (MAX_BINS - 1));
         double x[MAX_RAW], y[MAX_RAW] = {0}, a[MAX_RAW], b[MAX_RAW], sigma[MAX_RAW];
         x[0] = 100;
@@ -139,7 +139,7 @@ int main(void) {
     }
     if (!allocation_failures)
         return 7;
-    printf("cases=1000 compared=%zu maximum_epsilon=%.17g allocation_failures=%zu\n", compared,
+    printf("cases=10000 compared=%zu maximum_epsilon=%.17g allocation_failures=%zu\n", compared,
            worst, allocation_failures);
     return 0;
 }

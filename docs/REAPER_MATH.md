@@ -116,11 +116,23 @@ sum because both endpoint weights are at least `h/2`. This conditioning check
 addresses amplification by the existing endpoint subtraction; it does not
 change the uniform exp/pow10 bound above or replace the spectrum/model gates.
 
-The added stress test uses 1,000 deterministic spectra with narrow partial
+The stress test uses 10,000 deterministic spectra with narrow partial
 bins, large contrasts, signed Taylor data, ordinary and extreme exponentials,
 and injected optional-allocation failures. It independently reconstructs the
 generic output and verifies that the preserved prepared path is identical.
-The selected implementation compares 69,264 values with a maximum difference
-of 12.910 epsilon and exercises 53 optional-metadata allocation failures.
+The selected implementation compares 710,370 values with a maximum difference
+of 6.383 epsilon and exercises 527 optional-metadata allocation failures.
 These are measured regression-test results, not a uniform bound on every
 possible interpolated spectrum.
+
+The check also applies when a bin combines ordinary overlaps with zero-valued
+padding outside the guarded geometry. Zero padding contributes exactly zero;
+the ordinary segments still use their positive weights and conditioning sum.
+Any nonzero unguarded segment forces ordered replay. Previously, one invalid
+geometry flag could send the entire bin through ordered interpolation without
+checking cancellation in its ordinary segments. Extending the stress test
+exposed a 33.307-epsilon failure at trial 1338. A separate 100,000-spectrum
+screen of the corrected implementation compares 7,135,407 values, with maximum
+9.162 epsilon and 5,264 injected allocation failures. Its evidence and the
+unselected larger-table experiments that exposed the issue are retained in
+[`evidence/reaper/math-table-followup`](evidence/reaper/math-table-followup/).

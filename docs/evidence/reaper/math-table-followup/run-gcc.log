@@ -1,0 +1,5 @@
+gcc table-256-degree-4 pass True
+gcc table-512-degree-4 pass True
+gcc table-1024-degree-4 pass False
+gcc table-2048-degree-3 pass False
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 696.83}, {'config': 'tuv_5_4', 'variant': 'table-256-degree-4', 'median_us': 689.38}, {'config': 'tuv_5_4', 'variant': 'table-512-degree-4', 'median_us': 688.4}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 551.74}, {'config': 'ts1_tsmlt', 'variant': 'table-256-degree-4', 'median_us': 549.46}, {'config': 'ts1_tsmlt', 'variant': 'table-512-degree-4', 'median_us': 549.31}]

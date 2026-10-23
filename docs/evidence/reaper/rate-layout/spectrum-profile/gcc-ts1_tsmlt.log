@@ -1,0 +1,37 @@
+config=examples/ts1_tsmlt.json columns=900 levels=121 wavelengths=102 photolysis=73 heating=4 dose=0 execution=reaper
+elapsed_ms=496.106 per_column_us=551.23 hash=25de28c39075ff28
+reaper_selection=attached reaper_capabilities=3 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=478976
+prepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=900 reaper_declines=0 generated_calls=1800 generated_declines=0 profiling=0 setup_ms=17.831 preparation_ms=6.380
+spectrum role=0 kind=0 calls=28832 values=0 total_us=391.006
+spectrum role=0 kind=2 calls=901 values=2289441 total_us=2453.566
+spectrum role=0 kind=4 calls=901 values=11120142 total_us=1433.611
+spectrum role=0 kind=5 calls=901 values=5233008 total_us=5728.483
+spectrum role=0 kind=8 calls=901 values=11120142 total_us=23598.909
+spectrum role=0 kind=9 calls=901 values=11120142 total_us=1669.168
+spectrum role=0 kind=10 calls=901 values=2398462 total_us=500.441
+spectrum role=0 kind=12 calls=901 values=5342029 total_us=5912.781
+spectrum role=0 kind=13 calls=901 values=0 total_us=14.305
+spectrum role=0 kind=14 calls=901 values=3379651 total_us=3434.181
+spectrum role=0 kind=18 calls=901 values=5560071 total_us=1269.102
+spectrum role=0 kind=20 calls=1802 values=9988486 total_us=4927.158
+spectrum role=0 kind=21 calls=901 values=11120142 total_us=7205.963
+spectrum role=0 kind=22 calls=901 values=0 total_us=7.629
+spectrum role=0 kind=25 calls=901 values=1635315 total_us=1025.438
+spectrum role=1 kind=0 calls=14416 values=0 total_us=189.543
+spectrum role=1 kind=1 calls=1802 values=436084 total_us=537.157
+spectrum role=1 kind=2 calls=901 values=654126 total_us=255.585
+spectrum role=1 kind=3 calls=901 values=654126 total_us=825.882
+spectrum role=1 kind=4 calls=901 values=654126 total_us=826.597
+spectrum role=1 kind=7 calls=901 values=763147 total_us=154.734
+spectrum role=1 kind=8 calls=901 values=2071399 total_us=285.149
+spectrum role=1 kind=11 calls=901 values=11120142 total_us=1441.717
+spectrum role=1 kind=12 calls=901 values=1417273 total_us=12888.193
+spectrum role=1 kind=14 calls=901 values=1090210 total_us=166.655
+spectrum role=1 kind=17 calls=901 values=0 total_us=8.583
+spectrum role=1 kind=18 calls=901 values=0 total_us=10.014
+spectrum role=1 kind=19 calls=901 values=327063 total_us=146.627
+spectrum role=1 kind=20 calls=1802 values=0 total_us=19.789
+spectrum role=2 kind=0 calls=11713 values=39247560 total_us=92966.557
+spectrum role=2 kind=1 calls=1802 values=11120142 total_us=26141.644
+spectrum role=2 kind=2 calls=901 values=2180420 total_us=1807.451
+spectrum role=2 kind=3 calls=901 values=4142798 total_us=5961.895

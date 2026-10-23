@@ -1650,14 +1650,34 @@ tt_status tt_spectrum_reaper_evaluate(const tt_spectrum_plan *p, size_t nz,
                                              (a[z] * segment->weight_a + b[z] * segment->weight_b);
                             }
                         }
+                    } else if (positive) {
+                        /* A bin may mix ordinary overlaps with zero-valued
+                         * padding outside the guarded geometry. Keep checking
+                         * the ordinary overlaps; a zero padding segment must
+                         * not bypass their conditioning test. */
+                        double absolute[TILE] = {0};
+                        for (size_t j = p->overlap_offsets[bin]; j < p->overlap_offsets[bin + 1];
+                             ++j) {
+                            const overlap_segment *segment = p->overlaps + j;
+                            const double *a = lanes + segment->point * TILE, *b = a + TILE;
+                            if (segment->weight_a < 0) {
+                                for (size_t z = 0; z < active; ++z)
+                                    sensitive |= (a[z] != 0) | (b[z] != 0);
+                            } else {
+                                for (size_t z = 0; z < TILE; ++z) {
+                                    sum[z] = sum[z] +
+                                             (a[z] * segment->weight_a + b[z] * segment->weight_b);
+                                    absolute[z] = absolute[z] + segment->half_width * (a[z] + b[z]);
+                                }
+                            }
+                        }
+                        for (size_t z = 0; z < active; ++z)
+                            sensitive |= absolute[z] > 4 * sum[z];
                     } else
                         for (size_t j = p->overlap_offsets[bin]; j < p->overlap_offsets[bin + 1];
                              ++j) {
                             const overlap_segment *segment = p->overlaps + j;
                             const double *a = lanes + segment->point * TILE, *b = a + TILE;
-                            if (positive && segment->weight_a < 0)
-                                for (size_t z = 0; z < active; ++z)
-                                    sensitive |= (a[z] != 0) | (b[z] != 0);
                             for (size_t z = 0; z < TILE; ++z) {
                                 double slope = (b[z] - a[z]) / segment->dx;
                                 double b1 = a[z] + slope * segment->left;

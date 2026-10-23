@@ -1,0 +1,33 @@
+UpdateCTestConfiguration  from :/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-selected-gcc/DartConfiguration.tcl
+Parse Config file:/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-selected-gcc/DartConfiguration.tcl
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-selected-gcc
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 19
+    Start 19: reaper_bounded_math
+
+19: Test command: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-selected-gcc/tests/test_reaper_math
+19: Working Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-selected-gcc/tests
+19: Test timeout computed to be: 1500
+19: REAPER bounded math: tails, in-place, exceptions, boundaries and rounding modes pass
+1/2 Test #19: reaper_bounded_math .................   Passed    0.00 sec
+test 20
+    Start 20: reaper_interpolation_conditioning
+
+20: Test command: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-selected-gcc/tests/test_reaper_interpolation
+20: Working Directory: /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3d-selected-gcc/tests
+20: Test timeout computed to be: 1500
+20: cases=10000 compared=710370 maximum_epsilon=6.3826155890884282 allocation_failures=527
+2/2 Test #20: reaper_interpolation_conditioning ...   Passed    0.26 sec
+
+The following tests passed:
+	reaper_bounded_math
+	reaper_interpolation_conditioning
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.26 sec

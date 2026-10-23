@@ -1,0 +1,21 @@
+build/reaper/rate-layout-prototype/model_plan.c:548:32: warning: use of bitwise '&' with boolean operands [-Wbitwise-instead-of-logical]
+  548 |                     flux_ok &= (isfinite(actinic[i]) != 0) & (isfinite(irradiance[i]) != 0);
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            &&
+build/reaper/rate-layout-prototype/model_plan.c:548:32: note: cast one or both operands to int to silence this warning
+1 warning generated.
+clang small-8 pass True compile 3.6020197500001814
+clang small-16 pass True compile 2.808905457997753
+clang small-16-acc4 pass True compile 2.7557563330010453
+clang align-4 pass True compile 2.3689629580003384
+clang group-4 pass True compile 2.188889790999383
+clang group-8 pass True compile 1.7985755419977068
+clang group-2 pass True compile 2.1519248750009865
+clang group-4-small pass True compile 2.5825741660009953
+clang timed 0 tuv_5_4
+clang timed 0 ts1_tsmlt
+clang timed 1 tuv_5_4
+clang timed 1 ts1_tsmlt
+clang timed 2 tuv_5_4
+clang timed 2 ts1_tsmlt
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 638.35, 'range_us': [630.95, 641.02]}, {'config': 'tuv_5_4', 'variant': 'small-8', 'median_us': 652.26, 'range_us': [648.69, 658.02]}, {'config': 'tuv_5_4', 'variant': 'small-16', 'median_us': 640.5, 'range_us': [637.6, 645.01]}, {'config': 'tuv_5_4', 'variant': 'small-16-acc4', 'median_us': 638.32, 'range_us': [633.94, 642.06]}, {'config': 'tuv_5_4', 'variant': 'align-4', 'median_us': 635.07, 'range_us': [631.85, 640.39]}, {'config': 'tuv_5_4', 'variant': 'group-4', 'median_us': 636.65, 'range_us': [632.63, 649.96]}, {'config': 'tuv_5_4', 'variant': 'group-8', 'median_us': 662.41, 'range_us': [656.81, 674.98]}, {'config': 'tuv_5_4', 'variant': 'group-2', 'median_us': 636.33, 'range_us': [632.44, 675.4]}, {'config': 'tuv_5_4', 'variant': 'group-4-small', 'median_us': 631.39, 'range_us': [628.45, 637.32]}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 514.29, 'range_us': [509.61, 516.44]}, {'config': 'ts1_tsmlt', 'variant': 'small-8', 'median_us': 516.17, 'range_us': [512.46, 518.75]}, {'config': 'ts1_tsmlt', 'variant': 'small-16', 'median_us': 515.27, 'range_us': [510.53, 517.69]}, {'config': 'ts1_tsmlt', 'variant': 'small-16-acc4', 'median_us': 511.08, 'range_us': [508.19, 516.23]}, {'config': 'ts1_tsmlt', 'variant': 'align-4', 'median_us': 510.81, 'range_us': [507.26, 513.7]}, {'config': 'ts1_tsmlt', 'variant': 'group-4', 'median_us': 509.89, 'range_us': [508.29, 511.59]}, {'config': 'ts1_tsmlt', 'variant': 'group-8', 'median_us': 526.18, 'range_us': [522.86, 543.77]}, {'config': 'ts1_tsmlt', 'variant': 'group-2', 'median_us': 510.4, 'range_us': [508.89, 512.55]}, {'config': 'ts1_tsmlt', 'variant': 'group-4-small', 'median_us': 508.39, 'range_us': [506.89, 511.13]}]

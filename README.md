@@ -108,8 +108,8 @@ Versioned model/recipe identities, observable fallback reasons, and installed
 static-library checks cover artifact attachment and deployment. The latest
 spectral conditioning and loop improvements pass 51 C/Fortran tests per
 compiler and 30 sanitizer tests. Fresh paired gains over frozen prepared
-`main` are 1.545/1.650x for TUV and 1.995/1.831x for TS1 (GCC/Clang);
-all four lower confidence bounds remain below the additional 2x target.
+`main` are 1.546/1.648x for TUV and 1.992/1.836x for TS1 (GCC/Clang);
+the four-case 2x target remains unmet.
 Fresh controls, validation, timings and the
 remaining work toward a further 2x are recorded in
 [docs/REAPER_RESULTS.md](docs/REAPER_RESULTS.md).
