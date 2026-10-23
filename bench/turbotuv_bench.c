@@ -16,6 +16,7 @@
  * the rates. bench/tuvx_bench.F90 runs the same sweep through TUV-x itself. */
 #define _POSIX_C_SOURCE 200809L
 #include "turbotuv_model.h"
+#include "turbotuv_diagnostics.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -75,7 +76,7 @@ static tt_status scale_profile(tt_model *m, profile_state *s, double factor) {
 }
 static int usage(void) {
     fputs("Usage: turbotuv_bench CONFIG [--columns N] [--repeat R] [--seed S] [--output FILE]\n"
-          "                      [--generic] [--sweep]\n",
+          "                      [--generic] [--sweep] [--detail]\n",
           stderr);
     return 2;
 }
@@ -83,7 +84,7 @@ int main(int argc, char **argv) {
     const char *path = NULL, *output = NULL;
     long columns = 1000, repeat = 1;
     unsigned long long seed = 2026;
-    int generic = 0, sweep = 0;
+    int generic = 0, sweep = 0, detail = 0;
     for (int i = 1; i < argc; ++i) {
         if (!strcmp(argv[i], "--columns") && i + 1 < argc)
             columns = strtol(argv[++i], NULL, 10);
@@ -97,6 +98,8 @@ int main(int argc, char **argv) {
             generic = 1;
         else if (!strcmp(argv[i], "--sweep"))
             sweep = 1;
+        else if (!strcmp(argv[i], "--detail"))
+            detail = 1;
         else if (argv[i][0] == '-' || path)
             return usage();
         else
@@ -107,12 +110,14 @@ int main(int argc, char **argv) {
     tt_config *config = NULL;
     tt_model *model = NULL;
     tt_error error = {0};
+    double setup_start = seconds();
     if (tt_config_read_file(path, &config, &error) ||
         tt_model_create(tt_config_root(config), NULL, &model, &error)) {
         fprintf(stderr, "turbotuv_bench: %s\n", error.message);
         return 1;
     }
     tt_config_destroy(config);
+    double setup_seconds = seconds() - setup_start;
     tt_status execution =
         tt_model_set_execution(model, generic ? TT_EXECUTION_GENERIC : TT_EXECUTION_PREPARED);
     tt_model_dimensions shape = tt_model_shape(model);
@@ -150,7 +155,7 @@ int main(int argc, char **argv) {
         }
     }
     uint64_t digest = 14695981039346656037u;
-    double elapsed = 0;
+    double elapsed = 0, run_elapsed = 0, update_elapsed = 0;
     /* Column 0 runs once untimed first, so the first timed column is not cold. */
     for (long r = 0; r < repeat; ++r)
         for (long c = -(r == 0); c < columns; ++c) {
@@ -170,14 +175,22 @@ int main(int argc, char **argv) {
                 if (!status && o3.edges)
                     status = scale_profile(model, &o3, v[6]);
             }
+            double run_start = detail ? seconds() : 0;
             if (!status)
                 status = tt_model_run(model, v[0], v[1], &result, &error);
             if (status) {
                 fprintf(stderr, "turbotuv_bench: column %ld: %s\n", c, tt_status_string(status));
                 return 1;
             }
-            if (c >= 0)
-                elapsed += seconds() - start;
+            if (c >= 0) {
+                double end = seconds();
+                elapsed += end - start;
+                if (detail) {
+                    update_elapsed += run_start - start;
+                    run_elapsed += end - run_start;
+                }
+            } else
+                tt_model_reset_diagnostics(model);
             if (c < 0 || r)
                 continue;
             const double *fields[] = {result->radiation.direct_flux,
@@ -224,6 +237,21 @@ int main(int argc, char **argv) {
                        : "prepared");
     printf("elapsed_ms=%.3f per_column_us=%.2f hash=%016llx\n", 1e3 * elapsed,
            1e6 * elapsed / (double)total, (unsigned long long)digest);
+    tt_diagnostics diagnostics;
+    tt_model_diagnostics(model, &diagnostics);
+    printf("prepared_calls=%zu generic_calls=%zu prepared_declines=%zu reaper_calls=%zu "
+           "reaper_declines=%zu generated_calls=%zu profiling=%d setup_ms=%.3f\n",
+           diagnostics.prepared_calls, diagnostics.generic_calls, diagnostics.prepared_declines,
+           diagnostics.reaper_calls, diagnostics.reaper_declines, diagnostics.generated_calls,
+           diagnostics.profiling, 1e3 * setup_seconds);
+    if (detail)
+        printf("run_only_us=%.3f updates_us=%.3f\n", 1e6 * run_elapsed / (double)total,
+               1e6 * update_elapsed / (double)total);
+    if (diagnostics.profiling)
+        for (tt_stage stage = 0; stage < TT_STAGE_COUNT; ++stage)
+            printf("stage_%s_us=%.3f stage_%s_calls=%zu\n", tt_stage_name(stage),
+                   1e6 * diagnostics.seconds[stage] / (double)total, tt_stage_name(stage),
+                   diagnostics.calls[stage]);
     tt_profile_destroy(&air.original);
     tt_profile_destroy(&o2.original);
     tt_profile_destroy(&o3.original);

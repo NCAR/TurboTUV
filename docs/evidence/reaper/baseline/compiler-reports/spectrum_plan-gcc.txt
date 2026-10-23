@@ -1,0 +1,589 @@
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _5 = memcmp (a_8(D), b_9(D), _4);
+src/spectrum_plan.c:973:25: note: ***** Analysis failed with vector mode V2DI
+src/spectrum_plan.c:973:25: note: ***** The result for vector mode V16QI would be the same
+src/spectrum_plan.c:973:25: note: ***** The result for vector mode V8QI would be the same
+src/spectrum_plan.c:973:25: note: ***** The result for vector mode V4HI would be the same
+src/spectrum_plan.c:973:25: note: ***** Re-trying analysis with vector mode V2SI
+src/spectrum_plan.c:973:25: note: ***** Analysis failed with vector mode V2SI
+src/spectrum_plan.c:703:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:703:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/spectrum_plan.c:723:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:723:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:725:38: missed: couldn't vectorize loop
+src/spectrum_plan.c:725:38: missed: may need non-SLP handling
+src/spectrum_plan.c:721:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:735:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:735:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:737:38: missed: couldn't vectorize loop
+src/spectrum_plan.c:737:38: missed: may need non-SLP handling
+src/spectrum_plan.c:733:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:733:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:53:12: missed: couldn't vectorize loop
+src/spectrum_plan.c:53:12: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:747:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:747:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:752:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:753:25: missed: statement clobbers memory: _87 = pow (1.0e+1, _85);
+src/spectrum_plan.c:700:18: note: vectorized 2 loops in function.
+src/spectrum_plan.c:753:25: missed: statement clobbers memory: _87 = pow (1.0e+1, _85);
+src/spectrum_plan.c:746:28: missed: statement clobbers memory: _61 = exp (_60);
+src/spectrum_plan.c:727:64: missed: statement clobbers memory: iftmp.13_138 = exp (value_197);
+src/spectrum_plan.c:727:47: missed: statement clobbers memory: iftmp.13_140 = pow (1.0e+1, value_197);
+src/spectrum_plan.c:700:18: note: ***** Analysis failed with vector mode V2DI
+src/spectrum_plan.c:700:18: note: ***** The result for vector mode V16QI would be the same
+src/spectrum_plan.c:700:18: note: ***** Re-trying analysis with vector mode V8QI
+src/spectrum_plan.c:700:18: note: ***** Analysis failed with vector mode V8QI
+src/spectrum_plan.c:700:18: note: ***** The result for vector mode V4HI would be the same
+src/spectrum_plan.c:700:18: note: ***** Re-trying analysis with vector mode V2SI
+src/spectrum_plan.c:700:18: note: ***** Analysis failed with vector mode V2SI
+src/spectrum_plan.c:840:5: missed: statement clobbers memory: free (_5);
+src/spectrum_plan.c:841:5: missed: statement clobbers memory: free (_6);
+src/spectrum_plan.c:842:5: missed: statement clobbers memory: free (_7);
+src/spectrum_plan.c:843:5: missed: statement clobbers memory: free (_8);
+src/spectrum_plan.c:844:5: missed: statement clobbers memory: free (_9);
+src/spectrum_plan.c:845:5: missed: statement clobbers memory: free (p_1(D));
+src/spectrum_plan.c:845:5: note: ***** Analysis failed with vector mode V2DI
+src/spectrum_plan.c:845:5: note: ***** Skipping vector mode V16QI, which would repeat the analysis for V2DI
+src/spectrum_plan.c:920:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:902:42: missed: couldn't vectorize loop
+src/spectrum_plan.c:902:42: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/spectrum_plan.c:911:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:911:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:912:51: missed: couldn't vectorize loop
+src/spectrum_plan.c:912:51: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:100:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:100:30: missed: may need non-SLP handling
+src/spectrum_plan.c:100:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:100:30: missed: may need non-SLP handling
+src/spectrum_plan.c:168:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:168:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:53:12: missed: couldn't vectorize loop
+src/spectrum_plan.c:53:12: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:186:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:186:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:75:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:75:26: missed: may need non-SLP handling
+src/spectrum_plan.c:75:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:75:26: missed: may need non-SLP handling
+src/spectrum_plan.c:448:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:448:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:75:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:75:26: missed: may need non-SLP handling
+src/spectrum_plan.c:811:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:811:26: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:812:49: missed: couldn't vectorize loop
+src/spectrum_plan.c:812:49: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:801:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:804:21: missed: statement clobbers memory: _224 = pow (_214, _219);
+src/spectrum_plan.c:802:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:804:21: missed: statement clobbers memory: _224 = pow (_214, _219);
+src/spectrum_plan.c:889:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:889:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:860:11: note: vectorized 1 loops in function.
+src/spectrum_plan.c:863:27: missed: statement clobbers memory: p_117 = calloc (1, 144);
+src/spectrum_plan.c:876:18: missed: statement clobbers memory: status_127 = tt_cross_section_validate (_11, _9, _10, _12, _13);
+src/spectrum_plan.c:880:25: missed: statement clobbers memory: reference_132 = malloc (_18);
+src/spectrum_plan.c:882:19: missed: statement clobbers memory: _20 = malloc (_19);
+src/spectrum_plan.c:883:15: missed: statement clobbers memory: _24 = malloc (_23);
+src/spectrum_plan.c:884:16: missed: statement clobbers memory: _25 = malloc (_19);
+src/spectrum_plan.c:890:28: missed: statement clobbers memory: column_160 = tt_spectrum_calculate (s_113(D), 12, _26, _27, _30);
+src/spectrum_plan.c:785:12: missed: statement clobbers memory: _172 = malloc (_171);
+src/spectrum_plan.c:792:5: missed: statement clobbers memory: __builtin_memcpy (_178, _175, _179);
+src/spectrum_plan.c:796:5: missed: statement clobbers memory: __builtin_memcpy (_197, _198, _179);
+src/spectrum_plan.c:798:21: missed: statement clobbers memory: _205 = malloc (_204);
+src/spectrum_plan.c:804:21: missed: statement clobbers memory: _224 = pow (_214, _219);
+src/spectrum_plan.c:502:25: missed: statement clobbers memory: _530 = exp (_529);
+src/spectrum_plan.c:486:16: missed: statement clobbers memory: _518 = exp (_517);
+src/spectrum_plan.c:456:16: missed: statement clobbers memory: _471 = exp (_470);
+src/spectrum_plan.c:457:16: missed: statement clobbers memory: _476 = exp (_475);
+src/spectrum_plan.c:458:16: missed: statement clobbers memory: _481 = exp (_480);
+src/spectrum_plan.c:198:29: missed: statement clobbers memory: _404 = tt_air_refractive_index (1.85e+2, 2.45e+19);
+src/spectrum_plan.c:199:29: missed: statement clobbers memory: _406 = tt_air_refractive_index (1.95e+2, 2.45e+19);
+src/spectrum_plan.c:200:29: missed: statement clobbers memory: _408 = tt_air_refractive_index (3.45e+2, 2.45e+19);
+src/spectrum_plan.c:177:16: missed: statement clobbers memory: _378 = exp (_377);
+src/spectrum_plan.c:145:16: missed: statement clobbers memory: _321 = log (_320);
+src/spectrum_plan.c:146:16: missed: statement clobbers memory: _324 = log (_323);
+src/spectrum_plan.c:913:21: missed: statement clobbers memory: _62 = memcmp (_61, _54, 8);
+src/spectrum_plan.c:923:5: missed: statement clobbers memory: free (reference_132);
+src/spectrum_plan.c:840:5: missed: statement clobbers memory: free (_551);
+src/spectrum_plan.c:841:5: missed: statement clobbers memory: free (_552);
+src/spectrum_plan.c:842:5: missed: statement clobbers memory: free (_553);
+src/spectrum_plan.c:843:5: missed: statement clobbers memory: free (_554);
+src/spectrum_plan.c:844:5: missed: statement clobbers memory: free (_555);
+src/spectrum_plan.c:845:5: missed: statement clobbers memory: free (p_117);
+src/spectrum_plan.c:923:5: missed: statement clobbers memory: free (reference_132);
+src/spectrum_plan.c:923:5: missed: statement clobbers memory: free (reference_132);
+src/spectrum_plan.c:122:14: note: ***** Analysis succeeded with vector mode V4SI
+src/spectrum_plan.c:122:14: note: SLPing BB part
+src/spectrum_plan.c:867:11: note: Costing subgraph:
+src/spectrum_plan.c:867:11: note: node 0x7a44a1c008 (max_nunits=2, refcnt=1) vector(2) int
+src/spectrum_plan.c:867:11: note: op template: p_117->cs = iftmp.0_95;
+src/spectrum_plan.c:867:11: note: 	stmt 0 p_117->cs = iftmp.0_95;
+src/spectrum_plan.c:867:11: note: 	stmt 1 p_117->qy = _7;
+src/spectrum_plan.c:867:11: note: 	children 0x7a44a1c128
+src/spectrum_plan.c:867:11: note: node (external) 0x7a44a1c128 (max_nunits=1, refcnt=1) vector(2) int
+src/spectrum_plan.c:867:11: note: 	{ iftmp.0_95, _7 }
+src/spectrum_plan.c:867:11: note: Cost model analysis:
+src/spectrum_plan.c:867:11: note: Cost model analysis for part in loop 0:
+  Vector cost: 6
+  Scalar cost: 2
+src/spectrum_plan.c:867:11: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:795:37: note: Costing subgraph:
+src/spectrum_plan.c:795:37: note: node 0x7a44a1c2d8 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:795:37: note: op template: *_196 = 0.0;
+src/spectrum_plan.c:795:37: note: 	stmt 0 *_196 = 0.0;
+src/spectrum_plan.c:795:37: note: 	stmt 1 *_195 = 0.0;
+src/spectrum_plan.c:795:37: note: 	children 0x7a44a1c368
+src/spectrum_plan.c:795:37: note: node (constant) 0x7a44a1c368 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:795:37: note: 	{ 0.0, 0.0 }
+src/spectrum_plan.c:795:37: note: Cost model analysis:
+src/spectrum_plan.c:795:37: note: Cost model analysis for part in loop 0:
+  Vector cost: 2
+  Scalar cost: 2
+src/spectrum_plan.c:819:22: note: Costing subgraph:
+src/spectrum_plan.c:819:22: note: node 0x7a44a1c488 (max_nunits=2, refcnt=1) vector(2) long unsigned int
+src/spectrum_plan.c:819:22: note: op template: p_117->first_bin = 0;
+src/spectrum_plan.c:819:22: note: 	stmt 0 p_117->first_bin = 0;
+src/spectrum_plan.c:819:22: note: 	stmt 1 p_117->end_bin = 0;
+src/spectrum_plan.c:819:22: note: 	children 0x7a44a1c518
+src/spectrum_plan.c:819:22: note: node (constant) 0x7a44a1c518 (max_nunits=1, refcnt=1) vector(2) long unsigned int
+src/spectrum_plan.c:819:22: note: 	{ 0, 0 }
+src/spectrum_plan.c:819:22: note: Cost model analysis:
+src/spectrum_plan.c:819:22: note: Cost model analysis for part in loop 0:
+  Vector cost: 2
+  Scalar cost: 2
+src/spectrum_plan.c:491:14: note: Costing subgraph:
+src/spectrum_plan.c:491:14: note: node 0x7a44a1c5a8 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:491:14: note: op template: *c_142 = _519;
+src/spectrum_plan.c:491:14: note: 	stmt 0 *c_142 = _519;
+src/spectrum_plan.c:491:14: note: 	stmt 1 MEM[(double *)c_142 + 8B] = _520;
+src/spectrum_plan.c:491:14: note: 	stmt 2 MEM[(double *)c_142 + 16B] = _521;
+src/spectrum_plan.c:491:14: note: 	stmt 3 MEM[(double *)c_142 + 24B] = _522;
+src/spectrum_plan.c:491:14: note: 	children 0x7a44a1c6c8
+src/spectrum_plan.c:491:14: note: node (external) 0x7a44a1c6c8 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:491:14: note: 	{ _519, _520, _521, _522 }
+src/spectrum_plan.c:491:14: note: Cost model analysis:
+src/spectrum_plan.c:491:14: note: Cost model analysis for part in loop 2:
+  Vector cost: 12
+  Scalar cost: 4
+src/spectrum_plan.c:491:14: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:475:14: note: Costing subgraph:
+src/spectrum_plan.c:475:14: note: node 0x7a44a1c758 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:475:14: note: op template: *c_142 = prephitmp_987;
+src/spectrum_plan.c:475:14: note: 	stmt 0 *c_142 = prephitmp_987;
+src/spectrum_plan.c:475:14: note: 	stmt 1 MEM[(double *)c_142 + 8B] = q_507;
+src/spectrum_plan.c:475:14: note: 	children 0x7a44a1c998
+src/spectrum_plan.c:475:14: note: node (external) 0x7a44a1c998 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:475:14: note: 	{ prephitmp_987, q_507 }
+src/spectrum_plan.c:475:14: note: Cost model analysis:
+src/spectrum_plan.c:475:14: note: Cost model analysis for part in loop 2:
+  Vector cost: 6
+  Scalar cost: 2
+src/spectrum_plan.c:475:14: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:468:14: note: Costing subgraph:
+src/spectrum_plan.c:468:14: note: node 0x7a44a1ca28 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:468:14: note: op template: *c_142 = _494;
+src/spectrum_plan.c:468:14: note: 	stmt 0 *c_142 = _494;
+src/spectrum_plan.c:468:14: note: 	stmt 1 MEM[(double *)c_142 + 8B] = _496;
+src/spectrum_plan.c:468:14: note: 	children 0x7a44a1cb48
+src/spectrum_plan.c:468:14: note: node (external) 0x7a44a1cb48 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:468:14: note: 	{ _494, _496 }
+src/spectrum_plan.c:468:14: note: Cost model analysis:
+src/spectrum_plan.c:468:14: note: Cost model analysis for part in loop 2:
+  Vector cost: 6
+  Scalar cost: 2
+src/spectrum_plan.c:468:14: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:151:14: note: Costing subgraph:
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d058 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: *c_142 = _339;
+src/spectrum_plan.c:151:14: note: 	stmt 0 *c_142 = _339;
+src/spectrum_plan.c:151:14: note: 	stmt 1 MEM[(double *)c_142 + 8B] = _347;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d0e8
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d0e8 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: _339 = _338 + 6.4761e+4;
+src/spectrum_plan.c:151:14: note: 	stmt 0 _339 = _338 + 6.4761e+4;
+src/spectrum_plan.c:151:14: note: 	stmt 1 _347 = _346 + 6.8123000000000001818989403545856475830078125e+3;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d178 0x7a44a1d9e8
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d178 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: _338 = _337 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	stmt 0 _338 = _337 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	stmt 1 _346 = _345 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d208 0x7a44a1d958
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d208 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: _337 = _336 - 9.217097199999999475039658136665821075439453125e+2;
+src/spectrum_plan.c:151:14: note: 	stmt 0 _337 = _336 - 9.217097199999999475039658136665821075439453125e+2;
+src/spectrum_plan.c:151:14: note: 	stmt 1 _345 = _344 - 5.13509999999999990905052982270717620849609375e+1;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d298 0x7a44a1d8c8
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d298 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: _336 = _335 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	stmt 0 _336 = _335 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	stmt 1 _344 = _343 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d328 0x7a44a1d838
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d328 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: _335 = _334 + 4.53564900000000026381030693300999701023101806640625e+0;
+src/spectrum_plan.c:151:14: note: 	stmt 0 _335 = _334 + 4.53564900000000026381030693300999701023101806640625e+0;
+src/spectrum_plan.c:151:14: note: 	stmt 1 _343 = _342 + 1.1522000000000000297095681389691890217363834381103515625e-1;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d3b8 0x7a44a1d7a8
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d3b8 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: _334 = _333 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	stmt 0 _334 = _333 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	stmt 1 _342 = _341 * pretmp_1254;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d448 0x7a44a1d718
+src/spectrum_plan.c:151:14: note: node 0x7a44a1d448 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: op template: _333 = _332 - 4.45890159999999969447914693887469184119254350662231445312e-3;
+src/spectrum_plan.c:151:14: note: 	stmt 0 _333 = _332 - 4.45890159999999969447914693887469184119254350662231445312e-3;
+src/spectrum_plan.c:151:14: note: 	stmt 1 _341 = _340 - 3.0493000000000000952651152408279244809818919748067855835e-5;
+src/spectrum_plan.c:151:14: note: 	children 0x7a44a1d688 0x7a44a1d5f8
+src/spectrum_plan.c:151:14: note: node (external) 0x7a44a1d688 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ _332, _340 }
+src/spectrum_plan.c:151:14: note: node (constant) 0x7a44a1d5f8 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ 4.45890159999999969447914693887469184119254350662231445312e-3, 3.0493000000000000952651152408279244809818919748067855835e-5 }
+src/spectrum_plan.c:151:14: note: node (external) 0x7a44a1d718 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ pretmp_1254, pretmp_1254 }
+src/spectrum_plan.c:151:14: note: node (constant) 0x7a44a1d7a8 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ 4.53564900000000026381030693300999701023101806640625e+0, 1.1522000000000000297095681389691890217363834381103515625e-1 }
+src/spectrum_plan.c:151:14: note: node (external) 0x7a44a1d838 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ pretmp_1254, pretmp_1254 }
+src/spectrum_plan.c:151:14: note: node (constant) 0x7a44a1d8c8 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ 9.217097199999999475039658136665821075439453125e+2, 5.13509999999999990905052982270717620849609375e+1 }
+src/spectrum_plan.c:151:14: note: node (external) 0x7a44a1d958 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ pretmp_1254, pretmp_1254 }
+src/spectrum_plan.c:151:14: note: node (constant) 0x7a44a1d9e8 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:151:14: note: 	{ 6.4761e+4, 6.8123000000000001818989403545856475830078125e+3 }
+src/spectrum_plan.c:151:14: note: Cost model analysis:
+src/spectrum_plan.c:151:14: note: Cost model analysis for part in loop 2:
+  Vector cost: 17
+  Scalar cost: 8
+src/spectrum_plan.c:151:14: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:140:14: note: Costing subgraph:
+src/spectrum_plan.c:140:14: note: node 0x7a44a1db08 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:140:14: note: op template: *c_142 = _317;
+src/spectrum_plan.c:140:14: note: 	stmt 0 *c_142 = _317;
+src/spectrum_plan.c:140:14: note: 	stmt 1 MEM[(double *)c_142 + 8B] = _319;
+src/spectrum_plan.c:140:14: note: 	children 0x7a44a1db98
+src/spectrum_plan.c:140:14: note: node 0x7a44a1db98 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:140:14: note: op: VEC_PERM_EXPR
+src/spectrum_plan.c:140:14: note: 	stmt 0 _317 = 6.1830000000000003013145288832674850709736347198486328125e-2 - _316;
+src/spectrum_plan.c:140:14: note: 	stmt 1 _319 = _318 + 2.375999999999999889865875957184471189975738525390625e+0;
+src/spectrum_plan.c:140:14: note: 	lane permutation { 0[0] 1[1] }
+src/spectrum_plan.c:140:14: note: 	children 0x7a44a1de68 0x7a44a1def8
+src/spectrum_plan.c:140:14: note: node 0x7a44a1de68 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:140:14: note: op template: _317 = 6.1830000000000003013145288832674850709736347198486328125e-2 - _316;
+src/spectrum_plan.c:140:14: note: 	{ }
+src/spectrum_plan.c:140:14: note: 	children 0x7a44a1dc28 0x7a44a1dcb8
+src/spectrum_plan.c:140:14: note: node (constant) 0x7a44a1dc28 (max_nunits=1, refcnt=2) vector(2) double
+src/spectrum_plan.c:140:14: note: 	{ 6.1830000000000003013145288832674850709736347198486328125e-2, 2.375999999999999889865875957184471189975738525390625e+0 }
+src/spectrum_plan.c:140:14: note: node 0x7a44a1dcb8 (max_nunits=2, refcnt=2) vector(2) double
+src/spectrum_plan.c:140:14: note: op template: _316 = pretmp_1254 * 2.41000000000000003282096816548119022627361118793487548828e-4;
+src/spectrum_plan.c:140:14: note: 	stmt 0 _316 = pretmp_1254 * 2.41000000000000003282096816548119022627361118793487548828e-4;
+src/spectrum_plan.c:140:14: note: 	stmt 1 _318 = pretmp_1254 * 1.475700000000000067235106371299480088055133819580078125e-1;
+src/spectrum_plan.c:140:14: note: 	children 0x7a44a1dd48 0x7a44a1ddd8
+src/spectrum_plan.c:140:14: note: node (external) 0x7a44a1dd48 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:140:14: note: 	{ pretmp_1254, pretmp_1254 }
+src/spectrum_plan.c:140:14: note: node (constant) 0x7a44a1ddd8 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:140:14: note: 	{ 2.41000000000000003282096816548119022627361118793487548828e-4, 1.475700000000000067235106371299480088055133819580078125e-1 }
+src/spectrum_plan.c:140:14: note: node 0x7a44a1def8 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:140:14: note: op template: _319 = _318 + 2.375999999999999889865875957184471189975738525390625e+0;
+src/spectrum_plan.c:140:14: note: 	{ }
+src/spectrum_plan.c:140:14: note: 	children 0x7a44a1dc28 0x7a44a1dcb8
+src/spectrum_plan.c:140:14: note: Cost model analysis:
+src/spectrum_plan.c:140:14: note: Cost model analysis for part in loop 2:
+  Vector cost: 9
+  Scalar cost: 4
+src/spectrum_plan.c:140:14: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:126:14: note: Costing subgraph:
+src/spectrum_plan.c:126:14: note: node 0x7a44a1e138 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:126:14: note: op template: *c_142 = _270;
+src/spectrum_plan.c:126:14: note: 	stmt 0 *c_142 = _270;
+src/spectrum_plan.c:126:14: note: 	stmt 1 MEM[(double *)c_142 + 8B] = _304;
+src/spectrum_plan.c:126:14: note: 	children 0x7a44a1e258
+src/spectrum_plan.c:126:14: note: node (external) 0x7a44a1e258 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:126:14: note: 	{ _270, _304 }
+src/spectrum_plan.c:126:14: note: Cost model analysis:
+src/spectrum_plan.c:126:14: note: Cost model analysis for part in loop 2:
+  Vector cost: 6
+  Scalar cost: 2
+src/spectrum_plan.c:126:14: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:122:14: note: Costing subgraph:
+src/spectrum_plan.c:122:14: note: node 0x7a44a1e2e8 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:122:14: note: op template: *c_142 = base_834;
+src/spectrum_plan.c:122:14: note: 	stmt 0 *c_142 = base_834;
+src/spectrum_plan.c:122:14: note: 	stmt 1 MEM[(double *)c_142 + 8B] = coeff_666;
+src/spectrum_plan.c:122:14: note: 	children 0x7a44a1e408
+src/spectrum_plan.c:122:14: note: node (external) 0x7a44a1e408 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:122:14: note: 	{ base_834, coeff_666 }
+src/spectrum_plan.c:122:14: note: Cost model analysis:
+src/spectrum_plan.c:122:14: note: Cost model analysis for part in loop 2:
+  Vector cost: 6
+  Scalar cost: 2
+src/spectrum_plan.c:122:14: missed: not vectorized: vectorization is not profitable.
+src/spectrum_plan.c:122:14: note: Basic block will be vectorized using SLP
+src/spectrum_plan.c:795:37: optimized: basic block part vectorized using 16 byte vectors
+src/spectrum_plan.c:795:37: note: Vectorizing SLP tree:
+src/spectrum_plan.c:795:37: note: node 0x7a44a1c2d8 (max_nunits=2, refcnt=1) vector(2) double
+src/spectrum_plan.c:795:37: note: op template: *_196 = 0.0;
+src/spectrum_plan.c:795:37: note: 	stmt 0 *_196 = 0.0;
+src/spectrum_plan.c:795:37: note: 	stmt 1 *_195 = 0.0;
+src/spectrum_plan.c:795:37: note: 	children 0x7a44a1c368
+src/spectrum_plan.c:795:37: note: node (constant) 0x7a44a1c368 (max_nunits=1, refcnt=1) vector(2) double
+src/spectrum_plan.c:795:37: note: 	{ 0.0, 0.0 }
+src/spectrum_plan.c:795:37: note: ------>vectorizing SLP node starting from: *_196 = 0.0;
+src/spectrum_plan.c:795:37: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/spectrum_plan.c:795:37: note: transform store. ncopies = 1
+src/spectrum_plan.c:795:37: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: *_196
+src/spectrum_plan.c:795:37: note: created vectp.201_946
+src/spectrum_plan.c:795:37: note: add new stmt: MEM <vector(2) double> [(double *)vectp.201_946] = { 0.0, 0.0 };
+src/spectrum_plan.c:795:37: note: vectorizing stmts using SLP.
+src/spectrum_plan.c:819:22: optimized: basic block part vectorized using 16 byte vectors
+src/spectrum_plan.c:819:22: note: Vectorizing SLP tree:
+src/spectrum_plan.c:819:22: note: node 0x7a44a1c488 (max_nunits=2, refcnt=1) vector(2) long unsigned int
+src/spectrum_plan.c:819:22: note: op template: p_117->first_bin = 0;
+src/spectrum_plan.c:819:22: note: 	stmt 0 p_117->first_bin = 0;
+src/spectrum_plan.c:819:22: note: 	stmt 1 p_117->end_bin = 0;
+src/spectrum_plan.c:819:22: note: 	children 0x7a44a1c518
+src/spectrum_plan.c:819:22: note: node (constant) 0x7a44a1c518 (max_nunits=1, refcnt=1) vector(2) long unsigned int
+src/spectrum_plan.c:819:22: note: 	{ 0, 0 }
+src/spectrum_plan.c:819:22: note: ------>vectorizing SLP node starting from: p_117->first_bin = 0;
+src/spectrum_plan.c:819:22: note: vect_is_simple_use: operand 0, type of def: constant
+src/spectrum_plan.c:819:22: note: transform store. ncopies = 1
+src/spectrum_plan.c:819:22: note: create vector_type-pointer variable to type: vector(2) long unsigned int  vectorizing a pointer ref: p_117->first_bin
+src/spectrum_plan.c:819:22: note: created vectp.203_944
+src/spectrum_plan.c:819:22: note: add new stmt: MEM <vector(2) long unsigned int> [(long unsigned int *)vectp.203_944] = { 0, 0 };
+src/spectrum_plan.c:819:22: note: vectorizing stmts using SLP.
+src/spectrum_plan.c:122:14: note: ***** The result for vector mode V16QI would be the same
+src/spectrum_plan.c:122:14: note: ***** The result for vector mode V8QI would be the same
+src/spectrum_plan.c:122:14: note: ***** The result for vector mode V4HI would be the same
+src/spectrum_plan.c:933:13: note: ***** Analysis failed with vector mode V2DI
+src/spectrum_plan.c:933:13: note: ***** Skipping vector mode V16QI, which would repeat the analysis for V2DI
+src/spectrum_plan.c:938:13: note: ***** Analysis failed with vector mode V2DI
+src/spectrum_plan.c:938:13: note: ***** Skipping vector mode V16QI, which would repeat the analysis for V2DI
+src/spectrum_plan.c:941:13: note: ***** Analysis failed with vector mode V4SI
+src/spectrum_plan.c:941:13: note: ***** Skipping vector mode V16QI, which would repeat the analysis for V4SI
+src/spectrum_plan.c:944:13: note: ***** Analysis failed with vector mode V2DF
+src/spectrum_plan.c:944:13: note: ***** Skipping vector mode V16QI, which would repeat the analysis for V2DF
+src/spectrum_plan.c:953:15: note: ***** Analysis failed with vector mode V4SI
+src/spectrum_plan.c:953:15: note: ***** The result for vector mode V16QI would be the same
+src/spectrum_plan.c:953:15: note: ***** The result for vector mode V8QI would be the same
+src/spectrum_plan.c:953:15: note: ***** The result for vector mode V4HI would be the same
+src/spectrum_plan.c:953:15: note: ***** Re-trying analysis with vector mode V2SI
+src/spectrum_plan.c:953:15: note: ***** Analysis failed with vector mode V2SI
+src/spectrum_plan.c:825:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:825:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/spectrum_plan.c:764:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:764:30: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/spectrum_plan.c:768:39: missed: couldn't vectorize loop
+src/spectrum_plan.c:772:17: missed: not vectorized: unsupported use in stmt.
+src/spectrum_plan.c:766:27: missed: couldn't vectorize loop
+src/spectrum_plan.c:766:27: missed: not vectorized: could not determine main exit from loop with multiple exits.
+src/spectrum_plan.c:325:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:325:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/spectrum_plan.c:331:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:331:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:336:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:337:33: missed: statement clobbers memory: _382 = pow (1.0e+1, _381);
+src/spectrum_plan.c:340:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:341:33: missed: statement clobbers memory: _393 = exp (_392);
+src/spectrum_plan.c:344:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:344:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:350:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:351:33: missed: statement clobbers memory: _414 = exp (_413);
+src/spectrum_plan.c:354:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:354:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:358:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:359:37: missed: statement clobbers memory: _439 = exp (_438);
+src/spectrum_plan.c:364:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:364:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:368:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:368:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:372:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:372:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:374:38: missed: couldn't vectorize loop
+src/spectrum_plan.c:374:38: missed: may need non-SLP handling
+src/spectrum_plan.c:380:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:381:26: missed: statement clobbers memory: _516 = exp (_514);
+src/spectrum_plan.c:384:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:385:33: missed: statement clobbers memory: _530 = pow (1.0e+1, _529);
+src/spectrum_plan.c:389:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:389:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:391:38: missed: couldn't vectorize loop
+src/spectrum_plan.c:391:38: missed: unsupported SLP instances
+src/spectrum_plan.c:401:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:401:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:408:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:59:21: missed: possible alias involving gather/scatter between *_2638 and *_2627
+src/spectrum_plan.c:408:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:59:21: missed: possible alias involving gather/scatter between *_612 and *_623
+src/spectrum_plan.c:417:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:417:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:219:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:219:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:224:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:224:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:228:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:228:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:235:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:235:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:239:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:239:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:243:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:243:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:251:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:251:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:255:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:256:29: missed: statement clobbers memory: _181 = exp (_180);
+src/spectrum_plan.c:262:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:59:21: missed: failed: evolution of base is not affine.
+src/spectrum_plan.c:264:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:264:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:270:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:270:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:274:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:274:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:282:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:282:30: missed: not vectorized: multiple nested loops.
+src/spectrum_plan.c:283:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:283:34: missed: not vectorized: unsupported outerloop form.
+src/spectrum_plan.c:64:41: missed: couldn't vectorize loop
+src/spectrum_plan.c:64:41: missed: not vectorized: could not determine main exit from loop with multiple exits.
+src/spectrum_plan.c:294:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:294:30: missed: not vectorized: multiple nested loops.
+src/spectrum_plan.c:295:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:295:34: missed: not vectorized: unsupported outerloop form.
+src/spectrum_plan.c:64:41: missed: couldn't vectorize loop
+src/spectrum_plan.c:64:41: missed: not vectorized: could not determine main exit from loop with multiple exits.
+src/spectrum_plan.c:306:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:306:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:314:35: missed: couldn't vectorize loop
+src/spectrum_plan.c:314:35: missed: not vectorized: could not determine main exit from loop with multiple exits.
+src/spectrum_plan.c:612:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:612:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/spectrum_plan.c:619:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:619:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:621:38: missed: couldn't vectorize loop
+src/spectrum_plan.c:621:38: missed: unsupported SLP instances
+src/spectrum_plan.c:632:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:632:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:632:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:632:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:643:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:643:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:649:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:649:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:653:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:653:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:657:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:657:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:661:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:661:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:684:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:684:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:688:34: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:688:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:523:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:523:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:524:34: missed: couldn't vectorize loop
+src/spectrum_plan.c:524:34: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:64:41: missed: couldn't vectorize loop
+src/spectrum_plan.c:64:41: missed: not vectorized: could not determine main exit from loop with multiple exits.
+src/spectrum_plan.c:536:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:537:46: missed: statement clobbers memory: q2_754 = exp (_753);
+src/spectrum_plan.c:545:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:546:20: missed: statement clobbers memory: _781 = exp (_779);
+src/spectrum_plan.c:549:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:549:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:553:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:553:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:557:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:557:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:561:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:561:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:571:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:571:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:575:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:577:32: missed: statement clobbers memory: _834 = pow (u_833, -1.2800000000000000266453525910037569701671600341796875e+0);
+src/spectrum_plan.c:593:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:593:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:599:30: optimized: loop vectorized using 16 byte vectors
+src/spectrum_plan.c:599:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/spectrum_plan.c:604:30: missed: couldn't vectorize loop
+src/spectrum_plan.c:604:30: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:957:11: note: vectorized 27 loops in function.
+src/spectrum_plan.c:605:20: missed: statement clobbers memory: _1024 = sqrt (_929);
+src/spectrum_plan.c:577:32: missed: statement clobbers memory: _834 = pow (u_833, -1.2800000000000000266453525910037569701671600341796875e+0);
+src/spectrum_plan.c:580:36: missed: statement clobbers memory: _841 = pow (u_833, -2.649999999999999911182158029987476766109466552734375e+0);
+src/spectrum_plan.c:581:41: missed: statement clobbers memory: _847 = pow (u_833, -2.37999999999999989341858963598497211933135986328125e+0);
+src/spectrum_plan.c:582:38: missed: statement clobbers memory: _853 = pow (u_833, -3.189999999999999946709294817992486059665679931640625e+0);
+src/spectrum_plan.c:583:40: missed: statement clobbers memory: _859 = pow (u_833, -1.00299999999999993605115378159098327159881591796875e+1);
+src/spectrum_plan.c:584:39: missed: statement clobbers memory: _865 = pow (u_833, -1.3640000000000001012523398458142764866352081298828125e+0);
+src/spectrum_plan.c:585:37: missed: statement clobbers memory: _871 = pow (u_833, -6.589999999999999857891452847979962825775146484375e+0);
+src/spectrum_plan.c:586:39: missed: statement clobbers memory: _877 = pow (u_833, -2.930000000000000159872115546022541821002960205078125e+0);
+src/spectrum_plan.c:587:37: missed: statement clobbers memory: _883 = pow (u_833, -6.4000000000000001332267629550187848508358001708984375e-2);
+src/spectrum_plan.c:588:41: missed: statement clobbers memory: _889 = pow (u_833, -7.25e+0);
+src/spectrum_plan.c:589:40: missed: statement clobbers memory: _895 = pow (u_833, -1.1599999999999999200639422269887290894985198974609375e+0);
+src/spectrum_plan.c:546:20: missed: statement clobbers memory: _781 = exp (_779);
+src/spectrum_plan.c:537:46: missed: statement clobbers memory: q2_754 = exp (_753);
+src/spectrum_plan.c:541:37: missed: statement clobbers memory: _767 = pow (t300_758, 1.5e+0);
+src/spectrum_plan.c:663:49: missed: statement clobbers memory: _1083 = exp (arg_1082);
+src/spectrum_plan.c:669:50: missed: statement clobbers memory: _1132 = exp (_1131);
+src/spectrum_plan.c:670:50: missed: statement clobbers memory: _1154 = exp (_1153);
+src/spectrum_plan.c:671:51: missed: statement clobbers memory: _1168 = exp (_1167);
+src/spectrum_plan.c:666:50: missed: statement clobbers memory: _1110 = exp (_1109);
+src/spectrum_plan.c:640:13: missed: statement clobbers memory: __builtin_memcpy (out_953, scratch_14(D), _1023);
+src/spectrum_plan.c:256:29: missed: statement clobbers memory: _181 = exp (_180);
+src/spectrum_plan.c:244:25: missed: statement clobbers memory: bb_149 = exp (_148);
+src/spectrum_plan.c:247:38: missed: statement clobbers memory: _1430 = sqrt (alpha_153);
+src/spectrum_plan.c:385:33: missed: statement clobbers memory: _530 = pow (1.0e+1, _529);
+src/spectrum_plan.c:381:26: missed: statement clobbers memory: _516 = exp (_514);
+src/spectrum_plan.c:376:26: missed: statement clobbers memory: _505 = exp (sigma_1576);
+src/spectrum_plan.c:359:37: missed: statement clobbers memory: _439 = exp (_438);
+src/spectrum_plan.c:359:68: missed: statement clobbers memory: _447 = exp (_446);
+src/spectrum_plan.c:355:59: missed: statement clobbers memory: iftmp.16_428 = exp (_427);
+src/spectrum_plan.c:351:33: missed: statement clobbers memory: _414 = exp (_413);
+src/spectrum_plan.c:341:33: missed: statement clobbers memory: _393 = exp (_392);
+src/spectrum_plan.c:337:33: missed: statement clobbers memory: _382 = pow (1.0e+1, _381);
+src/spectrum_plan.c:826:9: missed: statement clobbers memory: __builtin_memcpy (scratch_14(D), _22, _24);
+src/spectrum_plan.c:827:28: missed: statement clobbers memory: status_30 = apply (p_10(D), _29, scratch_14(D));
+src/spectrum_plan.c:962:16: missed: statement clobbers memory: _21 = tt_spectrum_calculate (_3, nz_11(D), temperature_12(D), air_13(D), rows_15(D));
+src/spectrum_plan.c:957:11: note: ***** Analysis failed with vector mode V2DI
+src/spectrum_plan.c:957:11: note: ***** The result for vector mode V16QI would be the same
+src/spectrum_plan.c:957:11: note: ***** The result for vector mode V8QI would be the same
+src/spectrum_plan.c:957:11: note: ***** The result for vector mode V4HI would be the same
+src/spectrum_plan.c:957:11: note: ***** Re-trying analysis with vector mode V2SI
+src/spectrum_plan.c:957:11: note: ***** Analysis failed with vector mode V2SI
+src/spectrum_plan.c:978:26: missed: couldn't vectorize loop
+src/spectrum_plan.c:978:26: missed: not vectorized: unsupported control flow in loop.
+src/spectrum_plan.c:1008:5: note: vectorized 0 loops in function.
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _104 = memcmp (_15, _16, _103);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _110 = memcmp (_18, _19, _109);
+src/spectrum_plan.c:1014:22: missed: statement clobbers memory: _25 = memcmp (_22, _23, _24);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _116 = memcmp (_27, _29, _115);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _122 = memcmp (_226, _227, _121);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _171 = memcmp (_158, _159, _170);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _177 = memcmp (_162, _163, _176);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _183 = memcmp (_181, _182, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _186 = memcmp (_184, _185, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _189 = memcmp (_187, _188, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _192 = memcmp (_190, _191, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _195 = memcmp (_193, _194, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _198 = memcmp (_196, _197, 8);
+src/spectrum_plan.c:997:36: missed: statement clobbers memory: _203 = same (_199, _201, _9);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _97 = memcmp (_53, _54, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _96 = memcmp (_55, _56, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _98 = memcmp (_57, _58, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _99 = memcmp (_59, _60, 8);
+src/spectrum_plan.c:1030:63: missed: statement clobbers memory: _63 = same (_61, _62, nb_84);
+src/spectrum_plan.c:1031:53: missed: statement clobbers memory: _66 = same (_64, _65, nb_84);
+src/spectrum_plan.c:1032:53: missed: statement clobbers memory: _69 = same (_67, _68, _41);
+src/spectrum_plan.c:1033:16: missed: statement clobbers memory: _73 = same (_70, _71, _72);
+src/spectrum_plan.c:1034:31: missed: statement clobbers memory: _77 = same (_74, _75, _76);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _134 = memcmp (_132, _133, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _137 = memcmp (_135, _136, 8);
+src/spectrum_plan.c:973:34: missed: statement clobbers memory: _140 = memcmp (_138, _139, 8);
+src/spectrum_plan.c:973:25: note: ***** Analysis failed with vector mode V4SI
+src/spectrum_plan.c:973:25: note: ***** The result for vector mode V16QI would be the same
+src/spectrum_plan.c:973:25: note: ***** The result for vector mode V8QI would be the same
+src/spectrum_plan.c:973:25: note: ***** The result for vector mode V4HI would be the same
+src/spectrum_plan.c:973:25: note: ***** Re-trying analysis with vector mode V2SI
+src/spectrum_plan.c:973:25: note: ***** Analysis failed with vector mode V2SI
+src/spectrum_plan.c:1040:36: note: ***** Analysis failed with vector mode V2DI
+src/spectrum_plan.c:1040:36: note: ***** Skipping vector mode V16QI, which would repeat the analysis for V2DI

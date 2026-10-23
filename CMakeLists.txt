@@ -7,6 +7,7 @@ option(TURBOTUV_SANITIZE "Enable address and undefined-behavior sanitizers" OFF)
 option(TURBOTUV_BUILD_CLI "Build the standalone POSIX runner" ON)
 option(TURBOTUV_NETCDF_OUTPUT "Enable NetCDF output in the standalone runner" OFF)
 option(TURBOTUV_BUILD_BENCHMARK "Build the column benchmark (not installed)" ON)
+option(TURBOTUV_PROFILE "Benchmark-only stage timers (do not use for acceptance timings)" OFF)
 set(TURBOTUV_REFERENCE_BUILD "" CACHE PATH "Configured and built TUV-x reference directory")
 set(TURBOTUV_REFERENCE_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../TUV-x" CACHE PATH "TUV-x reference checkout")
 set(TURBOTUV_REFERENCE_PREFIX "" CACHE PATH "Compiler-matched NetCDF Fortran installation")
@@ -18,9 +19,12 @@ add_library(turbotuv src/numerics.c src/geometry.c src/data.c src/radiation.c sr
     src/grid.c src/profiles.c src/tables.c src/solar_flux.c src/optics.c
     src/config.c src/profile_config.c src/build.c src/spectrum.c src/spectrum_temperature.c
     src/model_build.c src/model_run.c src/model_host.c src/decimal.c
-    src/spectrum_plan.c src/model_plan.c src/radiation_block.c)
+    src/spectrum_plan.c src/model_plan.c src/radiation_block.c src/diagnostics.c)
 add_library(TurboTUV::turbotuv ALIAS turbotuv)
 target_compile_features(turbotuv PUBLIC c_std_11)
+if(TURBOTUV_PROFILE)
+    target_compile_definitions(turbotuv PRIVATE TT_PROFILE)
+endif()
 set_target_properties(turbotuv PROPERTIES C_EXTENSIONS OFF POSITION_INDEPENDENT_CODE ON)
 target_include_directories(turbotuv PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -79,7 +83,8 @@ if(TURBOTUV_BUILD_BENCHMARK)
     endif()
 endif()
 install(TARGETS turbotuv EXPORT TurboTUVTargets)
-install(FILES include/turbotuv.h include/turbotuv_config.h include/turbotuv_model.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(FILES include/turbotuv.h include/turbotuv_config.h include/turbotuv_model.h
+    include/turbotuv_diagnostics.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(FILES third_party/libyaml/License DESTINATION ${CMAKE_INSTALL_DATADIR}/TurboTUV/licenses RENAME LibYAML.txt)
 install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_DATADIR}/TurboTUV/licenses RENAME TurboTUV.txt)
 install(EXPORT TurboTUVTargets NAMESPACE TurboTUV:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/TurboTUV)

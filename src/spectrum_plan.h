@@ -35,6 +35,8 @@ tt_status tt_spectrum_plan_evaluate(const tt_spectrum_plan *plan, size_t levels,
                                     double *rows);
 /* True if the classification guard rejected this spectrum's classification;
  * every wavelength then uses the generic kernel. Tests require false. */
+/* Profiling category: direct cross section, yield, parameterized. */
+int tt_spectrum_plan_category(const tt_spectrum_plan *plan);
 int tt_spectrum_plan_generic(const tt_spectrum_plan *plan);
 /* Plans with equal prepared data produce equal values; models evaluate them once. */
 int tt_spectrum_plan_equal(const tt_spectrum_plan *a, const tt_spectrum_plan *b);

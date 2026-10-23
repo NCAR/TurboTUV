@@ -1,0 +1,13 @@
+10 rounds, 300 columns per run; median per column (range)
+
+tuv_5_4
+  main-gcc              1078.9 us (1076.5-1082.9)   1.00x  lower95 1.000x hash d67eeb3b503c4c8a
+  r0-gcc                1081.3 us (1076.0-1160.9)   1.00x  lower95 0.997x hash d67eeb3b503c4c8a
+  main-clang            1080.5 us (1076.2-1083.5)   1.00x  lower95 1.000x hash 476d15cb1573d11f
+  r0-clang              1079.8 us (1076.5-1081.6)   1.00x  lower95 0.999x hash 476d15cb1573d11f
+
+ts1_tsmlt
+  main-gcc              1108.8 us (1105.2-1110.2)   1.00x  lower95 1.000x hash b41846b9473d9ec0
+  r0-gcc                1109.9 us (1105.9-1113.1)   1.00x  lower95 0.998x hash b41846b9473d9ec0
+  main-clang             963.4 us (961.4-965.4)   1.00x  lower95 1.000x hash 17cad347b1a5cfd9
+  r0-clang               963.1 us (960.8-966.2)   1.00x  lower95 0.999x hash 17cad347b1a5cfd9

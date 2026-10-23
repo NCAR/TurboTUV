@@ -1,0 +1,47 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-clang
+      Start  1: numerics
+ 1/21 Test  #1: numerics .........................   Passed    0.31 sec
+      Start  2: radiation_invariants
+ 2/21 Test  #2: radiation_invariants .............   Passed    0.10 sec
+      Start  3: spectral_invariants
+ 3/21 Test  #3: spectral_invariants ..............   Passed    0.11 sec
+      Start  4: yield_invariants
+ 4/21 Test  #4: yield_invariants .................   Passed    0.10 sec
+      Start  5: temperature_invariants
+ 5/21 Test  #5: temperature_invariants ...........   Passed    0.08 sec
+      Start  6: rate_invariants
+ 6/21 Test  #6: rate_invariants ..................   Passed    0.13 sec
+      Start  7: oxygen_invariants
+ 7/21 Test  #7: oxygen_invariants ................   Passed    0.11 sec
+      Start  8: linalg_invariants
+ 8/21 Test  #8: linalg_invariants ................   Passed    0.07 sec
+      Start  9: discrete_helper_invariants
+ 9/21 Test  #9: discrete_helper_invariants .......   Passed    0.08 sec
+      Start 10: discrete_invariants
+10/21 Test #10: discrete_invariants ..............   Passed    8.23 sec
+      Start 11: profile_invariants
+11/21 Test #11: profile_invariants ...............   Passed    0.25 sec
+      Start 12: locale_independence
+12/21 Test #12: locale_independence ..............   Passed    0.17 sec
+      Start 13: optics_invariants
+13/21 Test #13: optics_invariants ................   Passed    0.13 sec
+      Start 14: config_invariants
+14/21 Test #14: config_invariants ................   Passed    0.11 sec
+      Start 15: spectrum_invariants
+15/21 Test #15: spectrum_invariants ..............   Passed    0.18 sec
+      Start 16: profile_config_invariants
+16/21 Test #16: profile_config_invariants ........   Passed    0.19 sec
+      Start 17: prepared_execution
+17/21 Test #17: prepared_execution ...............   Passed    2.69 sec
+      Start 18: model_invariants
+18/21 Test #18: model_invariants .................   Passed    1.75 sec
+      Start 19: model_host_invariants
+19/21 Test #19: model_host_invariants ............   Passed    2.42 sec
+      Start 20: parallel_models
+20/21 Test #20: parallel_models ..................   Passed    0.37 sec
+      Start 21: cli
+21/21 Test #21: cli ..............................   Passed    1.13 sec
+
+100% tests passed, 0 tests failed out of 21
+
+Total Test time (real) =  18.71 sec

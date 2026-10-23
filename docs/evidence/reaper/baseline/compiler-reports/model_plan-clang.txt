@@ -1,0 +1,172 @@
+src/model_plan.c:65:9: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   65 |         tt_spectrum_plan_destroy(p->evaluations[i].plan);
+      |         ^
+src/model_plan.c:64:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+   64 |     for (size_t i = 0; i < p->evaluation_count; ++i) {
+      |     ^
+src/model_plan.c:64:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:64:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:70:9: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   70 |         free(p->integrals[i].terms);
+      |         ^
+src/model_plan.c:69:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+   69 |     for (size_t i = 0; i < p->integral_count; ++i)
+      |     ^
+src/model_plan.c:69:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:69:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:176:22: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  176 |         n += (size_t)tt_spectrum_plan_generic(p->evaluations[i].plan);
+      |                      ^
+src/model_plan.c:175:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+  175 |     for (size_t i = 0; p && i < p->evaluation_count; ++i)
+      |     ^
+src/model_plan.c:175:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:175:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:195:5: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+  195 |     for (size_t r = 0; r < nr; ++r)
+      |     ^
+src/model_plan.c:209:9: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+  209 |         }
+      |         ^
+src/model_plan.c:204:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+  204 |     for (size_t i = 0; i < m->radiator_count && !status; ++i)
+      |     ^
+src/model_plan.c:204:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:204:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:204:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:211:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+  211 |     for (size_t w = 0; w < nw && !status && m->solar != SIZE_MAX; ++w)
+      |     ^
+src/model_plan.c:211:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:215:18: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  215 |         status = evaluation_for(p, m->reactions[r].cross_section, nz, capacity,
+      |                  ^
+src/model_plan.c:214:5: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+  214 |     for (size_t r = 0; r < nr && !status; ++r) {
+      |     ^
+src/model_plan.c:214:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:214:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:234:9: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+  234 |         }
+      |         ^
+src/model_plan.c:223:35: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+  223 |         integral *photolysis = p->integrals + r;
+      |                                   ^
+src/model_plan.c:222:5: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+  222 |     for (size_t r = 0; r < nr && !status; ++r) {
+      |     ^
+src/model_plan.c:222:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:222:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:245:17: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+  245 |                 dose->terms[dose->count++] =
+      |                 ^
+src/model_plan.c:246:21: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  246 |                     (term){w, TERM_CONSTANT, m->doses[d].weights[w], 0, NULL, NULL};
+      |                     ^
+src/model_plan.c:243:9: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  243 |         for (size_t w = 0; w < nw && !status; ++w)
+      |         ^
+src/model_plan.c:243:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:91:48: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+   91 |         if (p->evaluations[i].levels == levels &&
+      |                                                ^
+src/model_plan.c:90:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+   90 |     for (size_t i = 0; i < p->evaluation_count; ++i)
+      |     ^
+src/model_plan.c:90:5: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:90:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:90:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:118:9: remark: loop not vectorized: cannot identify array bounds [-Rpass-analysis=loop-vectorize]
+  118 |         e->position[varying[k]] = k;
+      |         ^
+src/model_plan.c:117:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  117 |     for (size_t k = 0; k < e->varying; ++k)
+      |     ^
+src/model_plan.c:168:9: remark: loop not vectorized: cannot identify array bounds [-Rpass-analysis=loop-vectorize]
+  168 |         out->terms[out->count++] = t;
+      |         ^
+src/model_plan.c:143:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  143 |     for (size_t w = 0; w < nw; ++w) {
+      |     ^
+src/model_plan.c:329:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+  329 |     for (size_t i = 0; i < n; ++i)
+      |     ^
+src/model_plan.c:329:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:329:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:329:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:329:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:329:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:361:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  361 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/model_plan.c:398:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  398 |             for (size_t j = 0; j < layer; ++j) {
+      |             ^
+src/model_plan.c:393:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  393 |                 for (size_t l = 0; l < nl; ++l)
+      |                 ^
+src/model_plan.c:387:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  387 |                 for (size_t l = 0; l < nl; ++l)
+      |                 ^
+src/model_plan.c:329:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+  329 |     for (size_t i = 0; i < n; ++i)
+      |     ^
+src/model_plan.c:329:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:329:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:329:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:416:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  416 |         for (size_t i = 0; i < 6 * n; ++i)
+      |         ^
+src/model_plan.c:431:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  431 |         for (size_t i = 0; i < 6 * n; ++i)
+      |         ^
+src/model_plan.c:441:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  441 |             for (size_t z = 0; z < nz; ++z) {
+      |             ^
+src/model_plan.c:441:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/model_plan.c:329:5: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  329 |     for (size_t i = 0; i < n; ++i)
+      |     ^
+src/model_plan.c:464:21: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+  464 |                 if (tt_spectrum_plan_evaluate(e->plan, nz, temperature->edges, air->edges,
+      |                     ^
+src/model_plan.c:460:9: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+  460 |         for (size_t i = 0; i < p->evaluation_count; ++i) {
+      |         ^
+src/model_plan.c:460:9: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:460:9: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/model_plan.c:460:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:322:9: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  322 |         integrate_tile(g, flux, nz, z0, TILE, out);
+      |         ^
+src/model_plan.c:321:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  321 |     for (; z0 + TILE <= nz; z0 += TILE)
+      |     ^
+src/model_plan.c:321:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/model_plan.c:296:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  296 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:300:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  300 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:304:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  304 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:308:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  308 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:277:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  277 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:281:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  281 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:285:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  285 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:289:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  289 |                 for (size_t z = 0; z < width; ++z)
+      |                 ^
+src/model_plan.c:316:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  316 |         for (size_t z = 0; z < width; ++z)
+      |         ^

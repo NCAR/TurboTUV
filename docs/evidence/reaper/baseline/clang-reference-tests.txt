@@ -1,0 +1,83 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/main-clang
+      Start  1: numerics
+ 1/39 Test  #1: numerics .........................   Passed    0.01 sec
+      Start  2: radiation_invariants
+ 2/39 Test  #2: radiation_invariants .............   Passed    0.00 sec
+      Start  3: spectral_invariants
+ 3/39 Test  #3: spectral_invariants ..............   Passed    0.01 sec
+      Start  4: yield_invariants
+ 4/39 Test  #4: yield_invariants .................   Passed    0.00 sec
+      Start  5: temperature_invariants
+ 5/39 Test  #5: temperature_invariants ...........   Passed    0.00 sec
+      Start  6: rate_invariants
+ 6/39 Test  #6: rate_invariants ..................   Passed    0.02 sec
+      Start  7: oxygen_invariants
+ 7/39 Test  #7: oxygen_invariants ................   Passed    0.00 sec
+      Start  8: linalg_invariants
+ 8/39 Test  #8: linalg_invariants ................   Passed    0.00 sec
+      Start  9: discrete_helper_invariants
+ 9/39 Test  #9: discrete_helper_invariants .......   Passed    0.00 sec
+      Start 10: discrete_invariants
+10/39 Test #10: discrete_invariants ..............   Passed    8.11 sec
+      Start 11: profile_invariants
+11/39 Test #11: profile_invariants ...............   Passed    0.13 sec
+      Start 12: locale_independence
+12/39 Test #12: locale_independence ..............   Passed    0.06 sec
+      Start 13: optics_invariants
+13/39 Test #13: optics_invariants ................   Passed    0.00 sec
+      Start 14: config_invariants
+14/39 Test #14: config_invariants ................   Passed    0.01 sec
+      Start 15: spectrum_invariants
+15/39 Test #15: spectrum_invariants ..............   Passed    0.06 sec
+      Start 16: profile_config_invariants
+16/39 Test #16: profile_config_invariants ........   Passed    0.10 sec
+      Start 17: prepared_execution
+17/39 Test #17: prepared_execution ...............   Passed    2.58 sec
+      Start 18: model_invariants
+18/39 Test #18: model_invariants .................   Passed    1.63 sec
+      Start 19: model_host_invariants
+19/39 Test #19: model_host_invariants ............   Passed    2.28 sec
+      Start 20: parallel_models
+20/39 Test #20: parallel_models ..................   Passed    0.27 sec
+      Start 21: cli
+21/39 Test #21: cli ..............................   Passed    1.10 sec
+      Start 22: reference_cli
+22/39 Test #22: reference_cli ....................   Passed    1.12 sec
+      Start 23: reference_numerics
+23/39 Test #23: reference_numerics ...............   Passed    0.15 sec
+      Start 24: reference_radiation
+24/39 Test #24: reference_radiation ..............   Passed    0.14 sec
+      Start 25: reference_spectra
+25/39 Test #25: reference_spectra ................   Passed    0.19 sec
+      Start 26: reference_yields
+26/39 Test #26: reference_yields .................   Passed    0.14 sec
+      Start 27: reference_temperature
+27/39 Test #27: reference_temperature ............   Passed    0.15 sec
+      Start 28: reference_rates
+28/39 Test #28: reference_rates ..................   Passed    0.32 sec
+      Start 29: reference_oxygen
+29/39 Test #29: reference_oxygen .................   Passed    0.16 sec
+      Start 30: reference_linalg
+30/39 Test #30: reference_linalg .................   Passed    0.10 sec
+      Start 31: reference_discrete_helpers
+31/39 Test #31: reference_discrete_helpers .......   Passed    0.11 sec
+      Start 32: reference_discrete
+32/39 Test #32: reference_discrete ...............   Passed   19.17 sec
+      Start 33: reference_profiles
+33/39 Test #33: reference_profiles ...............   Passed    0.82 sec
+      Start 34: reference_optics
+34/39 Test #34: reference_optics .................   Passed    0.26 sec
+      Start 35: reference_config
+35/39 Test #35: reference_config .................   Passed    0.16 sec
+      Start 36: reference_spectrum
+36/39 Test #36: reference_spectrum ...............   Passed    0.52 sec
+      Start 37: reference_profile_config
+37/39 Test #37: reference_profile_config .........   Passed    0.67 sec
+      Start 38: reference_model
+38/39 Test #38: reference_model ..................   Passed    5.27 sec
+      Start 39: reference_model_host
+39/39 Test #39: reference_model_host .............   Passed    4.41 sec
+
+100% tests passed, 0 tests failed out of 39
+
+Total Test time (real) =  50.24 sec

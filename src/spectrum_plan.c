@@ -1035,3 +1035,7 @@ int tt_spectrum_plan_equal(const tt_spectrum_plan *a, const tt_spectrum_plan *b)
     }
     return same_tables(a->s, b->s) && (!a->qy || same_options(&a->s->yield, &b->s->yield, a->nw));
 }
+
+int tt_spectrum_plan_category(const tt_spectrum_plan *p) {
+    return p->s->parameterized ? 2 : p->qy ? 1 : 0;
+}

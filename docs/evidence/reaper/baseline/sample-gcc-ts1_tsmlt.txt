@@ -1,0 +1,503 @@
+Analysis of sampling turbotuv_bench (pid 28317) every 1 millisecond
+Process:         turbotuv_bench [28317]
+Path:            /Users/USER/*/turbotuv_bench
+Load Address:    0x104f28000
+Identifier:      turbotuv_bench
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  Python [28313]
+Target Type:     live task
+
+Date/Time:       2026-10-22 21:37:19.298 -0600
+Launch Time:     2026-10-22 21:37:19.274 -0600
+OS Version:      macOS 27.0.1 (26A434)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         9968K
+Physical footprint (peak):  9968K
+Idle exit:                  untracked
+----
+
+Call graph:
+    1493 Thread_76424   DispatchQueue_1: com.apple.main-thread  (serial)
+      1484 start  (in dyld) + 6688  [0x196887e80]
+      + 1302 main  (in turbotuv_bench) + 1692  [0x104f602bc]
+      + ! 1302 tt_model_run  (in turbotuv_bench) + 1148  [0x104f4591c]
+      + !   671 tt_model_plan_run  (in turbotuv_bench) + 2740  [0x104f4dbc4]
+      + !   : 302 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2028  [0x104f492f0]
+      + !   : | 175 apply  (in turbotuv_bench) + 364  [0x104f47070]
+      + !   : | + 161 pow  (in libsystem_m.dylib) + 372,552,...  [0x1a77cf1b4,0x1a77cf268,...]
+      + !   : | + 14 DYLD-STUB$$pow  (in turbotuv_bench) + 4  [0x104f6086c]
+      + !   : | 88 apply  (in turbotuv_bench) + 328,744,...  [0x104f4704c,0x104f471ec,...]
+      + !   : | 28 pow  (in libsystem_m.dylib) + 520  [0x1a77cf248]
+      + !   : | 8 apply  (in turbotuv_bench) + 916  [0x104f47298]
+      + !   : | + 8 pow  (in libsystem_m.dylib) + 260,20,...  [0x1a77cf144,0x1a77cf054,...]
+      + !   : | 2 exp  (in libsystem_m.dylib) + 152  [0x1a77cb498]
+      + !   : | 1 apply  (in turbotuv_bench) + 640  [0x104f47184]
+      + !   : |   1 exp  (in libsystem_m.dylib) + 116  [0x1a77cb474]
+      + !   : 271 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2284,2128,...  [0x104f493f0,0x104f49354,...]
+      + !   : 20 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 6016  [0x104f4a284]
+      + !   : | 16 exp  (in libsystem_m.dylib) + 104,216,...  [0x1a77cb468,0x1a77cb4d8,...]
+      + !   : | 4 DYLD-STUB$$exp  (in turbotuv_bench) + 4  [0x104f60794]
+      + !   : 20 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 6100  [0x104f4a2d8]
+      + !   : | 19 exp  (in libsystem_m.dylib) + 116,16,...  [0x1a77cb474,0x1a77cb410,...]
+      + !   : | 1 DYLD-STUB$$exp  (in turbotuv_bench) + 4  [0x104f60794]
+      + !   : 12 exp  (in libsystem_m.dylib) + 152  [0x1a77cb498]
+      + !   : 12 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 5996  [0x104f4a270]
+      + !   : | 9 exp  (in libsystem_m.dylib) + 112,104,...  [0x1a77cb470,0x1a77cb468,...]
+      + !   : | 3 DYLD-STUB$$exp  (in turbotuv_bench) + 4  [0x104f60794]
+      + !   : 11 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 6320  [0x104f4a3b4]
+      + !   : | 11 exp  (in libsystem_m.dylib) + 116,104,...  [0x1a77cb474,0x1a77cb468,...]
+      + !   : 7 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 6844  [0x104f4a5c0]
+      + !   : | 6 pow  (in libsystem_m.dylib) + 20,164,...  [0x1a77cf054,0x1a77cf0e4,...]
+      + !   : | 1 DYLD-STUB$$pow  (in turbotuv_bench) + 4  [0x104f6086c]
+      + !   : 4 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2012  [0x104f492e0]
+      + !   : | 4 _platform_memmove  (in libsystem_platform.dylib) + 180,12  [0x196c67e14,0x196c67d6c]
+      + !   : 1 pow  (in libsystem_m.dylib) + 520  [0x1a77cf248]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2520  [0x104f494dc]
+      + !   : | 1 pow  (in libsystem_m.dylib) + 372  [0x1a77cf1b4]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2556  [0x104f49500]
+      + !   : | 1 pow  (in libsystem_m.dylib) + 236  [0x1a77cf12c]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2584  [0x104f4951c]
+      + !   : | 1 pow  (in libsystem_m.dylib) + 488  [0x1a77cf228]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2696  [0x104f4958c]
+      + !   : | 1 pow  (in libsystem_m.dylib) + 20  [0x1a77cf054]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2732  [0x104f495b0]
+      + !   : | 1 pow  (in libsystem_m.dylib) + 164  [0x1a77cf0e4]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 2772  [0x104f495d8]
+      + !   : | 1 pow  (in libsystem_m.dylib) + 384  [0x1a77cf1c0]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 3736  [0x104f4999c]
+      + !   : | 1 exp  (in libsystem_m.dylib) + 116  [0x1a77cb474]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 3948  [0x104f49a70]
+      + !   : | 1 exp  (in libsystem_m.dylib) + 104  [0x1a77cb468]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 4028  [0x104f49ac0]
+      + !   : | 1 exp  (in libsystem_m.dylib) + 124  [0x1a77cb47c]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 8856  [0x104f4ad9c]
+      + !   : | 1 DYLD-STUB$$pow  (in turbotuv_bench) + 4  [0x104f6086c]
+      + !   : 1 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 9044  [0x104f4ae58]
+      + !   :   1 exp  (in libsystem_m.dylib) + 24  [0x1a77cb418]
+      + !   369 tt_model_plan_run  (in turbotuv_bench) + 8964  [0x104f4f414]
+      + !   : 126 ???  (in <unknown binary>)  [0x7cb4b1a100]
+      + !   : | 126 tt_block_delta_eddington  (in turbotuv_bench) + 1460,700,...  [0x104f4fa64,0x104f4f76c,...]
+      + !   : 28 tt_block_delta_eddington  (in turbotuv_bench) + 2556  [0x104f4feac]
+      + !   : | 20 exp  (in libsystem_m.dylib) + 104,112,...  [0x1a77cb468,0x1a77cb470,...]
+      + !   : | 4 DYLD-STUB$$exp  (in turbotuv_bench) + 4,8  [0x104f60794,0x104f60798]
+      + !   : | 4 tt_block_delta_eddington  (in turbotuv_bench) + 2588  [0x104f4fecc]
+      + !   : 26 tt_block_delta_eddington  (in turbotuv_bench) + 324  [0x104f4f5f4]
+      + !   : | 26 tt_block_delta_eddington  (in turbotuv_bench) + 1460,808,...  [0x104f4fa64,0x104f4f7d8,...]
+      + !   : 22 tt_block_delta_eddington  (in turbotuv_bench) + 1736  [0x104f4fb78]
+      + !   : | 12 exp  (in libsystem_m.dylib) + 104,16,...  [0x1a77cb468,0x1a77cb410,...]
+      + !   : | 5 DYLD-STUB$$exp  (in turbotuv_bench) + 4  [0x104f60794]
+      + !   : | 5 tt_block_delta_eddington  (in turbotuv_bench) + 1756  [0x104f4fb8c]
+      + !   : 11 exp  (in libsystem_m.dylib) + 152,256  [0x1a77cb498,0x1a77cb500]
+      + !   : 5 ???  (in <unknown binary>)  [0x16aed5a40]
+      + !   : | 5 tt_block_delta_eddington  (in turbotuv_bench) + 2492,2124,...  [0x104f4fe6c,0x104f4fcfc,...]
+      + !   : 5 ???  (in <unknown binary>)  [0x16aed5aa0]
+      + !   : | 5 tt_block_delta_eddington  (in turbotuv_bench) + 2160,2268,...  [0x104f4fd20,0x104f4fd8c,...]
+      + !   : 4 ???  (in <unknown binary>)  [0x16aed5a70]
+      + !   : | 4 tt_block_delta_eddington  (in turbotuv_bench) + 2160,2304  [0x104f4fd20,0x104f4fdb0]
+      + !   : 4 ???  (in <unknown binary>)  [0x16aed5a90]
+      + !   : | 4 tt_block_delta_eddington  (in turbotuv_bench) + 2180,2124,...  [0x104f4fd34,0x104f4fcfc,...]
+      + !   : 4 ???  (in <unknown binary>)  [0x16aed5c58]
+      + !   : | 4 tt_block_delta_eddington  (in turbotuv_bench) + 2796,2852,...  [0x104f4ff9c,0x104f4ffd4,...]
+      + !   : 4 ???  (in <unknown binary>)  [0x16aed5c88]
+      + !   : | 4 tt_block_delta_eddington  (in turbotuv_bench) + 2696,2852,...  [0x104f4ff38,0x104f4ffd4,...]
+      + !   : 3 ???  (in <unknown binary>)  [0x16aed5a48]
+      + !   : | 3 tt_block_delta_eddington  (in turbotuv_bench) + 2160  [0x104f4fd20]
+      + !   : 3 ???  (in <unknown binary>)  [0x16aed5a68]
+      + !   : | 3 tt_block_delta_eddington  (in turbotuv_bench) + 2160,2304,...  [0x104f4fd20,0x104f4fdb0,...]
+      + !   : 3 ???  (in <unknown binary>)  [0x16aed5a98]
+      + !   : | 3 tt_block_delta_eddington  (in turbotuv_bench) + 2164,2284,...  [0x104f4fd24,0x104f4fd9c,...]
+      + !   : 3 ???  (in <unknown binary>)  [0x16aed5aa8]
+      + !   : | 3 tt_block_delta_eddington  (in turbotuv_bench) + 2160,2156  [0x104f4fd20,0x104f4fd1c]
+      + !   : 3 ???  (in <unknown binary>)  [0x16aed5c80]
+      + !   : | 3 tt_block_delta_eddington  (in turbotuv_bench) + 2796,2880,...  [0x104f4ff9c,0x104f4fff0,...]
+      + !   : 3 ???  (in <unknown binary>)  [0x7cb4b2f300]
+      + !   : | 3 tt_block_delta_eddington  (in turbotuv_bench) + 4012,3912  [0x104f5045c,0x104f503f8]
+      + !   : 2 ???  (in <unknown binary>)  [0x16aed5a80]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 2160,2304  [0x104f4fd20,0x104f4fdb0]
+      + !   : 2 ???  (in <unknown binary>)  [0x16aed5a88]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 2180,2304  [0x104f4fd34,0x104f4fdb0]
+      + !   : 2 ???  (in <unknown binary>)  [0x16aed5c38]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 2696,2904  [0x104f4ff38,0x104f50008]
+      + !   : 2 ???  (in <unknown binary>)  [0x16aed5c70]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 2700,2796  [0x104f4ff3c,0x104f4ff9c]
+      + !   : 2 ???  (in <unknown binary>)  [0x16aed5c90]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 2904  [0x104f50008]
+      + !   : 2 ???  (in <unknown binary>)  [0x16aed5c98]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 2792,2904  [0x104f4ff98,0x104f50008]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b16580]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 6960,7016  [0x104f50fe0,0x104f51018]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b16800]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b2cf00]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 4012,4484  [0x104f5045c,0x104f50634]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b2e800]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 3904,3912  [0x104f503f0,0x104f503f8]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b34400]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 5048,5068  [0x104f50868,0x104f5087c]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b34700]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 4380,4396  [0x104f505cc,0x104f505dc]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b34c00]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b36d00]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 2 ???  (in <unknown binary>)  [0x7cb4b3b900]
+      + !   : | 2 tt_block_delta_eddington  (in turbotuv_bench) + 4332,4396  [0x104f5059c,0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5a38]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2160  [0x104f4fd20]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5a50]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2256  [0x104f4fd80]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5a58]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2264  [0x104f4fd88]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5a78]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2304  [0x104f4fdb0]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5c40]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2852  [0x104f4ffd4]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5c50]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2696  [0x104f4ff38]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5c60]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2792  [0x104f4ff98]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5ca0]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2904  [0x104f50008]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5ca8]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2696  [0x104f4ff38]
+      + !   : 1 ???  (in <unknown binary>)  [0x16aed5cb0]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 2904  [0x104f50008]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b16a80]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6880  [0x104f50f90]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b16c00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 7032  [0x104f51028]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b16c80]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b16d80]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b17080]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b17b00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6868  [0x104f50f84]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b17b80]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 7032  [0x104f51028]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b17d80]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b18000]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6880  [0x104f50f90]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b18280]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b18300]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6908  [0x104f50fac]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b18700]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 7032  [0x104f51028]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b18800]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6876  [0x104f50f8c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b18d00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6872  [0x104f50f88]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b19080]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6892  [0x104f50f9c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b19480]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b19a80]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b19c00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6876  [0x104f50f8c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b19d00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6872  [0x104f50f88]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b19e80]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b1a080]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 6960  [0x104f50fe0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2cd00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2d400]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3996  [0x104f5044c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2d700]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3912  [0x104f503f8]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2d800]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3980  [0x104f5043c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2e100]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3948  [0x104f5041c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2e300]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2e600]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2ed00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3936  [0x104f50410]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2f100]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b2ff00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3912  [0x104f503f8]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b30500]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b30700]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b30c00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b31300]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b31400]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3980  [0x104f5043c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b31500]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b31b00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4672  [0x104f506f0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b32800]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b32d00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b33300]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3912  [0x104f503f8]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b33b00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4012  [0x104f5045c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b33d00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3980  [0x104f5043c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b33e00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3996  [0x104f5044c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b34000]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 3904  [0x104f503f0]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b34100]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4460  [0x104f5061c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b34600]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b34900]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b34d00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b35600]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b35700]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4324  [0x104f50594]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b35a00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4296  [0x104f50578]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b35e00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4288  [0x104f50570]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b35f00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4296  [0x104f50578]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b36300]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4292  [0x104f50574]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b36c00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4332  [0x104f5059c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b36f00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37100]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4380  [0x104f505cc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37200]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37500]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37600]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37800]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37900]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4332  [0x104f5059c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37d00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4380  [0x104f505cc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b37e00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b39400]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4380  [0x104f505cc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b39f00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b3aa00]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4332  [0x104f5059c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b3b200]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4332  [0x104f5059c]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b3b500]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4396  [0x104f505dc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b3b700]
+      + !   : | 1 tt_block_delta_eddington  (in turbotuv_bench) + 4380  [0x104f505cc]
+      + !   : 1 ???  (in <unknown binary>)  [0x7cb4b3bb00]
+      + !   :   1 tt_block_delta_eddington  (in turbotuv_bench) + 4324  [0x104f50594]
+      + !   77 tt_model_plan_run  (in turbotuv_bench) + 1820  [0x104f4d82c]
+      + !   : 57 tt_oxygen_optics  (in turbotuv_bench) + 1888  [0x104f30d90]
+      + !   : | 49 tt_oxygen_optics  (in turbotuv_bench) + 2072,1976,...  [0x104f30e48,0x104f30de8,...]
+      + !   : | 7 log  (in libsystem_m.dylib) + 128,12,...  [0x1a77cb208,0x1a77cb194,...]
+      + !   : | 1 DYLD-STUB$$log  (in turbotuv_bench) + 4  [0x104f6080c]
+      + !   : 10 tt_oxygen_optics  (in turbotuv_bench) + 2152  [0x104f30e98]
+      + !   : | 7 exp  (in libsystem_m.dylib) + 120,16,...  [0x1a77cb478,0x1a77cb410,...]
+      + !   : | 3 tt_oxygen_optics  (in turbotuv_bench) + 1108,1132  [0x104f30a84,0x104f30a9c]
+      + !   : 4 tt_oxygen_optics  (in turbotuv_bench) + 2300  [0x104f30f2c]
+      + !   : | 2 log  (in libsystem_m.dylib) + 100,128  [0x1a77cb1ec,0x1a77cb208]
+      + !   : | 2 tt_oxygen_optics  (in turbotuv_bench) + 2392  [0x104f30f88]
+      + !   : 3 log  (in libsystem_m.dylib) + 244  [0x1a77cb27c]
+      + !   : 1 exp  (in libsystem_m.dylib) + 152  [0x1a77cb498]
+      + !   : 1 tt_oxygen_optics  (in turbotuv_bench) + 2288  [0x104f30f20]
+      + !   : | 1 log  (in libsystem_m.dylib) + 88  [0x1a77cb1e0]
+      + !   : 1 tt_oxygen_optics  (in turbotuv_bench) + 3260  [0x104f312ec]
+      + !   :   1 exp  (in libsystem_m.dylib) + 120  [0x1a77cb478]
+      + !   77 tt_model_plan_run  (in turbotuv_bench) + 2928  [0x104f4dc80]
+      + !   : 60 tt_oxygen_optics  (in turbotuv_bench) + 1888  [0x104f30d90]
+      + !   : | 56 tt_oxygen_optics  (in turbotuv_bench) + 2072,1976,...  [0x104f30e48,0x104f30de8,...]
+      + !   : | 4 log  (in libsystem_m.dylib) + 128,12,...  [0x1a77cb208,0x1a77cb194,...]
+      + !   : 12 tt_oxygen_optics  (in turbotuv_bench) + 2152  [0x104f30e98]
+      + !   : | 8 exp  (in libsystem_m.dylib) + 120,16,...  [0x1a77cb478,0x1a77cb410,...]
+      + !   : | 2 DYLD-STUB$$exp  (in turbotuv_bench) + 4  [0x104f60794]
+      + !   : | 2 tt_oxygen_optics  (in turbotuv_bench) + 1108  [0x104f30a84]
+      + !   : 2 exp  (in libsystem_m.dylib) + 152  [0x1a77cb498]
+      + !   : 1 log  (in libsystem_m.dylib) + 184  [0x1a77cb240]
+      + !   : 1 tt_oxygen_optics  (in turbotuv_bench) + 1320  [0x104f30b58]
+      + !   : | 1 _xzm_xzone_free_freelist  (in libsystem_malloc.dylib) + 720  [0x196a7def8]
+      + !   : |   1 mach_absolute_time  (in libsystem_kernel.dylib) + 108  [0x196c190f8]
+      + !   : 1 tt_oxygen_optics  (in turbotuv_bench) + 2512  [0x104f31000]
+      + !   :   1 exp  (in libsystem_m.dylib) + 88  [0x1a77cb458]
+      + !   62 ???  (in <unknown binary>)  [0x105ce84e0]
+      + !   : 62 tt_model_plan_run  (in turbotuv_bench) + 4080,4008,...  [0x104f4e100,0x104f4e0b8,...]
+      + !   20 ???  (in <unknown binary>)  [0x7cb48d4510]
+      + !   : 20 tt_model_plan_run  (in turbotuv_bench) + 2600,2404,...  [0x104f4db38,0x104f4da74,...]
+      + !   9 tt_model_plan_run  (in turbotuv_bench) + 256  [0x104f4d210]
+      + !   : 9 tt_spherical_geometry  (in turbotuv_bench) + 416  [0x104f297a0]
+      + !   :   6 tt_spherical_geometry  (in turbotuv_bench) + 568,584,...  [0x104f29838,0x104f29848,...]
+      + !   :   2 _platform_memset  (in libsystem_platform.dylib) + 108,140  [0x196c67afc,0x196c67b1c]
+      + !   :   1 DYLD-STUB$$memset  (in turbotuv_bench) + 4  [0x104f60854]
+      + !   6 ???  (in <unknown binary>)  [0x1]
+      + !   : 6 tt_model_plan_run  (in turbotuv_bench) + 1120,1240,...  [0x104f4d570,0x104f4d5e8,...]
+      + !   6 tt_model_plan_run  (in turbotuv_bench) + 992  [0x104f4d4f0]
+      + !   : 6 tt_spectrum_plan_evaluate  (in turbotuv_bench) + 8656  [0x104f4acd4]
+      + !   4 tt_model_plan_run  (in turbotuv_bench) + 332  [0x104f4d25c]
+      + !   : 4 tt_air_mass  (in turbotuv_bench) + 216,232  [0x104f29a68,0x104f29a78]
+      + !   1 tt_model_plan_run  (in turbotuv_bench) + 632  [0x104f4d388]
+      + !     1 tt_spectrum_plan_constant  (in turbotuv_bench) + 0  [0x104f48a64]
+      + 181 main  (in turbotuv_bench) + 1888  [0x104f60380]
+      + 1 main  (in turbotuv_bench) + 2332  [0x104f6053c]
+      +   1 scale_profile  (in turbotuv_bench) + 240  [0x104f28b30]
+      +     1 tt_profile_update  (in turbotuv_bench) + 568  [0x104f38928]
+      +       1 tt_profile_update  (in turbotuv_bench) + 636  [0x104f3896c]
+      1 ???  (in <unknown binary>)  [0xffff8f82738a8230]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 1820  [0x104f4d82c]
+      +   1 tt_oxygen_optics  (in turbotuv_bench) + 228  [0x104f30714]
+      1 ???  (in <unknown binary>)  [0xffff8f8738ee6c34]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 1728  [0x104f4d7d0]
+      +   1 tt_air_mass  (in turbotuv_bench) + 232  [0x104f29a78]
+      1 ???  (in <unknown binary>)  [0xffffb34ba8f3be33]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 992  [0x104f4d4f0]
+      +   1 tt_model_plan_run  (in turbotuv_bench) + 1564  [0x104f4d72c]
+      1 ???  (in <unknown binary>)  [0xffffc95b0f5ff494]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 1728  [0x104f4d7d0]
+      +   1 tt_air_mass  (in turbotuv_bench) + 216  [0x104f29a68]
+      1 ???  (in <unknown binary>)  [0xffffdac47dbc01e3]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 1728  [0x104f4d7d0]
+      +   1 tt_air_mass  (in turbotuv_bench) + 216  [0x104f29a68]
+      1 ???  (in <unknown binary>)  [0xffffe2a3a5d1316c]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 992  [0x104f4d4f0]
+      +   1 tt_model_plan_run  (in turbotuv_bench) + 1564  [0x104f4d72c]
+      1 ???  (in <unknown binary>)  [0xffffe4f2d176381a]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 1728  [0x104f4d7d0]
+      +   1 tt_air_mass  (in turbotuv_bench) + 216  [0x104f29a68]
+      1 ???  (in <unknown binary>)  [0xffffe7fb96c1e934]
+      + 1 tt_model_plan_run  (in turbotuv_bench) + 1728  [0x104f4d7d0]
+      +   1 tt_air_mass  (in turbotuv_bench) + 216  [0x104f29a68]
+      1 ???  (in <unknown binary>)  [0xffffe8e20cf65d00]
+        1 tt_model_plan_run  (in turbotuv_bench) + 992  [0x104f4d4f0]
+          1 tt_model_plan_run  (in turbotuv_bench) + 1564  [0x104f4d72c]
+
+Total number in stack (recursive counted multiple, when >=5):
+        113       tt_block_delta_eddington  (in turbotuv_bench) + 0  [0x104f4f4b0]
+        20       exp  (in libsystem_m.dylib) + 0  [0x1a77cb400]
+        11       pow  (in libsystem_m.dylib) + 0  [0x1a77cf040]
+        6       DYLD-STUB$$exp  (in turbotuv_bench) + 0  [0x104f60790]
+        6       log  (in libsystem_m.dylib) + 0  [0x1a77cb188]
+        6       tt_air_mass  (in turbotuv_bench) + 0  [0x104f29990]
+        6       tt_model_plan_run  (in turbotuv_bench) + 0  [0x104f4d110]
+        6       tt_oxygen_optics  (in turbotuv_bench) + 0  [0x104f30630]
+        5       tt_model_plan_run  (in turbotuv_bench) + 1728  [0x104f4d7d0]
+
+Sort by top of stack, same collapsed (when >= 5):
+        tt_block_delta_eddington  (in turbotuv_bench)        317
+        tt_spectrum_plan_evaluate  (in turbotuv_bench)        277
+        pow  (in libsystem_m.dylib)        210
+        main  (in turbotuv_bench)        181
+        exp  (in libsystem_m.dylib)        137
+        tt_oxygen_optics  (in turbotuv_bench)        113
+        tt_model_plan_run  (in turbotuv_bench)        91
+        apply  (in turbotuv_bench)        88
+        DYLD-STUB$$exp  (in turbotuv_bench)        19
+        log  (in libsystem_m.dylib)        18
+        DYLD-STUB$$pow  (in turbotuv_bench)        16
+        tt_air_mass  (in turbotuv_bench)        9
+        tt_spherical_geometry  (in turbotuv_bench)        6
+
+Binary Images:
+       0x104f28000 -        0x1053e8947 +turbotuv_bench (0) <DBD41C45-3CF7-3F1F-978B-84E19AA2F3AF> /Users/*/turbotuv_bench
+       0x1967d4000 -        0x1968235f7  libobjc.A.dylib (973.1) <C0680DF6-9900-3C29-A071-95A031686EF8> /usr/lib/libobjc.A.dylib
+       0x196824000 -        0x19682e23f  libsharedcache.dylib (0) <BBF95357-BEBF-3D89-8900-2BBB14A667C5> /usr/lib/libsharedcache.dylib
+       0x19682f000 -        0x196855d3b  libdyld.dylib (27062) <62863BCA-DD60-3D32-A9DB-89099BA6F3D7> /usr/lib/system/libdyld.dylib
+       0x196856000 -        0x1969156e3  dyld (1.0.0 - 27062) <D341DDCB-7969-3A9C-8E03-0CF4751398A9> /usr/lib/dyld
+       0x196916000 -        0x19691901f  libsystem_blocks.dylib (98.1) <6F304731-D95D-3501-B4AD-F2934F7F2446> /usr/lib/system/libsystem_blocks.dylib
+       0x19691a000 -        0x19696f0df  libxpc.dylib (3298.1.1) <0791121F-B5FC-3F84-BF04-115E86D2D882> /usr/lib/system/libxpc.dylib
+       0x196970000 -        0x19698fc13  libsystem_trace.dylib (1966.1.1) <B48A8E3E-A12A-3342-8321-428B555E965E> /usr/lib/system/libsystem_trace.dylib
+       0x196990000 -        0x196a44f27  libcorecrypto.dylib (2109.0.22) <807AA6C9-5D8A-3CA5-B4CE-FACE5296EF6A> /usr/lib/system/libcorecrypto.dylib
+       0x196a45000 -        0x196a9ac5f  libsystem_malloc.dylib (886.0.8) <2339CB57-FE5A-3154-A206-A76059C749EB> /usr/lib/system/libsystem_malloc.dylib
+       0x196a9b000 -        0x196ae119f  libdispatch.dylib (1605.0.2) <022BF08F-0B3A-3225-9E65-16D1553CE90D> /usr/lib/system/libdispatch.dylib
+       0x196ae2000 -        0x196ae4d2b  libsystem_featureflags.dylib (108) <20C1CAB2-1F13-3426-8146-9CAE9FF2A33D> /usr/lib/system/libsystem_featureflags.dylib
+       0x196ae5000 -        0x196b67ca3  libsystem_c.dylib (1786.0.3) <FBA7B23E-AA60-3A90-9AA4-A7A2E0AD63EE> /usr/lib/system/libsystem_c.dylib
+       0x196b68000 -        0x196bfd033  libc++.1.dylib (2200.27) <1E9BA4AA-B5DA-3CF3-80AC-4B880049573F> /usr/lib/libc++.1.dylib
+       0x196bfe000 -        0x196c17eff  libc++abi.dylib (2200.27) <A21743EE-6E1C-3E74-97EA-7AF793DE4BDF> /usr/lib/libc++abi.dylib
+       0x196c18000 -        0x196c569ab  libsystem_kernel.dylib (13432.1.9) <F63BF418-8F75-34A4-AAF1-8CAF2B9B6A05> /usr/lib/system/libsystem_kernel.dylib
+       0x196c57000 -        0x196c6391b  libsystem_pthread.dylib (553.0.1) <5A1828C3-CBC2-3B85-BD07-C8ED10021A41> /usr/lib/system/libsystem_pthread.dylib
+       0x196c64000 -        0x196c6d4f3  libsystem_platform.dylib (402.0.1.0.1) <080E4444-A0FB-3913-9756-4E470015F32F> /usr/lib/system/libsystem_platform.dylib
+       0x196c6e000 -        0x196c9c903  libsystem_info.dylib (603) <BC387AEB-1CEF-3513-92D7-D7F913596711> /usr/lib/system/libsystem_info.dylib
+       0x19adc6000 -        0x19adcfb13  libsystem_darwin.dylib (1786.0.3) <4E66C888-993C-3E6A-A8DA-A949C01C5B67> /usr/lib/system/libsystem_darwin.dylib
+       0x19b220000 -        0x19b231b8b  libsystem_notify.dylib (368) <58FD36D8-37A7-311C-80F2-8E64DD8710CF> /usr/lib/system/libsystem_notify.dylib
+       0x19d37d000 -        0x19d397d93  libsystem_networkextension.dylib (2340.1.2) <22E1D190-486F-324F-ABA4-F36AB841BFE9> /usr/lib/system/libsystem_networkextension.dylib
+       0x19d425000 -        0x19d43c247  libsystem_asl.dylib (409) <B4D449B7-A821-3A9A-8019-E917B291F10A> /usr/lib/system/libsystem_asl.dylib
+       0x19e3d0000 -        0x19e3d0f2f  libobjcMsgSend.dylib (973.1) <41179EDE-DC97-3BBE-8848-6400D12C1436> /usr/lib/objc/libobjcMsgSend.dylib
+       0x19f51c000 -        0x19f523edf  libsystem_symptoms.dylib (2394.0.4) <60EE7884-9F4E-3184-A6AC-FA40A7A0297D> /usr/lib/system/libsystem_symptoms.dylib
+       0x1a38b4000 -        0x1a38eeaeb  libsystem_containermanager.dylib (833.0.8.0.1) <08A57205-555D-3792-8931-9D5B585AF326> /usr/lib/system/libsystem_containermanager.dylib
+       0x1a4f07000 -        0x1a4f0b317  libsystem_configuration.dylib (1446) <F3EB66A7-7A24-3AE5-B6E8-9A37BB00F119> /usr/lib/system/libsystem_configuration.dylib
+       0x1a4f0c000 -        0x1a4f12e03  libsystem_sandbox.dylib (3051.0.52) <1E892B56-092E-3832-BDE3-DCE356D7A4FA> /usr/lib/system/libsystem_sandbox.dylib
+       0x1a63d0000 -        0x1a63d0f2f  libobjcMsgSend1.dylib (973.1) <B40D9B2A-E1EE-37ED-8004-711A1F263DE1> /usr/lib/objc/libobjcMsgSend1.dylib
+       0x1a6af0000 -        0x1a6af2f93  libquarantine.dylib (217.0.4) <7FD4AE22-86EF-382B-83F5-ADF9336C1160> /usr/lib/system/libquarantine.dylib
+       0x1a7202000 -        0x1a72081e7  libsystem_coreservices.dylib (203) <57248E07-11A5-3857-918E-4A3A63B69FE8> /usr/lib/system/libsystem_coreservices.dylib
+       0x1a77ca000 -        0x1a7807b27  libsystem_m.dylib (3326.0.1) <A3FB340F-3ED5-30F4-8B64-9D5860F64D35> /usr/lib/system/libsystem_m.dylib
+       0x1a7809000 -        0x1a780c4f7  libmacho.dylib (27062) <50DEADEC-3E99-3519-AFC3-4A3FEB3F14C3> /usr/lib/system/libmacho.dylib
+       0x1a7826000 -        0x1a7832707  libcommonCrypto.dylib (600041) <41C99F45-C5E6-39DB-B1F2-A1BEA9D242A4> /usr/lib/system/libcommonCrypto.dylib
+       0x1a7833000 -        0x1a783cc87  libunwind.dylib (2200.5) <3070AB81-B082-39E8-8A00-EF88DDE9AC47> /usr/lib/system/libunwind.dylib
+       0x1a7844000 -        0x1a784e7eb  libcopyfile.dylib (260.0.3) <72D95AF9-BF5E-3A84-81A6-BCC5BDB99857> /usr/lib/system/libcopyfile.dylib
+       0x1a784f000 -        0x1a78528bf  libcompiler_rt.dylib (103.4) <DFB5CE7F-A36E-36AA-BECE-1392D3D43607> /usr/lib/system/libcompiler_rt.dylib
+       0x1a7853000 -        0x1a7858077  libsystem_collections.dylib (1786.0.3) <1E8022D4-5A37-3A7A-8936-603E6FA88358> /usr/lib/system/libsystem_collections.dylib
+       0x1a7859000 -        0x1a785bf1f  libsystem_secinit.dylib (182) <DE037464-4C5D-3E96-A33F-2A4557CC6A20> /usr/lib/system/libsystem_secinit.dylib
+       0x1a785c000 -        0x1a785e97f  libremovefile.dylib (96) <E6E6DFCF-6B2C-3F30-A59D-816CAB1190CE> /usr/lib/system/libremovefile.dylib
+       0x1a785f000 -        0x1a785fe27  libkeymgr.dylib (31) <5EC997EF-3ADA-360B-9FCD-5F940C83FA4E> /usr/lib/system/libkeymgr.dylib
+       0x1a7860000 -        0x1a7868af7  libsystem_dnssd.dylib (3111.0.5.0.1) <DE22096F-1E5B-3D6E-8164-771582DD6391> /usr/lib/system/libsystem_dnssd.dylib
+       0x1a7869000 -        0x1a786df1b  libcache.dylib (95) <80BAE197-E285-3F6E-A1EE-B77FE37D7E5D> /usr/lib/system/libcache.dylib
+       0x1a786e000 -        0x1a786f8f3  libSystem.B.dylib (1359) <4FDC9AA6-B344-37FE-B8C6-A4C94A038F57> /usr/lib/libSystem.B.dylib
+       0x1ae3d0000 -        0x1ae3d0f2f  libobjcMsgSend2.dylib (973.1) <BD27A84B-C9AE-3282-BBEA-3B6119837B5A> /usr/lib/objc/libobjcMsgSend2.dylib
+       0x1b63d0000 -        0x1b63d0f2f  libobjcMsgSend3.dylib (973.1) <C0860D68-DDFC-3BD7-8B06-DB0645CBBED4> /usr/lib/objc/libobjcMsgSend3.dylib
+       0x1be3d0000 -        0x1be3d0f2f  libobjcMsgSend4.dylib (973.1) <A6153BF5-622B-3B01-81B6-F64A365EF613> /usr/lib/objc/libobjcMsgSend4.dylib
+       0x1c63d0000 -        0x1c63d0f2f  libobjcMsgSend5.dylib (973.1) <3913A71C-B29A-3AEA-820B-BEC40AC1861A> /usr/lib/objc/libobjcMsgSend5.dylib
+       0x1ce3d0000 -        0x1ce3d0f2f  libobjcMsgSend6.dylib (973.1) <9BC523A3-E167-3F6C-8CAE-0F3EBA671791> /usr/lib/objc/libobjcMsgSend6.dylib
+       0x1d63d0000 -        0x1d63d0f2f  libobjcMsgSend7.dylib (973.1) <248B7BCE-5B4C-34C7-A340-43D5228628C5> /usr/lib/objc/libobjcMsgSend7.dylib
+       0x1de3d0000 -        0x1de3d0f2f  libobjcMsgSend8.dylib (973.1) <3E041BAD-A8E8-3069-B741-78CD1A45B176> /usr/lib/objc/libobjcMsgSend8.dylib
+       0x1e63d0000 -        0x1e63d0f2f  libobjcMsgSend9.dylib (973.1) <34A67969-21A0-39D6-BB81-8FDA5A2409DB> /usr/lib/objc/libobjcMsgSend9.dylib
+       0x1ee3d0000 -        0x1ee3d0f2f  libobjcMsgSend10.dylib (973.1) <678186C0-8EAD-3B35-8CBB-00285B41E4A0> /usr/lib/objc/libobjcMsgSend10.dylib
+       0x1f63d0000 -        0x1f63d0f2f  libobjcMsgSend11.dylib (973.1) <E05CB08C-E956-36FA-8967-AE8E346A8D2C> /usr/lib/objc/libobjcMsgSend11.dylib
+       0x21e3d0000 -        0x21e3d0f2f  libobjcMsgSend12.dylib (973.1) <10AB03AA-FF1F-3FDC-9DFB-BFC40042C501> /usr/lib/objc/libobjcMsgSend12.dylib
+       0x2263d0000 -        0x2263d0f2f  libobjcMsgSend13.dylib (973.1) <ABF53427-FA6F-3D0D-8F9D-7AD795CA5C92> /usr/lib/objc/libobjcMsgSend13.dylib
+       0x22e3d0000 -        0x22e3d0f2f  libobjcMsgSend14.dylib (973.1) <9A844C46-A6DA-34D4-8EBF-2AD775C30684> /usr/lib/objc/libobjcMsgSend14.dylib
+       0x2363d0000 -        0x2363d0f2f  libobjcMsgSend15.dylib (973.1) <7C995666-2B2D-3284-AA0A-EBF7C922838E> /usr/lib/objc/libobjcMsgSend15.dylib
+       0x23e3d0000 -        0x23e3d0f2f  libobjcMsgSend16.dylib (973.1) <B6C0E14B-53AE-3E22-9ED5-1729C49F46F2> /usr/lib/objc/libobjcMsgSend16.dylib
+       0x2463d0000 -        0x2463d0f2f  libobjcMsgSend17.dylib (973.1) <07B4CF85-251B-301B-832B-20B315A59E19> /usr/lib/objc/libobjcMsgSend17.dylib
+       0x24e3d0000 -        0x24e3d0f2f  libobjcMsgSend18.dylib (973.1) <43E575B7-04DB-3999-A633-1A3B638BA6E3> /usr/lib/objc/libobjcMsgSend18.dylib
+       0x2563d0000 -        0x2563d0f2f  libobjcMsgSend19.dylib (973.1) <736F4D85-76F7-3B28-8D87-C07E8F7A0EF4> /usr/lib/objc/libobjcMsgSend19.dylib
+       0x25e3d0000 -        0x25e3d0f2f  libobjcMsgSend20.dylib (973.1) <74E67C8B-6BCA-3184-A18E-A97F370052C6> /usr/lib/objc/libobjcMsgSend20.dylib
+       0x2663d0000 -        0x2663d0f2f  libobjcMsgSend21.dylib (973.1) <CC0D732F-98E7-3888-9E15-70984DA2FB04> /usr/lib/objc/libobjcMsgSend21.dylib
+       0x26e3d0000 -        0x26e3d0f2f  libobjcMsgSend22.dylib (973.1) <85A60286-5DE3-32BA-B18C-2A498B065C88> /usr/lib/objc/libobjcMsgSend22.dylib
+       0x2763d0000 -        0x2763d0f2f  libobjcMsgSend23.dylib (973.1) <5452A0D2-6B19-39BE-ADDD-80B7BCDE3A98> /usr/lib/objc/libobjcMsgSend23.dylib
+       0x27e3d0000 -        0x27e3d0f2f  libobjcMsgSend24.dylib (973.1) <94BBF2D6-722B-350D-8557-4D25A8E8D53A> /usr/lib/objc/libobjcMsgSend24.dylib
+       0x2863d0000 -        0x2863d0f2f  libobjcMsgSend25.dylib (973.1) <35481387-5A8E-3AE4-86A6-94CEB3CC8726> /usr/lib/objc/libobjcMsgSend25.dylib
+       0x29e3d0000 -        0x29e3d0f2f  libobjcMsgSend26.dylib (973.1) <9E0C8664-E7F4-39D1-AAFC-BD92B255E4E8> /usr/lib/objc/libobjcMsgSend26.dylib
+       0x2a63d0000 -        0x2a63d0f2f  libobjcMsgSend27.dylib (973.1) <FD424935-55A9-3650-955A-EED3441A1D19> /usr/lib/objc/libobjcMsgSend27.dylib
+       0x2ae3d0000 -        0x2ae3d0f2f  libobjcMsgSend28.dylib (973.1) <09BA7B97-7DF7-3C7F-932A-B6847662FC49> /usr/lib/objc/libobjcMsgSend28.dylib
+       0x2b63d0000 -        0x2b63d0f2f  libobjcMsgSend29.dylib (973.1) <36D5BA3F-2139-30B0-8558-556764BE9813> /usr/lib/objc/libobjcMsgSend29.dylib
+       0x2be3d0000 -        0x2be3d0f2f  libobjcMsgSend30.dylib (973.1) <9F05564A-9D12-372C-98FC-E9F0E6BE4F04> /usr/lib/objc/libobjcMsgSend30.dylib
+       0x2c30ea000 -        0x2c30f0fe5  libRosetta.dylib (385) <E359944B-D230-33F9-A04E-0C3B17C3326E> /usr/lib/libRosetta.dylib
+       0x2c3ad9000 -        0x2c3adc75b  libsystem_darwindirectory.dylib (129.0.1) <61264923-2AA5-3658-B8C4-550C71E9D4B3> /usr/lib/system/libsystem_darwindirectory.dylib
+       0x2c3add000 -        0x2c3ae7d9b  libsystem_eligibility.dylib (446.1.3) <EDDE8E9C-A2CF-3931-BBB3-321CB852EB30> /usr/lib/system/libsystem_eligibility.dylib
+       0x2c3ae8000 -        0x2c3af142b  libsystem_sanitizers.dylib (32) <7138ED99-7AA0-34EA-B35B-20EF6ADB1EED> /usr/lib/system/libsystem_sanitizers.dylib
+       0x2c3af2000 -        0x2c3af2a13  libsystem_trial.dylib (511) <6AE48824-EC44-3A8C-B501-BE57DBE892E7> /usr/lib/system/libsystem_trial.dylib
+       0x2c63d0000 -        0x2c63d0f2f  libobjcMsgSend31.dylib (973.1) <0985E20F-78C3-3466-A2B2-DBB95F7104A3> /usr/lib/objc/libobjcMsgSend31.dylib
+       0x2ce3d0000 -        0x2ce3d0f2f  libobjcMsgSend32.dylib (973.1) <0D309D58-D576-3E5D-AD4B-6D55AB491702> /usr/lib/objc/libobjcMsgSend32.dylib
+       0x2d63d0000 -        0x2d63d0f2f  libobjcMsgSend33.dylib (973.1) <346E0484-48FA-369B-8A64-93B5F5341CFE> /usr/lib/objc/libobjcMsgSend33.dylib
+       0x2de3d0000 -        0x2de3d0f2f  libobjcMsgSend34.dylib (973.1) <6A31F809-BCBE-3E01-A367-E91FDACCE324> /usr/lib/objc/libobjcMsgSend34.dylib

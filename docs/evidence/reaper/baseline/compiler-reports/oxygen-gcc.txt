@@ -1,0 +1,66 @@
+src/oxygen.c:27:34: missed: couldn't vectorize loop
+src/oxygen.c:27:34: missed: may need non-SLP handling
+src/oxygen.c:23:26: optimized: loop vectorized using 16 byte vectors
+src/oxygen.c:23:26: optimized: loop vectorized using 16 byte vectors
+src/oxygen.c:39:26: missed: couldn't vectorize loop
+src/oxygen.c:39:26: missed: not vectorized: unsupported control flow in loop.
+src/oxygen.c:36:11: note: vectorized 2 loops in function.
+src/oxygen.c:36:11: note: ***** Analysis failed with vector mode V2DF
+src/oxygen.c:36:11: note: ***** The result for vector mode V16QI would be the same
+src/oxygen.c:36:11: note: ***** The result for vector mode V8QI would be the same
+src/oxygen.c:36:11: note: ***** The result for vector mode V4HI would be the same
+src/oxygen.c:36:11: note: ***** The result for vector mode V2SI would be the same
+src/oxygen.c:108:26: missed: couldn't vectorize loop
+src/oxygen.c:108:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/oxygen.c:118:38: missed: couldn't vectorize loop
+src/oxygen.c:118:38: missed: not vectorized: unsupported control flow in loop.
+src/oxygen.c:115:36: optimized: loop vectorized using 16 byte vectors
+src/oxygen.c:115:36: optimized:  loop versioned for vectorization because of possible aliasing
+src/oxygen.c:110:30: optimized: loop vectorized using 16 byte vectors
+src/oxygen.c:110:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/oxygen.c:89:26: missed: couldn't vectorize loop
+src/oxygen.c:89:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/oxygen.c:96:30: missed: couldn't vectorize loop
+src/oxygen.c:96:30: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/oxygen.c:48:29: missed: couldn't vectorize loop
+src/oxygen.c:50:22: missed: not vectorized: unsupported use in stmt.
+src/oxygen.c:48:29: missed: couldn't vectorize loop
+src/oxygen.c:50:22: missed: not vectorized: unsupported use in stmt.
+src/oxygen.c:79:34: missed: couldn't vectorize loop
+src/oxygen.c:79:34: missed: not vectorized: unsupported control flow in loop.
+src/oxygen.c:62:26: missed: couldn't vectorize loop
+src/oxygen.c:62:26: missed: not vectorized: unsupported control flow in loop.
+src/oxygen.c:156:30: optimized: loop vectorized using 16 byte vectors
+src/oxygen.c:152:30: missed: couldn't vectorize loop
+src/oxygen.c:152:30: missed: not vectorized: unsupported control flow in loop.
+src/oxygen.c:146:52: missed: couldn't vectorize loop
+src/oxygen.c:146:52: missed: not vectorized: could not determine main exit from loop with multiple exits.
+src/oxygen.c:132:11: note: vectorized 3 loops in function.
+src/oxygen.c:148:20: missed: statement clobbers memory: work_83 = malloc (_29);
+src/oxygen.c:71:40: missed: statement clobbers memory: tau_300 = exp (_224);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_343 = exp (_341);
+src/oxygen.c:71:40: missed: statement clobbers memory: tau_361 = exp (_359);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_351 = exp (_383);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_310 = exp (_337);
+src/oxygen.c:71:40: missed: statement clobbers memory: tau_392 = exp (_390);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_405 = exp (_403);
+src/oxygen.c:71:40: missed: statement clobbers memory: tau_423 = exp (_421);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_533 = exp (_535);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_555 = exp (_557);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_525 = exp (_529);
+src/oxygen.c:67:43: missed: statement clobbers memory: tau_519 = exp (_521);
+src/oxygen.c:81:30: missed: statement clobbers memory: _145 = log (_144);
+src/oxygen.c:81:63: missed: statement clobbers memory: _149 = log (_140);
+src/oxygen.c:94:20: missed: statement clobbers memory: _169 = log (_165);
+src/oxygen.c:99:28: missed: statement clobbers memory: x_179 = log (_178);
+src/oxygen.c:101:41: missed: statement clobbers memory: _221 = exp (_220);
+src/oxygen.c:124:39: missed: statement clobbers memory: _268 = log (_267);
+src/oxygen.c:124:64: missed: statement clobbers memory: _269 = log (_253);
+src/oxygen.c:169:5: missed: statement clobbers memory: free (work_83);
+src/oxygen.c:158:17: missed: statement clobbers memory: free (work_83);
+src/oxygen.c:132:11: note: ***** Analysis failed with vector mode V2DI
+src/oxygen.c:132:11: note: ***** The result for vector mode V16QI would be the same
+src/oxygen.c:132:11: note: ***** Re-trying analysis with vector mode V8QI
+src/oxygen.c:132:11: note: ***** Analysis failed with vector mode V8QI
+src/oxygen.c:132:11: note: ***** The result for vector mode V4HI would be the same
+src/oxygen.c:132:11: note: ***** The result for vector mode V2SI would be the same

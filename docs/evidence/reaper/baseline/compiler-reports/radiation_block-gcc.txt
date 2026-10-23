@@ -1,0 +1,2010 @@
+src/radiation_block.c:24:25: note: ***** Analysis failed with vector mode VOID
+/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk/usr/include/math.h:210:23: missed: couldn't vectorize loop
+/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk/usr/include/math.h:210:23: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/radiation_block.c:235:30: missed: couldn't vectorize loop
+src/radiation_block.c:250:33: missed: not vectorized: not suitable for strided load *_2379 = _2378;
+src/radiation_block.c:236:30: missed: couldn't vectorize loop
+src/radiation_block.c:236:30: missed: number of versioning for alias run-time tests exceeds 15 (--param vect-max-version-for-alias-checks)
+src/radiation_block.c:236:30: missed: couldn't vectorize loop
+src/radiation_block.c:236:30: missed: number of versioning for alias run-time tests exceeds 15 (--param vect-max-version-for-alias-checks)
+src/radiation_block.c:225:33: missed: couldn't vectorize loop
+src/radiation_block.c:228:46: missed: not vectorized: complicated access pattern.
+src/radiation_block.c:226:30: optimized: loop vectorized using 16 byte vectors
+src/radiation_block.c:226:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/radiation_block.c:173:30: missed: couldn't vectorize loop
+src/radiation_block.c:173:30: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/radiation_block.c:195:30: missed: couldn't vectorize loop
+src/radiation_block.c:195:30: missed: number of versioning for alias run-time tests exceeds 15 (--param vect-max-version-for-alias-checks)
+src/radiation_block.c:181:30: missed: couldn't vectorize loop
+src/radiation_block.c:181:30: missed: number of versioning for alias run-time tests exceeds 15 (--param vect-max-version-for-alias-checks)
+src/radiation_block.c:166:26: optimized: loop vectorized using 16 byte vectors
+src/radiation_block.c:166:26: optimized:  loop versioned for vectorization because of possible aliasing
+src/radiation_block.c:113:26: missed: couldn't vectorize loop
+src/radiation_block.c:113:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/radiation_block.c:143:30: missed: couldn't vectorize loop
+src/radiation_block.c:143:30: missed: not vectorized: unsupported control flow in loop.
+src/radiation_block.c:141:30: missed: couldn't vectorize loop
+src/radiation_block.c:142:24: missed: statement clobbers memory: _457 = exp (_456);
+src/radiation_block.c:119:30: missed: couldn't vectorize loop
+src/radiation_block.c:119:30: missed: not vectorized: unsupported control flow in loop.
+src/radiation_block.c:103:26: missed: couldn't vectorize loop
+src/radiation_block.c:105:36: missed: statement clobbers memory: _599 = exp (_596);
+src/radiation_block.c:104:30: missed: couldn't vectorize loop
+src/radiation_block.c:105:36: missed: statement clobbers memory: _599 = exp (_596);
+src/radiation_block.c:73:26: missed: couldn't vectorize loop
+src/radiation_block.c:73:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/radiation_block.c:96:35: missed: couldn't vectorize loop
+src/radiation_block.c:96:35: missed: may need non-SLP handling
+src/radiation_block.c:91:30: optimized: loop vectorized using 16 byte vectors
+src/radiation_block.c:96:35: missed: couldn't vectorize loop
+src/radiation_block.c:96:35: missed: may need non-SLP handling
+/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk/usr/include/math.h:210:23: missed: couldn't vectorize loop
+/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk/usr/include/math.h:210:23: missed: not vectorized: unsupported control flow in loop.
+/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk/usr/include/math.h:210:23: missed: couldn't vectorize loop
+/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk/usr/include/math.h:210:23: missed: not vectorized: unsupported control flow in loop.
+src/radiation_block.c:44:34: missed: couldn't vectorize loop
+src/radiation_block.c:44:34: missed: may need non-SLP handling
+src/radiation_block.c:273:30: missed: couldn't vectorize loop
+src/radiation_block.c:273:30: missed: not vectorized: unsupported control flow in loop.
+src/radiation_block.c:31:26: missed: couldn't vectorize loop
+src/radiation_block.c:32:18: missed: not vectorized: unsupported use in stmt.
+src/radiation_block.c:259:11: note: vectorized 3 loops in function.
+src/radiation_block.c:101:9: missed: statement clobbers memory: __builtin_memcpy (work_558, &acc, 128);
+src/radiation_block.c:101:9: missed: statement clobbers memory: __builtin_memcpy (slant_2328, &acc, 128);
+src/radiation_block.c:105:36: missed: statement clobbers memory: _599 = exp (_596);
+src/radiation_block.c:138:22: missed: statement clobbers memory: _307 = sqrt (_450);
+src/radiation_block.c:142:24: missed: statement clobbers memory: _457 = exp (_456);
+src/radiation_block.c:112:17: note: ***** Analysis succeeded with vector mode V2DI
+src/radiation_block.c:112:17: note: SLPing BB part
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c0128 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[0] = acc$0_1058;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[0] = acc$0_1058;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[1] = acc$1_1496;
+src/radiation_block.c:101:9: note: 	stmt 2 acc[2] = acc$2_27;
+src/radiation_block.c:101:9: note: 	stmt 3 acc[3] = acc$3_734;
+src/radiation_block.c:101:9: note: 	stmt 4 acc[4] = acc$4_713;
+src/radiation_block.c:101:9: note: 	stmt 5 acc[5] = acc$5_1468;
+src/radiation_block.c:101:9: note: 	stmt 6 acc[6] = acc$6_244;
+src/radiation_block.c:101:9: note: 	stmt 7 acc[7] = acc$7_707;
+src/radiation_block.c:101:9: note: 	stmt 8 acc[8] = acc$8_393;
+src/radiation_block.c:101:9: note: 	stmt 9 acc[9] = acc$9_455;
+src/radiation_block.c:101:9: note: 	stmt 10 acc[10] = acc$10_1622;
+src/radiation_block.c:101:9: note: 	stmt 11 acc[11] = acc$11_591;
+src/radiation_block.c:101:9: note: 	stmt 12 acc[12] = acc$12_570;
+src/radiation_block.c:101:9: note: 	stmt 13 acc[13] = acc$13_705;
+src/radiation_block.c:101:9: note: 	stmt 14 acc[14] = acc$14_79;
+src/radiation_block.c:101:9: note: 	stmt 15 acc[15] = acc$15_25;
+src/radiation_block.c:101:9: note: 	children 0x79c89c01b8
+src/radiation_block.c:101:9: note: node 0x79c89c01b8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_1058 = PHI <acc$0_650(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_1058 = PHI <acc$0_650(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_1496 = PHI <acc$1_651(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 2 acc$2_27 = PHI <acc$2_652(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 3 acc$3_734 = PHI <acc$3_653(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 4 acc$4_713 = PHI <acc$4_655(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 5 acc$5_1468 = PHI <acc$5_656(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 6 acc$6_244 = PHI <acc$6_657(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 7 acc$7_707 = PHI <acc$7_659(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 8 acc$8_393 = PHI <acc$8_660(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 9 acc$9_455 = PHI <acc$9_661(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 10 acc$10_1622 = PHI <acc$10_663(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 11 acc$11_591 = PHI <acc$11_664(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 12 acc$12_570 = PHI <acc$12_665(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 13 acc$13_705 = PHI <acc$13_666(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 14 acc$14_79 = PHI <acc$14_668(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 15 acc$15_25 = PHI <acc$15_669(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0248 0x79c89c0878
+src/radiation_block.c:101:9: note: node 0x79c89c0248 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_650 = PHI <_1175(51)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_650 = PHI <_1175(51)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_651 = PHI <_1190(51)>
+src/radiation_block.c:101:9: note: 	stmt 2 acc$2_652 = PHI <_1205(51)>
+src/radiation_block.c:101:9: note: 	stmt 3 acc$3_653 = PHI <_1220(51)>
+src/radiation_block.c:101:9: note: 	stmt 4 acc$4_655 = PHI <_1235(51)>
+src/radiation_block.c:101:9: note: 	stmt 5 acc$5_656 = PHI <_1250(51)>
+src/radiation_block.c:101:9: note: 	stmt 6 acc$6_657 = PHI <_1265(51)>
+src/radiation_block.c:101:9: note: 	stmt 7 acc$7_659 = PHI <_1280(51)>
+src/radiation_block.c:101:9: note: 	stmt 8 acc$8_660 = PHI <_1295(51)>
+src/radiation_block.c:101:9: note: 	stmt 9 acc$9_661 = PHI <_1310(51)>
+src/radiation_block.c:101:9: note: 	stmt 10 acc$10_663 = PHI <_1325(51)>
+src/radiation_block.c:101:9: note: 	stmt 11 acc$11_664 = PHI <_1340(51)>
+src/radiation_block.c:101:9: note: 	stmt 12 acc$12_665 = PHI <_1355(51)>
+src/radiation_block.c:101:9: note: 	stmt 13 acc$13_666 = PHI <_1370(51)>
+src/radiation_block.c:101:9: note: 	stmt 14 acc$14_668 = PHI <_1385(51)>
+src/radiation_block.c:101:9: note: 	stmt 15 acc$15_669 = PHI <_1400(51)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c02d8
+src/radiation_block.c:101:9: note: node 0x79c89c02d8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _1175 = acc$0_1034 + _1174;
+src/radiation_block.c:101:9: note: 	stmt 0 _1175 = acc$0_1034 + _1174;
+src/radiation_block.c:101:9: note: 	stmt 1 _1190 = acc$1_241 + _1189;
+src/radiation_block.c:101:9: note: 	stmt 2 _1205 = _1204 + acc$2_1454;
+src/radiation_block.c:101:9: note: 	stmt 3 _1220 = acc$3_608 + _1219;
+src/radiation_block.c:101:9: note: 	stmt 4 _1235 = acc$4_370 + _1234;
+src/radiation_block.c:101:9: note: 	stmt 5 _1250 = acc$5_311 + _1249;
+src/radiation_block.c:101:9: note: 	stmt 6 _1265 = acc$6_709 + _1264;
+src/radiation_block.c:101:9: note: 	stmt 7 _1280 = _1279 + acc$7_1566;
+src/radiation_block.c:101:9: note: 	stmt 8 _1295 = acc$8_721 + _1294;
+src/radiation_block.c:101:9: note: 	stmt 9 _1310 = acc$9_719 + _1309;
+src/radiation_block.c:101:9: note: 	stmt 10 _1325 = acc$10_556 + _1324;
+src/radiation_block.c:101:9: note: 	stmt 11 _1340 = acc$11_732 + _1339;
+src/radiation_block.c:101:9: note: 	stmt 12 _1355 = acc$12_728 + _1354;
+src/radiation_block.c:101:9: note: 	stmt 13 _1370 = acc$13_1022 + _1369;
+src/radiation_block.c:101:9: note: 	stmt 14 _1385 = acc$14_70 + _1384;
+src/radiation_block.c:101:9: note: 	stmt 15 _1400 = acc$15_96 + _1399;
+src/radiation_block.c:101:9: note: 	children 0x79c89c03f8 0x79c89c0518
+src/radiation_block.c:101:9: note: node 0x79c89c03f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_1034 = PHI <_1175(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_1034 = PHI <_1175(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_241 = PHI <_1190(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 2 acc$2_1454 = PHI <_1205(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 3 acc$3_608 = PHI <_1220(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 4 acc$4_370 = PHI <_1235(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 5 acc$5_311 = PHI <_1250(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 6 acc$6_709 = PHI <_1265(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 7 acc$7_1566 = PHI <_1280(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 8 acc$8_721 = PHI <_1295(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 9 acc$9_719 = PHI <_1310(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 10 acc$10_556 = PHI <_1325(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 11 acc$11_732 = PHI <_1340(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 12 acc$12_728 = PHI <_1355(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 13 acc$13_1022 = PHI <_1370(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 14 acc$14_70 = PHI <_1385(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 15 acc$15_96 = PHI <_1400(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c02d8 0x79c89c0488
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0488 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c0518 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _1174 = _1170 * _1173;
+src/radiation_block.c:101:9: note: 	stmt 0 _1174 = _1170 * _1173;
+src/radiation_block.c:101:9: note: 	stmt 1 _1189 = _1173 * _1185;
+src/radiation_block.c:101:9: note: 	stmt 2 _1204 = _1173 * _1200;
+src/radiation_block.c:101:9: note: 	stmt 3 _1219 = _1173 * _1215;
+src/radiation_block.c:101:9: note: 	stmt 4 _1234 = _1173 * _1230;
+src/radiation_block.c:101:9: note: 	stmt 5 _1249 = _1173 * _1245;
+src/radiation_block.c:101:9: note: 	stmt 6 _1264 = _1173 * _1260;
+src/radiation_block.c:101:9: note: 	stmt 7 _1279 = _1173 * _1275;
+src/radiation_block.c:101:9: note: 	stmt 8 _1294 = _1173 * _1290;
+src/radiation_block.c:101:9: note: 	stmt 9 _1309 = _1173 * _1305;
+src/radiation_block.c:101:9: note: 	stmt 10 _1324 = _1173 * _1320;
+src/radiation_block.c:101:9: note: 	stmt 11 _1339 = _1173 * _1335;
+src/radiation_block.c:101:9: note: 	stmt 12 _1354 = _1173 * _1350;
+src/radiation_block.c:101:9: note: 	stmt 13 _1369 = _1173 * _1365;
+src/radiation_block.c:101:9: note: 	stmt 14 _1384 = _1173 * _1380;
+src/radiation_block.c:101:9: note: 	stmt 15 _1399 = _1173 * _1395;
+src/radiation_block.c:101:9: note: 	children 0x79c89c0638 0x79c89c07e8
+src/radiation_block.c:101:9: note: node 0x79c89c0638 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _1170 = _1169 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _1170 = _1169 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _1185 = _1184 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 2 _1200 = _1199 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 3 _1215 = _1214 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 4 _1230 = _1229 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 5 _1245 = _1244 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 6 _1260 = _1259 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 7 _1275 = _1274 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 8 _1290 = _1289 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 9 _1305 = _1304 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 10 _1320 = _1319 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 11 _1335 = _1334 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 12 _1350 = _1349 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 13 _1365 = _1364 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 14 _1380 = _1379 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 15 _1395 = _1394 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c06c8 0x79c89c0758
+src/radiation_block.c:101:9: note: node 0x79c89c06c8 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _1169 = *_1168;
+src/radiation_block.c:101:9: note: 	stmt 0 _1169 = *_1168;
+src/radiation_block.c:101:9: note: 	stmt 1 _1184 = *_1183;
+src/radiation_block.c:101:9: note: 	stmt 2 _1199 = *_1198;
+src/radiation_block.c:101:9: note: 	stmt 3 _1214 = *_1213;
+src/radiation_block.c:101:9: note: 	stmt 4 _1229 = *_1228;
+src/radiation_block.c:101:9: note: 	stmt 5 _1244 = *_1243;
+src/radiation_block.c:101:9: note: 	stmt 6 _1259 = *_1258;
+src/radiation_block.c:101:9: note: 	stmt 7 _1274 = *_1273;
+src/radiation_block.c:101:9: note: 	stmt 8 _1289 = *_1288;
+src/radiation_block.c:101:9: note: 	stmt 9 _1304 = *_1303;
+src/radiation_block.c:101:9: note: 	stmt 10 _1319 = *_1318;
+src/radiation_block.c:101:9: note: 	stmt 11 _1334 = *_1333;
+src/radiation_block.c:101:9: note: 	stmt 12 _1349 = *_1348;
+src/radiation_block.c:101:9: note: 	stmt 13 _1364 = *_1363;
+src/radiation_block.c:101:9: note: 	stmt 14 _1379 = *_1378;
+src/radiation_block.c:101:9: note: 	stmt 15 _1394 = *_1393;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0758 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: node (external) 0x79c89c07e8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173 }
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0878 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 1:
+  Vector cost: 9
+  Scalar cost: 32
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 26:
+  Vector cost: 27
+  Scalar cost: 64
+src/radiation_block.c:78:26: note: Costing subgraph:
+src/radiation_block.c:78:26: note: node 0x79c89c0908 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: op template: *work_558 = _710;
+src/radiation_block.c:78:26: note: 	stmt 0 *work_558 = _710;
+src/radiation_block.c:78:26: note: 	stmt 1 MEM[(double *)work_558 + 8B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 2 MEM[(double *)work_558 + 16B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 3 MEM[(double *)work_558 + 24B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 4 MEM[(double *)work_558 + 32B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 5 MEM[(double *)work_558 + 40B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 6 MEM[(double *)work_558 + 48B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 7 MEM[(double *)work_558 + 56B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 8 MEM[(double *)work_558 + 64B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 9 MEM[(double *)work_558 + 72B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 10 MEM[(double *)work_558 + 80B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 11 MEM[(double *)work_558 + 88B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 12 MEM[(double *)work_558 + 96B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 13 MEM[(double *)work_558 + 104B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 14 MEM[(double *)work_558 + 112B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 15 MEM[(double *)work_558 + 120B] = _710;
+src/radiation_block.c:78:26: note: 	children 0x79c89c0998
+src/radiation_block.c:78:26: note: node (external) 0x79c89c0998 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: 	{ _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710 }
+src/radiation_block.c:78:26: note: Cost model analysis:
+src/radiation_block.c:78:26: note: Cost model analysis for part in loop 1:
+  Vector cost: 9
+  Scalar cost: 16
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c0bd8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[0] = acc$0_2271;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[0] = acc$0_2271;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[1] = acc$1_2270;
+src/radiation_block.c:101:9: note: 	children 0x79c89c0cf8
+src/radiation_block.c:101:9: note: node 0x79c89c0cf8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_2271 = PHI <acc$0_2287(191), acc$0_1014(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_2271 = PHI <acc$0_2287(191), acc$0_1014(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_2270 = PHI <acc$1_2286(191), acc$1_1284(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0d88 0x79c89c0fc8
+src/radiation_block.c:101:9: note: node 0x79c89c0d88 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_2287 = PHI <0.0(190), _1890(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_2287 = PHI <0.0(190), _1890(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_2286 = PHI <0.0(190), _1889(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0e18 0x79c89c0ea8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0e18 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c0ea8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1890 = BIT_FIELD_REF <vect__2018.127_1898, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1889 = BIT_FIELD_REF <vect__2018.127_1898, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c0f38
+src/radiation_block.c:101:9: note: node (external) 0x79c89c0f38 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c0fc8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_1014 = PHI <_2213(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_1014 = PHI <_2213(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_1284 = PHI <_2207(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1058
+src/radiation_block.c:101:9: note: node 0x79c89c1058 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2213 = acc$0_2237 + _2214;
+src/radiation_block.c:101:9: note: 	stmt 0 _2213 = acc$0_2237 + _2214;
+src/radiation_block.c:101:9: note: 	stmt 1 _2207 = acc$1_2236 + _2208;
+src/radiation_block.c:101:9: note: 	children 0x79c89c10e8 0x79c89c1178
+src/radiation_block.c:101:9: note: node 0x79c89c10e8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_2237 = PHI <acc$0_2287(193), _2213(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_2237 = PHI <acc$0_2287(193), _2213(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_2236 = PHI <acc$1_2286(193), _2207(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0d88 0x79c89c1058
+src/radiation_block.c:101:9: note: node 0x79c89c1178 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2214 = _2218 * _2215;
+src/radiation_block.c:101:9: note: 	stmt 0 _2214 = _2218 * _2215;
+src/radiation_block.c:101:9: note: 	stmt 1 _2208 = _2215 * _2209;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1298 0x79c89c1448
+src/radiation_block.c:101:9: note: node 0x79c89c1298 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2218 = _2219 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2218 = _2219 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2209 = _2210 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1328 0x79c89c13b8
+src/radiation_block.c:101:9: note: node 0x79c89c1328 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2219 = *_2220;
+src/radiation_block.c:101:9: note: 	stmt 0 _2219 = *_2220;
+src/radiation_block.c:101:9: note: 	stmt 1 _2210 = *_2211;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c13b8 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: node (external) 0x79c89c1448 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c1688 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[2] = acc$2_2269;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[2] = acc$2_2269;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[3] = acc$3_2268;
+src/radiation_block.c:101:9: note: 	children 0x79c89c17a8
+src/radiation_block.c:101:9: note: node 0x79c89c17a8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_2269 = PHI <acc$2_2285(191), acc$2_1050(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_2269 = PHI <acc$2_2285(191), acc$2_1050(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2268 = PHI <acc$3_2284(191), acc$3_2008(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1838 0x79c89c1a78
+src/radiation_block.c:101:9: note: node 0x79c89c1838 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_2285 = PHI <0.0(190), _1888(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_2285 = PHI <0.0(190), _1888(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2284 = PHI <0.0(190), _1887(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c18c8 0x79c89c1958
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c18c8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c1958 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1888 = BIT_FIELD_REF <vect__2018.127_1897, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1887 = BIT_FIELD_REF <vect__2018.127_1897, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c19e8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c19e8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c1a78 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_1050 = PHI <_2201(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_1050 = PHI <_2201(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2008 = PHI <_2195(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1b08
+src/radiation_block.c:101:9: note: node 0x79c89c1b08 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2201 = _2202 + acc$2_2235;
+src/radiation_block.c:101:9: note: 	stmt 0 _2201 = _2202 + acc$2_2235;
+src/radiation_block.c:101:9: note: 	stmt 1 _2195 = acc$3_2234 + _2196;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1c28 0x79c89c1ef8
+src/radiation_block.c:101:9: note: node 0x79c89c1c28 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2202 = _2215 * _2203;
+src/radiation_block.c:101:9: note: 	stmt 0 _2202 = _2215 * _2203;
+src/radiation_block.c:101:9: note: 	stmt 1 _2196 = _2215 * _2197;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1cb8 0x79c89c1d48
+src/radiation_block.c:101:9: note: node (external) 0x79c89c1cb8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c1d48 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2203 = _2204 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2203 = _2204 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2197 = _2198 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1dd8 0x79c89c1e68
+src/radiation_block.c:101:9: note: node 0x79c89c1dd8 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2204 = *_2205;
+src/radiation_block.c:101:9: note: 	stmt 0 _2204 = *_2205;
+src/radiation_block.c:101:9: note: 	stmt 1 _2198 = *_2199;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c1e68 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: node 0x79c89c1ef8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_2235 = PHI <acc$2_2285(193), _2201(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_2235 = PHI <acc$2_2285(193), _2201(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2234 = PHI <acc$3_2284(193), _2195(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1838 0x79c89c1b08
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c2138 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[4] = acc$4_2267;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[4] = acc$4_2267;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[5] = acc$5_2266;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2258
+src/radiation_block.c:101:9: note: node 0x79c89c2258 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2267 = PHI <acc$4_2283(191), acc$4_2010(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2267 = PHI <acc$4_2283(191), acc$4_2010(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2266 = PHI <acc$5_2282(191), acc$5_2470(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c22e8 0x79c89c2528
+src/radiation_block.c:101:9: note: node 0x79c89c22e8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2283 = PHI <0.0(190), _1886(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2283 = PHI <0.0(190), _1886(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2282 = PHI <0.0(190), _1885(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2378 0x79c89c2408
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c2378 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c2408 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1886 = BIT_FIELD_REF <vect__2018.127_1896, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1885 = BIT_FIELD_REF <vect__2018.127_1896, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c2498
+src/radiation_block.c:101:9: note: node (external) 0x79c89c2498 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c2528 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2010 = PHI <_2189(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2010 = PHI <_2189(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2470 = PHI <_2183(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c25b8
+src/radiation_block.c:101:9: note: node 0x79c89c25b8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2189 = acc$4_2233 + _2190;
+src/radiation_block.c:101:9: note: 	stmt 0 _2189 = acc$4_2233 + _2190;
+src/radiation_block.c:101:9: note: 	stmt 1 _2183 = acc$5_2232 + _2184;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2648 0x79c89c26d8
+src/radiation_block.c:101:9: note: node 0x79c89c2648 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2233 = PHI <acc$4_2283(193), _2189(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2233 = PHI <acc$4_2283(193), _2189(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2232 = PHI <acc$5_2282(193), _2183(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c22e8 0x79c89c25b8
+src/radiation_block.c:101:9: note: node 0x79c89c26d8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2190 = _2215 * _2191;
+src/radiation_block.c:101:9: note: 	stmt 0 _2190 = _2215 * _2191;
+src/radiation_block.c:101:9: note: 	stmt 1 _2184 = _2215 * _2185;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2768 0x79c89c27f8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c2768 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c27f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2191 = _2192 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2191 = _2192 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2185 = _2186 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2888 0x79c89c2918
+src/radiation_block.c:101:9: note: node 0x79c89c2888 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2192 = *_2193;
+src/radiation_block.c:101:9: note: 	stmt 0 _2192 = *_2193;
+src/radiation_block.c:101:9: note: 	stmt 1 _2186 = *_2187;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c2918 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c2b58 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[6] = acc$6_2265;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[6] = acc$6_2265;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[7] = acc$7_2264;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2c78
+src/radiation_block.c:101:9: note: node 0x79c89c2c78 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2265 = PHI <acc$6_2281(191), acc$6_2471(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2265 = PHI <acc$6_2281(191), acc$6_2471(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2264 = PHI <acc$7_2280(191), acc$7_2468(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2d08 0x79c89c2f48
+src/radiation_block.c:101:9: note: node 0x79c89c2d08 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2281 = PHI <0.0(190), _1884(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2281 = PHI <0.0(190), _1884(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2280 = PHI <0.0(190), _1883(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2d98 0x79c89c2e28
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c2d98 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c2e28 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1884 = BIT_FIELD_REF <vect__2018.127_1895, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1883 = BIT_FIELD_REF <vect__2018.127_1895, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c2eb8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c2eb8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c2f48 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2471 = PHI <_2177(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2471 = PHI <_2177(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2468 = PHI <_2171(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2fd8
+src/radiation_block.c:101:9: note: node 0x79c89c2fd8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2177 = acc$6_2231 + _2178;
+src/radiation_block.c:101:9: note: 	stmt 0 _2177 = acc$6_2231 + _2178;
+src/radiation_block.c:101:9: note: 	stmt 1 _2171 = _2172 + acc$7_2230;
+src/radiation_block.c:101:9: note: 	children 0x79c89c30f8 0x79c89c3188
+src/radiation_block.c:101:9: note: node 0x79c89c30f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2231 = PHI <acc$6_2281(193), _2177(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2231 = PHI <acc$6_2281(193), _2177(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2230 = PHI <acc$7_2280(193), _2171(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2d08 0x79c89c2fd8
+src/radiation_block.c:101:9: note: node 0x79c89c3188 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2178 = _2215 * _2179;
+src/radiation_block.c:101:9: note: 	stmt 0 _2178 = _2215 * _2179;
+src/radiation_block.c:101:9: note: 	stmt 1 _2172 = _2215 * _2173;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3218 0x79c89c32a8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c3218 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c32a8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2179 = _2180 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2179 = _2180 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2173 = _2174 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3338 0x79c89c33c8
+src/radiation_block.c:101:9: note: node 0x79c89c3338 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2180 = *_2181;
+src/radiation_block.c:101:9: note: 	stmt 0 _2180 = *_2181;
+src/radiation_block.c:101:9: note: 	stmt 1 _2174 = *_2175;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c33c8 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c3608 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[8] = acc$8_2263;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[8] = acc$8_2263;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[9] = acc$9_2262;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3728
+src/radiation_block.c:101:9: note: node 0x79c89c3728 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2263 = PHI <acc$8_2279(191), acc$8_2467(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2263 = PHI <acc$8_2279(191), acc$8_2467(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2262 = PHI <acc$9_2278(191), acc$9_2466(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c37b8 0x79c89c39f8
+src/radiation_block.c:101:9: note: node 0x79c89c37b8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2279 = PHI <0.0(190), _1882(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2279 = PHI <0.0(190), _1882(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2278 = PHI <0.0(190), _1881(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c3848 0x79c89c38d8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c3848 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c38d8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1882 = BIT_FIELD_REF <vect__2018.127_1894, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1881 = BIT_FIELD_REF <vect__2018.127_1894, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c3968
+src/radiation_block.c:101:9: note: node (external) 0x79c89c3968 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c39f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2467 = PHI <_2165(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2467 = PHI <_2165(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2466 = PHI <_2159(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c3a88
+src/radiation_block.c:101:9: note: node 0x79c89c3a88 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2165 = acc$8_2229 + _2166;
+src/radiation_block.c:101:9: note: 	stmt 0 _2165 = acc$8_2229 + _2166;
+src/radiation_block.c:101:9: note: 	stmt 1 _2159 = acc$9_2228 + _2160;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3b18 0x79c89c3ba8
+src/radiation_block.c:101:9: note: node 0x79c89c3b18 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2229 = PHI <acc$8_2279(193), _2165(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2229 = PHI <acc$8_2279(193), _2165(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2228 = PHI <acc$9_2278(193), _2159(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c37b8 0x79c89c3a88
+src/radiation_block.c:101:9: note: node 0x79c89c3ba8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2166 = _2215 * _2167;
+src/radiation_block.c:101:9: note: 	stmt 0 _2166 = _2215 * _2167;
+src/radiation_block.c:101:9: note: 	stmt 1 _2160 = _2215 * _2161;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3c38 0x79c89c3cc8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c3c38 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c3cc8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2167 = _2168 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2167 = _2168 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2161 = _2162 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3d58 0x79c89c3de8
+src/radiation_block.c:101:9: note: node 0x79c89c3d58 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2168 = *_2169;
+src/radiation_block.c:101:9: note: 	stmt 0 _2168 = *_2169;
+src/radiation_block.c:101:9: note: 	stmt 1 _2162 = *_2163;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c3de8 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c4028 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[10] = acc$10_2261;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[10] = acc$10_2261;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[11] = acc$11_2260;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4148
+src/radiation_block.c:101:9: note: node 0x79c89c4148 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2261 = PHI <acc$10_2277(191), acc$10_2465(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2261 = PHI <acc$10_2277(191), acc$10_2465(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2260 = PHI <acc$11_2276(191), acc$11_2464(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c41d8 0x79c89c4418
+src/radiation_block.c:101:9: note: node 0x79c89c41d8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2277 = PHI <0.0(190), _1880(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2277 = PHI <0.0(190), _1880(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2276 = PHI <0.0(190), _1879(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4268 0x79c89c42f8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c4268 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c42f8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1880 = BIT_FIELD_REF <vect__2018.127_1893, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1879 = BIT_FIELD_REF <vect__2018.127_1893, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c4388
+src/radiation_block.c:101:9: note: node (external) 0x79c89c4388 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c4418 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2465 = PHI <_2153(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2465 = PHI <_2153(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2464 = PHI <_2147(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c44a8
+src/radiation_block.c:101:9: note: node 0x79c89c44a8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2153 = acc$10_2227 + _2154;
+src/radiation_block.c:101:9: note: 	stmt 0 _2153 = acc$10_2227 + _2154;
+src/radiation_block.c:101:9: note: 	stmt 1 _2147 = acc$11_2226 + _2148;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4538 0x79c89c45c8
+src/radiation_block.c:101:9: note: node 0x79c89c4538 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2227 = PHI <acc$10_2277(193), _2153(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2227 = PHI <acc$10_2277(193), _2153(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2226 = PHI <acc$11_2276(193), _2147(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c41d8 0x79c89c44a8
+src/radiation_block.c:101:9: note: node 0x79c89c45c8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2154 = _2215 * _2155;
+src/radiation_block.c:101:9: note: 	stmt 0 _2154 = _2215 * _2155;
+src/radiation_block.c:101:9: note: 	stmt 1 _2148 = _2215 * _2149;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4658 0x79c89c46e8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c4658 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c46e8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2155 = _2156 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2155 = _2156 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2149 = _2150 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4778 0x79c89c4808
+src/radiation_block.c:101:9: note: node 0x79c89c4778 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2156 = *_2157;
+src/radiation_block.c:101:9: note: 	stmt 0 _2156 = *_2157;
+src/radiation_block.c:101:9: note: 	stmt 1 _2150 = *_2151;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c4808 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c4a48 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[12] = acc$12_2259;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[12] = acc$12_2259;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[13] = acc$13_2258;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4b68
+src/radiation_block.c:101:9: note: node 0x79c89c4b68 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2259 = PHI <acc$12_2275(191), acc$12_2463(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2259 = PHI <acc$12_2275(191), acc$12_2463(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2258 = PHI <acc$13_2274(191), acc$13_2462(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4bf8 0x79c89c4e38
+src/radiation_block.c:101:9: note: node 0x79c89c4bf8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2275 = PHI <0.0(190), _1878(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2275 = PHI <0.0(190), _1878(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2274 = PHI <0.0(190), _1877(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4c88 0x79c89c4d18
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c4c88 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c4d18 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1878 = BIT_FIELD_REF <vect__2018.127_1892, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1877 = BIT_FIELD_REF <vect__2018.127_1892, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c4da8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c4da8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c4e38 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2463 = PHI <_2141(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2463 = PHI <_2141(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2462 = PHI <_2135(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4ec8
+src/radiation_block.c:101:9: note: node 0x79c89c4ec8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2141 = acc$12_2225 + _2142;
+src/radiation_block.c:101:9: note: 	stmt 0 _2141 = acc$12_2225 + _2142;
+src/radiation_block.c:101:9: note: 	stmt 1 _2135 = acc$13_2224 + _2136;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4f58 0x79c89c4fe8
+src/radiation_block.c:101:9: note: node 0x79c89c4f58 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2225 = PHI <acc$12_2275(193), _2141(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2225 = PHI <acc$12_2275(193), _2141(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2224 = PHI <acc$13_2274(193), _2135(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4bf8 0x79c89c4ec8
+src/radiation_block.c:101:9: note: node 0x79c89c4fe8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2142 = _2215 * _2143;
+src/radiation_block.c:101:9: note: 	stmt 0 _2142 = _2215 * _2143;
+src/radiation_block.c:101:9: note: 	stmt 1 _2136 = _2215 * _2137;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5078 0x79c89c5108
+src/radiation_block.c:101:9: note: node (external) 0x79c89c5078 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c5108 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2143 = _2144 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2143 = _2144 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2137 = _2138 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5198 0x79c89c5228
+src/radiation_block.c:101:9: note: node 0x79c89c5198 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2144 = *_2145;
+src/radiation_block.c:101:9: note: 	stmt 0 _2144 = *_2145;
+src/radiation_block.c:101:9: note: 	stmt 1 _2138 = *_2139;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c5228 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Costing subgraph:
+src/radiation_block.c:101:9: note: node 0x79c89c52b8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[14] = acc$14_2257;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[14] = acc$14_2257;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[15] = acc$15_2256;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5348
+src/radiation_block.c:101:9: note: node 0x79c89c5348 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2257 = PHI <acc$14_2273(191), acc$14_2461(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2257 = PHI <acc$14_2273(191), acc$14_2461(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2256 = PHI <acc$15_2272(191), acc$15_2460(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c53d8 0x79c89c5618
+src/radiation_block.c:101:9: note: node 0x79c89c53d8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2273 = PHI <0.0(190), _1876(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2273 = PHI <0.0(190), _1876(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2272 = PHI <0.0(190), _1875(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c5468 0x79c89c54f8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c5468 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c54f8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1876 = BIT_FIELD_REF <vect__2018.127_1891, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1875 = BIT_FIELD_REF <vect__2018.127_1891, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c5588
+src/radiation_block.c:101:9: note: node (external) 0x79c89c5588 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c5618 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2461 = PHI <_2129(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2461 = PHI <_2129(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2460 = PHI <_2123(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c56a8
+src/radiation_block.c:101:9: note: node 0x79c89c56a8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2129 = acc$14_2223 + _2130;
+src/radiation_block.c:101:9: note: 	stmt 0 _2129 = acc$14_2223 + _2130;
+src/radiation_block.c:101:9: note: 	stmt 1 _2123 = acc$15_2222 + _2124;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5738 0x79c89c57c8
+src/radiation_block.c:101:9: note: node 0x79c89c5738 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2223 = PHI <acc$14_2273(193), _2129(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2223 = PHI <acc$14_2273(193), _2129(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2222 = PHI <acc$15_2272(193), _2123(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c53d8 0x79c89c56a8
+src/radiation_block.c:101:9: note: node 0x79c89c57c8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2130 = _2215 * _2131;
+src/radiation_block.c:101:9: note: 	stmt 0 _2130 = _2215 * _2131;
+src/radiation_block.c:101:9: note: 	stmt 1 _2124 = _2215 * _2125;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5858 0x79c89c58e8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c5858 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c58e8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2131 = _2132 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2131 = _2132 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2125 = _2126 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5978 0x79c89c5a08
+src/radiation_block.c:101:9: note: node 0x79c89c5978 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2132 = *_2133;
+src/radiation_block.c:101:9: note: 	stmt 0 _2132 = *_2133;
+src/radiation_block.c:101:9: note: 	stmt 1 _2126 = *_2127;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c5a08 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: Cost model analysis:
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 37:
+  Vector cost: 5
+  Scalar cost: 8
+src/radiation_block.c:101:9: note: Cost model analysis for part in loop 39:
+  Vector cost: 2
+  Scalar cost: 8
+src/radiation_block.c:78:26: note: Costing subgraph:
+src/radiation_block.c:78:26: note: node 0x79c89c5a98 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: op template: *slant_2328 = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 0 *slant_2328 = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 1 MEM[(double *)slant_2328 + 8B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 2 MEM[(double *)slant_2328 + 16B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 3 MEM[(double *)slant_2328 + 24B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 4 MEM[(double *)slant_2328 + 32B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 5 MEM[(double *)slant_2328 + 40B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 6 MEM[(double *)slant_2328 + 48B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 7 MEM[(double *)slant_2328 + 56B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 8 MEM[(double *)slant_2328 + 64B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 9 MEM[(double *)slant_2328 + 72B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 10 MEM[(double *)slant_2328 + 80B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 11 MEM[(double *)slant_2328 + 88B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 12 MEM[(double *)slant_2328 + 96B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 13 MEM[(double *)slant_2328 + 104B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 14 MEM[(double *)slant_2328 + 112B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 15 MEM[(double *)slant_2328 + 120B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	children 0x79c89c5b28
+src/radiation_block.c:78:26: note: node (constant) 0x79c89c5b28 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: 	{ 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 }
+src/radiation_block.c:78:26: note: Cost model analysis:
+src/radiation_block.c:78:26: note: Cost model analysis for part in loop 39:
+  Vector cost: 9
+  Scalar cost: 16
+src/radiation_block.c:112:17: note: Costing subgraph:
+src/radiation_block.c:112:17: note: node 0x79c89c5bb8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:112:17: note: op template: tauc[0] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 0 tauc[0] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 1 tauc[1] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 2 tauc[2] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 3 tauc[3] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 4 tauc[4] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 5 tauc[5] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 6 tauc[6] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 7 tauc[7] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 8 tauc[8] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 9 tauc[9] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 10 tauc[10] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 11 tauc[11] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 12 tauc[12] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 13 tauc[13] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 14 tauc[14] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 15 tauc[15] = 0.0;
+src/radiation_block.c:112:17: note: 	children 0x79c89c5c48
+src/radiation_block.c:112:17: note: node (constant) 0x79c89c5c48 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:112:17: note: 	{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+src/radiation_block.c:112:17: note: Cost model analysis:
+src/radiation_block.c:112:17: note: Cost model analysis for part in loop 1:
+  Vector cost: 9
+  Scalar cost: 16
+src/radiation_block.c:112:17: note: Basic block will be vectorized using SLP
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c0128 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[0] = acc$0_1058;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[0] = acc$0_1058;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[1] = acc$1_1496;
+src/radiation_block.c:101:9: note: 	stmt 2 acc[2] = acc$2_27;
+src/radiation_block.c:101:9: note: 	stmt 3 acc[3] = acc$3_734;
+src/radiation_block.c:101:9: note: 	stmt 4 acc[4] = acc$4_713;
+src/radiation_block.c:101:9: note: 	stmt 5 acc[5] = acc$5_1468;
+src/radiation_block.c:101:9: note: 	stmt 6 acc[6] = acc$6_244;
+src/radiation_block.c:101:9: note: 	stmt 7 acc[7] = acc$7_707;
+src/radiation_block.c:101:9: note: 	stmt 8 acc[8] = acc$8_393;
+src/radiation_block.c:101:9: note: 	stmt 9 acc[9] = acc$9_455;
+src/radiation_block.c:101:9: note: 	stmt 10 acc[10] = acc$10_1622;
+src/radiation_block.c:101:9: note: 	stmt 11 acc[11] = acc$11_591;
+src/radiation_block.c:101:9: note: 	stmt 12 acc[12] = acc$12_570;
+src/radiation_block.c:101:9: note: 	stmt 13 acc[13] = acc$13_705;
+src/radiation_block.c:101:9: note: 	stmt 14 acc[14] = acc$14_79;
+src/radiation_block.c:101:9: note: 	stmt 15 acc[15] = acc$15_25;
+src/radiation_block.c:101:9: note: 	children 0x79c89c01b8
+src/radiation_block.c:101:9: note: node 0x79c89c01b8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_1058 = PHI <acc$0_650(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_1058 = PHI <acc$0_650(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_1496 = PHI <acc$1_651(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 2 acc$2_27 = PHI <acc$2_652(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 3 acc$3_734 = PHI <acc$3_653(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 4 acc$4_713 = PHI <acc$4_655(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 5 acc$5_1468 = PHI <acc$5_656(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 6 acc$6_244 = PHI <acc$6_657(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 7 acc$7_707 = PHI <acc$7_659(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 8 acc$8_393 = PHI <acc$8_660(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 9 acc$9_455 = PHI <acc$9_661(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 10 acc$10_1622 = PHI <acc$10_663(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 11 acc$11_591 = PHI <acc$11_664(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 12 acc$12_570 = PHI <acc$12_665(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 13 acc$13_705 = PHI <acc$13_666(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 14 acc$14_79 = PHI <acc$14_668(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	stmt 15 acc$15_25 = PHI <acc$15_669(210), 0.0(48)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0248 0x79c89c0878
+src/radiation_block.c:101:9: note: node 0x79c89c0248 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_650 = PHI <_1175(51)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_650 = PHI <_1175(51)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_651 = PHI <_1190(51)>
+src/radiation_block.c:101:9: note: 	stmt 2 acc$2_652 = PHI <_1205(51)>
+src/radiation_block.c:101:9: note: 	stmt 3 acc$3_653 = PHI <_1220(51)>
+src/radiation_block.c:101:9: note: 	stmt 4 acc$4_655 = PHI <_1235(51)>
+src/radiation_block.c:101:9: note: 	stmt 5 acc$5_656 = PHI <_1250(51)>
+src/radiation_block.c:101:9: note: 	stmt 6 acc$6_657 = PHI <_1265(51)>
+src/radiation_block.c:101:9: note: 	stmt 7 acc$7_659 = PHI <_1280(51)>
+src/radiation_block.c:101:9: note: 	stmt 8 acc$8_660 = PHI <_1295(51)>
+src/radiation_block.c:101:9: note: 	stmt 9 acc$9_661 = PHI <_1310(51)>
+src/radiation_block.c:101:9: note: 	stmt 10 acc$10_663 = PHI <_1325(51)>
+src/radiation_block.c:101:9: note: 	stmt 11 acc$11_664 = PHI <_1340(51)>
+src/radiation_block.c:101:9: note: 	stmt 12 acc$12_665 = PHI <_1355(51)>
+src/radiation_block.c:101:9: note: 	stmt 13 acc$13_666 = PHI <_1370(51)>
+src/radiation_block.c:101:9: note: 	stmt 14 acc$14_668 = PHI <_1385(51)>
+src/radiation_block.c:101:9: note: 	stmt 15 acc$15_669 = PHI <_1400(51)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c02d8
+src/radiation_block.c:101:9: note: node 0x79c89c02d8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _1175 = acc$0_1034 + _1174;
+src/radiation_block.c:101:9: note: 	stmt 0 _1175 = acc$0_1034 + _1174;
+src/radiation_block.c:101:9: note: 	stmt 1 _1190 = acc$1_241 + _1189;
+src/radiation_block.c:101:9: note: 	stmt 2 _1205 = _1204 + acc$2_1454;
+src/radiation_block.c:101:9: note: 	stmt 3 _1220 = acc$3_608 + _1219;
+src/radiation_block.c:101:9: note: 	stmt 4 _1235 = acc$4_370 + _1234;
+src/radiation_block.c:101:9: note: 	stmt 5 _1250 = acc$5_311 + _1249;
+src/radiation_block.c:101:9: note: 	stmt 6 _1265 = acc$6_709 + _1264;
+src/radiation_block.c:101:9: note: 	stmt 7 _1280 = _1279 + acc$7_1566;
+src/radiation_block.c:101:9: note: 	stmt 8 _1295 = acc$8_721 + _1294;
+src/radiation_block.c:101:9: note: 	stmt 9 _1310 = acc$9_719 + _1309;
+src/radiation_block.c:101:9: note: 	stmt 10 _1325 = acc$10_556 + _1324;
+src/radiation_block.c:101:9: note: 	stmt 11 _1340 = acc$11_732 + _1339;
+src/radiation_block.c:101:9: note: 	stmt 12 _1355 = acc$12_728 + _1354;
+src/radiation_block.c:101:9: note: 	stmt 13 _1370 = acc$13_1022 + _1369;
+src/radiation_block.c:101:9: note: 	stmt 14 _1385 = acc$14_70 + _1384;
+src/radiation_block.c:101:9: note: 	stmt 15 _1400 = acc$15_96 + _1399;
+src/radiation_block.c:101:9: note: 	children 0x79c89c03f8 0x79c89c0518
+src/radiation_block.c:101:9: note: node 0x79c89c03f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_1034 = PHI <_1175(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_1034 = PHI <_1175(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_241 = PHI <_1190(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 2 acc$2_1454 = PHI <_1205(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 3 acc$3_608 = PHI <_1220(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 4 acc$4_370 = PHI <_1235(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 5 acc$5_311 = PHI <_1250(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 6 acc$6_709 = PHI <_1265(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 7 acc$7_1566 = PHI <_1280(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 8 acc$8_721 = PHI <_1295(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 9 acc$9_719 = PHI <_1310(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 10 acc$10_556 = PHI <_1325(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 11 acc$11_732 = PHI <_1340(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 12 acc$12_728 = PHI <_1355(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 13 acc$13_1022 = PHI <_1370(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 14 acc$14_70 = PHI <_1385(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	stmt 15 acc$15_96 = PHI <_1400(159), 0.0(139)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c02d8 0x79c89c0488
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0488 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c0518 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _1174 = _1170 * _1173;
+src/radiation_block.c:101:9: note: 	stmt 0 _1174 = _1170 * _1173;
+src/radiation_block.c:101:9: note: 	stmt 1 _1189 = _1173 * _1185;
+src/radiation_block.c:101:9: note: 	stmt 2 _1204 = _1173 * _1200;
+src/radiation_block.c:101:9: note: 	stmt 3 _1219 = _1173 * _1215;
+src/radiation_block.c:101:9: note: 	stmt 4 _1234 = _1173 * _1230;
+src/radiation_block.c:101:9: note: 	stmt 5 _1249 = _1173 * _1245;
+src/radiation_block.c:101:9: note: 	stmt 6 _1264 = _1173 * _1260;
+src/radiation_block.c:101:9: note: 	stmt 7 _1279 = _1173 * _1275;
+src/radiation_block.c:101:9: note: 	stmt 8 _1294 = _1173 * _1290;
+src/radiation_block.c:101:9: note: 	stmt 9 _1309 = _1173 * _1305;
+src/radiation_block.c:101:9: note: 	stmt 10 _1324 = _1173 * _1320;
+src/radiation_block.c:101:9: note: 	stmt 11 _1339 = _1173 * _1335;
+src/radiation_block.c:101:9: note: 	stmt 12 _1354 = _1173 * _1350;
+src/radiation_block.c:101:9: note: 	stmt 13 _1369 = _1173 * _1365;
+src/radiation_block.c:101:9: note: 	stmt 14 _1384 = _1173 * _1380;
+src/radiation_block.c:101:9: note: 	stmt 15 _1399 = _1173 * _1395;
+src/radiation_block.c:101:9: note: 	children 0x79c89c0638 0x79c89c07e8
+src/radiation_block.c:101:9: note: node 0x79c89c0638 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _1170 = _1169 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _1170 = _1169 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _1185 = _1184 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 2 _1200 = _1199 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 3 _1215 = _1214 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 4 _1230 = _1229 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 5 _1245 = _1244 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 6 _1260 = _1259 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 7 _1275 = _1274 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 8 _1290 = _1289 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 9 _1305 = _1304 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 10 _1320 = _1319 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 11 _1335 = _1334 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 12 _1350 = _1349 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 13 _1365 = _1364 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 14 _1380 = _1379 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 15 _1395 = _1394 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c06c8 0x79c89c0758
+src/radiation_block.c:101:9: note: node 0x79c89c06c8 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _1169 = *_1168;
+src/radiation_block.c:101:9: note: 	stmt 0 _1169 = *_1168;
+src/radiation_block.c:101:9: note: 	stmt 1 _1184 = *_1183;
+src/radiation_block.c:101:9: note: 	stmt 2 _1199 = *_1198;
+src/radiation_block.c:101:9: note: 	stmt 3 _1214 = *_1213;
+src/radiation_block.c:101:9: note: 	stmt 4 _1229 = *_1228;
+src/radiation_block.c:101:9: note: 	stmt 5 _1244 = *_1243;
+src/radiation_block.c:101:9: note: 	stmt 6 _1259 = *_1258;
+src/radiation_block.c:101:9: note: 	stmt 7 _1274 = *_1273;
+src/radiation_block.c:101:9: note: 	stmt 8 _1289 = *_1288;
+src/radiation_block.c:101:9: note: 	stmt 9 _1304 = *_1303;
+src/radiation_block.c:101:9: note: 	stmt 10 _1319 = *_1318;
+src/radiation_block.c:101:9: note: 	stmt 11 _1334 = *_1333;
+src/radiation_block.c:101:9: note: 	stmt 12 _1349 = *_1348;
+src/radiation_block.c:101:9: note: 	stmt 13 _1364 = *_1363;
+src/radiation_block.c:101:9: note: 	stmt 14 _1379 = *_1378;
+src/radiation_block.c:101:9: note: 	stmt 15 _1394 = *_1393;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0758 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: node (external) 0x79c89c07e8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173, _1173 }
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0878 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _1169 = *_1168;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_1168
+src/radiation_block.c:101:9: note: created vectp.135_392
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.136_396 = MEM <const vector(2) double> [(const double *)vectp.135_392];
+src/radiation_block.c:101:9: note: add new stmt: vectp.135_470 = vectp.135_392 + 16;
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.137_516 = MEM <const vector(2) double> [(const double *)vectp.135_470];
+src/radiation_block.c:101:9: note: add new stmt: vectp.135_522 = vectp.135_470 + 16;
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.138_2411 = MEM <const vector(2) double> [(const double *)vectp.135_522];
+src/radiation_block.c:101:9: note: add new stmt: vectp.135_2413 = vectp.135_522 + 16;
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.139_464 = MEM <const vector(2) double> [(const double *)vectp.135_2413];
+src/radiation_block.c:101:9: note: add new stmt: vectp.135_2412 = vectp.135_2413 + 16;
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.140_1664 = MEM <const vector(2) double> [(const double *)vectp.135_2412];
+src/radiation_block.c:101:9: note: add new stmt: vectp.135_693 = vectp.135_2412 + 16;
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.141_2547 = MEM <const vector(2) double> [(const double *)vectp.135_693];
+src/radiation_block.c:101:9: note: add new stmt: vectp.135_2548 = vectp.135_693 + 16;
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.142_2550 = MEM <const vector(2) double> [(const double *)vectp.135_2548];
+src/radiation_block.c:101:9: note: add new stmt: vectp.135_2551 = vectp.135_2548 + 16;
+src/radiation_block.c:101:9: note: add new stmt: vect__1169.143_2556 = MEM <const vector(2) double> [(const double *)vectp.135_2551];
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _1170 = _1169 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_1168, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2557 = vect__1169.136_396 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2559 = vect__1169.137_516 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2560 = vect__1169.138_2411 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2562 = vect__1169.139_464 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2563 = vect__1169.140_1664 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2568 = vect__1169.141_2547 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2569 = vect__1169.142_2550 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: add new stmt: vect__1170.144_2571 = vect__1169.143_2556 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _1174 = _1170 * _1173;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _1169 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_117 = vect__1170.144_2557 * _2478;
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_126 = vect__1170.144_2559 * _69;
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_129 = vect__1170.144_2560 * _67;
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_2106 = vect__1170.144_2562 * _66;
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_2338 = vect__1170.144_2563 * _64;
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_2345 = vect__1170.144_2568 * _63;
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_2347 = vect__1170.144_2569 * _2575;
+src/radiation_block.c:101:9: note: add new stmt: vect__1174.145_2349 = vect__1170.144_2571 * _2574;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$0_1034 = PHI <_1175(159), 0.0(139)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _1175 = acc$0_1034 + _1174;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$0_1034 = PHI <_1175(159), 0.0(139)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _1170 * _1173, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1511 = vect_acc$0_1034.146_2351 + vect__1174.145_117;
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1493 = vect_acc$0_1034.146_2353 + vect__1174.145_126;
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1159 = vect_acc$0_1034.146_2355 + vect__1174.145_129;
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1196 = vect_acc$0_1034.146_2357 + vect__1174.145_2106;
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1238 = vect_acc$0_1034.146_2359 + vect__1174.145_2338;
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1277 = vect_acc$0_1034.146_135 + vect__1174.145_2345;
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1321 = vect_acc$0_1034.146_136 + vect__1174.145_2347;
+src/radiation_block.c:101:9: note: add new stmt: vect__1175.147_1360 = vect_acc$0_1034.146_1507 + vect__1174.145_2349;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$0_650 = PHI <_1175(51)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$0_1058 = PHI <acc$0_650(210), 0.0(48)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[0] = acc$0_1058;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$0_1058 = PHI <acc$0_650(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$1_1496 = PHI <acc$1_651(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$2_27 = PHI <acc$2_652(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$3_734 = PHI <acc$3_653(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$4_713 = PHI <acc$4_655(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$5_1468 = PHI <acc$5_656(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$6_244 = PHI <acc$6_657(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$7_707 = PHI <acc$7_659(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$8_393 = PHI <acc$8_660(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$9_455 = PHI <acc$9_661(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$10_1622 = PHI <acc$10_663(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$11_591 = PHI <acc$11_664(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$12_570 = PHI <acc$12_665(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$13_705 = PHI <acc$13_666(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$14_79 = PHI <acc$14_668(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$15_25 = PHI <acc$15_669(210), 0.0(48)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[0]
+src/radiation_block.c:101:9: note: created &acc[0]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc] = vect_acc$0_1058.149_2009;
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 16B] = vect_acc$0_1058.149_1817;
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 32B] = vect_acc$0_1058.149_1835;
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 48B] = vect_acc$0_1058.149_1853;
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 64B] = vect_acc$0_1058.149_1533;
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 80B] = vect_acc$0_1058.149_1861;
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 96B] = vect_acc$0_1058.149_1997;
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 112B] = vect_acc$0_1058.149_379;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:78:26: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:78:26: note: Vectorizing SLP tree:
+src/radiation_block.c:78:26: note: node 0x79c89c0908 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: op template: *work_558 = _710;
+src/radiation_block.c:78:26: note: 	stmt 0 *work_558 = _710;
+src/radiation_block.c:78:26: note: 	stmt 1 MEM[(double *)work_558 + 8B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 2 MEM[(double *)work_558 + 16B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 3 MEM[(double *)work_558 + 24B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 4 MEM[(double *)work_558 + 32B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 5 MEM[(double *)work_558 + 40B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 6 MEM[(double *)work_558 + 48B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 7 MEM[(double *)work_558 + 56B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 8 MEM[(double *)work_558 + 64B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 9 MEM[(double *)work_558 + 72B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 10 MEM[(double *)work_558 + 80B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 11 MEM[(double *)work_558 + 88B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 12 MEM[(double *)work_558 + 96B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 13 MEM[(double *)work_558 + 104B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 14 MEM[(double *)work_558 + 112B] = _710;
+src/radiation_block.c:78:26: note: 	stmt 15 MEM[(double *)work_558 + 120B] = _710;
+src/radiation_block.c:78:26: note: 	children 0x79c89c0998
+src/radiation_block.c:78:26: note: node (external) 0x79c89c0998 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: 	{ _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710, _710 }
+src/radiation_block.c:78:26: note: ------>vectorizing SLP node starting from: *work_558 = _710;
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand _710 = PHI <0.0(44), 9.99999961690316245365415600208216064e+35(47)>, type of def: internal
+src/radiation_block.c:78:26: note: transform store. ncopies = 1
+src/radiation_block.c:78:26: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: *work_558
+src/radiation_block.c:78:26: note: created vectp.153_2479
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_2479] = _1071;
+src/radiation_block.c:78:26: note: add new stmt: vectp.153_1088 = vectp.153_2479 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_1088] = _1783;
+src/radiation_block.c:78:26: note: add new stmt: vectp.153_2567 = vectp.153_1088 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_2567] = _1766;
+src/radiation_block.c:78:26: note: add new stmt: vectp.153_2565 = vectp.153_2567 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_2565] = _1749;
+src/radiation_block.c:78:26: note: add new stmt: vectp.153_2555 = vectp.153_2565 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_2555] = _1732;
+src/radiation_block.c:78:26: note: add new stmt: vectp.153_2553 = vectp.153_2555 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_2553] = _1715;
+src/radiation_block.c:78:26: note: add new stmt: vectp.153_706 = vectp.153_2553 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_706] = _1698;
+src/radiation_block.c:78:26: note: add new stmt: vectp.153_483 = vectp.153_706 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.153_483] = _936;
+src/radiation_block.c:78:26: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c0bd8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[0] = acc$0_2271;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[0] = acc$0_2271;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[1] = acc$1_2270;
+src/radiation_block.c:101:9: note: 	children 0x79c89c0cf8
+src/radiation_block.c:101:9: note: node 0x79c89c0cf8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_2271 = PHI <acc$0_2287(191), acc$0_1014(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_2271 = PHI <acc$0_2287(191), acc$0_1014(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_2270 = PHI <acc$1_2286(191), acc$1_1284(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0d88 0x79c89c0fc8
+src/radiation_block.c:101:9: note: node 0x79c89c0d88 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_2287 = PHI <0.0(190), _1890(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_2287 = PHI <0.0(190), _1890(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_2286 = PHI <0.0(190), _1889(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0e18 0x79c89c0ea8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c0e18 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c0ea8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1890 = BIT_FIELD_REF <vect__2018.127_1898, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1889 = BIT_FIELD_REF <vect__2018.127_1898, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c0f38
+src/radiation_block.c:101:9: note: node (external) 0x79c89c0f38 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c0fc8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_1014 = PHI <_2213(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_1014 = PHI <_2213(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_1284 = PHI <_2207(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1058
+src/radiation_block.c:101:9: note: node 0x79c89c1058 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2213 = acc$0_2237 + _2214;
+src/radiation_block.c:101:9: note: 	stmt 0 _2213 = acc$0_2237 + _2214;
+src/radiation_block.c:101:9: note: 	stmt 1 _2207 = acc$1_2236 + _2208;
+src/radiation_block.c:101:9: note: 	children 0x79c89c10e8 0x79c89c1178
+src/radiation_block.c:101:9: note: node 0x79c89c10e8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$0_2237 = PHI <acc$0_2287(193), _2213(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$0_2237 = PHI <acc$0_2287(193), _2213(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$1_2236 = PHI <acc$1_2286(193), _2207(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c0d88 0x79c89c1058
+src/radiation_block.c:101:9: note: node 0x79c89c1178 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2214 = _2218 * _2215;
+src/radiation_block.c:101:9: note: 	stmt 0 _2214 = _2218 * _2215;
+src/radiation_block.c:101:9: note: 	stmt 1 _2208 = _2215 * _2209;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1298 0x79c89c1448
+src/radiation_block.c:101:9: note: node 0x79c89c1298 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2218 = _2219 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2218 = _2219 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2209 = _2210 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1328 0x79c89c13b8
+src/radiation_block.c:101:9: note: node 0x79c89c1328 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2219 = *_2220;
+src/radiation_block.c:101:9: note: 	stmt 0 _2219 = *_2220;
+src/radiation_block.c:101:9: note: 	stmt 1 _2210 = *_2211;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c13b8 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: node (external) 0x79c89c1448 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c0ea8 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _512 = vect__2018.127_1898;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$0_2287 = PHI <0.0(190), _1890(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2219 = *_2220;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2220
+src/radiation_block.c:101:9: note: created vectp.156_477
+src/radiation_block.c:101:9: note: add new stmt: vect__2219.157_474 = MEM <const vector(2) double> [(const double *)vectp.156_477];
+src/radiation_block.c:101:9: note: add new stmt: vectp.156_2352 = vectp.156_477 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2218 = _2219 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2220, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2218.158_2350 = vect__2219.157_474 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2214 = _2218 * _2215;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2219 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2214.159_2346 = vect__2218.158_2350 * _2348;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$0_2237 = PHI <acc$0_2287(193), _2213(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2213 = acc$0_2237 + _2214;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$0_2237 = PHI <acc$0_2287(193), _2213(195)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2218 * _2215, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2213.161_110 = vect_acc$0_2237.160_972 + vect__2214.159_2346;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$0_1014 = PHI <_2213(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$0_2271 = PHI <acc$0_2287(191), acc$0_1014(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[0] = acc$0_2271;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$0_2271 = PHI <acc$0_2287(191), acc$0_1014(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$1_2270 = PHI <acc$1_2286(191), acc$1_1284(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[0]
+src/radiation_block.c:101:9: note: created &acc[0]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc] = vect_acc$0_2271.163_2053;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c1688 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[2] = acc$2_2269;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[2] = acc$2_2269;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[3] = acc$3_2268;
+src/radiation_block.c:101:9: note: 	children 0x79c89c17a8
+src/radiation_block.c:101:9: note: node 0x79c89c17a8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_2269 = PHI <acc$2_2285(191), acc$2_1050(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_2269 = PHI <acc$2_2285(191), acc$2_1050(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2268 = PHI <acc$3_2284(191), acc$3_2008(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1838 0x79c89c1a78
+src/radiation_block.c:101:9: note: node 0x79c89c1838 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_2285 = PHI <0.0(190), _1888(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_2285 = PHI <0.0(190), _1888(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2284 = PHI <0.0(190), _1887(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c18c8 0x79c89c1958
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c18c8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c1958 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1888 = BIT_FIELD_REF <vect__2018.127_1897, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1887 = BIT_FIELD_REF <vect__2018.127_1897, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c19e8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c19e8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c1a78 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_1050 = PHI <_2201(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_1050 = PHI <_2201(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2008 = PHI <_2195(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1b08
+src/radiation_block.c:101:9: note: node 0x79c89c1b08 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2201 = _2202 + acc$2_2235;
+src/radiation_block.c:101:9: note: 	stmt 0 _2201 = _2202 + acc$2_2235;
+src/radiation_block.c:101:9: note: 	stmt 1 _2195 = acc$3_2234 + _2196;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1c28 0x79c89c1ef8
+src/radiation_block.c:101:9: note: node 0x79c89c1c28 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2202 = _2215 * _2203;
+src/radiation_block.c:101:9: note: 	stmt 0 _2202 = _2215 * _2203;
+src/radiation_block.c:101:9: note: 	stmt 1 _2196 = _2215 * _2197;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1cb8 0x79c89c1d48
+src/radiation_block.c:101:9: note: node (external) 0x79c89c1cb8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c1d48 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2203 = _2204 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2203 = _2204 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2197 = _2198 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c1dd8 0x79c89c1e68
+src/radiation_block.c:101:9: note: node 0x79c89c1dd8 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2204 = *_2205;
+src/radiation_block.c:101:9: note: 	stmt 0 _2204 = *_2205;
+src/radiation_block.c:101:9: note: 	stmt 1 _2198 = *_2199;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c1e68 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: node 0x79c89c1ef8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$2_2235 = PHI <acc$2_2285(193), _2201(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$2_2235 = PHI <acc$2_2285(193), _2201(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$3_2234 = PHI <acc$3_2284(193), _2195(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c1838 0x79c89c1b08
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c1958 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _44 = vect__2018.127_1897;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$2_2285 = PHI <0.0(190), _1888(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2204 = *_2205;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2205
+src/radiation_block.c:101:9: note: created vectp.168_137
+src/radiation_block.c:101:9: note: add new stmt: vect__2204.169_142 = MEM <const vector(2) double> [(const double *)vectp.168_137];
+src/radiation_block.c:101:9: note: add new stmt: vectp.168_146 = vectp.168_137 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2203 = _2204 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2205, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2203.170_155 = vect__2204.169_142 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2202 = _2215 * _2203;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2204 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2202.171_180 = _46 * vect__2203.170_155;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$2_2235 = PHI <acc$2_2285(193), _2201(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2201 = _2202 + acc$2_2235;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2215 * _2203, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$2_2235 = PHI <acc$2_2285(193), _2201(195)>, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2201.173_243 = vect__2202.171_180 + vect_acc$2_2235.172_242;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$2_1050 = PHI <_2201(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$2_2269 = PHI <acc$2_2285(191), acc$2_1050(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[2] = acc$2_2269;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$2_2269 = PHI <acc$2_2285(191), acc$2_1050(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$3_2268 = PHI <acc$3_2284(191), acc$3_2008(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[2]
+src/radiation_block.c:101:9: note: created &acc[2]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 16B] = vect_acc$2_2269.175_345;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c2138 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[4] = acc$4_2267;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[4] = acc$4_2267;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[5] = acc$5_2266;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2258
+src/radiation_block.c:101:9: note: node 0x79c89c2258 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2267 = PHI <acc$4_2283(191), acc$4_2010(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2267 = PHI <acc$4_2283(191), acc$4_2010(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2266 = PHI <acc$5_2282(191), acc$5_2470(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c22e8 0x79c89c2528
+src/radiation_block.c:101:9: note: node 0x79c89c22e8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2283 = PHI <0.0(190), _1886(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2283 = PHI <0.0(190), _1886(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2282 = PHI <0.0(190), _1885(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2378 0x79c89c2408
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c2378 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c2408 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1886 = BIT_FIELD_REF <vect__2018.127_1896, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1885 = BIT_FIELD_REF <vect__2018.127_1896, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c2498
+src/radiation_block.c:101:9: note: node (external) 0x79c89c2498 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c2528 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2010 = PHI <_2189(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2010 = PHI <_2189(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2470 = PHI <_2183(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c25b8
+src/radiation_block.c:101:9: note: node 0x79c89c25b8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2189 = acc$4_2233 + _2190;
+src/radiation_block.c:101:9: note: 	stmt 0 _2189 = acc$4_2233 + _2190;
+src/radiation_block.c:101:9: note: 	stmt 1 _2183 = acc$5_2232 + _2184;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2648 0x79c89c26d8
+src/radiation_block.c:101:9: note: node 0x79c89c2648 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$4_2233 = PHI <acc$4_2283(193), _2189(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$4_2233 = PHI <acc$4_2283(193), _2189(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$5_2232 = PHI <acc$5_2282(193), _2183(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c22e8 0x79c89c25b8
+src/radiation_block.c:101:9: note: node 0x79c89c26d8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2190 = _2215 * _2191;
+src/radiation_block.c:101:9: note: 	stmt 0 _2190 = _2215 * _2191;
+src/radiation_block.c:101:9: note: 	stmt 1 _2184 = _2215 * _2185;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2768 0x79c89c27f8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c2768 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c27f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2191 = _2192 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2191 = _2192 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2185 = _2186 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2888 0x79c89c2918
+src/radiation_block.c:101:9: note: node 0x79c89c2888 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2192 = *_2193;
+src/radiation_block.c:101:9: note: 	stmt 0 _2192 = *_2193;
+src/radiation_block.c:101:9: note: 	stmt 1 _2186 = *_2187;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c2918 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c2408 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _389 = vect__2018.127_1896;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$4_2283 = PHI <0.0(190), _1886(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2192 = *_2193;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2193
+src/radiation_block.c:101:9: note: created vectp.180_544
+src/radiation_block.c:101:9: note: add new stmt: vect__2192.181_545 = MEM <const vector(2) double> [(const double *)vectp.180_544];
+src/radiation_block.c:101:9: note: add new stmt: vectp.180_546 = vectp.180_544 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2191 = _2192 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2193, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2191.182_564 = vect__2192.181_545 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2190 = _2215 * _2191;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2192 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2190.183_565 = _543 * vect__2191.182_564;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$4_2233 = PHI <acc$4_2283(193), _2189(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2189 = acc$4_2233 + _2190;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$4_2233 = PHI <acc$4_2283(193), _2189(195)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2215 * _2191, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2189.185_567 = vect_acc$4_2233.184_566 + vect__2190.183_565;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$4_2010 = PHI <_2189(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$4_2267 = PHI <acc$4_2283(191), acc$4_2010(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[4] = acc$4_2267;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$4_2267 = PHI <acc$4_2283(191), acc$4_2010(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$5_2266 = PHI <acc$5_2282(191), acc$5_2470(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[4]
+src/radiation_block.c:101:9: note: created &acc[4]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 32B] = vect_acc$4_2267.187_582;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c2b58 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[6] = acc$6_2265;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[6] = acc$6_2265;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[7] = acc$7_2264;
+src/radiation_block.c:101:9: note: 	children 0x79c89c2c78
+src/radiation_block.c:101:9: note: node 0x79c89c2c78 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2265 = PHI <acc$6_2281(191), acc$6_2471(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2265 = PHI <acc$6_2281(191), acc$6_2471(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2264 = PHI <acc$7_2280(191), acc$7_2468(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2d08 0x79c89c2f48
+src/radiation_block.c:101:9: note: node 0x79c89c2d08 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2281 = PHI <0.0(190), _1884(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2281 = PHI <0.0(190), _1884(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2280 = PHI <0.0(190), _1883(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2d98 0x79c89c2e28
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c2d98 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c2e28 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1884 = BIT_FIELD_REF <vect__2018.127_1895, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1883 = BIT_FIELD_REF <vect__2018.127_1895, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c2eb8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c2eb8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c2f48 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2471 = PHI <_2177(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2471 = PHI <_2177(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2468 = PHI <_2171(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2fd8
+src/radiation_block.c:101:9: note: node 0x79c89c2fd8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2177 = acc$6_2231 + _2178;
+src/radiation_block.c:101:9: note: 	stmt 0 _2177 = acc$6_2231 + _2178;
+src/radiation_block.c:101:9: note: 	stmt 1 _2171 = _2172 + acc$7_2230;
+src/radiation_block.c:101:9: note: 	children 0x79c89c30f8 0x79c89c3188
+src/radiation_block.c:101:9: note: node 0x79c89c30f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$6_2231 = PHI <acc$6_2281(193), _2177(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$6_2231 = PHI <acc$6_2281(193), _2177(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$7_2230 = PHI <acc$7_2280(193), _2171(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c2d08 0x79c89c2fd8
+src/radiation_block.c:101:9: note: node 0x79c89c3188 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2178 = _2215 * _2179;
+src/radiation_block.c:101:9: note: 	stmt 0 _2178 = _2215 * _2179;
+src/radiation_block.c:101:9: note: 	stmt 1 _2172 = _2215 * _2173;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3218 0x79c89c32a8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c3218 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c32a8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2179 = _2180 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2179 = _2180 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2173 = _2174 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3338 0x79c89c33c8
+src/radiation_block.c:101:9: note: node 0x79c89c3338 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2180 = *_2181;
+src/radiation_block.c:101:9: note: 	stmt 0 _2180 = *_2181;
+src/radiation_block.c:101:9: note: 	stmt 1 _2174 = *_2175;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c33c8 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c2e28 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _584 = vect__2018.127_1895;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$6_2281 = PHI <0.0(190), _1884(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2180 = *_2181;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2181
+src/radiation_block.c:101:9: note: created vectp.192_1855
+src/radiation_block.c:101:9: note: add new stmt: vect__2180.193_1800 = MEM <const vector(2) double> [(const double *)vectp.192_1855];
+src/radiation_block.c:101:9: note: add new stmt: vectp.192_643 = vectp.192_1855 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2179 = _2180 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2181, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2179.194_649 = vect__2180.193_1800 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2178 = _2215 * _2179;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2180 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2178.195_654 = _1099 * vect__2179.194_649;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$6_2231 = PHI <acc$6_2281(193), _2177(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2177 = acc$6_2231 + _2178;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$6_2231 = PHI <acc$6_2281(193), _2177(195)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2215 * _2179, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2177.197_2576 = vect_acc$6_2231.196_658 + vect__2178.195_654;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$6_2471 = PHI <_2177(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$6_2265 = PHI <acc$6_2281(191), acc$6_2471(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[6] = acc$6_2265;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$6_2265 = PHI <acc$6_2281(191), acc$6_2471(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$7_2264 = PHI <acc$7_2280(191), acc$7_2468(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[6]
+src/radiation_block.c:101:9: note: created &acc[6]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 48B] = vect_acc$6_2265.199_536;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c3608 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[8] = acc$8_2263;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[8] = acc$8_2263;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[9] = acc$9_2262;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3728
+src/radiation_block.c:101:9: note: node 0x79c89c3728 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2263 = PHI <acc$8_2279(191), acc$8_2467(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2263 = PHI <acc$8_2279(191), acc$8_2467(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2262 = PHI <acc$9_2278(191), acc$9_2466(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c37b8 0x79c89c39f8
+src/radiation_block.c:101:9: note: node 0x79c89c37b8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2279 = PHI <0.0(190), _1882(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2279 = PHI <0.0(190), _1882(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2278 = PHI <0.0(190), _1881(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c3848 0x79c89c38d8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c3848 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c38d8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1882 = BIT_FIELD_REF <vect__2018.127_1894, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1881 = BIT_FIELD_REF <vect__2018.127_1894, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c3968
+src/radiation_block.c:101:9: note: node (external) 0x79c89c3968 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c39f8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2467 = PHI <_2165(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2467 = PHI <_2165(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2466 = PHI <_2159(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c3a88
+src/radiation_block.c:101:9: note: node 0x79c89c3a88 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2165 = acc$8_2229 + _2166;
+src/radiation_block.c:101:9: note: 	stmt 0 _2165 = acc$8_2229 + _2166;
+src/radiation_block.c:101:9: note: 	stmt 1 _2159 = acc$9_2228 + _2160;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3b18 0x79c89c3ba8
+src/radiation_block.c:101:9: note: node 0x79c89c3b18 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$8_2229 = PHI <acc$8_2279(193), _2165(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$8_2229 = PHI <acc$8_2279(193), _2165(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$9_2228 = PHI <acc$9_2278(193), _2159(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c37b8 0x79c89c3a88
+src/radiation_block.c:101:9: note: node 0x79c89c3ba8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2166 = _2215 * _2167;
+src/radiation_block.c:101:9: note: 	stmt 0 _2166 = _2215 * _2167;
+src/radiation_block.c:101:9: note: 	stmt 1 _2160 = _2215 * _2161;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3c38 0x79c89c3cc8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c3c38 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c3cc8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2167 = _2168 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2167 = _2168 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2161 = _2162 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c3d58 0x79c89c3de8
+src/radiation_block.c:101:9: note: node 0x79c89c3d58 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2168 = *_2169;
+src/radiation_block.c:101:9: note: 	stmt 0 _2168 = *_2169;
+src/radiation_block.c:101:9: note: 	stmt 1 _2162 = *_2163;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c3de8 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c38d8 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _763 = vect__2018.127_1894;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$8_2279 = PHI <0.0(190), _1882(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2168 = *_2169;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2169
+src/radiation_block.c:101:9: note: created vectp.204_2530
+src/radiation_block.c:101:9: note: add new stmt: vect__2168.205_2528 = MEM <const vector(2) double> [(const double *)vectp.204_2530];
+src/radiation_block.c:101:9: note: add new stmt: vectp.204_2526 = vectp.204_2530 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2167 = _2168 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2169, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2167.206_2524 = vect__2168.205_2528 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2166 = _2215 * _2167;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2168 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2166.207_2522 = _2532 * vect__2167.206_2524;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$8_2229 = PHI <acc$8_2279(193), _2165(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2165 = acc$8_2229 + _2166;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$8_2229 = PHI <acc$8_2279(193), _2165(195)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2215 * _2167, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2165.209_2516 = vect_acc$8_2229.208_2518 + vect__2166.207_2522;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$8_2467 = PHI <_2165(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$8_2263 = PHI <acc$8_2279(191), acc$8_2467(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[8] = acc$8_2263;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$8_2263 = PHI <acc$8_2279(191), acc$8_2467(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$9_2262 = PHI <acc$9_2278(191), acc$9_2466(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[8]
+src/radiation_block.c:101:9: note: created &acc[8]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 64B] = vect_acc$8_2263.211_2512;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c4028 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[10] = acc$10_2261;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[10] = acc$10_2261;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[11] = acc$11_2260;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4148
+src/radiation_block.c:101:9: note: node 0x79c89c4148 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2261 = PHI <acc$10_2277(191), acc$10_2465(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2261 = PHI <acc$10_2277(191), acc$10_2465(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2260 = PHI <acc$11_2276(191), acc$11_2464(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c41d8 0x79c89c4418
+src/radiation_block.c:101:9: note: node 0x79c89c41d8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2277 = PHI <0.0(190), _1880(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2277 = PHI <0.0(190), _1880(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2276 = PHI <0.0(190), _1879(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4268 0x79c89c42f8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c4268 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c42f8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1880 = BIT_FIELD_REF <vect__2018.127_1893, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1879 = BIT_FIELD_REF <vect__2018.127_1893, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c4388
+src/radiation_block.c:101:9: note: node (external) 0x79c89c4388 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c4418 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2465 = PHI <_2153(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2465 = PHI <_2153(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2464 = PHI <_2147(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c44a8
+src/radiation_block.c:101:9: note: node 0x79c89c44a8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2153 = acc$10_2227 + _2154;
+src/radiation_block.c:101:9: note: 	stmt 0 _2153 = acc$10_2227 + _2154;
+src/radiation_block.c:101:9: note: 	stmt 1 _2147 = acc$11_2226 + _2148;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4538 0x79c89c45c8
+src/radiation_block.c:101:9: note: node 0x79c89c4538 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$10_2227 = PHI <acc$10_2277(193), _2153(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$10_2227 = PHI <acc$10_2277(193), _2153(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$11_2226 = PHI <acc$11_2276(193), _2147(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c41d8 0x79c89c44a8
+src/radiation_block.c:101:9: note: node 0x79c89c45c8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2154 = _2215 * _2155;
+src/radiation_block.c:101:9: note: 	stmt 0 _2154 = _2215 * _2155;
+src/radiation_block.c:101:9: note: 	stmt 1 _2148 = _2215 * _2149;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4658 0x79c89c46e8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c4658 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c46e8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2155 = _2156 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2155 = _2156 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2149 = _2150 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4778 0x79c89c4808
+src/radiation_block.c:101:9: note: node 0x79c89c4778 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2156 = *_2157;
+src/radiation_block.c:101:9: note: 	stmt 0 _2156 = *_2157;
+src/radiation_block.c:101:9: note: 	stmt 1 _2150 = *_2151;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c4808 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c42f8 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _2508 = vect__2018.127_1893;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$10_2277 = PHI <0.0(190), _1880(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2156 = *_2157;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2157
+src/radiation_block.c:101:9: note: created vectp.216_1954
+src/radiation_block.c:101:9: note: add new stmt: vect__2156.217_708 = MEM <const vector(2) double> [(const double *)vectp.216_1954];
+src/radiation_block.c:101:9: note: add new stmt: vectp.216_1497 = vectp.216_1954 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2155 = _2156 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2157, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2155.218_1479 = vect__2156.217_708 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2154 = _2215 * _2155;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2156 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2154.219_1464 = _1953 * vect__2155.218_1479;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$10_2227 = PHI <acc$10_2277(193), _2153(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2153 = acc$10_2227 + _2154;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$10_2227 = PHI <acc$10_2277(193), _2153(195)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2215 * _2155, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2153.221_1449 = vect_acc$10_2227.220_1465 + vect__2154.219_1464;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$10_2465 = PHI <_2153(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$10_2261 = PHI <acc$10_2277(191), acc$10_2465(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[10] = acc$10_2261;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$10_2261 = PHI <acc$10_2277(191), acc$10_2465(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$11_2260 = PHI <acc$11_2276(191), acc$11_2464(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[10]
+src/radiation_block.c:101:9: note: created &acc[10]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 80B] = vect_acc$10_2261.223_1456;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c4a48 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[12] = acc$12_2259;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[12] = acc$12_2259;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[13] = acc$13_2258;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4b68
+src/radiation_block.c:101:9: note: node 0x79c89c4b68 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2259 = PHI <acc$12_2275(191), acc$12_2463(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2259 = PHI <acc$12_2275(191), acc$12_2463(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2258 = PHI <acc$13_2274(191), acc$13_2462(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4bf8 0x79c89c4e38
+src/radiation_block.c:101:9: note: node 0x79c89c4bf8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2275 = PHI <0.0(190), _1878(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2275 = PHI <0.0(190), _1878(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2274 = PHI <0.0(190), _1877(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4c88 0x79c89c4d18
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c4c88 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c4d18 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1878 = BIT_FIELD_REF <vect__2018.127_1892, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1877 = BIT_FIELD_REF <vect__2018.127_1892, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c4da8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c4da8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c4e38 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2463 = PHI <_2141(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2463 = PHI <_2141(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2462 = PHI <_2135(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4ec8
+src/radiation_block.c:101:9: note: node 0x79c89c4ec8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2141 = acc$12_2225 + _2142;
+src/radiation_block.c:101:9: note: 	stmt 0 _2141 = acc$12_2225 + _2142;
+src/radiation_block.c:101:9: note: 	stmt 1 _2135 = acc$13_2224 + _2136;
+src/radiation_block.c:101:9: note: 	children 0x79c89c4f58 0x79c89c4fe8
+src/radiation_block.c:101:9: note: node 0x79c89c4f58 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$12_2225 = PHI <acc$12_2275(193), _2141(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$12_2225 = PHI <acc$12_2275(193), _2141(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$13_2224 = PHI <acc$13_2274(193), _2135(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c4bf8 0x79c89c4ec8
+src/radiation_block.c:101:9: note: node 0x79c89c4fe8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2142 = _2215 * _2143;
+src/radiation_block.c:101:9: note: 	stmt 0 _2142 = _2215 * _2143;
+src/radiation_block.c:101:9: note: 	stmt 1 _2136 = _2215 * _2137;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5078 0x79c89c5108
+src/radiation_block.c:101:9: note: node (external) 0x79c89c5078 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c5108 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2143 = _2144 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2143 = _2144 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2137 = _2138 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5198 0x79c89c5228
+src/radiation_block.c:101:9: note: node 0x79c89c5198 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2144 = *_2145;
+src/radiation_block.c:101:9: note: 	stmt 0 _2144 = *_2145;
+src/radiation_block.c:101:9: note: 	stmt 1 _2138 = *_2139;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c5228 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c4d18 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _554 = vect__2018.127_1892;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$12_2275 = PHI <0.0(190), _1878(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2144 = *_2145;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2145
+src/radiation_block.c:101:9: note: created vectp.228_1053
+src/radiation_block.c:101:9: note: add new stmt: vect__2144.229_533 = MEM <const vector(2) double> [(const double *)vectp.228_1053];
+src/radiation_block.c:101:9: note: add new stmt: vectp.228_532 = vectp.228_1053 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2143 = _2144 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2145, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2143.230_401 = vect__2144.229_533 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2142 = _2215 * _2143;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2144 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2142.231_100 = _535 * vect__2143.230_401;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$12_2225 = PHI <acc$12_2275(193), _2141(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2141 = acc$12_2225 + _2142;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$12_2225 = PHI <acc$12_2275(193), _2141(195)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2215 * _2143, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2141.233_2503 = vect_acc$12_2225.232_2500 + vect__2142.231_100;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$12_2463 = PHI <_2141(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$12_2259 = PHI <acc$12_2275(191), acc$12_2463(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[12] = acc$12_2259;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$12_2259 = PHI <acc$12_2275(191), acc$12_2463(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$13_2258 = PHI <acc$13_2274(191), acc$13_2462(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[12]
+src/radiation_block.c:101:9: note: created &acc[12]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 96B] = vect_acc$12_2259.235_1059;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:101:9: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:101:9: note: Vectorizing SLP tree:
+src/radiation_block.c:101:9: note: node 0x79c89c52b8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc[14] = acc$14_2257;
+src/radiation_block.c:101:9: note: 	stmt 0 acc[14] = acc$14_2257;
+src/radiation_block.c:101:9: note: 	stmt 1 acc[15] = acc$15_2256;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5348
+src/radiation_block.c:101:9: note: node 0x79c89c5348 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2257 = PHI <acc$14_2273(191), acc$14_2461(207)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2257 = PHI <acc$14_2273(191), acc$14_2461(207)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2256 = PHI <acc$15_2272(191), acc$15_2460(207)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c53d8 0x79c89c5618
+src/radiation_block.c:101:9: note: node 0x79c89c53d8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2273 = PHI <0.0(190), _1876(208)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2273 = PHI <0.0(190), _1876(208)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2272 = PHI <0.0(190), _1875(208)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c5468 0x79c89c54f8
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c5468 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ 0.0, 0.0 }
+src/radiation_block.c:101:9: note: node 0x79c89c54f8 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op: VEC_PERM_EXPR
+src/radiation_block.c:101:9: note: 	stmt 0 _1876 = BIT_FIELD_REF <vect__2018.127_1891, 64, 0>;
+src/radiation_block.c:101:9: note: 	stmt 1 _1875 = BIT_FIELD_REF <vect__2018.127_1891, 64, 64>;
+src/radiation_block.c:101:9: note: 	lane permutation { 0[0] 0[1] }
+src/radiation_block.c:101:9: note: 	children 0x79c89c5588
+src/radiation_block.c:101:9: note: node (external) 0x79c89c5588 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ }
+src/radiation_block.c:101:9: note: node 0x79c89c5618 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2461 = PHI <_2129(194)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2461 = PHI <_2129(194)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2460 = PHI <_2123(194)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c56a8
+src/radiation_block.c:101:9: note: node 0x79c89c56a8 (max_nunits=2, refcnt=2) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2129 = acc$14_2223 + _2130;
+src/radiation_block.c:101:9: note: 	stmt 0 _2129 = acc$14_2223 + _2130;
+src/radiation_block.c:101:9: note: 	stmt 1 _2123 = acc$15_2222 + _2124;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5738 0x79c89c57c8
+src/radiation_block.c:101:9: note: node 0x79c89c5738 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: acc$14_2223 = PHI <acc$14_2273(193), _2129(195)>
+src/radiation_block.c:101:9: note: 	stmt 0 acc$14_2223 = PHI <acc$14_2273(193), _2129(195)>
+src/radiation_block.c:101:9: note: 	stmt 1 acc$15_2222 = PHI <acc$15_2272(193), _2123(195)>
+src/radiation_block.c:101:9: note: 	children 0x79c89c53d8 0x79c89c56a8
+src/radiation_block.c:101:9: note: node 0x79c89c57c8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2130 = _2215 * _2131;
+src/radiation_block.c:101:9: note: 	stmt 0 _2130 = _2215 * _2131;
+src/radiation_block.c:101:9: note: 	stmt 1 _2124 = _2215 * _2125;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5858 0x79c89c58e8
+src/radiation_block.c:101:9: note: node (external) 0x79c89c5858 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: 	{ _2215, _2215 }
+src/radiation_block.c:101:9: note: node 0x79c89c58e8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:101:9: note: op template: _2131 = _2132 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 0 _2131 = _2132 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	stmt 1 _2125 = _2126 * 2.0e+0;
+src/radiation_block.c:101:9: note: 	children 0x79c89c5978 0x79c89c5a08
+src/radiation_block.c:101:9: note: node 0x79c89c5978 (max_nunits=2, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: op template: _2132 = *_2133;
+src/radiation_block.c:101:9: note: 	stmt 0 _2132 = *_2133;
+src/radiation_block.c:101:9: note: 	stmt 1 _2126 = *_2127;
+src/radiation_block.c:101:9: note: node (constant) 0x79c89c5a08 (max_nunits=1, refcnt=1) const vector(2) double
+src/radiation_block.c:101:9: note: 	{ 2.0e+0, 2.0e+0 }
+src/radiation_block.c:101:9: note: ------>vectorizing SLP permutation node
+src/radiation_block.c:101:9: note: vectorizing permutation 0x79c89c54f8 op0[0] op0[1]
+src/radiation_block.c:101:9: note: as vops0[0][0] vops0[0][1]
+src/radiation_block.c:101:9: note: add new stmt: _1856 = vect__2018.127_1891;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$14_2273 = PHI <0.0(190), _1876(208)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2132 = *_2133;
+src/radiation_block.c:101:9: note: transform load. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: const vector(2) double  vectorizing a pointer ref: *_2133
+src/radiation_block.c:101:9: note: created vectp.240_1096
+src/radiation_block.c:101:9: note: add new stmt: vect__2132.241_1093 = MEM <const vector(2) double> [(const double *)vectp.240_1096];
+src/radiation_block.c:101:9: note: add new stmt: vectp.240_1091 = vectp.240_1096 + 112;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2131 = _2132 * 2.0e+0;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand *_2133, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2131.242_1090 = vect__2132.241_1093 * { 2.0e+0, 2.0e+0 };
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2130 = _2215 * _2131;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2132 * 2.0e+0, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2130.243_1087 = _1097 * vect__2131.242_1090;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$14_2223 = PHI <acc$14_2273(193), _2129(195)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: _2129 = acc$14_2223 + _2130;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$14_2223 = PHI <acc$14_2273(193), _2129(195)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand _2215 * _2131, type of def: internal
+src/radiation_block.c:101:9: note: transform binary/unary operation.
+src/radiation_block.c:101:9: note: add new stmt: vect__2129.245_1084 = vect_acc$14_2223.244_1085 + vect__2130.243_1087;
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$14_2461 = PHI <_2129(194)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc$14_2257 = PHI <acc$14_2273(191), acc$14_2461(207)>
+src/radiation_block.c:101:9: note: ------>vectorizing SLP node starting from: acc[14] = acc$14_2257;
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$14_2257 = PHI <acc$14_2273(191), acc$14_2461(207)>, type of def: internal
+src/radiation_block.c:101:9: note: vect_is_simple_use: operand acc$15_2256 = PHI <acc$15_2272(191), acc$15_2460(207)>, type of def: internal
+src/radiation_block.c:101:9: note: transform store. ncopies = 1
+src/radiation_block.c:101:9: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: acc[14]
+src/radiation_block.c:101:9: note: created &acc[14]
+src/radiation_block.c:101:9: note: add new stmt: MEM <vector(2) double> [(double *)&acc + 112B] = vect_acc$14_2257.247_1046;
+src/radiation_block.c:101:9: note: vectorizing stmts using SLP.
+src/radiation_block.c:78:26: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:78:26: note: Vectorizing SLP tree:
+src/radiation_block.c:78:26: note: node 0x79c89c5a98 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: op template: *slant_2328 = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 0 *slant_2328 = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 1 MEM[(double *)slant_2328 + 8B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 2 MEM[(double *)slant_2328 + 16B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 3 MEM[(double *)slant_2328 + 24B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 4 MEM[(double *)slant_2328 + 32B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 5 MEM[(double *)slant_2328 + 40B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 6 MEM[(double *)slant_2328 + 48B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 7 MEM[(double *)slant_2328 + 56B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 8 MEM[(double *)slant_2328 + 64B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 9 MEM[(double *)slant_2328 + 72B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 10 MEM[(double *)slant_2328 + 80B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 11 MEM[(double *)slant_2328 + 88B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 12 MEM[(double *)slant_2328 + 96B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 13 MEM[(double *)slant_2328 + 104B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 14 MEM[(double *)slant_2328 + 112B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	stmt 15 MEM[(double *)slant_2328 + 120B] = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: 	children 0x79c89c5b28
+src/radiation_block.c:78:26: note: node (constant) 0x79c89c5b28 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:78:26: note: 	{ 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 }
+src/radiation_block.c:78:26: note: ------>vectorizing SLP node starting from: *slant_2328 = 9.99999961690316245365415600208216064e+35;
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: vect_is_simple_use: operand 9.99999961690316245365415600208216064e+35, type of def: constant
+src/radiation_block.c:78:26: note: transform store. ncopies = 1
+src/radiation_block.c:78:26: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: *slant_2328
+src/radiation_block.c:78:26: note: created vectp.251_1043
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_1043] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: add new stmt: vectp.251_1039 = vectp.251_1043 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_1039] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: add new stmt: vectp.251_1036 = vectp.251_1039 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_1036] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: add new stmt: vectp.251_1002 = vectp.251_1036 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_1002] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: add new stmt: vectp.251_997 = vectp.251_1002 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_997] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: add new stmt: vectp.251_994 = vectp.251_997 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_994] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: add new stmt: vectp.251_991 = vectp.251_994 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_991] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: add new stmt: vectp.251_989 = vectp.251_991 + 16;
+src/radiation_block.c:78:26: note: add new stmt: MEM <vector(2) double> [(double *)vectp.251_989] = { 9.99999961690316245365415600208216064e+35, 9.99999961690316245365415600208216064e+35 };
+src/radiation_block.c:78:26: note: vectorizing stmts using SLP.
+src/radiation_block.c:112:17: optimized: basic block part vectorized using 16 byte vectors
+src/radiation_block.c:112:17: note: Vectorizing SLP tree:
+src/radiation_block.c:112:17: note: node 0x79c89c5bb8 (max_nunits=2, refcnt=1) vector(2) double
+src/radiation_block.c:112:17: note: op template: tauc[0] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 0 tauc[0] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 1 tauc[1] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 2 tauc[2] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 3 tauc[3] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 4 tauc[4] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 5 tauc[5] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 6 tauc[6] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 7 tauc[7] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 8 tauc[8] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 9 tauc[9] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 10 tauc[10] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 11 tauc[11] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 12 tauc[12] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 13 tauc[13] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 14 tauc[14] = 0.0;
+src/radiation_block.c:112:17: note: 	stmt 15 tauc[15] = 0.0;
+src/radiation_block.c:112:17: note: 	children 0x79c89c5c48
+src/radiation_block.c:112:17: note: node (constant) 0x79c89c5c48 (max_nunits=1, refcnt=1) vector(2) double
+src/radiation_block.c:112:17: note: 	{ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
+src/radiation_block.c:112:17: note: ------>vectorizing SLP node starting from: tauc[0] = 0.0;
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: vect_is_simple_use: operand 0.0, type of def: constant
+src/radiation_block.c:112:17: note: transform store. ncopies = 1
+src/radiation_block.c:112:17: note: create vector_type-pointer variable to type: vector(2) double  vectorizing a pointer ref: tauc[0]
+src/radiation_block.c:112:17: note: created &tauc[0]
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc + 16B] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc + 32B] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc + 48B] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc + 64B] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc + 80B] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc + 96B] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: add new stmt: MEM <vector(2) double> [(double *)&tauc + 112B] = { 0.0, 0.0 };
+src/radiation_block.c:112:17: note: vectorizing stmts using SLP.
+src/radiation_block.c:112:17: note: ***** The result for vector mode V16QI would be the same
+src/radiation_block.c:112:17: note: ***** The result for vector mode V8QI would be the same
+src/radiation_block.c:112:17: note: ***** The result for vector mode V4HI would be the same
+src/radiation_block.c:305:12: missed: statement clobbers memory: _14 = tt_block_delta_eddington_profiled (nr_2(D), radiators_3(D), n_4(D), nw_5(D), nid_6(D), path_7(D), zenith_8(D), surface_9(D), scale_10(D), work_11(D), out_12(D), 0B);
+src/radiation_block.c:305:12: note: ***** Analysis failed with vector mode VOID

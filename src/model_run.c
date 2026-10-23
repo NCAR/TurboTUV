@@ -47,10 +47,15 @@ tt_status tt_model_run(tt_model *m, double zenith, double scale, const tt_model_
         return failure(error, TT_INVALID, "Invalid model run arguments");
     /* A prepared run gives the generic results; for inputs it does not
      * cover it declines, and the generic sequence decides. */
-    if (m->plan && !m->generic && tt_model_plan_run(m->plan, m, zenith, scale)) {
-        *out = &m->result;
-        return TT_OK;
+    if (m->plan && !m->generic) {
+        if (tt_model_plan_run(m->plan, m, zenith, scale)) {
+            ++m->diagnostics.prepared_calls;
+            *out = &m->result;
+            return TT_OK;
+        }
+        ++m->diagnostics.prepared_declines;
     }
+    ++m->diagnostics.generic_calls;
     const tt_grid *height = &m->grids[m->height].value,
                   *wavelength = &m->grids[m->wavelength].value;
     const tt_profile *temperature = &m->profiles[m->temperature].value,

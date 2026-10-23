@@ -16,6 +16,7 @@
  * plans' limit, or nonfinite radiation. */
 #include "model_plan.h"
 #include "spectrum_plan.h"
+#include "diagnostics_internal.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -349,6 +350,7 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
         return 0;
     if (p->needs_air && !finite_range(nz, air->edges, 0, 1.7976931348623157e308))
         return 0;
+    TT_TIME_START(geometry_time);
     if (tt_spherical_geometry(nz, height->edges, zenith, m->nid, m->path))
         return 0;
     int oxygen = m->bands.lyman_alpha != SIZE_MAX || m->bands.schumann_runge != SIZE_MAX;
@@ -362,6 +364,8 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
                              m->oxygen_vertical, m->slant_oxygen))
             return 0;
     }
+    TT_TIME_END(&m->diagnostics, TT_STAGE_GEOMETRY, geometry_time);
+    TT_TIME_START(gas_time);
     /* Gas radiators: optical depth = column * cross section, as tt_gas_optics. */
     for (size_t i = 0; i < m->radiator_count; ++i) {
         tt_model_radiator_entry *r = m->radiators + i;
@@ -398,19 +402,24 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
             p->gas_initialized[i] = 1;
         }
     }
+    TT_TIME_END(&m->diagnostics, TT_STAGE_GAS, gas_time);
+    TT_TIME_START(oxygen_depth_time);
     if (oxygen && m->oxygen_radiator != SIZE_MAX &&
         tt_oxygen_optics(&m->bands, nw, nz, temperature->edges, m->vertical, m->slant_air,
                          m->slant_oxygen, m->radiators[m->oxygen_radiator].data, NULL))
         return 0;
+    TT_TIME_END(&m->diagnostics, TT_STAGE_OXYGEN_DEPTH, oxygen_depth_time);
+    TT_TIME_START(transfer_time);
     /* Radiation, multiplied by the scale as the generic run does. */
     tt_radiation *radiation = &m->result.radiation;
     if (m->host_solver) {
         for (size_t i = 0; i < 6 * n; ++i)
             m->radiation_storage[i] = m->host_radiation[i] * scale;
     } else if (m->streams == 1) {
-        if (tt_block_delta_eddington(m->radiator_count, m->radiator_views, nl, nw, m->nid, m->path,
-                                     zenith, m->profiles[m->surface].value.midpoints, scale,
-                                     p->block, radiation))
+        if (tt_block_delta_eddington_profiled(m->radiator_count, m->radiator_views, nl, nw, m->nid,
+                                              m->path, zenith,
+                                              m->profiles[m->surface].value.midpoints, scale,
+                                              p->block, radiation, &m->diagnostics))
             return 0;
     } else {
         if (tt_mix_radiators(m->radiator_count, m->radiator_views, nl, nw, m->streams,
@@ -422,6 +431,8 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
         for (size_t i = 0; i < 6 * n; ++i)
             m->radiation_storage[i] = m->radiation_storage[i] * scale;
     }
+    TT_TIME_END(&m->diagnostics, TT_STAGE_TRANSFER, transfer_time);
+    TT_TIME_START(flux_time);
     if (m->solar != SIZE_MAX) {
         const double *solar = m->profiles[m->solar].value.midpoints;
         double *actinic = m->work, *irradiance = m->work + n;
@@ -443,22 +454,37 @@ int tt_model_plan_run(tt_model_plan *p, tt_model *m, double zenith, double scale
         if (!all_finite(2 * n, m->work))
             return 0;
     }
+    TT_TIME_END(&m->diagnostics, TT_STAGE_FLUX, flux_time);
     /* Spectra of the reactions, then the rates. */
     if (m->shape.photolysis) {
         for (size_t i = 0; i < p->evaluation_count; ++i) {
             evaluation *e = p->evaluations + i;
-            if (e->levels == nz && tt_spectrum_plan_evaluate(e->plan, nz, temperature->edges,
-                                                             air->edges, p->scratch, e->rows))
-                return 0;
+            if (e->levels == nz) {
+                TT_TIME_START(spectrum_time);
+                if (tt_spectrum_plan_evaluate(e->plan, nz, temperature->edges, air->edges,
+                                              p->scratch, e->rows))
+                    return 0;
+                TT_TIME_END(&m->diagnostics,
+                            TT_STAGE_SPECTRA_DIRECT + tt_spectrum_plan_category(e->plan),
+                            spectrum_time);
+            }
         }
+        TT_TIME_START(oxygen_cross_time);
         if (oxygen && p->oxygen_reactions &&
             tt_oxygen_optics(&m->bands, nw, nz, temperature->edges, m->vertical, m->slant_air,
                              m->slant_oxygen, NULL, p->oxygen_cross))
             return 0;
+        TT_TIME_END(&m->diagnostics, TT_STAGE_OXYGEN_CROSS, oxygen_cross_time);
     }
     for (size_t i = 0; i < p->integral_count; ++i) {
         const integral *g = p->integrals + i;
+        TT_TIME_START(rate_time);
         integrate(g, g->dose ? m->work + n : m->work, nz, m->rate_storage + g->output);
+        TT_TIME_END(&m->diagnostics,
+                    g->dose      ? TT_STAGE_DOSE
+                    : g->heating ? TT_STAGE_HEATING
+                                 : TT_STAGE_PHOTOLYSIS,
+                    rate_time);
     }
     return 1;
 }

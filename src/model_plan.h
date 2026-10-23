@@ -30,4 +30,9 @@ tt_status tt_block_delta_eddington(size_t radiator_count, const tt_radiator *rad
                                    size_t layers, size_t wavelengths, const int *nid,
                                    const double *dsdh, double zenith, const double *surface,
                                    double scale, double *work, tt_radiation *out);
+tt_status tt_block_delta_eddington_profiled(size_t nr, const tt_radiator *radiators, size_t n,
+                                            size_t nw, const int *nid, const double *path,
+                                            double zenith, const double *surface, double scale,
+                                            double *work, tt_radiation *out,
+                                            tt_diagnostics *diagnostics);
 #endif

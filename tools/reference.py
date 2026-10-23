@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import subprocess
 import shutil
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -21,6 +22,11 @@ def main():
     p.add_argument("--netcdf", type=Path)
     p.add_argument("--configure-only", action="store_true")
     p.add_argument("--jobs", type=int, default=8)
+    p.add_argument("--cc", type=Path, help="C compiler (override the historical Homebrew default)")
+    p.add_argument("--cxx", type=Path)
+    p.add_argument("--fc", type=Path)
+    p.add_argument("--sysroot", type=Path)
+    p.add_argument("--generator", default="Unix Makefiles")
     a = p.parse_args()
     home = Path.home()
     brew = Path(subprocess.check_output(["brew", "--prefix"], text=True).strip())
@@ -76,15 +82,21 @@ def main():
     env["PKG_CONFIG_PATH"] = os.pathsep.join(map(str, [prefix / "lib/pkgconfig", netcdf / "lib/pkgconfig"]))
     env["PATH"] = str(netcdf / "bin") + os.pathsep + env["PATH"]
     env["PYTHONPATH"] = str(ROOT / "build/python") + os.pathsep + env.get("PYTHONPATH", "")
-    cc = brew / ("opt/llvm/bin/clang" if llvm else "bin/gcc-16")
-    cxx = brew / ("opt/llvm/bin/clang++" if llvm else "bin/g++-16")
-    fc = brew / ("bin/flang" if llvm else "bin/gfortran-16")
+    cc = a.cc or brew / ("opt/llvm/bin/clang" if llvm else "bin/gcc-16")
+    cxx = a.cxx or brew / ("opt/llvm/bin/clang++" if llvm else "bin/g++-16")
+    fc = a.fc or brew / ("bin/flang" if llvm else "bin/gfortran-16")
     yaml = prefix.parent / "build/musica/_deps/yaml-cpp-src"
-    command = ["cmake", "-S", str(source), "-B", str(build), "-G", "Ninja",
+    command = ["cmake", "-S", str(source), "-B", str(build), "-G", a.generator,
                f"-DCMAKE_C_COMPILER={cc}", f"-DCMAKE_CXX_COMPILER={cxx}",
                f"-DCMAKE_Fortran_COMPILER={fc}", "-DCMAKE_BUILD_TYPE=Release",
                "-DCMAKE_C_FLAGS=-ffp-contract=off", "-DCMAKE_CXX_FLAGS=-ffp-contract=off",
-               "-DCMAKE_Fortran_FLAGS=-ffp-contract=off", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]
+               "-DCMAKE_Fortran_FLAGS=-ffp-contract=off", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+               f"-DPython3_EXECUTABLE={sys.executable}",
+               "-DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=NEVER"]
+    if a.sysroot:
+        command.append(f"-DCMAKE_OSX_SYSROOT={a.sysroot}")
+        # CMake does not propagate OSX_SYSROOT to all Flang versions.
+        command.append(f"-DCMAKE_Fortran_FLAGS=-ffp-contract=off -isysroot {a.sysroot}")
     if yaml.exists():
         command.append(f"-DFETCHCONTENT_SOURCE_DIR_YAML-CPP={yaml}")
     for stage, cmd in [("configure", command),

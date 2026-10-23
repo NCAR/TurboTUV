@@ -1,0 +1,49 @@
+src/radiation_block.c:236:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  236 |         for (size_t c = 0; c < count; ++c) {
+      |         ^
+src/radiation_block.c:236:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:236:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:236:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:227:38: remark: loop not vectorized: unsafe dependent memory operations in loop. Use #pragma clang loop distribute(enable) to allow loop distribution to attempt to isolate the offending operations into a separate loop
+Backward loop carried data dependence. [-Rpass-analysis=loop-vectorize]
+  227 |             u[(row - 1) * BLOCK + c] =
+      |                                      ^
+src/radiation_block.c:225:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  225 |     for (size_t row = last; row > 0; --row)
+      |     ^
+src/radiation_block.c:211:5: remark: loop not vectorized: Cannot vectorize early exit loop with writes to memory [-Rpass-analysis=loop-vectorize]
+  211 |     for (size_t c = 0; c < BLOCK; ++c) {
+      |     ^
+src/radiation_block.c:211:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:195:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  195 |         for (size_t c = 0; c < BLOCK; ++c) {
+      |         ^
+src/radiation_block.c:195:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/radiation_block.c:181:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  181 |         for (size_t c = 0; c < BLOCK; ++c) {
+      |         ^
+src/radiation_block.c:181:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/radiation_block.c:143:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  143 |         for (size_t c = 0; c < BLOCK; ++c) {
+      |         ^
+src/radiation_block.c:143:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/radiation_block.c:119:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  119 |         for (size_t c = 0; c < BLOCK; ++c) {
+      |         ^
+src/radiation_block.c:119:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:103:5: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  103 |     for (size_t l = 0; l <= n; ++l)
+      |     ^
+src/radiation_block.c:103:5: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:96:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+   96 |         for (size_t j = single; j < (size_t)crossed; ++j) {
+      |         ^
+src/radiation_block.c:96:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:91:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+   91 |         for (size_t j = 0; j < single; ++j) {
+      |         ^
+src/radiation_block.c:91:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/radiation_block.c:44:13: remark: loop not vectorized: Cannot vectorize early exit loop with reductions or recurrences [-Rpass-analysis=loop-vectorize]
+   44 |             for (size_t j = 0; j < nr; ++j) {
+      |             ^
+src/radiation_block.c:44:13: remark: loop not vectorized [-Rpass-missed=loop-vectorize]

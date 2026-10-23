@@ -1,0 +1,181 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reference-gcc
+      Start  1: TUV_5_4
+ 1/88 Test  #1: TUV_5_4 ......................................   Passed    0.47 sec
+      Start  2: TS1_TSMLT
+ 2/88 Test  #2: TS1_TSMLT ....................................   Passed    0.13 sec
+      Start  3: TUV_5_4_YAML
+ 3/88 Test  #3: TUV_5_4_YAML .................................   Passed    0.14 sec
+      Start  4: TUV_5_4_COMPARE
+ 4/88 Test  #4: TUV_5_4_COMPARE ..............................   Passed    0.01 sec
+      Start  5: TS1_TSMLT_YAML
+ 5/88 Test  #5: TS1_TSMLT_YAML ...............................   Passed    0.12 sec
+      Start  6: TS1_TSMLT_COMPARE
+ 6/88 Test  #6: TS1_TSMLT_COMPARE ............................   Passed    0.01 sec
+      Start  7: cxx_grid
+ 7/88 Test  #7: cxx_grid .....................................   Passed    0.10 sec
+      Start  8: cxx_profile
+ 8/88 Test  #8: cxx_profile ..................................   Passed    0.11 sec
+      Start  9: grid_warehouse
+ 9/88 Test  #9: grid_warehouse ...............................   Passed    0.11 sec
+      Start 10: heating_rates
+10/88 Test #10: heating_rates ................................   Passed    0.12 sec
+      Start 11: la_sr_bands
+11/88 Test #11: la_sr_bands ..................................   Passed    0.12 sec
+      Start 12: spherical_geometry
+12/88 Test #12: spherical_geometry ...........................   Passed    0.10 sec
+      Start 13: cross_section_warehouse
+13/88 Test #13: cross_section_warehouse ......................   Passed    0.12 sec
+      Start 14: cross_section
+14/88 Test #14: cross_section ................................   Passed    0.12 sec
+      Start 15: cross_section_acetone_ch3co_ch3_t
+15/88 Test #15: cross_section_acetone_ch3co_ch3_t ............   Passed    0.12 sec
+      Start 16: cross_section_ccl4
+16/88 Test #16: cross_section_ccl4 ...........................   Passed    0.14 sec
+      Start 17: cross_section_cfc-11
+17/88 Test #17: cross_section_cfc-11 .........................   Passed    0.12 sec
+      Start 18: cross_section_ch2o
+18/88 Test #18: cross_section_ch2o ...........................   Passed    0.13 sec
+      Start 19: cross_section_ch3ono2_ch3o_no2
+19/88 Test #19: cross_section_ch3ono2_ch3o_no2 ...............   Passed    0.12 sec
+      Start 20: cross_section_chbr3
+20/88 Test #20: cross_section_chbr3 ..........................   Passed    0.12 sec
+      Start 21: cross_section_chcl3
+21/88 Test #21: cross_section_chcl3 ..........................   Passed    0.13 sec
+      Start 22: cross_section_cl2-cl_cl
+22/88 Test #22: cross_section_cl2-cl_cl ......................   Passed    0.12 sec
+      Start 23: cross_section_clono2
+23/88 Test #23: cross_section_clono2 .........................   Passed    0.12 sec
+      Start 24: cross_section_h2o2-oh_oh
+24/88 Test #24: cross_section_h2o2-oh_oh .....................   Passed    0.12 sec
+      Start 25: cross_section_hcfc
+25/88 Test #25: cross_section_hcfc ...........................   Passed    0.12 sec
+      Start 26: cross_section_hno3-oh_no2
+26/88 Test #26: cross_section_hno3-oh_no2 ....................   Passed    0.13 sec
+      Start 27: cross_section_hobr-oh_br
+27/88 Test #27: cross_section_hobr-oh_br .....................   Passed    0.11 sec
+      Start 28: cross_section_n2o-n2_o1d
+28/88 Test #28: cross_section_n2o-n2_o1d .....................   Passed    0.12 sec
+      Start 29: cross_section_n2o5-no2_no3
+29/88 Test #29: cross_section_n2o5-no2_no3 ...................   Passed    0.12 sec
+      Start 30: cross_section_nitroxy_acetone
+30/88 Test #30: cross_section_nitroxy_acetone ................   Passed    0.12 sec
+      Start 31: cross_section_nitroxy_ethanol
+31/88 Test #31: cross_section_nitroxy_ethanol ................   Passed    0.11 sec
+      Start 32: cross_section_no2_tint
+32/88 Test #32: cross_section_no2_tint .......................   Passed    0.14 sec
+      Start 33: cross_section_o3_tint
+33/88 Test #33: cross_section_o3_tint ........................   Passed    0.13 sec
+      Start 34: cross_section_oclo
+34/88 Test #34: cross_section_oclo ...........................   Passed    0.12 sec
+      Start 35: cross_section_rayliegh
+35/88 Test #35: cross_section_rayliegh .......................   Passed    0.11 sec
+      Start 36: cross_section_rono2
+36/88 Test #36: cross_section_rono2 ..........................   Passed    0.12 sec
+      Start 37: cross_section_t_butyl_nitrate
+37/88 Test #37: cross_section_t_butyl_nitrate ................   Passed    0.11 sec
+      Start 38: cross_section_tint
+38/88 Test #38: cross_section_tint ...........................   Passed    0.12 sec
+      Start 39: temperature_parameterization_burkholder
+39/88 Test #39: temperature_parameterization_burkholder ......   Passed    0.11 sec
+      Start 40: temperature_parameterization_taylor_series
+40/88 Test #40: temperature_parameterization_taylor_series ...   Passed    0.11 sec
+      Start 41: grid
+41/88 Test #41: grid .........................................   Passed    0.12 sec
+      Start 42: grid_from_host
+42/88 Test #42: grid_from_host ...............................   Passed    0.10 sec
+      Start 43: profile_warehouse
+43/88 Test #43: profile_warehouse ............................   Passed    0.10 sec
+      Start 44: profiles
+44/88 Test #44: profiles .....................................   Passed    0.17 sec
+      Start 45: profile_from_config
+45/88 Test #45: profile_from_config ..........................   Passed    0.11 sec
+      Start 46: profile_from_host
+46/88 Test #46: profile_from_host ............................   Passed    0.11 sec
+      Start 47: quantum_yield
+47/88 Test #47: quantum_yield ................................   Passed    0.18 sec
+      Start 48: quantum_yield_h2so4_mills
+48/88 Test #48: quantum_yield_h2so4_mills ....................   Passed    0.12 sec
+      Start 49: quantum_yield_no2_tint
+49/88 Test #49: quantum_yield_no2_tint .......................   Passed    0.11 sec
+      Start 50: quantum_yield_tint
+50/88 Test #50: quantum_yield_tint ...........................   Passed    0.11 sec
+      Start 51: radiative_transfer
+51/88 Test #51: radiative_transfer ...........................   Passed    0.12 sec
+      Start 52: radiative_transfer_mpi
+52/88 Test #52: radiative_transfer_mpi .......................   Passed    0.12 sec
+      Start 53: solver_from_host
+53/88 Test #53: solver_from_host .............................   Passed    0.12 sec
+      Start 54: solver_from_host_failure
+54/88 Test #54: solver_from_host_failure .....................   Passed    0.27 sec
+      Start 55: radiator
+55/88 Test #55: radiator .....................................   Passed    0.12 sec
+      Start 56: radiator_from_host
+56/88 Test #56: radiator_from_host ...........................   Passed    0.11 sec
+      Start 57: radiator_from_netcdf_file
+57/88 Test #57: radiator_from_netcdf_file ....................   Passed    0.12 sec
+      Start 58: spectral_weight_base
+58/88 Test #58: spectral_weight_base .........................   Passed    0.12 sec
+      Start 59: spectral_weight_gaussian
+59/88 Test #59: spectral_weight_gaussian .....................   Passed    0.12 sec
+      Start 60: spectral_weight_notch_filter
+60/88 Test #60: spectral_weight_notch_filter .................   Passed    0.11 sec
+      Start 61: data_sets
+61/88 Test #61: data_sets ....................................   Passed    1.30 sec
+      Start 62: la_srb_lut
+62/88 Test #62: la_srb_lut ...................................   Passed    0.12 sec
+      Start 63: error_function
+63/88 Test #63: error_function ...............................   Passed    0.11 sec
+      Start 64: util_array
+64/88 Test #64: util_array ...................................   Passed    0.14 sec
+      Start 65: util_array2d
+65/88 Test #65: util_array2d .................................   Passed    0.10 sec
+      Start 66: util_array3d
+66/88 Test #66: util_array3d .................................   Passed    0.11 sec
+      Start 67: util_assert
+67/88 Test #67: util_assert ..................................   Passed    0.09 sec
+      Start 68: util_assert_failure
+68/88 Test #68: util_assert_failure ..........................   Passed    0.23 sec
+      Start 69: util_config
+69/88 Test #69: util_config ..................................   Passed    0.10 sec
+      Start 70: util_map
+70/88 Test #70: util_map .....................................   Passed    0.10 sec
+      Start 71: util_map_failure
+71/88 Test #71: util_map_failure .............................   Passed    0.31 sec
+      Start 72: util_mpi
+72/88 Test #72: util_mpi .....................................   Passed    0.10 sec
+      Start 73: util_string
+73/88 Test #73: util_string ..................................   Passed    0.15 sec
+      Start 74: util_string_failure
+74/88 Test #74: util_string_failure ..........................   Passed    0.20 sec
+      Start 75: util_io_netcdf
+75/88 Test #75: util_io_netcdf ...............................   Passed    0.11 sec
+      Start 76: regression_photolysis_rates
+76/88 Test #76: regression_photolysis_rates ..................   Passed    3.78 sec
+      Start 77: regression_dose_rates
+77/88 Test #77: regression_dose_rates ........................   Passed    0.72 sec
+      Start 78: regression_aerosols_radiator
+78/88 Test #78: regression_aerosols_radiator .................   Passed    0.62 sec
+      Start 79: regression_aerosols_radiator_4strm
+79/88 Test #79: regression_aerosols_radiator_4strm ...........   Passed    0.79 sec
+      Start 80: regression_o2_radiator
+80/88 Test #80: regression_o2_radiator .......................   Passed    0.56 sec
+      Start 81: regression_o2_radiator_4strm
+81/88 Test #81: regression_o2_radiator_4strm .................   Passed    0.71 sec
+      Start 82: regression_o3_radiator
+82/88 Test #82: regression_o3_radiator .......................   Passed    0.57 sec
+      Start 83: regression_o3_radiator_4strm
+83/88 Test #83: regression_o3_radiator_4strm .................   Passed    0.73 sec
+      Start 84: regression_rayleigh_radiator
+84/88 Test #84: regression_rayleigh_radiator .................   Passed    0.58 sec
+      Start 85: regression_rayleigh_radiator_4strm
+85/88 Test #85: regression_rayleigh_radiator_4strm ...........   Passed    0.74 sec
+      Start 86: regression_all_radiators
+86/88 Test #86: regression_all_radiators .....................   Passed    0.63 sec
+      Start 87: regression_all_radiators_4strm
+87/88 Test #87: regression_all_radiators_4strm ...............   Passed    0.76 sec
+      Start 88: cpp_delta_eddington
+88/88 Test #88: cpp_delta_eddington ..........................   Passed    0.23 sec
+
+100% tests passed, 0 tests failed out of 88
+
+Total Test time (real) =  22.26 sec

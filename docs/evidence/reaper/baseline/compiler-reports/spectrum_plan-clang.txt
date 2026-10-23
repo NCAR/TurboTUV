@@ -1,0 +1,292 @@
+src/spectrum_plan.c:890:28: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  890 |         tt_status column = tt_spectrum_calculate(s, nz, reference_temperature[r], reference_air[r],
+      |                            ^
+src/spectrum_plan.c:889:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+  889 |     for (size_t r = 0; r < 3 && !status; ++r) {
+      |     ^
+src/spectrum_plan.c:889:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:889:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:802:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  802 |             for (size_t i = 0; i < m->count; ++i)
+      |             ^
+src/spectrum_plan.c:802:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:812:9: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+  812 |         for (size_t k = lo ? lo - 1 : 0; k < hi && k + 1 < np; ++k)
+      |         ^
+src/spectrum_plan.c:812:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:913:21: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+  913 |                 if (memcmp(reference + r * nw * nz + w * nz + z, p->constant + w, sizeof(double)))
+      |                     ^
+src/spectrum_plan.c:913:21: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:911:9: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  911 |         for (size_t r = 0; r < 3 && !varies; ++r)
+      |         ^
+src/spectrum_plan.c:911:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:75:5: remark: loop not vectorized: Cannot vectorize potentially faulting early exit loop [-Rpass-analysis=loop-vectorize]
+   75 |     for (size_t c = 1; c < q->temperature_count; ++c)
+      |     ^
+src/spectrum_plan.c:75:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:100:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  100 |         for (size_t k = 1; k < (p->kind == TT_CS_ACETONE ? 4u
+      |         ^
+src/spectrum_plan.c:75:5: remark: loop not vectorized: Cannot vectorize potentially faulting early exit loop [-Rpass-analysis=loop-vectorize]
+   75 |     for (size_t c = 1; c < q->temperature_count; ++c)
+      |     ^
+src/spectrum_plan.c:75:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:49:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+   49 |     while (n) {
+      |     ^
+src/spectrum_plan.c:49:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:49:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:75:5: remark: loop not vectorized: Cannot vectorize potentially faulting early exit loop [-Rpass-analysis=loop-vectorize]
+   75 |     for (size_t c = 1; c < q->temperature_count; ++c)
+      |     ^
+src/spectrum_plan.c:75:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:920:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  920 |         for (size_t w = 0; w < nw; ++w)
+      |         ^
+src/spectrum_plan.c:314:17: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+  314 |                 while (k + 2 < nt && t[k + 1].temperatures[0] <= u)
+      |                 ^
+src/spectrum_plan.c:314:17: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+   64 |     while (k + 2 < q->temperature_count && t > q->temperatures[k + 1])
+      |     ^
+src/spectrum_plan.c:64:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:274:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  274 |         for (size_t i = 0; i < nz; ++i) {
+      |         ^
+src/spectrum_plan.c:270:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  270 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:264:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  264 |             for (size_t k = 0; k < t[0].rows; ++k)
+      |             ^
+src/spectrum_plan.c:255:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  255 |         for (size_t i = 0; i < nz; ++i) {
+      |         ^
+src/spectrum_plan.c:255:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:251:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  251 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:243:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  243 |         for (size_t i = 0; i < nz; ++i) {
+      |         ^
+src/spectrum_plan.c:243:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:239:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  239 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:235:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  235 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:228:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  228 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:224:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  224 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:219:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  219 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:331:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  331 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:331:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:336:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  336 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:336:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:340:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  340 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:340:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:344:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  344 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:350:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  350 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:350:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:354:13: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  354 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:354:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:358:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  358 |             for (size_t i = 0; i < nz; ++i) {
+      |             ^
+src/spectrum_plan.c:358:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:364:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  364 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:368:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  368 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:374:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  374 |                 for (size_t j = 0; j < t[0].rows; ++j)
+      |                 ^
+src/spectrum_plan.c:380:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  380 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:380:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:384:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  384 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:384:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:394:35: remark: loop not vectorized: cannot prove it is safe to reorder floating-point operations; allow reordering by specifying '#pragma clang loop vectorize(enable)' before the loop or by providing the compiler option '-ffast-math' [-Rpass-analysis=loop-vectorize]
+  394 |                     value = value + parameter(t + q, w, j) +
+      |                                   ^
+src/spectrum_plan.c:391:17: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  391 |                 for (size_t q = 0; q < nt; ++q) {
+      |                 ^
+src/spectrum_plan.c:401:13: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  401 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:401:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:59:12: remark: loop not vectorized: cannot identify array bounds [-Rpass-analysis=loop-vectorize]
+   59 |     return p->values[c * p->rows + w];
+      |            ^
+src/spectrum_plan.c:408:13: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  408 |             for (size_t i = 0; i < nz; ++i) {
+      |             ^
+src/spectrum_plan.c:424:30: remark: loop not vectorized: cannot identify array bounds [-Rpass-analysis=loop-vectorize]
+  424 |                     out[i] = parameter(t + q, w, 0) +
+      |                              ^
+src/spectrum_plan.c:417:13: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  417 |             for (size_t i = 0; i < nz; ++i) {
+      |             ^
+src/spectrum_plan.c:604:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  604 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:604:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:599:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  599 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:593:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  593 |         for (size_t i = 0; i < nz; ++i) {
+      |         ^
+src/spectrum_plan.c:575:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  575 |         for (size_t i = 0; i < nz; ++i) {
+      |         ^
+src/spectrum_plan.c:575:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:571:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  571 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:561:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  561 |         for (size_t i = 0; i < nz; ++i) {
+      |         ^
+src/spectrum_plan.c:557:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  557 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:553:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  553 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:549:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  549 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:545:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  545 |         for (size_t i = 0; i < nz; ++i)
+      |         ^
+src/spectrum_plan.c:545:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:536:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  536 |         for (size_t i = 0; i < nz; ++i) {
+      |         ^
+src/spectrum_plan.c:536:9: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+   64 |     while (k + 2 < q->temperature_count && t > q->temperatures[k + 1])
+      |     ^
+src/spectrum_plan.c:64:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:64:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:624:35: remark: loop not vectorized: cannot prove it is safe to reorder floating-point operations; allow reordering by specifying '#pragma clang loop vectorize(enable)' before the loop or by providing the compiler option '-ffast-math' [-Rpass-analysis=loop-vectorize]
+  624 |                     value = value + parameter(t + q, w, j) +
+      |                                   ^
+src/spectrum_plan.c:621:17: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  621 |                 for (size_t q = 0; q < nt; ++q) {
+      |                 ^
+src/spectrum_plan.c:632:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  632 |             for (size_t i = 0; i < nz; ++i) {
+      |             ^
+src/spectrum_plan.c:632:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:643:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  643 |             for (size_t i = 0; i < nz; ++i) {
+      |             ^
+src/spectrum_plan.c:643:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:649:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  649 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:653:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  653 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:657:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  657 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:661:13: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  661 |             for (size_t i = 0; i < nz; ++i) {
+      |             ^
+src/spectrum_plan.c:661:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:684:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  684 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:688:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  688 |             for (size_t i = 0; i < nz; ++i)
+      |             ^
+src/spectrum_plan.c:768:42: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+  768 |         for (size_t k = j; k + 1 < nx && x[k] < target[i + 1]; ++k) {
+      |                                          ^
+src/spectrum_plan.c:768:9: remark: loop not vectorized: Cannot vectorize potentially faulting early exit loop [-Rpass-analysis=loop-vectorize]
+  768 |         for (size_t k = j; k + 1 < nx && x[k] < target[i + 1]; ++k) {
+      |         ^
+src/spectrum_plan.c:768:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:766:9: remark: loop not vectorized: Cannot vectorize early exit loop [-Rpass-analysis=loop-vectorize]
+  766 |         while (j + 1 < nx && x[j + 1] <= target[i])
+      |         ^
+src/spectrum_plan.c:766:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:747:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  747 |             for (size_t i = 0; i < m->count; ++i)
+      |             ^
+src/spectrum_plan.c:735:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  735 |             for (size_t i = 0; i < m->count; ++i) {
+      |             ^
+src/spectrum_plan.c:737:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  737 |                 for (size_t j = 0; j < m->terms; ++j)
+      |                 ^
+src/spectrum_plan.c:49:5: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+   49 |     while (n) {
+      |     ^
+src/spectrum_plan.c:49:5: remark: loop not vectorized: Cannot vectorize uncountable loop [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:49:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:725:17: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  725 |                 for (size_t j = 0; j < m->terms; ++j)
+      |                 ^
+src/spectrum_plan.c:721:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  721 |             for (size_t j = 0; j < m->terms; ++j)
+      |             ^
+src/spectrum_plan.c:752:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+  752 |             for (size_t i = 0; i < m->count; ++i)
+      |             ^
+src/spectrum_plan.c:752:13: remark: vectorized loop (vectorization width: 2, interleaved count: 1) [-Rpass=loop-vectorize]
+src/spectrum_plan.c:973:34: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  973 |     return n == 0 || (a && b && !memcmp(a, b, n * sizeof(double)));
+      |                                  ^
+src/spectrum_plan.c:1000:5: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+ 1000 |     for (size_t r = 0; r < x->range_count; ++r) {
+      |     ^
+src/spectrum_plan.c:1000:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:1000:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/spectrum_plan.c:982:63: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+  982 |             !same(x->values, y->values, x->rows * x->columns) ||
+      |                                                               ^
+src/spectrum_plan.c:973:34: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  973 |     return n == 0 || (a && b && !memcmp(a, b, n * sizeof(double)));
+      |                                  ^
+src/spectrum_plan.c:978:5: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+  978 |     for (size_t i = 0; i < a->table_count; ++i) {
+      |     ^
+src/spectrum_plan.c:978:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/spectrum_plan.c:978:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]

@@ -8,6 +8,7 @@
  * The solver also evaluates each exp(-slant) once per level, where the
  * generic code evaluates the same value up to four times. */
 #include "model_plan.h"
+#include "diagnostics_internal.h"
 #include <math.h>
 #include <stdint.h>
 #include <string.h>
@@ -255,10 +256,11 @@ static void output(size_t n, size_t w0, size_t count, double mu, double scale, c
         }
 }
 
-tt_status tt_block_delta_eddington(size_t nr, const tt_radiator *radiators, size_t n, size_t nw,
-                                   const int *nid, const double *path, double zenith,
-                                   const double *surface, double scale, double *work,
-                                   tt_radiation *out) {
+tt_status tt_block_delta_eddington_profiled(size_t nr, const tt_radiator *radiators, size_t n,
+                                            size_t nw, const int *nid, const double *path,
+                                            double zenith, const double *surface, double scale,
+                                            double *work, tt_radiation *out,
+                                            tt_diagnostics *diagnostics) {
     if ((nr && !radiators) || !n || !nw || !nid || !path || !surface || !work || !out ||
         !isfinite(zenith))
         return TT_INVALID;
@@ -273,15 +275,33 @@ tt_status tt_block_delta_eddington(size_t nr, const tt_radiator *radiators, size
             if (!isfinite(albedo[c]) || albedo[c] < 0 || albedo[c] > 1)
                 return TT_INVALID;
         }
+        TT_TIME_START(mix_time);
         tt_status status = scale_layers(nr, radiators, n, w0, count, &s);
         if (status)
             return status;
+        TT_TIME_END(diagnostics, TT_STAGE_MIX, mix_time);
+        TT_TIME_START(slant_time);
         slant_depths(n, nid, path, mu, &s);
+        TT_TIME_END(diagnostics, TT_STAGE_SLANT, slant_time);
+        TT_TIME_START(coefficients_time);
         coefficients(n, nid, mu, &s);
+        TT_TIME_END(diagnostics, TT_STAGE_COEFFICIENTS, coefficients_time);
+        TT_TIME_START(solve_time);
         status = solve(n, mu, albedo, &s);
         if (status)
             return status;
+        TT_TIME_END(diagnostics, TT_STAGE_SOLVE, solve_time);
+        TT_TIME_START(output_time);
         output(n, w0, count, mu, scale, &s, out);
+        TT_TIME_END(diagnostics, TT_STAGE_OUTPUT, output_time);
     }
     return TT_OK;
+}
+
+tt_status tt_block_delta_eddington(size_t nr, const tt_radiator *radiators, size_t n, size_t nw,
+                                   const int *nid, const double *path, double zenith,
+                                   const double *surface, double scale, double *work,
+                                   tt_radiation *out) {
+    return tt_block_delta_eddington_profiled(nr, radiators, n, nw, nid, path, zenith, surface,
+                                             scale, work, out, NULL);
 }

@@ -1,0 +1,3 @@
+src/generated/data.inc
+src/generated/oxygen.inc
+data/manifest.json

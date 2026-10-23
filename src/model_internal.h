@@ -1,6 +1,7 @@
 #ifndef TT_MODEL_INTERNAL_H
 #define TT_MODEL_INTERNAL_H
 #include "build_internal.h"
+#include "turbotuv_diagnostics.h"
 
 typedef struct {
     char *name, *units;
@@ -55,6 +56,7 @@ struct tt_model {
     double *optical_storage, *rate_storage;
     struct tt_model_plan *plan; /* prepared runs; NULL if unavailable */
     int generic;                /* TT_EXECUTION_GENERIC selected */
+    tt_diagnostics diagnostics;
 };
 size_t tt_model_grid_index(const tt_model *model, const char *name, const char *units);
 size_t tt_model_profile_index(const tt_model *model, const char *name, const char *units);

@@ -1,0 +1,211 @@
+src/oxygen.c:39:5: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+   39 |     for (size_t w = 0; w <= nw; ++w)
+      |     ^
+src/oxygen.c:39:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/oxygen.c:23:5: remark: loop not vectorized: Cannot vectorize potentially faulting early exit loop [-Rpass-analysis=loop-vectorize]
+   23 |     for (size_t w = 0; w <= nw; ++w)
+      |     ^
+src/oxygen.c:23:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/oxygen.c:23:5: remark: loop not vectorized: Cannot vectorize potentially faulting early exit loop [-Rpass-analysis=loop-vectorize]
+src/oxygen.c:23:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/oxygen.c:143:5: remark: loop not vectorized: Cannot vectorize early exit loop with more than one early exit [-Rpass-analysis=loop-vectorize]
+  143 |     for (size_t z = 0; z < nz; ++z)
+      |     ^
+src/oxygen.c:143:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/oxygen.c:152:5: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  152 |     for (size_t z = 0; z + 1 < nz; ++z)
+      |     ^
+src/oxygen.c:152:5: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/oxygen.c:156:9: remark: loop not vectorized: Cannot vectorize potentially faulting early exit loop [-Rpass-analysis=loop-vectorize]
+  156 |         for (size_t z = 0; z < nz; ++z)
+      |         ^
+src/oxygen.c:156:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+src/oxygen.c:62:5: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+   62 |     for (size_t z = 0; z < nz; ++z) {
+      |     ^
+src/oxygen.c:62:5: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/oxygen.c:62:5: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+src/oxygen.c:62:5: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/oxygen.c:79:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+   79 |         for (size_t z = 0; z + 1 < nz; ++z)
+      |         ^
+src/oxygen.c:79:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/oxygen.c:96:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+   96 |         for (size_t w = 0; w < 17; ++w) {
+      |         ^
+src/oxygen.c:96:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+src/oxygen.c:118:13: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+  118 |             for (size_t z = 0; z + 1 < nz; ++z) {
+      |             ^
+src/oxygen.c:118:13: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
+src/oxygen.c:115:13: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  115 |             for (size_t z = top; z < nz; ++z)
+      |             ^
+src/oxygen.c:110:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  110 |         for (size_t z = 0; z < bottom; ++z)
+      |         ^
