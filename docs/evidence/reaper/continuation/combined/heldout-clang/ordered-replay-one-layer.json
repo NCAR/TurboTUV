@@ -1,0 +1,684 @@
+{
+  "schema": 1,
+  "policy": "reaper-roundoff-v1",
+  "epsilon_limit": 64,
+  "config": "build/reaper/r3b-heldout-clang/one-layer.json",
+  "config_sha256": "d51ca826baf0403fea51015f59c5effbc2594f9f739e6b59f429eeac666a8a3e",
+  "columns": 48,
+  "seed": 934897,
+  "byteorder": "little",
+  "metadata": {
+    "format": "TurboTUV-1",
+    "altitude_km": [
+      0,
+      120
+    ],
+    "wavelength_nm": [
+      120.7,
+      121.65,
+      148.65,
+      176.2,
+      177.8,
+      179.39999999999998,
+      181,
+      182.65,
+      184.35,
+      186.05,
+      187.8,
+      189.6,
+      191.4,
+      193.25,
+      195.14999999999998,
+      197.05,
+      199,
+      201,
+      203.05,
+      205.14999999999998,
+      223.66470588235293,
+      258.59411764705885,
+      293.5235294117647,
+      328.4529411764706,
+      363.38235294117646,
+      398.31176470588235,
+      433.2411764705882,
+      468.1705882352941,
+      503.09999999999997,
+      538.0294117647059,
+      572.9588235294118,
+      607.8882352941175,
+      642.8176470588235,
+      677.7470588235294,
+      712.6764705882354,
+      747.6058823529412,
+      782.535294117647
+    ],
+    "wavelength_edges_nm": [
+      120,
+      121.4,
+      121.9,
+      175.4,
+      177,
+      178.6,
+      180.2,
+      181.8,
+      183.5,
+      185.2,
+      186.9,
+      188.7,
+      190.5,
+      192.3,
+      194.2,
+      196.1,
+      198,
+      200,
+      202,
+      204.1,
+      206.2,
+      241.12941176470588,
+      276.05882352941177,
+      310.98823529411766,
+      345.9176470588235,
+      380.84705882352944,
+      415.77647058823527,
+      450.7058823529411,
+      485.63529411764705,
+      520.5647058823529,
+      555.4941176470588,
+      590.4235294117647,
+      625.3529411764705,
+      660.2823529411764,
+      695.2117647058823,
+      730.1411764705883,
+      765.070588235294,
+      800
+    ],
+    "photolysis_labels": [
+      "CF2O+hv->Products",
+      "CH3COOOH+hv->Products",
+      "CH3COCHO+hv->CH3CO+HCO",
+      "CHOCHO+hv->HCO+HCO",
+      "HOCH2CHO+hv->CH2CHO+OH",
+      "MVK+hv->Products",
+      "PPN+hv->CH3CH2CO(OO)+NO2",
+      "C(CH3)3(ONO)+hv->C(CH3)3(O)+NO",
+      "HCFC-225ca+hv->Products",
+      "CF3CHFCl+hv->Products",
+      "CFC-115+hv->Products",
+      "CCl2F2+hv->Products",
+      "CH3CHONO2CH3+hv->CH3CHOCH3+NO2",
+      "nitro_acetone+hv->Products",
+      "nC3H7ONO2+hv->C3H7O+NO2",
+      "CH3ONO2+hv->CH3O+NO2",
+      "BrONO2+hv->Br+NO3",
+      "BrONO+hv->BrO+NO",
+      "HOBr+hv->OH+Br",
+      "OClO+hv->Products",
+      "ClONO+hv->Cl+NO2",
+      "HCl+hv->H+Cl",
+      "ClO+hv->Cl+O(3P)",
+      "Cl2+hv->Cl+Cl",
+      "perfluoro-1-iodopropane+hv->Products",
+      "I2+hv->I+I",
+      "CF2BrCl+hv->Products",
+      "HNO2+hv->OH+NO",
+      "CH2O+hv->H+HCO",
+      "C2H5CHO+hv->C2H5+HCO",
+      "N2O+hv->N2+O(1D)",
+      "NO3+hv->NO+O2",
+      "HOCH2OOH+hv->CH2(OH)O+OH",
+      "CCl2O+hv->Products",
+      "NOCl+hv->NO+Cl",
+      "O3+hv->O2+O(3P)",
+      "O2+hv->O+O"
+    ],
+    "heating_labels": [],
+    "dose_labels": [
+      "RB Meter, model 501",
+      "Eppley UV Photometer",
+      "UV-A, 315-400 nm",
+      "UV-B, 280-315 nm",
+      "UV-B*, 280-320 nm",
+      "vis+, > 400 nm",
+      "Gaussian, 305 nm, 10 nm FWHM",
+      "Gaussian, 320 nm, 10 nm FWHM",
+      "Gaussian, 340 nm, 10 nm FWHM",
+      "Gaussian, 380 nm, 10 nm FWHM",
+      "SCUP-human (de Gruijl and van der Leun, 1994)",
+      "PAR, 400-700 nm, umol m-2 s-1",
+      "Exponential decay, 14 nm/10",
+      "SCUP-mice (de Gruijl et al., 1993)",
+      "Standard human erythema (Webb et al., 2011)",
+      "UV index (WMO, 1994; Webb et al., 2011)",
+      "Phytoplankton (Boucher et al., 1994)",
+      "Plant damage (Caldwell, 1971)",
+      "Plant damage,Flint&Caldwell,2003,orig.",
+      "Plant damage,Flint&Caldwell,2003,ext390",
+      "Occupational TLV (ACGIH, 1992)",
+      "Phytoplankton, phaeo (Cullen et al., 1992)",
+      "Phytoplankton, proro (Cullen et al., 1992)",
+      "Cataract, pig (Oriowo et al., 2001)",
+      "Previtamin-D3 (CIE 2006)",
+      "NMSC (CIE 2006)",
+      "DNA damage, in vitro (Setlow, 1974)",
+      "Erythema, humans (Anders et al., 1995)"
+    ]
+  },
+  "sweep": false,
+  "reference": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3b-selected-clang/turbotuv_bench",
+      "build/reaper/r3b-heldout-clang/one-layer.json",
+      "--reaper",
+      "--columns",
+      "48",
+      "--seed",
+      "934897"
+    ],
+    "binary_sha256": "a7945260f10dc96829e4d720a175e081d486f12ed1532c67bc98d640210c3ba4",
+    "fields": {
+      "config": "build/reaper/r3b-heldout-clang/one-layer.json",
+      "columns": "48",
+      "levels": "2",
+      "wavelengths": "37",
+      "photolysis": "37",
+      "heating": "0",
+      "dose": "28",
+      "execution": "reaper",
+      "elapsed_ms": "0.278",
+      "per_column_us": "5.79",
+      "hash": "a6e1b017a1276e27",
+      "reaper_selection": "no-match",
+      "reaper_capabilities": "0",
+      "reaper_optimizations": "3",
+      "reaper_preparation_failures": "0",
+      "reaper_workspace_bytes": "3320",
+      "prepared_calls": "0",
+      "generic_calls": "0",
+      "prepared_declines": "0",
+      "reaper_calls": "48",
+      "reaper_declines": "0",
+      "generated_calls": "0",
+      "generated_declines": "0",
+      "profiling": "0",
+      "setup_ms": "13.875",
+      "preparation_ms": "1.072"
+    },
+    "stdout": "config=build/reaper/r3b-heldout-clang/one-layer.json columns=48 levels=2 wavelengths=37 photolysis=37 heating=0 dose=28 execution=reaper\nelapsed_ms=0.278 per_column_us=5.79 hash=a6e1b017a1276e27\nreaper_selection=no-match reaper_capabilities=0 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=3320\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=48 reaper_declines=0 generated_calls=0 generated_declines=0 profiling=0 setup_ms=13.875 preparation_ms=1.072\n",
+    "output_sha256": "b64eb8a5c9f025a4ec11c3a0e0b5cf04514d35c1895e9404d5093f0368f34a69"
+  },
+  "candidate": {
+    "command": [
+      "/Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3b-heldout-clang/ordered/turbotuv_bench",
+      "build/reaper/r3b-heldout-clang/one-layer.json",
+      "--reaper",
+      "--columns",
+      "48",
+      "--seed",
+      "934897"
+    ],
+    "binary_sha256": "6e2fb0e2c4ad97d4b75c6b553eb1db67c83f998663dee8242a0046b878ec7553",
+    "fields": {
+      "config": "build/reaper/r3b-heldout-clang/one-layer.json",
+      "columns": "48",
+      "levels": "2",
+      "wavelengths": "37",
+      "photolysis": "37",
+      "heating": "0",
+      "dose": "28",
+      "execution": "reaper",
+      "elapsed_ms": "0.214",
+      "per_column_us": "4.46",
+      "hash": "a6e1b017a1276e27",
+      "reaper_selection": "attached",
+      "reaper_capabilities": "5",
+      "reaper_optimizations": "3",
+      "reaper_preparation_failures": "0",
+      "reaper_workspace_bytes": "3320",
+      "prepared_calls": "0",
+      "generic_calls": "0",
+      "prepared_declines": "0",
+      "reaper_calls": "48",
+      "reaper_declines": "0",
+      "generated_calls": "96",
+      "generated_declines": "0",
+      "profiling": "0",
+      "setup_ms": "14.779",
+      "preparation_ms": "1.170"
+    },
+    "stdout": "config=build/reaper/r3b-heldout-clang/one-layer.json columns=48 levels=2 wavelengths=37 photolysis=37 heating=0 dose=28 execution=reaper\nelapsed_ms=0.214 per_column_us=4.46 hash=a6e1b017a1276e27\nreaper_selection=attached reaper_capabilities=5 reaper_optimizations=3 reaper_preparation_failures=0 reaper_workspace_bytes=3320\nprepared_calls=0 generic_calls=0 prepared_declines=0 reaper_calls=48 reaper_declines=0 generated_calls=96 generated_declines=0 profiling=0 setup_ms=14.779 preparation_ms=1.170\n",
+    "output_sha256": "b64eb8a5c9f025a4ec11c3a0e0b5cf04514d35c1895e9404d5093f0368f34a69"
+  },
+  "fields": [
+    {
+      "field": "direct_flux",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_flux",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_flux",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "direct_irradiance",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "down_irradiance",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "up_irradiance",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "actinic_flux",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "spectral_irradiance",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.0,
+        "candidate": 0.0
+      }
+    },
+    {
+      "field": "photolysis",
+      "shape": [
+        48,
+        37,
+        2
+      ],
+      "compared": 3552,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.2579152234469218e-09,
+        "candidate": 2.2579152234469218e-09
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.2579152234469218e-09,
+        "candidate": 2.2579152234469218e-09
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.2579152234469218e-09,
+        "candidate": 2.2579152234469218e-09
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 2.2579152234469218e-09,
+        "candidate": 2.2579152234469218e-09
+      }
+    },
+    {
+      "field": "heating",
+      "shape": [
+        48,
+        0,
+        2
+      ],
+      "compared": 0,
+      "failures": 0
+    },
+    {
+      "field": "dose",
+      "shape": [
+        48,
+        28,
+        2
+      ],
+      "compared": 2688,
+      "failures": 0,
+      "absolute": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.5982081452599594,
+        "candidate": 0.5982081452599594
+      },
+      "relative": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.5982081452599594,
+        "candidate": 0.5982081452599594
+      },
+      "epsilon": {
+        "maximum": 0.0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.5982081452599594,
+        "candidate": 0.5982081452599594
+      },
+      "ulp": {
+        "maximum": 0,
+        "column": 0,
+        "row": 0,
+        "level": 0,
+        "reference": 0.5982081452599594,
+        "candidate": 0.5982081452599594
+      }
+    }
+  ],
+  "passed": true
+}

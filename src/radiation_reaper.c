@@ -15,7 +15,11 @@
 #include <stdint.h>
 #include <string.h>
 
-enum { BLOCK = TT_REAPER_BLOCK };
+enum {
+    BLOCK = TT_REAPER_BLOCK,
+    ROWS = TT_REAPER_COMPACT ? 12 : 17,
+    EXTRA = TT_REAPER_COMPACT ? 7 : 2
+};
 #define R_RESTRICT restrict
 
 typedef struct {
@@ -23,9 +27,9 @@ typedef struct {
 } block_work;
 
 size_t tt_reaper_delta_eddington_work(size_t n, size_t nw) {
-    if (n > (SIZE_MAX / BLOCK - 2) / 17 || (n && nw > SIZE_MAX / n / 3))
+    if (n > (SIZE_MAX / BLOCK - EXTRA) / ROWS || (n && nw > SIZE_MAX / n / 3))
         return 0;
-    size_t block = (17 * n + 2) * BLOCK, mix = 3 * n * nw;
+    size_t block = (ROWS * n + EXTRA) * BLOCK, mix = 3 * n * nw;
     return mix > SIZE_MAX - block ? 0 : block + mix;
 }
 
@@ -40,12 +44,18 @@ static void partition(size_t n, double *work, block_work *s) {
     TAKE(taun, n);
     TAKE(slant, n + 1);
     TAKE(ex, n + 1);
-    TAKE(e1, n);
-    TAKE(e2, n);
-    TAKE(e3, n);
+    if (TT_REAPER_COMPACT) {
+        s->e1 = s->g;
+        s->e2 = s->om;
+        s->e3 = s->taun;
+    } else {
+        TAKE(e1, n);
+        TAKE(e2, n);
+        TAKE(e3, n);
+    }
     TAKE(e4, n);
-    TAKE(cup, n);
-    TAKE(cdn, n);
+    TAKE(cup, TT_REAPER_COMPACT ? 3 : n);
+    TAKE(cdn, TT_REAPER_COMPACT ? 2 : n);
     TAKE(cuptn, n);
     TAKE(cdntn, n);
     TAKE(cp, 2 * n);
@@ -179,16 +189,82 @@ static void slant_depths(size_t n, const int *nid, const double *path, double mu
             b_ex[l * BLOCK + c] = exp(-b_slant[l * BLOCK + c]);
 }
 
-/* Layer coefficients e1..e4 and the particular solutions, as in radiation.c. */
-static void coefficients(size_t n, const int *nid, double mu, block_work *s) {
-    const double *R_RESTRICT b_g = s->g;
-    const double *R_RESTRICT b_om = s->om;
-    const double *R_RESTRICT b_taun = s->taun;
+/* Eliminate a pair of system rows as soon as the next layer is ready.
+ * Passing each coefficient base preserves the enclosing restrict association,
+ * including when its storage previously held a scaling input. */
+static inline tt_status forward_row(size_t row, const double *restrict b_e1,
+                                    const double *restrict b_e2, const double *restrict b_e3,
+                                    const double *restrict b_e4, const double *restrict b_cup,
+                                    const double *restrict b_cdn, const double *restrict b_cuptn,
+                                    const double *restrict b_cdntn, double *restrict cp,
+                                    double *restrict u) {
+    if (!row) {
+        for (size_t c = 0; c < BLOCK; ++c) {
+            double b = b_e1[c], d = -b_e2[c], r = -b_cdn[c];
+            if (b == 0.0)
+                return TT_SINGULAR;
+            cp[c] = d / b;
+            u[c] = r / b;
+        }
+        return TT_OK;
+    }
+    size_t i = row - 1;
+    const double *e1 = b_e1 + i * BLOCK, *e2 = b_e2 + i * BLOCK, *e3 = b_e3 + i * BLOCK,
+                 *e4 = b_e4 + i * BLOCK, *n1 = e1 + BLOCK, *n2 = e2 + BLOCK, *n3 = e3 + BLOCK,
+                 *n4 = e4 + BLOCK;
+    const double *cup1 = b_cup + (TT_REAPER_COMPACT ? 1 + (row & 1) : i + 1) * BLOCK,
+                 *cdn1 = b_cdn + (TT_REAPER_COMPACT ? (row & 1) : i + 1) * BLOCK,
+                 *cuptn = b_cuptn + i * BLOCK, *cdntn = b_cdntn + i * BLOCK;
+    size_t odd = 2 * i + 1, even = 2 * i + 2;
+    double pivots[BLOCK];
+    for (size_t c = 0; c < BLOCK; ++c) {
+        double a = n2[c] * e1[c] - e3[c] * n4[c];
+        double b = e2[c] * n2[c] - e4[c] * n4[c];
+        double d = n1[c] * n4[c] - n2[c] * n3[c];
+        double r = (cup1[c] - cuptn[c]) * n2[c] - (cdn1[c] - cdntn[c]) * n4[c];
+        double pivot = b - a * cp[(odd - 1) * BLOCK + c];
+        pivots[c] = pivot;
+        double denom = 1.0 / pivot;
+        cp[odd * BLOCK + c] = d * denom;
+        u[odd * BLOCK + c] = (r - a * u[(odd - 1) * BLOCK + c]) * denom;
+    }
+    for (size_t c = 0; c < BLOCK; ++c)
+        if (pivots[c] == 0.0)
+            return TT_SINGULAR;
+    for (size_t c = 0; c < BLOCK; ++c) {
+        double a = e2[c] * e3[c] - e4[c] * e1[c];
+        double b = e1[c] * n1[c] - e3[c] * n3[c];
+        double d = e3[c] * n4[c] - e1[c] * n2[c];
+        double r = e3[c] * (cup1[c] - cuptn[c]) + e1[c] * (cdntn[c] - cdn1[c]);
+        double pivot = b - a * cp[odd * BLOCK + c];
+        pivots[c] = pivot;
+        double denom = 1.0 / pivot;
+        cp[even * BLOCK + c] = d * denom;
+        u[even * BLOCK + c] = (r - a * u[odd * BLOCK + c]) * denom;
+    }
+    for (size_t c = 0; c < BLOCK; ++c)
+        if (pivots[c] == 0.0)
+            return TT_SINGULAR;
+    return TT_OK;
+}
+
+/* Layer coefficients and particular solutions, followed immediately by
+ * forward elimination. Each scalar operation retains its reference order. */
+static tt_status coefficients(size_t n, const int *nid, double mu, block_work *s) {
     const double *R_RESTRICT b_slant = s->slant;
     const double *R_RESTRICT b_ex = s->ex;
     double *R_RESTRICT b_e1 = s->e1;
     double *R_RESTRICT b_e2 = s->e2;
     double *R_RESTRICT b_e3 = s->e3;
+#if TT_REAPER_COMPACT
+    /* All accesses to an overlaid row derive from its writable restricted
+     * base. Independent input aliases would violate C restrict semantics. */
+    const double *b_g = b_e1, *b_om = b_e2, *b_taun = b_e3;
+#else
+    const double *R_RESTRICT b_g = s->g;
+    const double *R_RESTRICT b_om = s->om;
+    const double *R_RESTRICT b_taun = s->taun;
+#endif
     double *R_RESTRICT b_e4 = s->e4;
     double *R_RESTRICT b_cup = s->cup;
     double *R_RESTRICT b_cdn = s->cdn;
@@ -262,71 +338,31 @@ static void coefficients(size_t n, const int *nid, double mu, block_work *s) {
             divisor = copysign(fmax(1.e-3, fabs(divisor)), divisor);
             double up = omi[c] * ((gam1[c] - 1.0 / m[c]) * gam3[c] + gam4[c] * gam2[c]) / divisor;
             double dn = omi[c] * ((gam1[c] + 1.0 / m[c]) * gam4[c] + gam2[c] * gam3[c]) / divisor;
-            b_cup[q] = up * x0[c];
-            b_cdn[q] = dn * x0[c];
+            b_cup[(TT_REAPER_COMPACT ? 1 + (i & 1) : i) * BLOCK + c] = up * x0[c];
+            b_cdn[(TT_REAPER_COMPACT ? (i & 1) : i) * BLOCK + c] = dn * x0[c];
+            if (TT_REAPER_COMPACT && !i)
+                b_cup[c] = b_cup[BLOCK + c];
             b_cuptn[q] = up * x1[c];
             b_cdntn[q] = dn * x1[c];
         }
+        tt_status result =
+            forward_row(i, b_e1, b_e2, b_e3, b_e4, b_cup, b_cdn, b_cuptn, b_cdntn, s->cp, s->u);
+        if (result)
+            return result;
     }
+    return TT_OK;
 }
 
-/* The tridiagonal system of tt_delta_eddington, assembled row by row inside
- * the elimination of tt_tridiagonal. */
-static tt_status solve(size_t n, double mu, const double *albedo, block_work *s) {
+/* Surface boundary row and back substitution after forward elimination. */
+static tt_status finish_solve(size_t n, double mu, const double *albedo, block_work *s) {
     const double *R_RESTRICT b_e1 = s->e1;
     const double *R_RESTRICT b_e2 = s->e2;
     const double *R_RESTRICT b_e3 = s->e3;
     const double *R_RESTRICT b_e4 = s->e4;
-    const double *R_RESTRICT b_cup = s->cup;
-    const double *R_RESTRICT b_cdn = s->cdn;
     const double *R_RESTRICT b_cuptn = s->cuptn;
     const double *R_RESTRICT b_cdntn = s->cdntn;
 
     double *R_RESTRICT cp = s->cp, *R_RESTRICT u = s->u;
-    for (size_t c = 0; c < BLOCK; ++c) {
-        double b = b_e1[c], d = -b_e2[c], r = -b_cdn[c];
-        if (b == 0.0)
-            return TT_SINGULAR;
-        cp[c] = d / b;
-        u[c] = r / b;
-    }
-    for (size_t i = 0; i + 1 < n; ++i) {
-        const double *e1 = b_e1 + i * BLOCK, *e2 = b_e2 + i * BLOCK, *e3 = b_e3 + i * BLOCK,
-                     *e4 = b_e4 + i * BLOCK, *n1 = e1 + BLOCK, *n2 = e2 + BLOCK, *n3 = e3 + BLOCK,
-                     *n4 = e4 + BLOCK;
-        const double *cup1 = b_cup + (i + 1) * BLOCK, *cdn1 = b_cdn + (i + 1) * BLOCK,
-                     *cuptn = b_cuptn + i * BLOCK, *cdntn = b_cdntn + i * BLOCK;
-        size_t odd = 2 * i + 1, even = 2 * i + 2;
-        double pivots[BLOCK];
-        for (size_t c = 0; c < BLOCK; ++c) {
-            double a = n2[c] * e1[c] - e3[c] * n4[c];
-            double b = e2[c] * n2[c] - e4[c] * n4[c];
-            double d = n1[c] * n4[c] - n2[c] * n3[c];
-            double r = (cup1[c] - cuptn[c]) * n2[c] - (cdn1[c] - cdntn[c]) * n4[c];
-            double pivot = b - a * cp[(odd - 1) * BLOCK + c];
-            pivots[c] = pivot;
-            double denom = 1.0 / pivot;
-            cp[odd * BLOCK + c] = d * denom;
-            u[odd * BLOCK + c] = (r - a * u[(odd - 1) * BLOCK + c]) * denom;
-        }
-        for (size_t c = 0; c < BLOCK; ++c)
-            if (pivots[c] == 0.0)
-                return TT_SINGULAR;
-        for (size_t c = 0; c < BLOCK; ++c) {
-            double a = e2[c] * e3[c] - e4[c] * e1[c];
-            double b = e1[c] * n1[c] - e3[c] * n3[c];
-            double d = e3[c] * n4[c] - e1[c] * n2[c];
-            double r = e3[c] * (cup1[c] - cuptn[c]) + e1[c] * (cdntn[c] - cdn1[c]);
-            double pivot = b - a * cp[odd * BLOCK + c];
-            pivots[c] = pivot;
-            double denom = 1.0 / pivot;
-            cp[even * BLOCK + c] = d * denom;
-            u[even * BLOCK + c] = (r - a * u[odd * BLOCK + c]) * denom;
-        }
-        for (size_t c = 0; c < BLOCK; ++c)
-            if (pivots[c] == 0.0)
-                return TT_SINGULAR;
-    }
     size_t last = 2 * n - 1, i = n - 1;
     for (size_t c = 0; c < BLOCK; ++c) {
         size_t q = i * BLOCK + c;
@@ -404,7 +440,7 @@ tt_status tt_reaper_delta_eddington_profiled(size_t nr, const tt_radiator *radia
     partition(n, work, &s);
     double mu = cos(zenith * (3.1415926535898 / 180.0));
     size_t total = n * nw;
-    double *sums = work + (17 * n + 2) * BLOCK;
+    double *sums = work + (ROWS * n + EXTRA) * BLOCK;
     TT_TIME_START(initial_mix_time);
     tt_status mixed = mix_layers(nr, radiators, total, sums, sums + total, sums + 2 * total, roles);
     TT_TIME_END(diagnostics, TT_STAGE_MIX, initial_mix_time);
@@ -427,10 +463,12 @@ tt_status tt_reaper_delta_eddington_profiled(size_t nr, const tt_radiator *radia
         slant_depths(n, nid, path, mu, &s);
         TT_TIME_END(diagnostics, TT_STAGE_SLANT, slant_time);
         TT_TIME_START(coefficients_time);
-        coefficients(n, nid, mu, &s);
+        status = coefficients(n, nid, mu, &s);
+        if (status)
+            return status;
         TT_TIME_END(diagnostics, TT_STAGE_COEFFICIENTS, coefficients_time);
         TT_TIME_START(solve_time);
-        status = solve(n, mu, albedo, &s);
+        status = finish_solve(n, mu, albedo, &s);
         if (status)
             return status;
         TT_TIME_END(diagnostics, TT_STAGE_SOLVE, solve_time);

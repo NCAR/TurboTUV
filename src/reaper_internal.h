@@ -62,4 +62,14 @@
 #define TT_REAPER_COEFF_SQRT 0
 #endif
 #endif
+#ifndef TT_REAPER_COMPACT
+#if defined(__GNUC__) && !defined(__clang__)
+#define TT_REAPER_COMPACT 1
+#else
+#define TT_REAPER_COMPACT 0
+#endif
+#endif
+#ifndef TT_REAPER_MATH_HINTS
+#define TT_REAPER_MATH_HINTS 1
+#endif
 #endif

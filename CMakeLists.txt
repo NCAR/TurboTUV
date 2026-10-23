@@ -13,6 +13,7 @@ option(TURBOTUV_REAPER_OVERLAP "REAPER fixed conserving-interpolation schedules"
 option(TURBOTUV_REAPER_OXYGEN "REAPER combined O2 evaluation and reusable workspace" ON)
 option(TURBOTUV_REAPER_FLUX_CHECK "REAPER fused flux finiteness check" ON)
 option(TURBOTUV_REAPER_SPECTRUM_EXP "REAPER bounded spectrum exponentials (libm fallback)" ON)
+option(TURBOTUV_REAPER_MATH_HINTS "Optional guarded compiler hints for independent spectral lanes" ON)
 option(TURBOTUV_REAPER_FIXED_CACHE "REAPER exact fixed temperature-range cache" ON)
 set(TURBOTUV_REAPER_DIRECT_CACHE "1" CACHE STRING "REAPER clamp cache: 0 off, 1 expensive formulas, 2 all")
 set(TURBOTUV_REAPER_BLOCK "16" CACHE STRING "REAPER wavelengths per transfer block")
@@ -52,6 +53,7 @@ target_compile_definitions(turbotuv PRIVATE
     TT_REAPER_OXYGEN=$<BOOL:${TURBOTUV_REAPER_OXYGEN}>
     TT_REAPER_FLUX_CHECK=$<BOOL:${TURBOTUV_REAPER_FLUX_CHECK}>
     TT_REAPER_SPECTRUM_EXP=$<BOOL:${TURBOTUV_REAPER_SPECTRUM_EXP}>
+    TT_REAPER_MATH_HINTS=$<BOOL:${TURBOTUV_REAPER_MATH_HINTS}>
     TT_REAPER_FIXED_CACHE=$<BOOL:${TURBOTUV_REAPER_FIXED_CACHE}>
     TT_REAPER_DIRECT_CACHE=${TURBOTUV_REAPER_DIRECT_CACHE})
 if(NOT TURBOTUV_REAPER_BLOCK MATCHES "^(2|4|8|16|32)$")

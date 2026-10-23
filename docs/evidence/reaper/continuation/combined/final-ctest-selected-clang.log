@@ -1,0 +1,39 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3b-selected-clang
+      Start 17: prepared_execution
+ 1/17 Test #17: prepared_execution ...............   Passed    2.71 sec
+      Start 18: reaper_execution
+ 2/17 Test #18: reaper_execution .................   Passed    2.75 sec
+      Start 19: reaper_bounded_math
+ 3/17 Test #19: reaper_bounded_math ..............   Passed    0.03 sec
+      Start 20: reaper_artifact
+ 4/17 Test #20: reaper_artifact ..................   Passed    0.42 sec
+      Start 21: reaper_preparation_failure
+ 5/17 Test #21: reaper_preparation_failure .......   Passed    0.25 sec
+      Start 22: execution_diagnostics
+ 6/17 Test #22: execution_diagnostics ............   Passed    0.20 sec
+      Start 23: model_invariants
+ 7/17 Test #23: model_invariants .................   Passed    1.78 sec
+      Start 24: model_host_invariants
+ 8/17 Test #24: model_host_invariants ............   Passed    2.39 sec
+      Start 25: reaper_host_updates
+ 9/17 Test #25: reaper_host_updates ..............   Passed    2.45 sec
+      Start 26: reaper_radiator_updates
+10/17 Test #26: reaper_radiator_updates ..........   Passed    0.94 sec
+      Start 27: parallel_models
+11/17 Test #27: parallel_models ..................   Passed    0.42 sec
+      Start 28: reaper_parallel_models
+12/17 Test #28: reaper_parallel_models ...........   Passed    0.45 sec
+      Start 46: reference_model
+13/17 Test #46: reference_model ..................   Passed    5.24 sec
+      Start 47: reference_model_host
+14/17 Test #47: reference_model_host .............   Passed    4.41 sec
+      Start 48: reaper_reference_model
+15/17 Test #48: reaper_reference_model ...........   Passed    5.22 sec
+      Start 49: reaper_reference_model_host
+16/17 Test #49: reaper_reference_model_host ......   Passed    4.45 sec
+      Start 50: reaper_reference_spectrum
+17/17 Test #50: reaper_reference_spectrum ........   Passed    0.52 sec
+
+100% tests passed, 0 tests failed out of 17
+
+Total Test time (real) =  34.66 sec

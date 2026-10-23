@@ -353,3 +353,76 @@ and stable identical hashes. No regression exceeds the plan's 5% investigation
 threshold. This screen is not a new ten-round 2x acceptance claim; the primary
 target remains **not achieved; feasibility unresolved**.
 Evidence is in [`evidence/reaper/r4`](evidence/reaper/r4/).
+
+## R3 follow-up after R4: transfer fusion and spectral loops
+
+Forward elimination now consumes each layer's coefficients immediately.
+The surface boundary and back substitution remain a final pass, with each
+scalar operation retaining its previous order. GCC reuses consumed scaling
+rows and alternates two particular-solution rows, saving 76,160 bytes of
+transfer scratch for each primary model. Clang keeps the full workspace
+because the compact layout measured slower there. Independent spectral
+exponential lanes use optional guarded compiler hints, and flux finiteness
+checks use normalized bitwise predicates. No new approximation is selected.
+
+The full 50-test C/Fortran suites pass on both compilers, as do all 29
+sanitizer tests and both 29-test hint-disabled suites. A final portable-C
+predicate normalization was followed by 17 affected C/reference tests per
+compiler and 12 affected sanitizer/hint-disabled tests. The four 300-column
+gates compare 165,382,800 values against frozen main, with maximum difference
+9.913 epsilon; another four gates are bit-identical to R4. Hint-disabled
+comparisons cover 26,461,248 values with identical hashes. Six altered models
+per compiler again pass ordered/roundoff generation, exact ordered replay,
+and incompatible-primary-artifact fallback. The independent MPFR checks
+repeat all 4,832,736 exp and 4,824,406 pow10 inputs per compiler, retaining
+the previous maxima below 1.905 epsilon and the unchanged uniform bound.
+
+Fresh uninstrumented comparisons use ten rotating paired rounds of 300
+changing columns repeated ten times, with at least one second of timed work
+per sample:
+
+| Configuration | Compiler | Frozen main | Follow-up | Paired speedup | 95% lower bound |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tuv_5_4 | gcc | 1077.9 µs | 704.3 µs | 1.530x | 1.526x |
+| tuv_5_4 | clang | 1078.0 µs | 664.3 µs | 1.624x | 1.621x |
+| ts1_tsmlt | gcc | 1108.1 µs | 560.3 µs | 1.979x | 1.975x |
+| ts1_tsmlt | clang | 964.1 µs | 519.5 µs | 1.854x | 1.852x |
+
+All timed columns use REAPER and the generated rate families with no declines
+or fallbacks. Every sample is retained, including a slow GCC main TS1 round;
+no outliers were removed. The four-case 2x goal remains **not achieved;
+feasibility unresolved**. A near miss is not an impossibility result.
+
+Separate instrumented residual costs in µs/column are:
+
+| Stage | tuv GCC | tuv Clang | ts1 GCC | ts1 Clang |
+| --- | ---: | ---: | ---: | ---: |
+| transfer | 312.9 | 298.7 | 214.7 | 204.4 |
+| mix | 48.9 | 55.9 | 32.0 | 36.4 |
+| slant | 101.1 | 95.9 | 69.8 | 66.9 |
+| coefficients and forward elimination | 123.3 | 101.3 | 86.5 | 70.8 |
+| final boundary and back substitution | 9.3 | 11.8 | 6.5 | 8.3 |
+| output | 29.4 | 32.9 | 19.2 | 21.5 |
+| spectra_direct | 160.7 | 163.6 | 63.9 | 62.7 |
+| spectra_yield | 35.8 | 36.0 | 19.7 | 19.6 |
+| spectra_parameterized | 0.0 | 0.0 | 139.5 | 125.4 |
+| oxygen_depth | 25.2 | 25.9 | 25.2 | 26.0 |
+| photolysis | 81.9 | 69.7 | 40.5 | 36.6 |
+| heating | 0.0 | 0.0 | 3.0 | 2.4 |
+| dose | 20.6 | 15.1 | 0.0 | 0.0 |
+
+The coefficient timer now includes forward elimination, so its individual
+number cannot be compared directly with the older coefficient timer. Transfer
+contains its listed substages. Profile-only model-run times are 688.0/650.7 µs
+for TUV GCC/Clang and 546.6/508.4 µs for TS1; host updates add 1.1–1.4 µs.
+These attribution runs do not replace the primary paired measurements above.
+Separate resource runs report 17.2–18.6 ms construction, 4.4–13.9 ms selection,
+and 15.2–19.3 MB maximum RSS.
+
+The [follow-up ledger](evidence/reaper/continuation/LEDGER.md) records eight
+families of experiments. Split/FMA slant accumulation fails numerical gates;
+flux fusion, reciprocal scaling and small-argument polynomials do not give a
+useful combined gain. Larger exponential tables remain unselected prototypes
+without complete independent boundary-oracle validation. Remaining avenues
+include further spectral specialization and transfer work; this checkpoint
+does not supply a lower bound on every allowed rewrite.

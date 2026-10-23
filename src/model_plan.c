@@ -545,7 +545,7 @@ static int run_plan(tt_model_plan *p, tt_model *m, double zenith, double scale, 
                            s * hc / denominator;
                 irradiance[i] = e < 0 ? 0 : e;
                 if (reaper && TT_REAPER_FLUX_CHECK)
-                    flux_ok &= isfinite(actinic[i]) && isfinite(irradiance[i]);
+                    flux_ok &= (isfinite(actinic[i]) != 0) & (isfinite(irradiance[i]) != 0);
             }
         }
         /* Omitted zero terms need finite fluxes. */

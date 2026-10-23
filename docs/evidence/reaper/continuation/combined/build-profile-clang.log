@@ -1,0 +1,56 @@
+[  1%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/api.c.o
+[  3%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/parser.c.o
+[  5%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/loader.c.o
+[  7%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/reader.c.o
+[  9%] Building C object CMakeFiles/turbotuv_yaml.dir/third_party/libyaml/src/scanner.c.o
+[  9%] Built target turbotuv_yaml
+[ 11%] Building C object CMakeFiles/turbotuv.dir/src/data.c.o
+[ 13%] Building C object CMakeFiles/turbotuv.dir/src/numerics.c.o
+[ 15%] Building C object CMakeFiles/turbotuv.dir/src/geometry.c.o
+[ 17%] Building C object CMakeFiles/turbotuv.dir/src/radiation.c.o
+[ 19%] Building C object CMakeFiles/turbotuv.dir/src/spectra.c.o
+[ 21%] Building C object CMakeFiles/turbotuv.dir/src/yields.c.o
+[ 23%] Building C object CMakeFiles/turbotuv.dir/src/weights.c.o
+[ 25%] Building C object CMakeFiles/turbotuv.dir/src/temperature.c.o
+[ 27%] Building C object CMakeFiles/turbotuv.dir/src/rates.c.o
+[ 29%] Building C object CMakeFiles/turbotuv.dir/src/oxygen.c.o
+[ 31%] Building C object CMakeFiles/turbotuv.dir/src/linalg.c.o
+[ 33%] Building C object CMakeFiles/turbotuv.dir/src/discrete_eigen.c.o
+[ 35%] Building C object CMakeFiles/turbotuv.dir/src/discrete_quadrature.c.o
+[ 37%] Building C object CMakeFiles/turbotuv.dir/src/discrete.c.o
+[ 39%] Building C object CMakeFiles/turbotuv.dir/src/grid.c.o
+[ 41%] Building C object CMakeFiles/turbotuv.dir/src/profiles.c.o
+[ 43%] Building C object CMakeFiles/turbotuv.dir/src/tables.c.o
+[ 45%] Building C object CMakeFiles/turbotuv.dir/src/solar_flux.c.o
+[ 47%] Building C object CMakeFiles/turbotuv.dir/src/optics.c.o
+[ 49%] Building C object CMakeFiles/turbotuv.dir/src/config.c.o
+[ 50%] Building C object CMakeFiles/turbotuv.dir/src/profile_config.c.o
+[ 52%] Building C object CMakeFiles/turbotuv.dir/src/build.c.o
+[ 54%] Building C object CMakeFiles/turbotuv.dir/src/spectrum.c.o
+[ 56%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_temperature.c.o
+[ 58%] Building C object CMakeFiles/turbotuv.dir/src/model_build.c.o
+[ 60%] Building C object CMakeFiles/turbotuv.dir/src/model_run.c.o
+[ 62%] Building C object CMakeFiles/turbotuv.dir/src/model_host.c.o
+[ 64%] Building C object CMakeFiles/turbotuv.dir/src/decimal.c.o
+[ 66%] Building C object CMakeFiles/turbotuv.dir/src/spectrum_plan.c.o
+[ 68%] Building C object CMakeFiles/turbotuv.dir/src/model_plan.c.o
+[ 70%] Building C object CMakeFiles/turbotuv.dir/src/radiation_block.c.o
+[ 72%] Building C object CMakeFiles/turbotuv.dir/src/diagnostics.c.o
+[ 74%] Building C object CMakeFiles/turbotuv.dir/src/reaper_writer.c.o
+[ 76%] Building C object CMakeFiles/turbotuv.dir/src/reaper_descriptor.c.o
+[ 78%] Building C object CMakeFiles/turbotuv.dir/src/radiation_reaper.c.o
+[ 80%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-clang/kernel-0.c.o
+[ 82%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-clang/kernel-1.c.o
+[ 84%] Building C object CMakeFiles/turbotuv.dir/build/reaper/r4-artifact-clang/registry.c.o
+[ 86%] Linking C static library libturbotuv.a
+[ 86%] Built target turbotuv
+[ 88%] Building C object CMakeFiles/turbotuv_bench.dir/bench/turbotuv_bench.c.o
+[ 90%] Building C object CMakeFiles/turbotuv_reaper_export.dir/tools/reaper/export.c.o
+[ 92%] Building C object CMakeFiles/turbotuv_cli.dir/app/main.c.o
+[ 94%] Linking C executable turbotuv_reaper_export
+[ 96%] Building C object CMakeFiles/turbotuv_cli.dir/app/output.c.o
+[ 98%] Linking C executable turbotuv_bench
+[ 98%] Built target turbotuv_reaper_export
+[100%] Linking C executable turbotuv
+[100%] Built target turbotuv_bench
+[100%] Built target turbotuv_cli

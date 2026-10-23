@@ -11,6 +11,10 @@ the implementation, round-to-nearest mode, and an entire input array inside
 `[-600,600]` for exp or `[-260,260]` for pow(10,x). Other arrays use libm. The
 bounded results are normal, finite, and positive; the ordinary libm path
 handles overflow, underflow, nonfinite inputs, and other rounding modes.
+The range-reduction integer also requires `INT_MAX >= 65535`; platforms with
+a narrower `int` use libm. Optional guarded Clang/GCC loop hints schedule
+independent array elements without changing the arithmetic. Set
+`TURBOTUV_REAPER_MATH_HINTS=OFF` to build without these hints.
 
 ## Construction
 

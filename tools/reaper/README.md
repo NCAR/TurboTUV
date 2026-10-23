@@ -129,6 +129,10 @@ reports include exact commands and archived experimental source. Use that
 source and its matching base archive when reproducing old variants; removed
 experiment macros have no effect in the final cleaned implementation.
 Final acceptance always uses rebuilt CMake binaries and full-value gates.
+Further transfer fusion, compact workspace and spectral-loop experiments are
+recorded in the [follow-up ledger](../../docs/evidence/reaper/continuation/LEDGER.md).
+Only its `combined` measurements use the selected implementation; the other
+directories retain screening evidence, including rejected math prototypes.
 
 The current descriptor/export format is version 2. Regenerate older artifacts;
 do not combine a historical generated initializer with a newer public header.

@@ -1,0 +1,29 @@
+Test project /Users/fillmore/NSF-NCAR/TurboTUV/build/reaper/r3b-plain-clang
+      Start 17: prepared_execution
+ 1/12 Test #17: prepared_execution ...............   Passed    2.68 sec
+      Start 18: reaper_execution
+ 2/12 Test #18: reaper_execution .................   Passed    2.71 sec
+      Start 19: reaper_bounded_math
+ 3/12 Test #19: reaper_bounded_math ..............   Passed    0.03 sec
+      Start 20: reaper_artifact
+ 4/12 Test #20: reaper_artifact ..................   Passed    0.38 sec
+      Start 21: reaper_preparation_failure
+ 5/12 Test #21: reaper_preparation_failure .......   Passed    0.20 sec
+      Start 22: execution_diagnostics
+ 6/12 Test #22: execution_diagnostics ............   Passed    0.14 sec
+      Start 23: model_invariants
+ 7/12 Test #23: model_invariants .................   Passed    1.69 sec
+      Start 24: model_host_invariants
+ 8/12 Test #24: model_host_invariants ............   Passed    2.35 sec
+      Start 25: reaper_host_updates
+ 9/12 Test #25: reaper_host_updates ..............   Passed    2.38 sec
+      Start 26: reaper_radiator_updates
+10/12 Test #26: reaper_radiator_updates ..........   Passed    0.89 sec
+      Start 27: parallel_models
+11/12 Test #27: parallel_models ..................   Passed    0.35 sec
+      Start 28: reaper_parallel_models
+12/12 Test #28: reaper_parallel_models ...........   Passed    0.40 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =  14.20 sec

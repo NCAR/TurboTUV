@@ -1,0 +1,78 @@
+[  5%] Built target turbotuv_yaml
+[  6%] Building C object CMakeFiles/turbotuv.dir/src/model_plan.c.o
+/Users/fillmore/NSF-NCAR/TurboTUV/src/model_plan.c:548:32: warning: use of bitwise '&' with boolean operands [-Wbitwise-instead-of-logical]
+  548 |                     flux_ok &= (isfinite(actinic[i]) != 0) & (isfinite(irradiance[i]) != 0);
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            &&
+/Users/fillmore/NSF-NCAR/TurboTUV/src/model_plan.c:548:32: note: cast one or both operands to int to silence this warning
+1 warning generated.
+[  7%] Linking C static library libturbotuv.a
+[ 40%] Built target turbotuv
+[ 41%] Linking C executable turbotuv_reaper_export
+[ 42%] Linking C executable turbotuv_bench
+[ 43%] Linking C executable test_numerics
+[ 44%] Linking C executable turbotuv
+[ 45%] Built target test_numerics
+[ 46%] Built target turbotuv_cli
+[ 48%] Built target turbotuv_bench
+[ 48%] Built target turbotuv_reaper_export
+[ 49%] Linking C executable dump_data
+[ 50%] Linking C executable test_radiation_invariants
+[ 52%] Linking C executable test_yield_invariants
+[ 52%] Linking C executable test_spectral_invariants
+[ 53%] Built target test_radiation_invariants
+[ 53%] Built target test_yield_invariants
+[ 53%] Built target dump_data
+[ 54%] Built target test_spectral_invariants
+[ 55%] Linking C executable test_temperature_invariants
+[ 56%] Linking C executable test_rate_invariants
+[ 57%] Linking C executable test_oxygen_invariants
+[ 58%] Linking C executable test_linalg_invariants
+[ 59%] Built target test_temperature_invariants
+[ 60%] Built target test_linalg_invariants
+[ 60%] Built target test_oxygen_invariants
+[ 61%] Built target test_rate_invariants
+[ 64%] Linking C executable test_profile_invariants
+[ 64%] Linking C executable test_discrete_helper_invariants
+[ 64%] Linking C executable test_discrete_invariants
+[ 64%] Linking C executable test_locale
+[ 65%] Built target test_discrete_invariants
+[ 65%] Built target test_discrete_helper_invariants
+[ 65%] Built target test_profile_invariants
+[ 66%] Built target test_locale
+[ 68%] Built target test_fixtures
+[ 69%] Linking C executable test_reaper_math
+[ 69%] Linking C executable test_reaper_artifact
+[ 70%] Building C object tests/CMakeFiles/test_reaper_preparation.dir/test_reaper_preparation.c.o
+[ 71%] Linking C executable test_diagnostics
+[ 72%] Built target test_reaper_math
+[ 73%] Built target test_reaper_artifact
+[ 74%] Linking C executable test_model_invariants
+[ 75%] Built target test_diagnostics
+[ 76%] Linking C executable test_model_host_invariants
+[ 77%] Linking C executable test_reaper_host
+[ 78%] Built target test_model_invariants
+[ 79%] Built target test_model_host_invariants
+[ 80%] Linking C executable test_reaper_updates
+[ 81%] Linking C executable test_parallel
+[ 82%] Built target test_reaper_host
+[ 83%] Linking C executable test_reaper_parallel
+[ 83%] Built target test_reaper_updates
+[ 84%] Built target test_parallel
+[ 85%] Linking C executable dump_fixtures
+[ 86%] Linking C executable test_optics_invariants
+[ 87%] Built target test_reaper_parallel
+[ 88%] Linking C executable test_config_invariants
+[ 89%] Built target dump_fixtures
+[ 90%] Built target test_optics_invariants
+[ 91%] Linking C executable test_spectrum_invariants
+[ 92%] Linking C executable test_profile_config_invariants
+[ 93%] Built target test_config_invariants
+[ 94%] Linking C executable test_prepared
+[ 95%] Built target test_spectrum_invariants
+[ 96%] Built target test_profile_config_invariants
+[ 97%] Linking C executable test_reaper
+[ 98%] Built target test_prepared
+[ 99%] Built target test_reaper
+[100%] Linking C executable test_reaper_preparation
+[100%] Built target test_reaper_preparation

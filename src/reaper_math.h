@@ -2,8 +2,10 @@
  * SPDX-License-Identifier: Apache-2.0 */
 #ifndef TT_REAPER_MATH_H
 #define TT_REAPER_MATH_H
+#include "reaper_internal.h"
 #include <fenv.h>
 #include <float.h>
+#include <limits.h>
 #include <math.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -12,7 +14,8 @@
 /* Experimental, bounded binary64 exponential. The ordinary paths retain
  * libm. See docs/REAPER_MATH.md for the independent error bound. */
 static inline int tt_reaper_binary64(void) {
-#if FLT_RADIX == 2 && DBL_MANT_DIG == 53 && DBL_MAX_EXP == 1024 && DBL_MIN_EXP == -1021
+#if FLT_RADIX == 2 && DBL_MANT_DIG == 53 && DBL_MAX_EXP == 1024 && DBL_MIN_EXP == -1021 &&         \
+    INT_MAX >= 65535
     if (sizeof(double) != sizeof(uint64_t))
         return 0;
     double one = 1.0;
@@ -60,6 +63,11 @@ static inline void tt_reaper_exponential_array(size_t count, const double *arg, 
             out[i] = base10 ? pow(10, arg[i]) : exp(arg[i]);
         return;
     }
+#if TT_REAPER_MATH_HINTS && defined(__clang__) && __clang_major__ >= 4
+#pragma clang loop vectorize_width(2) interleave_count(2)
+#elif TT_REAPER_MATH_HINTS && defined(__GNUC__) && __GNUC__ >= 8
+#pragma GCC unroll 4
+#endif
     for (size_t i = 0; i < count; ++i) {
         double x = arg[i];
         double q = x * (base10 ? 0x1.a934f0979a371p+7 : 0x1.71547652b82fep+6);

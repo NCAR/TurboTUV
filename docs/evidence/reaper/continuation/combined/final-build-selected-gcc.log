@@ -1,0 +1,114 @@
+[ 10%] Built target reference_bridge
+[ 13%] Built target turbotuv_yaml
+[ 15%] Built target tuvx_bench
+[ 15%] Building C object CMakeFiles/turbotuv.dir/src/model_plan.c.o
+[ 15%] Linking C static library libturbotuv.a
+[ 37%] Built target turbotuv
+[ 37%] Linking C executable turbotuv_reaper_export
+[ 37%] Linking C executable test_numerics
+[ 38%] Linking C executable turbotuv_bench
+[ 38%] Linking C executable turbotuv
+[ 39%] Built target turbotuv_bench
+[ 40%] Built target turbotuv_cli
+[ 41%] Built target test_numerics
+[ 42%] Built target turbotuv_reaper_export
+[ 43%] Linking C executable dump_data
+[ 43%] Linking C executable test_radiation_invariants
+[ 44%] Linking C executable test_yield_invariants
+[ 45%] Linking C executable test_spectral_invariants
+[ 47%] Built target test_radiation_invariants
+[ 47%] Built target test_spectral_invariants
+[ 47%] Built target test_yield_invariants
+[ 47%] Built target dump_data
+[ 47%] Linking C executable test_temperature_invariants
+[ 47%] Linking C executable test_linalg_invariants
+[ 47%] Linking C executable test_rate_invariants
+[ 48%] Linking C executable test_oxygen_invariants
+[ 50%] Built target test_temperature_invariants
+[ 50%] Built target test_oxygen_invariants
+[ 50%] Built target test_linalg_invariants
+[ 51%] Built target test_rate_invariants
+[ 55%] Linking C executable test_discrete_helper_invariants
+[ 55%] Linking C executable test_profile_invariants
+[ 55%] Linking C executable test_discrete_invariants
+[ 55%] Linking C executable test_locale
+[ 56%] Built target test_discrete_invariants
+[ 56%] Built target test_discrete_helper_invariants
+[ 56%] Built target test_profile_invariants
+[ 57%] Built target test_locale
+[ 57%] Linking C executable test_reaper_math
+[ 58%] Built target test_fixtures
+[ 59%] Linking C executable test_reaper_artifact
+[ 60%] Building C object tests/CMakeFiles/test_reaper_preparation.dir/test_reaper_preparation.c.o
+[ 60%] Linking C executable test_diagnostics
+[ 61%] Built target test_reaper_math
+[ 61%] Built target test_reaper_artifact
+[ 61%] Linking C executable test_model_invariants
+[ 62%] Built target test_diagnostics
+[ 63%] Linking C executable test_model_host_invariants
+[ 63%] Linking C executable test_reaper_host
+[ 64%] Built target test_model_invariants
+[ 64%] Built target test_model_host_invariants
+[ 65%] Built target test_reaper_host
+[ 65%] Linking C executable test_parallel
+[ 65%] Linking C executable test_reaper_updates
+[ 65%] Linking C executable test_reaper_parallel
+[ 66%] Built target test_parallel
+[ 67%] Built target test_reaper_updates
+[ 68%] Built target test_reaper_parallel
+[ 68%] Linking Fortran executable test_reference
+[ 68%] Linking Fortran executable test_radiation
+[ 69%] Linking Fortran executable test_spectra
+[ 71%] Built target test_reference
+[ 71%] Built target test_radiation
+[ 72%] Built target test_spectra
+[ 73%] Linking Fortran executable test_yields
+[ 73%] Linking Fortran executable test_temperature
+[ 74%] Linking Fortran executable test_rates
+[ 75%] Built target test_temperature
+[ 75%] Built target test_yields
+[ 76%] Built target test_rates
+[ 77%] Linking Fortran executable test_oxygen
+[ 77%] Linking Fortran executable test_linalg
+[ 78%] Linking Fortran executable test_discrete_helpers
+[ 79%] Built target test_linalg
+[ 79%] Built target test_oxygen
+[ 79%] Built target test_discrete_helpers
+[ 79%] Linking Fortran executable test_discrete
+[ 80%] Linking Fortran executable test_profiles
+[ 80%] Linking Fortran executable test_optics
+[ 81%] Built target test_discrete
+[ 81%] Built target test_profiles
+[ 82%] Built target test_optics
+[ 83%] Linking Fortran executable test_config
+[ 84%] Linking Fortran executable test_spectrum
+[ 84%] Linking Fortran executable test_profile_config
+[ 84%] Built target test_config
+[ 84%] Built target test_spectrum
+[ 85%] Built target test_profile_config
+[ 88%] Linking Fortran executable test_model_host
+[ 88%] Linking Fortran executable test_reaper_reference_model
+[ 88%] Linking Fortran executable test_model
+[ 89%] Linking C executable test_reaper_preparation
+[ 89%] Built target test_model_host
+[ 89%] Built target test_reaper_reference_model
+[ 89%] Built target test_model
+[ 89%] Built target test_reaper_preparation
+[ 91%] Linking Fortran executable test_reaper_reference_spectrum
+[ 91%] Linking Fortran executable test_reaper_reference_model_host
+[ 92%] Linking C executable dump_fixtures
+[ 93%] Linking C executable test_optics_invariants
+[ 94%] Built target dump_fixtures
+[ 94%] Built target test_optics_invariants
+[ 94%] Built target test_reaper_reference_spectrum
+[ 94%] Built target test_reaper_reference_model_host
+[ 96%] Linking C executable test_spectrum_invariants
+[ 96%] Linking C executable test_config_invariants
+[ 97%] Linking C executable test_profile_config_invariants
+[ 97%] Linking C executable test_prepared
+[ 98%] Built target test_config_invariants
+[ 98%] Built target test_profile_config_invariants
+[ 98%] Built target test_spectrum_invariants
+[ 99%] Built target test_prepared
+[100%] Linking C executable test_reaper
+[100%] Built target test_reaper

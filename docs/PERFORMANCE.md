@@ -359,8 +359,9 @@ policy, full-value gates, paired timings and rejected experiments are in
 layout, fixed interpolation, shared O2 and memory-pass improvements. R2 adds
 optional statically generated rate kernels. R3 adds spectral reuse, bounded
 spectral exponentials, ordered O2 lanes, and transfer layout/role improvements.
-The combined paired median gains are 1.448–1.878x across the four cases, with
-95% lower bounds of 1.446–1.876x. The additional 2x target remains unmet;
+The subsequent transfer-fusion and spectral-loop checkpoint reaches paired
+median gains of 1.530–1.979x across the four cases, with 95% lower bounds of
+1.526–1.975x. The additional 2x target remains unmet;
 failed candidates alone do not prove that the objective is impossible.
 
 The timing driver now requires numerical-gate evidence when hashes may differ.

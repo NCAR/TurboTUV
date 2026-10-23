@@ -1,6 +1,7 @@
 # REAPER implementation plan for TurboTUV
 
-Status: R0 through R4 implemented and validated; R5 onward in progress. Fresh controls and
+Status: R0 through R4 and a transfer/spectral follow-up implemented and validated;
+R5 onward in progress. Fresh controls and
 measurement evidence are recorded in `docs/REAPER_RESULTS.md`.
 Prepared 2026-10-22 on branch `reaper`, based on `main` at
 `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`.

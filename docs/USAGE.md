@@ -200,11 +200,16 @@ available. Scratch and caches belong to each model.
 implementation. Its default-on implementation has an independent binary64
 error bound in [REAPER_MATH.md](REAPER_MATH.md), domain/rounding-mode guards,
 and ordinary libm fallback. Transfer exponentials always use libm.
+`TURBOTUV_REAPER_MATH_HINTS=OFF` disables the optional compiler hints for
+independent spectral lanes; their arithmetic and numerical policy are unchanged.
 `TURBOTUV_REAPER_FIXED_CACHE`, `TURBOTUV_REAPER_DIRECT_CACHE` (0/off,
 1/expensive formulas, 2/all), and `TURBOTUV_REAPER_BLOCK` (2/4/8/16/32)
 control the corresponding development experiments. The default block is 16.
 Other internal lane choices are recorded in `src/reaper_internal.h` and the
 experiment ledger; they do not require a particular ISA or vector library.
+The transfer implementation eliminates each interior system row immediately
+after its coefficients are ready. GCC also reuses consumed temporary rows;
+Clang retains the full workspace following the measured layout comparison.
 
 R4 uses descriptor ABI/schema/implementation version 2 and generator version
 2. Regenerate version-1 artifacts with the current C exporter and emitter.
