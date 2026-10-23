@@ -1,0 +1,102 @@
+{
+  "family": "gcc",
+  "variants": [
+    {
+      "variant": "mode-1",
+      "command": [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-Isrc",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-DTT_TRANSFER_EXP=1",
+        "-c",
+        "build/reaper/accuracy-prototype/radiation_reaper.c",
+        "-o",
+        "build/reaper/accurate-transfer-gcc/mode-1/radiation_reaper.c.o"
+      ],
+      "binary_sha256": "86727c2e08c846e3bbaa4b4eaecd4e7e2125ffa1908cc2053916efefe12d01ae",
+      "catalogue": "REAPER (blocked Delta-Eddington): blocked radiation[168] 0 != 2.191580250610059e-16 (0.987 eps)\n",
+      "catalogue_passed": false,
+      "gates": [
+        "docs/evidence/reaper/further/accurate-transfer/gcc-mode-1-tuv_5_4.json",
+        "docs/evidence/reaper/further/accurate-transfer/gcc-mode-1-ts1_tsmlt.json"
+      ],
+      "passed": false,
+      "errors": [
+        "FAIL: 8,044,080 values; docs/evidence/reaper/further/accurate-transfer/gcc-mode-1-tuv_5_4.json\ndown_flux 358 {'column': 0, 'row': 68, 'level': 29, 'reference': 0.009256712704990455, 'candidate': 0.009256712705005228}\nup_flux 445 {'column': 0, 'row': 68, 'level': 74, 'reference': 0.0368786624902195, 'candidate': 0.03687866249023704}\ndown_irradiance 149 {'column': 7, 'row': 145, 'level': 0, 'reference': 0.10574987043255933, 'candidate': 0.1057498704325342}\nup_irradiance 171 {'column': 19, 'row': 83, 'level': 50, 'reference': 0.3164716951001485, 'candidate': 0.31647169510017065}\nactinic_flux 681 {'column': 0, 'row': 68, 'level': 24, 'reference': 60489152614925.62, 'candidate': 60489152614926.53}\nspectral_irradiance 500 {'column': 0, 'row': 68, 'level': 72, 'reference': 0.6602019604263254, 'candidate': 0.6602019604263358}\nphotolysis 966 {'column': 31, 'row': 2, 'level': 37, 'reference': 0.0008945005859417357, 'candidate': 0.0008945005859417487}\ndose 10 {'column': 31, 'row': 0, 'level': 112, 'reference': 13.572757460529708, 'candidate': 13.572757460529935}\n",
+        "FAIL: 5,186,544 values; docs/evidence/reaper/further/accurate-transfer/gcc-mode-1-ts1_tsmlt.json\ndown_flux 133 {'column': 12, 'row': 97, 'level': 0, 'reference': 0.35751137598564103, 'candidate': 0.35751137598562416}\nup_flux 240 {'column': 12, 'row': 97, 'level': 60, 'reference': 0.30357452418686065, 'candidate': 0.30357452418688197}\ndown_irradiance 41 {'column': 19, 'row': 74, 'level': 7, 'reference': 0.21872027351461376, 'candidate': 0.21872027351462828}\nup_irradiance 170 {'column': 19, 'row': 74, 'level': 50, 'reference': 0.3164716951001485, 'candidate': 0.31647169510017065}\nactinic_flux 374 {'column': 1, 'row': 58, 'level': 0, 'reference': 1.365042721453254e-32, 'candidate': 1.36504272145322e-32}\nspectral_irradiance 291 {'column': 1, 'row': 58, 'level': 0, 'reference': 5.040116317878538e-47, 'candidate': 5.040116317878411e-47}\nphotolysis 2 {'column': 46, 'row': 26, 'level': 4, 'reference': 3.2382076789990074e-13, 'candidate': 3.2382076789990695e-13}\n"
+      ]
+    },
+    {
+      "variant": "mode-2",
+      "command": [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-Isrc",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-DTT_TRANSFER_EXP=2",
+        "-c",
+        "build/reaper/accuracy-prototype/radiation_reaper.c",
+        "-o",
+        "build/reaper/accurate-transfer-gcc/mode-2/radiation_reaper.c.o"
+      ],
+      "binary_sha256": "e4fb3aff0bca9018820a6bbe2c271c336d9345d9f559baf5bb23b784a2fa4d0b",
+      "catalogue": "REAPER (blocked Delta-Eddington): blocked radiation[84] -8.3523897190381114e-53 != 8.3523897190381114e-53 (7.52e-37 eps)\n",
+      "catalogue_passed": false,
+      "gates": [
+        "docs/evidence/reaper/further/accurate-transfer/gcc-mode-2-tuv_5_4.json",
+        "docs/evidence/reaper/further/accurate-transfer/gcc-mode-2-ts1_tsmlt.json"
+      ],
+      "passed": false,
+      "errors": [
+        "FAIL: 8,044,080 values; docs/evidence/reaper/further/accurate-transfer/gcc-mode-2-tuv_5_4.json\ndown_flux 5085 {'column': 0, 'row': 146, 'level': 0, 'reference': 0.2512016469605623, 'candidate': 0.2512016469605991}\nup_flux 9462 {'column': 0, 'row': 85, 'level': 96, 'reference': 0.6485097431585598, 'candidate': 0.6485097431585742}\ndown_irradiance 2132 {'column': 0, 'row': 146, 'level': 0, 'reference': 0.12560082348028115, 'candidate': 0.12560082348029955}\nup_irradiance 5146 {'column': 0, 'row': 146, 'level': 66, 'reference': 0.1274111565369823, 'candidate': 0.1274111565370156}\nactinic_flux 12113 {'column': 0, 'row': 129, 'level': 89, 'reference': 3274495473753831.0, 'candidate': 3274495473753783.0}\nspectral_irradiance 8158 {'column': 0, 'row': 146, 'level': 0, 'reference': 7.5876018028644205, 'candidate': 7.587601802864571}\nphotolysis 486 {'column': 5, 'row': 4, 'level': 50, 'reference': 6.413608521192477e-07, 'candidate': 6.413608521192682e-07}\ndose 83 {'column': 5, 'row': 7, 'level': 50, 'reference': 2.580569277926789, 'candidate': 2.580569277927047}\n",
+        "FAIL: 5,186,544 values; docs/evidence/reaper/further/accurate-transfer/gcc-mode-2-ts1_tsmlt.json\ndown_flux 2818 {'column': 0, 'row': 88, 'level': 10, 'reference': 0.1788716734920497, 'candidate': 0.17887167349203478}\nup_flux 2579 {'column': 0, 'row': 76, 'level': 96, 'reference': 0.6485097431585598, 'candidate': 0.6485097431585742}\ndown_irradiance 677 {'column': 3, 'row': 27, 'level': 8, 'reference': 7.2595758129287e-130, 'candidate': -5.722817367967664e-196}\nup_irradiance 931 {'column': 4, 'row': 97, 'level': 25, 'reference': 0.14750144341274615, 'candidate': 0.14750144341279545}\nactinic_flux 4658 {'column': 0, 'row': 80, 'level': 61, 'reference': 1330528157281661.0, 'candidate': 1330528157281641.8}\nspectral_irradiance 2666 {'column': 1, 'row': 47, 'level': 0, 'reference': 1.0555037770724091e-41, 'candidate': 1.0555037770724588e-41}\nphotolysis 476 {'column': 4, 'row': 9, 'level': 0, 'reference': 0.19822558594695974, 'candidate': 0.19822558594696296}\nheating 16 {'column': 15, 'row': 2, 'level': 9, 'reference': 8.217902392243359e-25, 'candidate': 8.217902392243238e-25}\n"
+      ]
+    },
+    {
+      "variant": "mode-3",
+      "command": [
+        "/opt/homebrew/bin/gcc-15",
+        "-std=c11",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-ffp-contract=off",
+        "-Iinclude",
+        "-Isrc",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+        "-DTT_TRANSFER_EXP=3",
+        "-c",
+        "build/reaper/accuracy-prototype/radiation_reaper.c",
+        "-o",
+        "build/reaper/accurate-transfer-gcc/mode-3/radiation_reaper.c.o"
+      ],
+      "binary_sha256": "c86b421bd6bf6478bef7feb300862b78446544298b84810c7ab5641907dca34b",
+      "catalogue": "REAPER (blocked Delta-Eddington): blocked radiation[84] -8.3523897190381114e-53 != 8.3523897190381114e-53 (7.52e-37 eps)\n",
+      "catalogue_passed": false,
+      "gates": [
+        "docs/evidence/reaper/further/accurate-transfer/gcc-mode-3-tuv_5_4.json",
+        "docs/evidence/reaper/further/accurate-transfer/gcc-mode-3-ts1_tsmlt.json"
+      ],
+      "passed": false,
+      "errors": [
+        "FAIL: 8,044,080 values; docs/evidence/reaper/further/accurate-transfer/gcc-mode-3-tuv_5_4.json\ndown_flux 5507 {'column': 0, 'row': 68, 'level': 29, 'reference': 0.009256712704990455, 'candidate': 0.009256712705005228}\nup_flux 9917 {'column': 0, 'row': 68, 'level': 74, 'reference': 0.0368786624902195, 'candidate': 0.03687866249023704}\ndown_irradiance 2335 {'column': 0, 'row': 146, 'level': 0, 'reference': 0.12560082348028115, 'candidate': 0.12560082348029955}\nup_irradiance 5293 {'column': 0, 'row': 146, 'level': 66, 'reference': 0.1274111565369823, 'candidate': 0.1274111565370156}\nactinic_flux 12907 {'column': 0, 'row': 68, 'level': 24, 'reference': 60489152614925.62, 'candidate': 60489152614926.53}\nspectral_irradiance 8649 {'column': 0, 'row': 68, 'level': 72, 'reference': 0.6602019604263254, 'candidate': 0.6602019604263358}\nphotolysis 1459 {'column': 5, 'row': 4, 'level': 50, 'reference': 6.413608521192477e-07, 'candidate': 6.413608521192683e-07}\ndose 93 {'column': 5, 'row': 7, 'level': 50, 'reference': 2.580569277926789, 'candidate': 2.580569277927047}\n",
+        "FAIL: 5,186,544 values; docs/evidence/reaper/further/accurate-transfer/gcc-mode-3-ts1_tsmlt.json\ndown_flux 3025 {'column': 0, 'row': 88, 'level': 10, 'reference': 0.1788716734920497, 'candidate': 0.17887167349203478}\nup_flux 2805 {'column': 0, 'row': 76, 'level': 96, 'reference': 0.6485097431585598, 'candidate': 0.6485097431585742}\ndown_irradiance 718 {'column': 3, 'row': 27, 'level': 8, 'reference': 7.2595758129287e-130, 'candidate': -5.722817367967664e-196}\nup_irradiance 1101 {'column': 4, 'row': 97, 'level': 25, 'reference': 0.14750144341274615, 'candidate': 0.14750144341279545}\nactinic_flux 4972 {'column': 0, 'row': 88, 'level': 11, 'reference': 1865328397857167.5, 'candidate': 1865328397857140.8}\nspectral_irradiance 2982 {'column': 1, 'row': 47, 'level': 0, 'reference': 1.0555037770724091e-41, 'candidate': 1.0555037770724588e-41}\nphotolysis 478 {'column': 4, 'row': 9, 'level': 0, 'reference': 0.19822558594695974, 'candidate': 0.19822558594696296}\nheating 16 {'column': 15, 'row': 2, 'level': 9, 'reference': 8.217902392243359e-25, 'candidate': 8.217902392243238e-25}\n"
+      ]
+    }
+  ],
+  "samples": []
+}

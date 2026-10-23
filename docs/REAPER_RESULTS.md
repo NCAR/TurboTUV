@@ -426,3 +426,57 @@ useful combined gain. Larger exponential tables remain unselected prototypes
 without complete independent boundary-oracle validation. Remaining avenues
 include further spectral specialization and transfer work; this checkpoint
 does not supply a lower bound on every allowed rewrite.
+
+## R5: independent-column grouping
+
+A private prototype runs independent model states through the same generated
+rate-code chunk before moving to the next chunk. This tests whether reuse of
+generated instructions outweighs the larger working set. It groups only models
+with matching recipe identities and callbacks, falls back to ordinary calls
+for mixed or detached models, and keeps per-column errors and results separate.
+There is no new public batch API in the library: the measured prototype is
+not profitable.
+
+All six widths, 1/2/4/8/16/32, reproduce the current single-column results
+bit for bit on both compilers and both primary configurations. The 301-column
+gates cover 995,604,456 values and partial final groups at every width above
+one. Separate tests cover invalid columns between valid columns, detached and
+generic execution, mixed models, duplicate-handle rejection, a three-column
+tail, and concurrent independent groups. GCC, Clang, and address/undefined-
+behavior sanitizer runs all pass.
+
+The throughput boundary includes profile packing/updates, execution, and copies
+of every returned field and rate. Hashing and file output remain outside it.
+Each comparison uses one thread and three rotating screening rounds of 300
+columns repeated three times. This is a grouping assessment, not a replacement
+for the primary single-column timing protocol or a new 2x acceptance claim.
+
+Median paired throughput relative to repeated calls on one model, with the
+same output-copy boundary (values below one mean slower):
+
+| Group width | tuv GCC | tuv Clang | ts1 GCC | ts1 Clang |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 1.001x | 1.001x | 1.000x | 1.004x |
+| 2 | 0.991x | 0.995x | 0.995x | 0.997x |
+| 4 | 0.960x | 0.966x | 0.988x | 0.988x |
+| 8 | 0.894x | 0.898x | 0.950x | 0.951x |
+| 16 | 0.849x | 0.851x | 0.896x | 0.897x |
+| 32 | 0.829x | 0.829x | 0.869x | 0.863x |
+
+Comparisons against ordinary calls on the same number of independent models
+also show no useful gain: at width 32, grouping achieves only 0.885–0.923x
+their throughput. Groups of two are within roughly one percent of ordinary
+calls; wider groups regress progressively. This supports rejecting this
+implementation, not ruling out all possible batch designs.
+
+Separate resource runs show construction/selection increasing from 20–31 ms
+at width one to 654–963 ms at width 32. Maximum RSS grows from 16–21 MB to
+260–410 MB, including the explicit output-copy buffers. Each model owns its
+column-dependent spectra, optics, radiation and scratch; sharing another
+column's values would violate this experiment's independence requirement.
+
+The [R5 evidence](evidence/reaper/r5/) retains the private source, generated
+chunks, build commands/hashes, all numerical gates, concurrency/sanitizer tests,
+all 144 timing samples and resource logs. The selected single-column library
+and its 1.530–1.979x results remain unchanged. Additional transfer/spectral
+screens are recorded separately in the [further ledger](evidence/reaper/further/LEDGER.md).

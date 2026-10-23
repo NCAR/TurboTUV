@@ -1,0 +1,119 @@
+{
+  "family": "clang",
+  "commands": [
+    [
+      "/opt/homebrew/opt/llvm/bin/clang",
+      "-std=c11",
+      "-O3",
+      "-DNDEBUG",
+      "-fPIC",
+      "-ffp-contract=off",
+      "-Iinclude",
+      "-Isrc",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+      "-c",
+      "build/reaper/r5-prototype/model_plan.c",
+      "-o",
+      "build/reaper/r5-clang/model_plan.c.o"
+    ],
+    [
+      "ar",
+      "r",
+      "build/reaper/r5-clang/libturbotuv.a",
+      "build/reaper/r5-clang/model_plan.c.o"
+    ],
+    [
+      "/opt/homebrew/opt/llvm/bin/clang",
+      "-std=c11",
+      "-O3",
+      "-DNDEBUG",
+      "-fPIC",
+      "-ffp-contract=off",
+      "-Iinclude",
+      "-Isrc",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+      "-c",
+      "build/reaper/r5-prototype/clang/kernel-0.c",
+      "-o",
+      "build/reaper/r5-clang/kernel-0.c.o"
+    ],
+    [
+      "ar",
+      "r",
+      "build/reaper/r5-clang/libturbotuv.a",
+      "build/reaper/r5-clang/kernel-0.c.o"
+    ],
+    [
+      "/opt/homebrew/opt/llvm/bin/clang",
+      "-std=c11",
+      "-O3",
+      "-DNDEBUG",
+      "-fPIC",
+      "-ffp-contract=off",
+      "-Iinclude",
+      "-Isrc",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+      "-c",
+      "build/reaper/r5-prototype/clang/kernel-1.c",
+      "-o",
+      "build/reaper/r5-clang/kernel-1.c.o"
+    ],
+    [
+      "ar",
+      "r",
+      "build/reaper/r5-clang/libturbotuv.a",
+      "build/reaper/r5-clang/kernel-1.c.o"
+    ],
+    [
+      "/opt/homebrew/opt/llvm/bin/clang",
+      "-std=c11",
+      "-O3",
+      "-DNDEBUG",
+      "-fPIC",
+      "-ffp-contract=off",
+      "-Iinclude",
+      "-Isrc",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+      "-c",
+      "build/reaper/r5-prototype/clang/registry.c",
+      "-o",
+      "build/reaper/r5-clang/registry.c.o"
+    ],
+    [
+      "ar",
+      "r",
+      "build/reaper/r5-clang/libturbotuv.a",
+      "build/reaper/r5-clang/registry.c.o"
+    ],
+    [
+      "/opt/homebrew/opt/llvm/bin/clang",
+      "-std=c11",
+      "-O3",
+      "-DNDEBUG",
+      "-fPIC",
+      "-ffp-contract=off",
+      "-Iinclude",
+      "-Isrc",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk",
+      "build/reaper/r5-prototype/batch_bench.c",
+      "build/reaper/r5-clang/libturbotuv.a",
+      "-lm",
+      "-o",
+      "build/reaper/r5-clang/turbotuv_bench"
+    ]
+  ],
+  "source_sha256": {
+    "build/reaper/r5-prototype/model_plan.c": "da173841db1dac249d04712cc09011cbfd2a7dbdfa4ed58bbd2f094d5d2bcf75",
+    "build/reaper/r5-prototype/clang/kernel-0.c": "5aca6d3085a2d7db9f274fc0cc2039c3a00e8b3db6e5d315127741f3bbd39efb",
+    "build/reaper/r5-prototype/clang/kernel-1.c": "6447fac007cf5770ec6590a8a97186969838e983560ca208c9f0e3feecb15d0c",
+    "build/reaper/r5-prototype/clang/registry.c": "a11a4fde48c42380b7191db6d5836fbe1ad06a84ac2717691b019852d6d20506",
+    "build/reaper/r5-prototype/batch_bench.c": "a9ace8820cd3f875030e6cc31d5622466b9869536b3a4430ccd8c6da3dca6f3f"
+  },
+  "build_seconds": 2.4803325419999998,
+  "binary_sha256": "4eeca45bc382322b0cc286cd09c1a7d6aed9a37a48b1f1eaf07134b01c0d7343"
+}

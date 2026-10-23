@@ -1,0 +1,21 @@
+config=examples/tuv_5_4.json columns=903 levels=121 wavelengths=156 photolysis=109 heating=0 dose=28 execution=reaper
+elapsed_ms=763.275 per_column_us=845.27 hash=8009895e888e940d batch_size=32 grouped=1 materialized_bytes=42901760 setup_ms=963.273
+reaper_calls=903 generated_calls=1806 reaper_declines=0 generic_calls=0 profiling=0
+        2.12 real         2.09 user         0.02 sys
+           407175168  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               25028  page reclaims
+                   3  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                 132  involuntary context switches
+         43264442430  instructions retired
+          9660207858  cycles elapsed
+           401343136  peak memory footprint

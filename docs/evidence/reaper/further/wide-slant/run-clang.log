@@ -1,0 +1,5 @@
+clang mode-16 pass True
+clang mode-32 pass True
+clang mode-64 pass True
+clang mode-128 pass True
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 651.46}, {'config': 'tuv_5_4', 'variant': 'mode-16', 'median_us': 651.83}, {'config': 'tuv_5_4', 'variant': 'mode-32', 'median_us': 659.26}, {'config': 'tuv_5_4', 'variant': 'mode-64', 'median_us': 691.61}, {'config': 'tuv_5_4', 'variant': 'mode-128', 'median_us': 808.47}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 511.39}, {'config': 'ts1_tsmlt', 'variant': 'mode-16', 'median_us': 511.39}, {'config': 'ts1_tsmlt', 'variant': 'mode-32', 'median_us': 525.17}, {'config': 'ts1_tsmlt', 'variant': 'mode-64', 'median_us': 534.9}, {'config': 'ts1_tsmlt', 'variant': 'mode-128', 'median_us': 568.81}]

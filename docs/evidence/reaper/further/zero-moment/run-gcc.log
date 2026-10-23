@@ -1,0 +1,4 @@
+gcc mode-1 pass True
+gcc mode-2 pass True
+gcc mode-3 pass True
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 689.12}, {'config': 'tuv_5_4', 'variant': 'mode-1', 'median_us': 691.39}, {'config': 'tuv_5_4', 'variant': 'mode-2', 'median_us': 691.22}, {'config': 'tuv_5_4', 'variant': 'mode-3', 'median_us': 693.55}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 550.42}, {'config': 'ts1_tsmlt', 'variant': 'mode-1', 'median_us': 550.19}, {'config': 'ts1_tsmlt', 'variant': 'mode-2', 'median_us': 549.5}, {'config': 'ts1_tsmlt', 'variant': 'mode-3', 'median_us': 552.23}]

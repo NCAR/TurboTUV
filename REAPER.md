@@ -1,7 +1,7 @@
 # REAPER implementation plan for TurboTUV
 
 Status: R0 through R4 and a transfer/spectral follow-up implemented and validated;
-R5 onward in progress. Fresh controls and
+R5 grouping evaluated and rejected on measured throughput; R6 remains open. Fresh controls and
 measurement evidence are recorded in `docs/REAPER_RESULTS.md`.
 Prepared 2026-10-22 on branch `reaper`, based on `main` at
 `9e149851af5bc48fc7ce64b5fbe50c6959ff2d51`.
@@ -516,7 +516,7 @@ review itself has established neither a new speedup nor such a bound.
   measured hot stages; held-out numerical validation.
 - [x] R4: static attachment and, if profitable, optional startup preparation,
   identity checks, cache, lifecycle tests, and deployment documentation.
-- [ ] R5: grouping assessment when the remaining profile justifies it, with
+- [x] R5: grouping assessment when the remaining profile justifies it, with
   throughput claims kept distinct from the primary objective.
 - [ ] R6: full validation of the selected implementation; portable build and
   installation checks; all primary timings and resource costs.

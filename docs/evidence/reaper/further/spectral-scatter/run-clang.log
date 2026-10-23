@@ -1,0 +1,3 @@
+clang mode-1 pass True
+clang mode-2 pass True
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 639.67}, {'config': 'tuv_5_4', 'variant': 'mode-1', 'median_us': 638.59}, {'config': 'tuv_5_4', 'variant': 'mode-2', 'median_us': 635.15}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 498.79}, {'config': 'ts1_tsmlt', 'variant': 'mode-1', 'median_us': 503.63}, {'config': 'ts1_tsmlt', 'variant': 'mode-2', 'median_us': 503.97}]

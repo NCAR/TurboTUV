@@ -1,0 +1,446 @@
+[
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,1",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-tuv_5_4-1.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-tuv_5_4-1.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-clang-tuv_5_4-1.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,2",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-tuv_5_4-2.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-tuv_5_4-2.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-clang-tuv_5_4-2.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,4",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-tuv_5_4-4.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-tuv_5_4-4.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-clang-tuv_5_4-4.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,8",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-tuv_5_4-8.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-tuv_5_4-8.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-clang-tuv_5_4-8.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,16",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-tuv_5_4-16.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-tuv_5_4-16.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-clang-tuv_5_4-16.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,32",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-tuv_5_4-32.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-tuv_5_4-32.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-clang-tuv_5_4-32.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--batch-size,32",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "35",
+      "--json",
+      "docs/evidence/reaper/r5/serial-clang-tuv_5_4.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/serial-clang-tuv_5_4.json"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,1",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-1.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-1.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-1.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,2",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-2.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-2.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-2.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,4",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-4.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-4.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-4.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,8",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-8.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-8.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-8.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,16",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-16.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-16.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-16.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--group,--batch-size,32",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-32.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-32.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-clang-ts1_tsmlt-32.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-clang/turbotuv_bench:--reaper",
+      "build/reaper/r5-clang/turbotuv_bench:--reaper,--batch-size,32",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "35",
+      "--json",
+      "docs/evidence/reaper/r5/serial-clang-ts1_tsmlt.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/serial-clang-ts1_tsmlt.json"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,1",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-1.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-1.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-gcc-tuv_5_4-1.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,2",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-2.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-2.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-gcc-tuv_5_4-2.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,4",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-4.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-4.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-gcc-tuv_5_4-4.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,8",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-8.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-8.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-gcc-tuv_5_4-8.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,16",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-16.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-16.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-gcc-tuv_5_4-16.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,32",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-32.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-tuv_5_4-32.json",
+    "log": "PASS: 50,443,085 values; docs/evidence/reaper/r5/gate-gcc-tuv_5_4-32.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--batch-size,32",
+      "--config",
+      "examples/tuv_5_4.json",
+      "--columns",
+      "35",
+      "--json",
+      "docs/evidence/reaper/r5/serial-gcc-tuv_5_4.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/serial-gcc-tuv_5_4.json"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,1",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-1.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-1.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-1.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,2",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-2.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-2.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-2.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,4",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-4.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-4.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-4.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,8",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-8.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-8.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-8.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,16",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-16.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-16.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-16.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--group,--batch-size,32",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "301",
+      "--json",
+      "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-32.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-32.json",
+    "log": "PASS: 32,523,953 values; docs/evidence/reaper/r5/gate-gcc-ts1_tsmlt-32.json\n"
+  },
+  {
+    "command": [
+      "/Users/fillmore/miniforge3/envs/earth-eval/bin/python",
+      "tools/reaper/compare.py",
+      "build/reaper/r3b-selected-gcc/turbotuv_bench:--reaper",
+      "build/reaper/r5-gcc/turbotuv_bench:--reaper,--batch-size,32",
+      "--config",
+      "examples/ts1_tsmlt.json",
+      "--columns",
+      "35",
+      "--json",
+      "docs/evidence/reaper/r5/serial-gcc-ts1_tsmlt.json"
+    ],
+    "gate": "docs/evidence/reaper/r5/serial-gcc-ts1_tsmlt.json"
+  }
+]

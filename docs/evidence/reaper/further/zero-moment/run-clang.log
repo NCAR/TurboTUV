@@ -1,0 +1,26 @@
+clang mode-1 pass True
+build/reaper/zero-moment-prototype/radiation_reaper.c:292:26: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+  292 |         int zero=nearest && (TT_ZERO_MOMENT & 2);
+      |                          ^  ~~~~~~~~~~~~~~~~~~~~
+build/reaper/zero-moment-prototype/radiation_reaper.c:292:26: note: use '&' for a bitwise operation
+  292 |         int zero=nearest && (TT_ZERO_MOMENT & 2);
+      |                          ^~
+      |                          &
+build/reaper/zero-moment-prototype/radiation_reaper.c:292:26: note: remove constant to silence this warning
+  292 |         int zero=nearest && (TT_ZERO_MOMENT & 2);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+clang mode-2 pass True
+build/reaper/zero-moment-prototype/radiation_reaper.c:292:26: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+  292 |         int zero=nearest && (TT_ZERO_MOMENT & 2);
+      |                          ^  ~~~~~~~~~~~~~~~~~~~~
+build/reaper/zero-moment-prototype/radiation_reaper.c:292:26: note: use '&' for a bitwise operation
+  292 |         int zero=nearest && (TT_ZERO_MOMENT & 2);
+      |                          ^~
+      |                          &
+build/reaper/zero-moment-prototype/radiation_reaper.c:292:26: note: remove constant to silence this warning
+  292 |         int zero=nearest && (TT_ZERO_MOMENT & 2);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+clang mode-3 pass True
+[{'config': 'tuv_5_4', 'variant': 'selected', 'median_us': 644.88}, {'config': 'tuv_5_4', 'variant': 'mode-1', 'median_us': 641.57}, {'config': 'tuv_5_4', 'variant': 'mode-2', 'median_us': 656.05}, {'config': 'tuv_5_4', 'variant': 'mode-3', 'median_us': 657.29}, {'config': 'ts1_tsmlt', 'variant': 'selected', 'median_us': 502.03}, {'config': 'ts1_tsmlt', 'variant': 'mode-1', 'median_us': 502.26}, {'config': 'ts1_tsmlt', 'variant': 'mode-2', 'median_us': 512.36}, {'config': 'ts1_tsmlt', 'variant': 'mode-3', 'median_us': 513.04}]

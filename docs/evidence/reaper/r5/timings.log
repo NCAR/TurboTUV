@@ -1,0 +1,230 @@
+clang tuv_5_4 round 1
+clang ts1_tsmlt round 1
+clang tuv_5_4 round 2
+clang ts1_tsmlt round 2
+clang tuv_5_4 round 3
+clang ts1_tsmlt round 3
+gcc tuv_5_4 round 1
+gcc ts1_tsmlt round 1
+gcc tuv_5_4 round 2
+gcc ts1_tsmlt round 2
+gcc tuv_5_4 round 3
+gcc ts1_tsmlt round 3
+[
+  {
+    "family": "clang",
+    "config": "tuv_5_4",
+    "width": 1,
+    "serial_us": 671.61,
+    "group_us": 670.45,
+    "paired_vs_same_width": 1.0006367634645856,
+    "paired_vs_single_model": 1.0006367634645856
+  },
+  {
+    "family": "clang",
+    "config": "tuv_5_4",
+    "width": 2,
+    "serial_us": 671.39,
+    "group_us": 674.19,
+    "paired_vs_same_width": 0.9957973767255434,
+    "paired_vs_single_model": 0.9948616775371387
+  },
+  {
+    "family": "clang",
+    "config": "tuv_5_4",
+    "width": 4,
+    "serial_us": 684.62,
+    "group_us": 695.21,
+    "paired_vs_same_width": 0.984708606053677,
+    "paired_vs_single_model": 0.9656729642438621
+  },
+  {
+    "family": "clang",
+    "config": "tuv_5_4",
+    "width": 8,
+    "serial_us": 702.78,
+    "group_us": 751.16,
+    "paired_vs_same_width": 0.939267266627616,
+    "paired_vs_single_model": 0.8976823139435416
+  },
+  {
+    "family": "clang",
+    "config": "tuv_5_4",
+    "width": 16,
+    "serial_us": 717.6,
+    "group_us": 788.99,
+    "paired_vs_same_width": 0.9079969727547932,
+    "paired_vs_single_model": 0.8512275187264731
+  },
+  {
+    "family": "clang",
+    "config": "tuv_5_4",
+    "width": 32,
+    "serial_us": 724.69,
+    "group_us": 810.38,
+    "paired_vs_same_width": 0.8949875339560153,
+    "paired_vs_single_model": 0.8287593474666206
+  },
+  {
+    "family": "clang",
+    "config": "ts1_tsmlt",
+    "width": 1,
+    "serial_us": 524.6,
+    "group_us": 522.05,
+    "paired_vs_same_width": 1.003676116788883,
+    "paired_vs_single_model": 1.003676116788883
+  },
+  {
+    "family": "clang",
+    "config": "ts1_tsmlt",
+    "width": 2,
+    "serial_us": 523.89,
+    "group_us": 526.22,
+    "paired_vs_same_width": 0.9955721941393333,
+    "paired_vs_single_model": 0.9969214397020257
+  },
+  {
+    "family": "clang",
+    "config": "ts1_tsmlt",
+    "width": 4,
+    "serial_us": 526.1,
+    "group_us": 530.91,
+    "paired_vs_same_width": 0.9906812887095856,
+    "paired_vs_single_model": 0.9877076349034983
+  },
+  {
+    "family": "clang",
+    "config": "ts1_tsmlt",
+    "width": 8,
+    "serial_us": 541.49,
+    "group_us": 551.45,
+    "paired_vs_same_width": 0.9820671248903189,
+    "paired_vs_single_model": 0.9513101822468039
+  },
+  {
+    "family": "clang",
+    "config": "ts1_tsmlt",
+    "width": 16,
+    "serial_us": 550.61,
+    "group_us": 584.32,
+    "paired_vs_same_width": 0.9403079339068687,
+    "paired_vs_single_model": 0.8966099959033182
+  },
+  {
+    "family": "clang",
+    "config": "ts1_tsmlt",
+    "width": 32,
+    "serial_us": 561.68,
+    "group_us": 607.94,
+    "paired_vs_same_width": 0.9228292121909143,
+    "paired_vs_single_model": 0.8629141033654637
+  },
+  {
+    "family": "gcc",
+    "config": "tuv_5_4",
+    "width": 1,
+    "serial_us": 718.77,
+    "group_us": 717.84,
+    "paired_vs_same_width": 1.0012955533266465,
+    "paired_vs_single_model": 1.0012955533266465
+  },
+  {
+    "family": "gcc",
+    "config": "tuv_5_4",
+    "width": 2,
+    "serial_us": 718.31,
+    "group_us": 725.37,
+    "paired_vs_same_width": 0.9904324689468822,
+    "paired_vs_single_model": 0.9909011952520782
+  },
+  {
+    "family": "gcc",
+    "config": "tuv_5_4",
+    "width": 4,
+    "serial_us": 731.09,
+    "group_us": 748.78,
+    "paired_vs_same_width": 0.9764914526495452,
+    "paired_vs_single_model": 0.9599214722615454
+  },
+  {
+    "family": "gcc",
+    "config": "tuv_5_4",
+    "width": 8,
+    "serial_us": 747.03,
+    "group_us": 803.25,
+    "paired_vs_same_width": 0.9300093370681606,
+    "paired_vs_single_model": 0.8942149788504603
+  },
+  {
+    "family": "gcc",
+    "config": "tuv_5_4",
+    "width": 16,
+    "serial_us": 761.55,
+    "group_us": 847.0,
+    "paired_vs_same_width": 0.900688333806415,
+    "paired_vs_single_model": 0.8486068476977567
+  },
+  {
+    "family": "gcc",
+    "config": "tuv_5_4",
+    "width": 32,
+    "serial_us": 769.32,
+    "group_us": 867.35,
+    "paired_vs_same_width": 0.8849484060644491,
+    "paired_vs_single_model": 0.8288686186099612
+  },
+  {
+    "family": "gcc",
+    "config": "ts1_tsmlt",
+    "width": 1,
+    "serial_us": 570.11,
+    "group_us": 568.97,
+    "paired_vs_same_width": 1.0004736675906107,
+    "paired_vs_single_model": 1.0004736675906107
+  },
+  {
+    "family": "gcc",
+    "config": "ts1_tsmlt",
+    "width": 2,
+    "serial_us": 569.51,
+    "group_us": 572.62,
+    "paired_vs_same_width": 0.9942420435510888,
+    "paired_vs_single_model": 0.994748045784478
+  },
+  {
+    "family": "gcc",
+    "config": "ts1_tsmlt",
+    "width": 4,
+    "serial_us": 570.22,
+    "group_us": 575.99,
+    "paired_vs_same_width": 0.9900739688533962,
+    "paired_vs_single_model": 0.9879086042926186
+  },
+  {
+    "family": "gcc",
+    "config": "ts1_tsmlt",
+    "width": 8,
+    "serial_us": 585.01,
+    "group_us": 598.22,
+    "paired_vs_same_width": 0.9783524455885794,
+    "paired_vs_single_model": 0.9496617321990757
+  },
+  {
+    "family": "gcc",
+    "config": "ts1_tsmlt",
+    "width": 16,
+    "serial_us": 593.06,
+    "group_us": 636.08,
+    "paired_vs_same_width": 0.9317371290317512,
+    "paired_vs_single_model": 0.8959639282964917
+  },
+  {
+    "family": "gcc",
+    "config": "ts1_tsmlt",
+    "width": 32,
+    "serial_us": 604.83,
+    "group_us": 656.2,
+    "paired_vs_same_width": 0.9217159402621152,
+    "paired_vs_single_model": 0.8685765634043071
+  }
+]

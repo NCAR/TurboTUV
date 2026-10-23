@@ -1,0 +1,46 @@
+{
+  "revision": "0872e283c795b46340313db4af7602c747212994",
+  "utc": "2026-10-23T08:22:02.907847+00:00",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "compilers": {
+    "clang": {
+      "path": "/opt/homebrew/opt/llvm/bin/clang",
+      "version": "Homebrew clang version 21.1.5\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/21.1.5/bin\nConfiguration file: /opt/homebrew/etc/clang/arm64-apple-darwin.cfg\n",
+      "sha256": "804c32b533e694d8486a51d7ac7efca742b3ca2cc75e31975c81b61956d869bd"
+    },
+    "gcc": {
+      "path": "/opt/homebrew/bin/gcc-15",
+      "version": "gcc-15 (Homebrew GCC 15.2.0) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "sha256": "6a9e8f1e0e740794a73858a57dd6dd2dfc07e0adffb8fa8f4d0b0af81c1d2015"
+    },
+    "sanitize": {
+      "path": "/usr/bin/clang",
+      "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin\n",
+      "sha256": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2"
+    }
+  },
+  "base_archives": {
+    "build/reaper/r3b-selected-clang/libturbotuv.a": "e4f41eaac3a2259affeb157424a9e7b9b1535ec77657e466e82c6943ddc6c5a1",
+    "build/reaper/r3b-selected-gcc/libturbotuv.a": "65b1b63176421f6485c741a63afa6cf44f2ec5e6db064875e57bc0a80977b1a1",
+    "build/reaper/r3b-sanitize/libturbotuv.a": "a0431f45bf80b9f8562ccc038ea98e3c1314f431478069cc9ee28009ecc2603b"
+  },
+  "prototype_source_sha256": {
+    "build/reaper/r5-prototype/batch_bench.c": "a9ace8820cd3f875030e6cc31d5622466b9869536b3a4430ccd8c6da3dca6f3f",
+    "build/reaper/r5-prototype/model_plan.c": "da173841db1dac249d04712cc09011cbfd2a7dbdfa4ed58bbd2f094d5d2bcf75",
+    "build/reaper/r5-prototype/test_batch.c": "b3debc345ae36cb37c74db41bd5ca30ddad8b07d5c2e61716ec6a226644745b3",
+    "build/reaper/r5-prototype/clang/kernel-0.c": "5aca6d3085a2d7db9f274fc0cc2039c3a00e8b3db6e5d315127741f3bbd39efb",
+    "build/reaper/r5-prototype/clang/kernel-1.c": "6447fac007cf5770ec6590a8a97186969838e983560ca208c9f0e3feecb15d0c",
+    "build/reaper/r5-prototype/clang/registry.c": "a11a4fde48c42380b7191db6d5836fbe1ad06a84ac2717691b019852d6d20506",
+    "build/reaper/r5-prototype/gcc/kernel-0.c": "841d2bcdccc1289b15403d44b192927895a9dbd9afddc1595aa61029827cce4a",
+    "build/reaper/r5-prototype/gcc/kernel-1.c": "a3428d4b321b1ede59bd1db2701599410ea2b5bb9b7b4e5868ebbfab2fac1605",
+    "build/reaper/r5-prototype/gcc/registry.c": "a11a4fde48c42380b7191db6d5836fbe1ad06a84ac2717691b019852d6d20506",
+    "build/reaper/prepare-r5.py": "a7fc3f71e0111338afb564990869d15981f2586ed240b472fefda813c5b912ab",
+    "build/reaper/r5-bench-main.c": "85a248762ce60d3a3f5bfb8f4e267dc24a37e40c02191074f2afb1c4d7e2f021",
+    "build/reaper/build-r5.py": "5a9a62c0871172693c8764c001fc50de599e00d66271e38bbd13e9b4679d3a20",
+    "build/reaper/r5-gates.py": "2018fd9bf1d078a8c6794afc84d1d8d9a2be42d029c0532a208d002c4497858d",
+    "build/reaper/r5-sanitize.sh": "6a876d5af6cce973e331d0e95d18a043c9c432ef3545e70d02ed6c73f02de9af",
+    "build/reaper/r5-timings.py": "0619f185d9cae5d64af449794531284372339bc7f7899f6e5dce42a03f8a6af2",
+    "build/reaper/r5-final-checks.sh": "93a60043280d79147e306449d94e7f2413f0ddb8edcc3873f03132ecb2ae2cd0"
+  }
+}
